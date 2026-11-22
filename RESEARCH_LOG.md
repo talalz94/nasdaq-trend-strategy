@@ -4,7 +4,7 @@ Master documentation of everything learned across this project, a Python researc
 repository. All source data directories are **read-only** and were
 never modified.
 
-Last updated: 2026-11-21 (paper trading: catch-up mode; repository published).  **STATUS: re-validated on data to 2026-11-17; rules unchanged except three corrections; planning numbers re-based. Paper-trading automation BUILT in `paper/` (local simulated account, no broker or credentials; adversarially reviewed), not yet started. Next: start the paper account + confirm SBP/tax before funding.**
+Last updated: 2026-11-22 (paper account started; repository published).  **STATUS: re-validated on data to 2026-11-17; rules unchanged except three corrections; planning numbers re-based. Paper-trading automation BUILT in `paper/` (local simulated account, no broker or credentials; adversarially reviewed) and RUNNING since 2026-11-22. Next: paper-trade for months + confirm SBP/tax before funding.**
 
 ---
 
@@ -85,8 +85,8 @@ re-optimise; never short via SQQQ; never fully de-lever; the rules generalize ac
 not; the Nasdaq survived a 29-asset search; on the S&P a parameter-free 200-day rule beats our Nasdaq-tuned settings.
 
 **NEXT:** the paper-trading automation is BUILT (`paper/`: a local simulated account, no broker, API key or password;
-adversarially reviewed, 117 tests; section 3 "PAPER-TRADING BUILD") but NOT started. Start it and paper-trade for
-months. The PC need not be on at a fixed time: a decision missed while it is off is made as soon as it is on and
+adversarially reviewed, 117 tests; section 3 "PAPER-TRADING BUILD") and RUNNING since 2026-11-22 (F2, US route,
+$10,000 simulated; first decision risk-off, filled at the 2026-11-23 close). Paper-trade it for months. The PC need not be on at a fixed time: a decision missed while it is off is made as soon as it is on and
 trades at the next close (1-3 trading days late barely changes the backtest return; a week late costs 5-7 pp/yr), so
 switch it on at least once between Saturday and Wednesday. Confirm SBP, tax and residency with a Pakistan-qualified
 cross-border adviser before funding anything.
@@ -197,8 +197,9 @@ optional and empty by default). Nothing in it can place a real order. Usage: `pa
   test replays the engine over weeks of simulated time and proves the pre-check never skips work. Booking a close or
   deciding: ~8.5 s CPU, ~125 MB for 15-25 s, 1-5 MB download, about once per trading day. Watchdog: ~2.5 s hourly.
   Total ~4-5 min CPU per day, well under 1% of one core.
-- **Not started:** `paper/data` is empty (no account initialised) and no scheduled task is registered; both wait for
-  the go-ahead (section 8).
+- **Started 2026-11-22:** `python paper/runner.py init --cash 10000` (F2, US route), first decision for 2026-11-20 =
+  RISK-OFF (NDX 25,029 vs EMA-100 28,808) -> buy 92 IEF + 4 GLD at the 2026-11-23 close; both scheduled tasks
+  registered and verified (scheduled runs exit 0, heartbeat written, desktop alert shown).
 
 ### NOV-2026 RE-CHECK — refresh, audit, two adversarially reviewed rounds — `update_2026_11/`
 **Data refresh** to 2026-11-17 (July inputs archived in `data_letf/archive_2026-07-24/`; `geo_panel.py` patched
@@ -607,11 +608,10 @@ fact-checked market research: `update_2026_11/market_context.json`.
 
 ## 8. Open items
 1. **Paper-trading automation: BUILT** as a local simulated account in `paper/` (no broker account, API key or
-   password), adversarially reviewed and fixed (section 3, PAPER-TRADING BUILD). **Not started.**
-   To start it: `python paper/runner.py init --cash 10000`, `python paper/runner.py status`,
-   `powershell -ExecutionPolicy Bypass -File paper\install_task.ps1`. The PC need not be on at a fixed time (catch-up
-   mode); switch it on at least once between Saturday and Wednesday each week. Paper-trade for several months and
-   judge it against the shadow 5-weekday tranche, not the Friday backtest.
+   password), adversarially reviewed and fixed (section 3, PAPER-TRADING BUILD). **Running since 2026-11-22.**
+   Check it with `python paper/runner.py status`. The PC need not be on at a fixed time (catch-up mode); switch it on
+   at least once between Saturday and Wednesday each week. Paper-trade for several months and judge it against the
+   shadow 5-weekday tranche, not the Friday backtest. Stop it with `paper\uninstall_task.ps1` (the data is kept).
 2. **Before funding (go/no-go):** a Pakistan-qualified cross-border adviser must confirm the SBP rule's reach, the tax
    rate on foreign ETF gains, tax residency, and the US estate-tax position.
 3. **Optional, decide before 2026-11-25 or never:** the 50/50 IEF/BIL off-leg (insurance against a 2022-type
