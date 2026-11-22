@@ -1,0 +1,3403 @@
+<title>Beating Buy &amp; Hold with Leverage — TQQQ Timing</title>
+<style>
+  :root{--bg:#0c1116;--panel:#131b22;--panel2:#17222b;--border:#25333d;--text:#dfe8ee;--muted:#8496a2;--faint:#5c6d78;
+    --accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1e2a33;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;--maxw:1080px;}
+  @media (prefers-color-scheme:light){:root{--bg:#eceff3;--panel:#fff;--panel2:#f4f7fa;--border:#d7dfe7;--text:#16232d;--muted:#5a6b77;--faint:#8899a4;--accent:#0c99a6;--gain:#12945f;--loss:#d6403c;--gold:#a9791a;--violet:#6b57d6;--grid:#e2e8ee;}}
+  :root[data-theme="dark"]{--bg:#0c1116;--panel:#131b22;--panel2:#17222b;--border:#25333d;--text:#dfe8ee;--muted:#8496a2;--faint:#5c6d78;--accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--grid:#1e2a33;}
+  :root[data-theme="light"]{--bg:#eceff3;--panel:#fff;--panel2:#f4f7fa;--border:#d7dfe7;--text:#16232d;--muted:#5a6b77;--faint:#8899a4;--accent:#0c99a6;--gain:#12945f;--loss:#d6403c;--gold:#a9791a;--grid:#e2e8ee;}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:var(--mono)}.pos{color:var(--gain)}.neg{color:var(--loss)}.acc{color:var(--accent)}
+  h1,h2{text-wrap:balance;margin:0}
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:52px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px}.brand .dot{color:var(--accent)}
+  .spacer{flex:1}
+  .tf-pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  header.hero{padding:50px 0 28px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  header.hero h1{font-family:var(--mono);font-size:clamp(26px,4.4vw,46px);line-height:1.05;letter-spacing:-.02em;font-weight:700}
+  header.hero h1 .u{color:var(--muted)}
+  .lede{max-width:66ch;color:var(--muted);font-size:16.5px;margin-top:18px}.lede b{color:var(--text);font-weight:600}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:26px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:15px}
+  .kpi .v{font-family:var(--mono);font-size:23px;font-weight:700;line-height:1}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-top:9px}.kpi .s{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:5px}
+  section{padding:40px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  section h2{font-size:23px}.sec-sub{color:var(--muted);max-width:76ch;margin:10px 0 22px;font-size:15px}.sec-sub b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:20px}
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:9px 12px;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--panel2)}
+  tbody td{border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+  tbody td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+  tr.hi td{background:color-mix(in srgb,var(--accent) 10%,transparent)}tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+  tr.bench td{background:color-mix(in srgb,var(--gold) 8%,transparent)}
+  tr.bad td{color:var(--muted)}
+  .grouplbl{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--faint);padding:10px 12px 4px}
+  svg text{fill:var(--muted);font-family:var(--mono);font-size:11px}svg .axis{fill:var(--faint);font-size:10px}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;background:var(--panel);padding:16px 20px;margin-top:16px}
+  .callout.warn{border-left-color:var(--gold)}.callout.good{border-left-color:var(--gain)}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+  .callout.warn .h{color:var(--gold)}.callout.good .h{color:var(--gain)}
+  .callout p{margin:0;color:var(--muted);font-size:14px}.callout p+p{margin-top:8px}.callout b{color:var(--text)}
+  ul.clean{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ul.clean li{padding-left:22px;position:relative;color:var(--muted);font-size:14px}
+  ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}ul.clean li b{color:var(--text)}
+  .legend{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-bottom:8px}
+  .legend span{display:inline-flex;align-items:center;gap:6px}.legend i{width:14px;height:3px;border-radius:2px;display:inline-block}
+  footer{padding:30px 0 60px;color:var(--faint);font-size:12.5px}footer .mono{color:var(--muted)}
+  @media (max-width:760px){.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="topbar"><div class="wrap row">
+  <span class="brand">TQQQ<span class="dot">·</span>TIMING</span>
+  <span class="tf-pill">QQQ · TQQQ · SQQQ · 2016–2026</span>
+  <span class="spacer"></span>
+  <button class="toggle" id="themeBtn" aria-label="Toggle theme">◐ theme</button>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Leveraged ETF timing · the buy-and-hold exception</div>
+    <h1>With leverage, timing<br><span class="u">finally beats buy &amp; hold.</span></h1>
+    <p class="lede">Everywhere else in this study, timing a long-only signal just re-discovered market drift. Leverage
+      breaks that. A dead-simple rule — <b>hold 3× TQQQ while QQQ is above its 200-day average, sit in cash otherwise</b> —
+      beats TQQQ buy-and-hold on <b>return</b> and nearly <b>halves</b> the drawdown. The edge isn't predicting direction;
+      it's dodging the −80% craters that leverage and volatility-decay dig.</p>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <section>
+    <div class="sec-head"><span class="sec-idx">01</span><h2>The picture: dodging the craters</h2></div>
+    <p class="sec-sub">$1 growth, log scale. Watch <b>2018, 2020 and especially 2022</b>: TQQQ buy-and-hold (gold) collapses
+      −70% to −82%; the timer (cyan) steps to cash and preserves capital, then re-compounds off a higher base. Same
+      instrument — different <b>drawdown path</b> — and with leverage the path is everything.</p>
+    <div class="panel">
+      <div class="legend">
+        <span><i style="background:var(--accent)"></i> Timer: TQQQ / cash (200-SMA)</span>
+        <span><i style="background:var(--gold)"></i> Buy &amp; hold TQQQ</span>
+        <span><i style="background:var(--muted)"></i> Buy &amp; hold QQQ</span>
+      </div>
+      <div id="eqChart"></div>
+    </div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-idx">02</span><h2>Every strategy, ranked</h2></div>
+    <p class="sec-sub">Net of 2 bps per switch, no lookahead (position set from the prior close). The <b>risk-off leg matters
+      enormously</b>: going to <b>cash</b> wins; going to <b>SQQQ (short)</b> loses in every variant — inverse leveraged ETFs
+      decay too fast to hold.</p>
+    <div class="tbl-scroll"><table id="tbl"><thead><tr>
+      <th>Strategy</th><th>Total</th><th>CAGR</th><th>Max DD</th><th>Sharpe</th><th>% in market</th>
+    </tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <section>
+    <div class="sec-head"><span class="sec-idx">03</span><h2>Why it works — and why only with leverage</h2></div>
+    <div class="callout good">
+      <div class="h">Drawdown avoidance compounds</div>
+      <p>A −82% drawdown needs a <b>+456%</b> gain just to recover; a −45% drawdown needs <b>+82%</b>. Cutting the deep
+        losses lets the winners compound off a higher base. With 3× leverage the deep losses are frequent and savage, so
+        avoiding them is worth more than the upside you miss sitting in cash ~25% of the time.</p>
+    </div>
+    <div class="callout">
+      <div class="h">On plain QQQ, this barely helps</div>
+      <p>The same 200-SMA timer on <i>unleveraged</i> QQQ roughly matches buy-and-hold — consistent with the rest of the
+        study: timing long-only exposure mostly captures the same beta. <b>Leverage is what converts drawdown-avoidance
+        into real outperformance.</b></p>
+    </div>
+    <div class="callout warn">
+      <div class="h">It holds out-of-sample</div>
+      <p>Split at 2022 (TQQQ's −80% year): train 2016–21 the 200-SMA/cash timer made <b>+1,125%</b>; test 2022–26 it still
+        made <b>+161%</b> (CAGR 23.5%) while riding through the crash. The rule isn't tuned to one era.</p>
+    </div>
+  </section>
+
+  <section style="border-bottom:none">
+    <div class="sec-head"><span class="sec-idx">04</span><h2>Read this before you lever up</h2></div>
+    <ul class="clean">
+      <li><b>Still a −45%+ drawdown.</b> Better than −82%, but leverage is never tame — size for a halving.</li>
+      <li><b>2016–26 was a historic Nasdaq bull.</b> It flatters <i>all</i> Nasdaq exposure. In a flat or bear decade TQQQ buy-and-hold would be a disaster (−90%+) and the timer would win by even more — but absolute returns would be far lower. Don't extrapolate 39% CAGR forward.</li>
+      <li><b>200-SMA whipsaws in chop.</b> Choppy years produce false switches that bleed a little; the MA-Shift trend version had fewer whipsaws (Sharpe 1.01 vs 0.93).</li>
+      <li><b>Never hold SQQQ as a "hedge".</b> Every short-leg variant lost — decay makes inverse leveraged ETFs a melting ice cube. Cash is the correct defensive position.</li>
+      <li><b>Data is 2016+ (Alpaca SIP floor)</b>, split-adjusted, dividends ignored (negligible for these ETFs).</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="mono">Method — Alpaca SIP daily, split-adjusted, QQQ/TQQQ/SQQQ 2016-01-04→2026-07-24 (2,654 days). Signals on
+      QQQ; position on day t set from close t−1; 2 bps per switch; benchmarked vs buy&amp;hold QQQ and TQQQ; train/test split at 2022.</p>
+    <p style="margin-top:9px;color:var(--faint)">Research only — not investment advice. Leveraged ETFs can lose the large majority of their value. Validate live at size zero.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = {
+ "period": "2016-01-04 to 2026-07-24",
+ "ndays": 2654,
+ "bh_qqq": {
+  "total": 5.248675799086754,
+  "cagr": 0.18964710941323126,
+  "maxdd": -0.35617218247976434,
+  "sharpe": 0.8924228254758866
+ },
+ "bh_tqqq": {
+  "total": 27.64816472694719,
+  "cagr": 0.37433147064131167,
+  "maxdd": -0.8175660419959364,
+  "sharpe": 0.8170431850681171
+ },
+ "eq_qqq": [
+  {
+   "t": "2016-01",
+   "e": 0.951
+  },
+  {
+   "t": "2016-02",
+   "e": 0.936
+  },
+  {
+   "t": "2016-03",
+   "e": 0.997
+  },
+  {
+   "t": "2016-04",
+   "e": 0.965
+  },
+  {
+   "t": "2016-05",
+   "e": 1.008
+  },
+  {
+   "t": "2016-06",
+   "e": 0.982
+  },
+  {
+   "t": "2016-07",
+   "e": 1.052
+  },
+  {
+   "t": "2016-08",
+   "e": 1.063
+  },
+  {
+   "t": "2016-09",
+   "e": 1.084
+  },
+  {
+   "t": "2016-10",
+   "e": 1.068
+  },
+  {
+   "t": "2016-11",
+   "e": 1.073
+  },
+  {
+   "t": "2016-12",
+   "e": 1.082
+  },
+  {
+   "t": "2017-01",
+   "e": 1.138
+  },
+  {
+   "t": "2017-02",
+   "e": 1.187
+  },
+  {
+   "t": "2017-03",
+   "e": 1.209
+  },
+  {
+   "t": "2017-04",
+   "e": 1.242
+  },
+  {
+   "t": "2017-05",
+   "e": 1.29
+  },
+  {
+   "t": "2017-06",
+   "e": 1.257
+  },
+  {
+   "t": "2017-07",
+   "e": 1.308
+  },
+  {
+   "t": "2017-08",
+   "e": 1.335
+  },
+  {
+   "t": "2017-09",
+   "e": 1.328
+  },
+  {
+   "t": "2017-10",
+   "e": 1.389
+  },
+  {
+   "t": "2017-11",
+   "e": 1.417
+  },
+  {
+   "t": "2017-12",
+   "e": 1.422
+  },
+  {
+   "t": "2018-01",
+   "e": 1.547
+  },
+  {
+   "t": "2018-02",
+   "e": 1.527
+  },
+  {
+   "t": "2018-03",
+   "e": 1.462
+  },
+  {
+   "t": "2018-04",
+   "e": 1.47
+  },
+  {
+   "t": "2018-05",
+   "e": 1.553
+  },
+  {
+   "t": "2018-06",
+   "e": 1.568
+  },
+  {
+   "t": "2018-07",
+   "e": 1.611
+  },
+  {
+   "t": "2018-08",
+   "e": 1.705
+  },
+  {
+   "t": "2018-09",
+   "e": 1.697
+  },
+  {
+   "t": "2018-10",
+   "e": 1.551
+  },
+  {
+   "t": "2018-11",
+   "e": 1.547
+  },
+  {
+   "t": "2018-12",
+   "e": 1.409
+  },
+  {
+   "t": "2019-01",
+   "e": 1.536
+  },
+  {
+   "t": "2019-02",
+   "e": 1.582
+  },
+  {
+   "t": "2019-03",
+   "e": 1.641
+  },
+  {
+   "t": "2019-04",
+   "e": 1.731
+  },
+  {
+   "t": "2019-05",
+   "e": 1.589
+  },
+  {
+   "t": "2019-06",
+   "e": 1.705
+  },
+  {
+   "t": "2019-07",
+   "e": 1.745
+  },
+  {
+   "t": "2019-08",
+   "e": 1.712
+  },
+  {
+   "t": "2019-09",
+   "e": 1.724
+  },
+  {
+   "t": "2019-10",
+   "e": 1.8
+  },
+  {
+   "t": "2019-11",
+   "e": 1.873
+  },
+  {
+   "t": "2019-12",
+   "e": 1.942
+  },
+  {
+   "t": "2020-01",
+   "e": 2.001
+  },
+  {
+   "t": "2020-02",
+   "e": 1.879
+  },
+  {
+   "t": "2020-03",
+   "e": 1.739
+  },
+  {
+   "t": "2020-04",
+   "e": 1.999
+  },
+  {
+   "t": "2020-05",
+   "e": 2.132
+  },
+  {
+   "t": "2020-06",
+   "e": 2.261
+  },
+  {
+   "t": "2020-07",
+   "e": 2.427
+  },
+  {
+   "t": "2020-08",
+   "e": 2.693
+  },
+  {
+   "t": "2020-09",
+   "e": 2.537
+  },
+  {
+   "t": "2020-10",
+   "e": 2.46
+  },
+  {
+   "t": "2020-11",
+   "e": 2.736
+  },
+  {
+   "t": "2020-12",
+   "e": 2.865
+  },
+  {
+   "t": "2021-01",
+   "e": 2.873
+  },
+  {
+   "t": "2021-02",
+   "e": 2.869
+  },
+  {
+   "t": "2021-03",
+   "e": 2.914
+  },
+  {
+   "t": "2021-04",
+   "e": 3.087
+  },
+  {
+   "t": "2021-05",
+   "e": 3.05
+  },
+  {
+   "t": "2021-06",
+   "e": 3.237
+  },
+  {
+   "t": "2021-07",
+   "e": 3.329
+  },
+  {
+   "t": "2021-08",
+   "e": 3.47
+  },
+  {
+   "t": "2021-09",
+   "e": 3.269
+  },
+  {
+   "t": "2021-10",
+   "e": 3.526
+  },
+  {
+   "t": "2021-11",
+   "e": 3.597
+  },
+  {
+   "t": "2021-12",
+   "e": 3.633
+  },
+  {
+   "t": "2022-01",
+   "e": 3.316
+  },
+  {
+   "t": "2022-02",
+   "e": 3.167
+  },
+  {
+   "t": "2022-03",
+   "e": 3.311
+  },
+  {
+   "t": "2022-04",
+   "e": 2.861
+  },
+  {
+   "t": "2022-05",
+   "e": 2.815
+  },
+  {
+   "t": "2022-06",
+   "e": 2.56
+  },
+  {
+   "t": "2022-07",
+   "e": 2.881
+  },
+  {
+   "t": "2022-08",
+   "e": 2.733
+  },
+  {
+   "t": "2022-09",
+   "e": 2.441
+  },
+  {
+   "t": "2022-10",
+   "e": 2.538
+  },
+  {
+   "t": "2022-11",
+   "e": 2.679
+  },
+  {
+   "t": "2022-12",
+   "e": 2.432
+  },
+  {
+   "t": "2023-01",
+   "e": 2.691
+  },
+  {
+   "t": "2023-02",
+   "e": 2.681
+  },
+  {
+   "t": "2023-03",
+   "e": 2.931
+  },
+  {
+   "t": "2023-04",
+   "e": 2.946
+  },
+  {
+   "t": "2023-05",
+   "e": 3.178
+  },
+  {
+   "t": "2023-06",
+   "e": 3.374
+  },
+  {
+   "t": "2023-07",
+   "e": 3.504
+  },
+  {
+   "t": "2023-08",
+   "e": 3.452
+  },
+  {
+   "t": "2023-09",
+   "e": 3.272
+  },
+  {
+   "t": "2023-10",
+   "e": 3.204
+  },
+  {
+   "t": "2023-11",
+   "e": 3.551
+  },
+  {
+   "t": "2023-12",
+   "e": 3.74
+  },
+  {
+   "t": "2024-01",
+   "e": 3.808
+  },
+  {
+   "t": "2024-02",
+   "e": 4.009
+  },
+  {
+   "t": "2024-03",
+   "e": 4.055
+  },
+  {
+   "t": "2024-04",
+   "e": 3.878
+  },
+  {
+   "t": "2024-05",
+   "e": 4.116
+  },
+  {
+   "t": "2024-06",
+   "e": 4.375
+  },
+  {
+   "t": "2024-07",
+   "e": 4.302
+  },
+  {
+   "t": "2024-08",
+   "e": 4.349
+  },
+  {
+   "t": "2024-09",
+   "e": 4.457
+  },
+  {
+   "t": "2024-10",
+   "e": 4.419
+  },
+  {
+   "t": "2024-11",
+   "e": 4.655
+  },
+  {
+   "t": "2024-12",
+   "e": 4.669
+  },
+  {
+   "t": "2025-01",
+   "e": 4.77
+  },
+  {
+   "t": "2025-02",
+   "e": 4.641
+  },
+  {
+   "t": "2025-03",
+   "e": 4.282
+  },
+  {
+   "t": "2025-04",
+   "e": 4.342
+  },
+  {
+   "t": "2025-05",
+   "e": 4.741
+  },
+  {
+   "t": "2025-06",
+   "e": 5.038
+  },
+  {
+   "t": "2025-07",
+   "e": 5.16
+  },
+  {
+   "t": "2025-08",
+   "e": 5.209
+  },
+  {
+   "t": "2025-09",
+   "e": 5.483
+  },
+  {
+   "t": "2025-10",
+   "e": 5.745
+  },
+  {
+   "t": "2025-11",
+   "e": 5.655
+  },
+  {
+   "t": "2025-12",
+   "e": 5.61
+  },
+  {
+   "t": "2026-01",
+   "e": 5.679
+  },
+  {
+   "t": "2026-02",
+   "e": 5.546
+  },
+  {
+   "t": "2026-03",
+   "e": 5.271
+  },
+  {
+   "t": "2026-04",
+   "e": 6.098
+  },
+  {
+   "t": "2026-05",
+   "e": 6.743
+  },
+  {
+   "t": "2026-06",
+   "e": 6.725
+  },
+  {
+   "t": "2026-07",
+   "e": 6.249
+  }
+ ],
+ "eq_tqqq": [
+  {
+   "t": "2016-01",
+   "e": 0.84
+  },
+  {
+   "t": "2016-02",
+   "e": 0.79
+  },
+  {
+   "t": "2016-03",
+   "e": 0.955
+  },
+  {
+   "t": "2016-04",
+   "e": 0.863
+  },
+  {
+   "t": "2016-05",
+   "e": 0.974
+  },
+  {
+   "t": "2016-06",
+   "e": 0.898
+  },
+  {
+   "t": "2016-07",
+   "e": 1.101
+  },
+  {
+   "t": "2016-08",
+   "e": 1.133
+  },
+  {
+   "t": "2016-09",
+   "e": 1.199
+  },
+  {
+   "t": "2016-10",
+   "e": 1.145
+  },
+  {
+   "t": "2016-11",
+   "e": 1.15
+  },
+  {
+   "t": "2016-12",
+   "e": 1.187
+  },
+  {
+   "t": "2017-01",
+   "e": 1.373
+  },
+  {
+   "t": "2017-02",
+   "e": 1.556
+  },
+  {
+   "t": "2017-03",
+   "e": 1.645
+  },
+  {
+   "t": "2017-04",
+   "e": 1.778
+  },
+  {
+   "t": "2017-05",
+   "e": 1.981
+  },
+  {
+   "t": "2017-06",
+   "e": 1.821
+  },
+  {
+   "t": "2017-07",
+   "e": 2.05
+  },
+  {
+   "t": "2017-08",
+   "e": 2.154
+  },
+  {
+   "t": "2017-09",
+   "e": 2.131
+  },
+  {
+   "t": "2017-10",
+   "e": 2.424
+  },
+  {
+   "t": "2017-11",
+   "e": 2.557
+  },
+  {
+   "t": "2017-12",
+   "e": 2.587
+  },
+  {
+   "t": "2018-01",
+   "e": 3.304
+  },
+  {
+   "t": "2018-02",
+   "e": 3.1
+  },
+  {
+   "t": "2018-03",
+   "e": 2.684
+  },
+  {
+   "t": "2018-04",
+   "e": 2.673
+  },
+  {
+   "t": "2018-05",
+   "e": 3.127
+  },
+  {
+   "t": "2018-06",
+   "e": 3.196
+  },
+  {
+   "t": "2018-07",
+   "e": 3.437
+  },
+  {
+   "t": "2018-08",
+   "e": 4.046
+  },
+  {
+   "t": "2018-09",
+   "e": 3.981
+  },
+  {
+   "t": "2018-10",
+   "e": 2.921
+  },
+  {
+   "t": "2018-11",
+   "e": 2.836
+  },
+  {
+   "t": "2018-12",
+   "e": 2.073
+  },
+  {
+   "t": "2019-01",
+   "e": 2.63
+  },
+  {
+   "t": "2019-02",
+   "e": 2.856
+  },
+  {
+   "t": "2019-03",
+   "e": 3.171
+  },
+  {
+   "t": "2019-04",
+   "e": 3.698
+  },
+  {
+   "t": "2019-05",
+   "e": 2.81
+  },
+  {
+   "t": "2019-06",
+   "e": 3.456
+  },
+  {
+   "t": "2019-07",
+   "e": 3.671
+  },
+  {
+   "t": "2019-08",
+   "e": 3.385
+  },
+  {
+   "t": "2019-09",
+   "e": 3.449
+  },
+  {
+   "t": "2019-10",
+   "e": 3.877
+  },
+  {
+   "t": "2019-11",
+   "e": 4.35
+  },
+  {
+   "t": "2019-12",
+   "e": 4.843
+  },
+  {
+   "t": "2020-01",
+   "e": 5.242
+  },
+  {
+   "t": "2020-02",
+   "e": 4.308
+  },
+  {
+   "t": "2020-03",
+   "e": 2.666
+  },
+  {
+   "t": "2020-04",
+   "e": 3.904
+  },
+  {
+   "t": "2020-05",
+   "e": 4.633
+  },
+  {
+   "t": "2020-06",
+   "e": 5.466
+  },
+  {
+   "t": "2020-07",
+   "e": 6.679
+  },
+  {
+   "t": "2020-08",
+   "e": 9.029
+  },
+  {
+   "t": "2020-09",
+   "e": 7.323
+  },
+  {
+   "t": "2020-10",
+   "e": 6.571
+  },
+  {
+   "t": "2020-11",
+   "e": 8.841
+  },
+  {
+   "t": "2020-12",
+   "e": 10.175
+  },
+  {
+   "t": "2021-01",
+   "e": 10.125
+  },
+  {
+   "t": "2021-02",
+   "e": 9.987
+  },
+  {
+   "t": "2021-03",
+   "e": 10.215
+  },
+  {
+   "t": "2021-04",
+   "e": 12.05
+  },
+  {
+   "t": "2021-05",
+   "e": 11.482
+  },
+  {
+   "t": "2021-06",
+   "e": 13.711
+  },
+  {
+   "t": "2021-07",
+   "e": 14.857
+  },
+  {
+   "t": "2021-08",
+   "e": 16.728
+  },
+  {
+   "t": "2021-09",
+   "e": 13.939
+  },
+  {
+   "t": "2021-10",
+   "e": 17.363
+  },
+  {
+   "t": "2021-11",
+   "e": 18.295
+  },
+  {
+   "t": "2021-12",
+   "e": 18.612
+  },
+  {
+   "t": "2022-01",
+   "e": 13.841
+  },
+  {
+   "t": "2022-02",
+   "e": 11.741
+  },
+  {
+   "t": "2022-03",
+   "e": 13.021
+  },
+  {
+   "t": "2022-04",
+   "e": 8.178
+  },
+  {
+   "t": "2022-05",
+   "e": 7.395
+  },
+  {
+   "t": "2022-06",
+   "e": 5.372
+  },
+  {
+   "t": "2022-07",
+   "e": 7.466
+  },
+  {
+   "t": "2022-08",
+   "e": 6.226
+  },
+  {
+   "t": "2022-09",
+   "e": 4.324
+  },
+  {
+   "t": "2022-10",
+   "e": 4.691
+  },
+  {
+   "t": "2022-11",
+   "e": 5.273
+  },
+  {
+   "t": "2022-12",
+   "e": 3.872
+  },
+  {
+   "t": "2023-01",
+   "e": 5.13
+  },
+  {
+   "t": "2023-02",
+   "e": 4.955
+  },
+  {
+   "t": "2023-03",
+   "e": 6.325
+  },
+  {
+   "t": "2023-04",
+   "e": 6.325
+  },
+  {
+   "t": "2023-05",
+   "e": 7.78
+  },
+  {
+   "t": "2023-06",
+   "e": 9.176
+  },
+  {
+   "t": "2023-07",
+   "e": 10.143
+  },
+  {
+   "t": "2023-08",
+   "e": 9.499
+  },
+  {
+   "t": "2023-09",
+   "e": 7.972
+  },
+  {
+   "t": "2023-10",
+   "e": 7.337
+  },
+  {
+   "t": "2023-11",
+   "e": 9.821
+  },
+  {
+   "t": "2023-12",
+   "e": 11.347
+  },
+  {
+   "t": "2024-01",
+   "e": 11.782
+  },
+  {
+   "t": "2024-02",
+   "e": 13.509
+  },
+  {
+   "t": "2024-03",
+   "e": 13.778
+  },
+  {
+   "t": "2024-04",
+   "e": 11.804
+  },
+  {
+   "t": "2024-05",
+   "e": 13.997
+  },
+  {
+   "t": "2024-06",
+   "e": 16.522
+  },
+  {
+   "t": "2024-07",
+   "e": 15.282
+  },
+  {
+   "t": "2024-08",
+   "e": 15.358
+  },
+  {
+   "t": "2024-09",
+   "e": 16.222
+  },
+  {
+   "t": "2024-10",
+   "e": 15.546
+  },
+  {
+   "t": "2024-11",
+   "e": 17.883
+  },
+  {
+   "t": "2024-12",
+   "e": 17.713
+  },
+  {
+   "t": "2025-01",
+   "e": 18.514
+  },
+  {
+   "t": "2025-02",
+   "e": 16.768
+  },
+  {
+   "t": "2025-03",
+   "e": 12.825
+  },
+  {
+   "t": "2025-04",
+   "e": 12.283
+  },
+  {
+   "t": "2025-05",
+   "e": 15.667
+  },
+  {
+   "t": "2025-06",
+   "e": 18.577
+  },
+  {
+   "t": "2025-07",
+   "e": 19.745
+  },
+  {
+   "t": "2025-08",
+   "e": 20.0
+  },
+  {
+   "t": "2025-09",
+   "e": 23.142
+  },
+  {
+   "t": "2025-10",
+   "e": 26.124
+  },
+  {
+   "t": "2025-11",
+   "e": 24.414
+  },
+  {
+   "t": "2025-12",
+   "e": 23.599
+  },
+  {
+   "t": "2026-01",
+   "e": 24.172
+  },
+  {
+   "t": "2026-02",
+   "e": 22.167
+  },
+  {
+   "t": "2026-03",
+   "e": 18.657
+  },
+  {
+   "t": "2026-04",
+   "e": 28.442
+  },
+  {
+   "t": "2026-05",
+   "e": 37.851
+  },
+  {
+   "t": "2026-06",
+   "e": 36.258
+  },
+  {
+   "t": "2026-07",
+   "e": 28.648
+  }
+ ],
+ "timers": [
+  {
+   "strategy": "200SMA",
+   "off": "cash",
+   "total": 31.01264933296119,
+   "cagr": 0.3888707679120409,
+   "maxdd": -0.5483806398014734,
+   "sharpe": 0.9307893690022825,
+   "pct_in": 0.7690278824415976,
+   "eq": null
+  },
+  {
+   "strategy": "50>200",
+   "off": "cash",
+   "total": 28.454058738501377,
+   "cagr": 0.3779495998858873,
+   "maxdd": -0.6992547425474254,
+   "sharpe": 0.8602497668663506,
+   "pct_in": 0.7724189902034665,
+   "eq": null
+  },
+  {
+   "strategy": "WT(wt1>wt2)",
+   "off": "cash",
+   "total": 6.273445979934138,
+   "cagr": 0.20689240956233346,
+   "maxdd": -0.6924816398473161,
+   "sharpe": 0.6740574899474546,
+   "pct_in": 0.5331574981160513,
+   "eq": null
+  },
+  {
+   "strategy": "MAShift regime",
+   "off": "cash",
+   "total": 31.027721800254113,
+   "cagr": 0.38893272778981136,
+   "maxdd": -0.4481336964334196,
+   "sharpe": 1.0092790155147873,
+   "pct_in": 0.70120572720422,
+   "eq": null
+  },
+  {
+   "strategy": "SQZ mom>0",
+   "off": "cash",
+   "total": 20.259383448774162,
+   "cagr": 0.33602377916368154,
+   "maxdd": -0.610427492249396,
+   "sharpe": 0.9056325046355955,
+   "pct_in": 0.6770911831198192,
+   "eq": null
+  },
+  {
+   "strategy": "200SMA & mom>0",
+   "off": "cash",
+   "total": 14.50910342351545,
+   "cagr": 0.2966831999645001,
+   "maxdd": -0.43712778046365774,
+   "sharpe": 0.9055552022068463,
+   "pct_in": 0.5742275810097965,
+   "eq": null
+  },
+  {
+   "strategy": "200SMA",
+   "off": "SQQQ",
+   "total": 2.260866241242128,
+   "cagr": 0.11853459807767708,
+   "maxdd": -0.8224509812358771,
+   "sharpe": 0.506814144128816,
+   "pct_in": 0.7690278824415976,
+   "eq": null
+  },
+  {
+   "strategy": "50>200",
+   "off": "SQQQ",
+   "total": 6.491020530992456,
+   "cagr": 0.2102684338265972,
+   "maxdd": -0.7302068155411094,
+   "sharpe": 0.6239012340290537,
+   "pct_in": 0.7724189902034665,
+   "eq": null
+  },
+  {
+   "strategy": "WT(wt1>wt2)",
+   "off": "SQQQ",
+   "total": -0.9214559724103266,
+   "cagr": -0.21424340585988833,
+   "maxdd": -0.9471690871136876,
+   "sharpe": -0.028688329621342976,
+   "pct_in": 0.5331574981160513,
+   "eq": null
+  },
+  {
+   "strategy": "MAShift regime",
+   "off": "SQQQ",
+   "total": 0.700053018978303,
+   "cagr": 0.05157756441539152,
+   "maxdd": -0.6757445354181087,
+   "sharpe": 0.41114824789837223,
+   "pct_in": 0.70120572720422,
+   "eq": null
+  },
+  {
+   "strategy": "SQZ mom>0",
+   "off": "SQQQ",
+   "total": -0.1854515905245374,
+   "cagr": -0.019251966003394627,
+   "maxdd": -0.7617270643285974,
+   "sharpe": 0.30492523659143234,
+   "pct_in": 0.6770911831198192,
+   "eq": null
+  },
+  {
+   "strategy": "200SMA & mom>0",
+   "off": "SQQQ",
+   "total": -0.737084171440221,
+   "cagr": -0.11892056358314529,
+   "maxdd": -0.8635808107909948,
+   "sharpe": 0.143820608092717,
+   "pct_in": 0.5742275810097965,
+   "eq": null
+  }
+ ],
+ "eq_200SMA_cash": [
+  {
+   "t": "2016-01",
+   "e": 1.0
+  },
+  {
+   "t": "2016-02",
+   "e": 1.0
+  },
+  {
+   "t": "2016-03",
+   "e": 1.0
+  },
+  {
+   "t": "2016-04",
+   "e": 1.0
+  },
+  {
+   "t": "2016-05",
+   "e": 1.0
+  },
+  {
+   "t": "2016-06",
+   "e": 1.0
+  },
+  {
+   "t": "2016-07",
+   "e": 1.0
+  },
+  {
+   "t": "2016-08",
+   "e": 1.0
+  },
+  {
+   "t": "2016-09",
+   "e": 1.0
+  },
+  {
+   "t": "2016-10",
+   "e": 1.002
+  },
+  {
+   "t": "2016-11",
+   "e": 1.007
+  },
+  {
+   "t": "2016-12",
+   "e": 1.039
+  },
+  {
+   "t": "2017-01",
+   "e": 1.202
+  },
+  {
+   "t": "2017-02",
+   "e": 1.362
+  },
+  {
+   "t": "2017-03",
+   "e": 1.44
+  },
+  {
+   "t": "2017-04",
+   "e": 1.556
+  },
+  {
+   "t": "2017-05",
+   "e": 1.734
+  },
+  {
+   "t": "2017-06",
+   "e": 1.594
+  },
+  {
+   "t": "2017-07",
+   "e": 1.794
+  },
+  {
+   "t": "2017-08",
+   "e": 1.885
+  },
+  {
+   "t": "2017-09",
+   "e": 1.865
+  },
+  {
+   "t": "2017-10",
+   "e": 2.121
+  },
+  {
+   "t": "2017-11",
+   "e": 2.238
+  },
+  {
+   "t": "2017-12",
+   "e": 2.264
+  },
+  {
+   "t": "2018-01",
+   "e": 2.892
+  },
+  {
+   "t": "2018-02",
+   "e": 2.713
+  },
+  {
+   "t": "2018-03",
+   "e": 2.349
+  },
+  {
+   "t": "2018-04",
+   "e": 2.339
+  },
+  {
+   "t": "2018-05",
+   "e": 2.737
+  },
+  {
+   "t": "2018-06",
+   "e": 2.797
+  },
+  {
+   "t": "2018-07",
+   "e": 3.008
+  },
+  {
+   "t": "2018-08",
+   "e": 3.541
+  },
+  {
+   "t": "2018-09",
+   "e": 3.484
+  },
+  {
+   "t": "2018-10",
+   "e": 2.208
+  },
+  {
+   "t": "2018-11",
+   "e": 2.059
+  },
+  {
+   "t": "2018-12",
+   "e": 2.059
+  },
+  {
+   "t": "2019-01",
+   "e": 2.059
+  },
+  {
+   "t": "2019-02",
+   "e": 2.055
+  },
+  {
+   "t": "2019-03",
+   "e": 2.158
+  },
+  {
+   "t": "2019-04",
+   "e": 2.517
+  },
+  {
+   "t": "2019-05",
+   "e": 1.913
+  },
+  {
+   "t": "2019-06",
+   "e": 2.324
+  },
+  {
+   "t": "2019-07",
+   "e": 2.468
+  },
+  {
+   "t": "2019-08",
+   "e": 2.276
+  },
+  {
+   "t": "2019-09",
+   "e": 2.319
+  },
+  {
+   "t": "2019-10",
+   "e": 2.607
+  },
+  {
+   "t": "2019-11",
+   "e": 2.925
+  },
+  {
+   "t": "2019-12",
+   "e": 3.257
+  },
+  {
+   "t": "2020-01",
+   "e": 3.525
+  },
+  {
+   "t": "2020-02",
+   "e": 2.897
+  },
+  {
+   "t": "2020-03",
+   "e": 2.006
+  },
+  {
+   "t": "2020-04",
+   "e": 2.569
+  },
+  {
+   "t": "2020-05",
+   "e": 3.049
+  },
+  {
+   "t": "2020-06",
+   "e": 3.597
+  },
+  {
+   "t": "2020-07",
+   "e": 4.396
+  },
+  {
+   "t": "2020-08",
+   "e": 5.942
+  },
+  {
+   "t": "2020-09",
+   "e": 4.82
+  },
+  {
+   "t": "2020-10",
+   "e": 4.325
+  },
+  {
+   "t": "2020-11",
+   "e": 5.819
+  },
+  {
+   "t": "2020-12",
+   "e": 6.697
+  },
+  {
+   "t": "2021-01",
+   "e": 6.664
+  },
+  {
+   "t": "2021-02",
+   "e": 6.573
+  },
+  {
+   "t": "2021-03",
+   "e": 6.723
+  },
+  {
+   "t": "2021-04",
+   "e": 7.931
+  },
+  {
+   "t": "2021-05",
+   "e": 7.557
+  },
+  {
+   "t": "2021-06",
+   "e": 9.024
+  },
+  {
+   "t": "2021-07",
+   "e": 9.778
+  },
+  {
+   "t": "2021-08",
+   "e": 11.01
+  },
+  {
+   "t": "2021-09",
+   "e": 9.174
+  },
+  {
+   "t": "2021-10",
+   "e": 11.428
+  },
+  {
+   "t": "2021-11",
+   "e": 12.041
+  },
+  {
+   "t": "2021-12",
+   "e": 12.25
+  },
+  {
+   "t": "2022-01",
+   "e": 9.114
+  },
+  {
+   "t": "2022-02",
+   "e": 7.479
+  },
+  {
+   "t": "2022-03",
+   "e": 7.251
+  },
+  {
+   "t": "2022-04",
+   "e": 6.768
+  },
+  {
+   "t": "2022-05",
+   "e": 6.768
+  },
+  {
+   "t": "2022-06",
+   "e": 6.768
+  },
+  {
+   "t": "2022-07",
+   "e": 6.768
+  },
+  {
+   "t": "2022-08",
+   "e": 6.768
+  },
+  {
+   "t": "2022-09",
+   "e": 6.768
+  },
+  {
+   "t": "2022-10",
+   "e": 6.768
+  },
+  {
+   "t": "2022-11",
+   "e": 6.768
+  },
+  {
+   "t": "2022-12",
+   "e": 6.768
+  },
+  {
+   "t": "2023-01",
+   "e": 6.544
+  },
+  {
+   "t": "2023-02",
+   "e": 6.321
+  },
+  {
+   "t": "2023-03",
+   "e": 7.891
+  },
+  {
+   "t": "2023-04",
+   "e": 7.891
+  },
+  {
+   "t": "2023-05",
+   "e": 9.706
+  },
+  {
+   "t": "2023-06",
+   "e": 11.448
+  },
+  {
+   "t": "2023-07",
+   "e": 12.654
+  },
+  {
+   "t": "2023-08",
+   "e": 11.85
+  },
+  {
+   "t": "2023-09",
+   "e": 9.946
+  },
+  {
+   "t": "2023-10",
+   "e": 9.153
+  },
+  {
+   "t": "2023-11",
+   "e": 12.252
+  },
+  {
+   "t": "2023-12",
+   "e": 14.156
+  },
+  {
+   "t": "2024-01",
+   "e": 14.698
+  },
+  {
+   "t": "2024-02",
+   "e": 16.854
+  },
+  {
+   "t": "2024-03",
+   "e": 17.189
+  },
+  {
+   "t": "2024-04",
+   "e": 14.726
+  },
+  {
+   "t": "2024-05",
+   "e": 17.462
+  },
+  {
+   "t": "2024-06",
+   "e": 20.612
+  },
+  {
+   "t": "2024-07",
+   "e": 19.065
+  },
+  {
+   "t": "2024-08",
+   "e": 19.16
+  },
+  {
+   "t": "2024-09",
+   "e": 20.238
+  },
+  {
+   "t": "2024-10",
+   "e": 19.395
+  },
+  {
+   "t": "2024-11",
+   "e": 22.31
+  },
+  {
+   "t": "2024-12",
+   "e": 22.097
+  },
+  {
+   "t": "2025-01",
+   "e": 23.097
+  },
+  {
+   "t": "2025-02",
+   "e": 20.919
+  },
+  {
+   "t": "2025-03",
+   "e": 18.436
+  },
+  {
+   "t": "2025-04",
+   "e": 18.436
+  },
+  {
+   "t": "2025-05",
+   "e": 19.514
+  },
+  {
+   "t": "2025-06",
+   "e": 23.138
+  },
+  {
+   "t": "2025-07",
+   "e": 24.593
+  },
+  {
+   "t": "2025-08",
+   "e": 24.911
+  },
+  {
+   "t": "2025-09",
+   "e": 28.825
+  },
+  {
+   "t": "2025-10",
+   "e": 32.538
+  },
+  {
+   "t": "2025-11",
+   "e": 30.408
+  },
+  {
+   "t": "2025-12",
+   "e": 29.394
+  },
+  {
+   "t": "2026-01",
+   "e": 30.107
+  },
+  {
+   "t": "2026-02",
+   "e": 27.61
+  },
+  {
+   "t": "2026-03",
+   "e": 24.014
+  },
+  {
+   "t": "2026-04",
+   "e": 31.783
+  },
+  {
+   "t": "2026-05",
+   "e": 42.297
+  },
+  {
+   "t": "2026-06",
+   "e": 40.516
+  },
+  {
+   "t": "2026-07",
+   "e": 32.013
+  }
+ ],
+ "eq_200SMA_sqqq": [
+  {
+   "t": "2016-01",
+   "e": 1.124
+  },
+  {
+   "t": "2016-02",
+   "e": 1.151
+  },
+  {
+   "t": "2016-03",
+   "e": 0.933
+  },
+  {
+   "t": "2016-04",
+   "e": 1.017
+  },
+  {
+   "t": "2016-05",
+   "e": 0.886
+  },
+  {
+   "t": "2016-06",
+   "e": 0.931
+  },
+  {
+   "t": "2016-07",
+   "e": 0.753
+  },
+  {
+   "t": "2016-08",
+   "e": 0.728
+  },
+  {
+   "t": "2016-09",
+   "e": 0.675
+  },
+  {
+   "t": "2016-10",
+   "e": 0.708
+  },
+  {
+   "t": "2016-11",
+   "e": 0.711
+  },
+  {
+   "t": "2016-12",
+   "e": 0.734
+  },
+  {
+   "t": "2017-01",
+   "e": 0.849
+  },
+  {
+   "t": "2017-02",
+   "e": 0.962
+  },
+  {
+   "t": "2017-03",
+   "e": 1.017
+  },
+  {
+   "t": "2017-04",
+   "e": 1.099
+  },
+  {
+   "t": "2017-05",
+   "e": 1.225
+  },
+  {
+   "t": "2017-06",
+   "e": 1.126
+  },
+  {
+   "t": "2017-07",
+   "e": 1.267
+  },
+  {
+   "t": "2017-08",
+   "e": 1.331
+  },
+  {
+   "t": "2017-09",
+   "e": 1.317
+  },
+  {
+   "t": "2017-10",
+   "e": 1.499
+  },
+  {
+   "t": "2017-11",
+   "e": 1.581
+  },
+  {
+   "t": "2017-12",
+   "e": 1.6
+  },
+  {
+   "t": "2018-01",
+   "e": 2.043
+  },
+  {
+   "t": "2018-02",
+   "e": 1.917
+  },
+  {
+   "t": "2018-03",
+   "e": 1.66
+  },
+  {
+   "t": "2018-04",
+   "e": 1.652
+  },
+  {
+   "t": "2018-05",
+   "e": 1.933
+  },
+  {
+   "t": "2018-06",
+   "e": 1.976
+  },
+  {
+   "t": "2018-07",
+   "e": 2.125
+  },
+  {
+   "t": "2018-08",
+   "e": 2.501
+  },
+  {
+   "t": "2018-09",
+   "e": 2.461
+  },
+  {
+   "t": "2018-10",
+   "e": 1.303
+  },
+  {
+   "t": "2018-11",
+   "e": 1.108
+  },
+  {
+   "t": "2018-12",
+   "e": 1.373
+  },
+  {
+   "t": "2019-01",
+   "e": 1.026
+  },
+  {
+   "t": "2019-02",
+   "e": 0.938
+  },
+  {
+   "t": "2019-03",
+   "e": 0.927
+  },
+  {
+   "t": "2019-04",
+   "e": 1.082
+  },
+  {
+   "t": "2019-05",
+   "e": 0.822
+  },
+  {
+   "t": "2019-06",
+   "e": 0.977
+  },
+  {
+   "t": "2019-07",
+   "e": 1.038
+  },
+  {
+   "t": "2019-08",
+   "e": 0.957
+  },
+  {
+   "t": "2019-09",
+   "e": 0.975
+  },
+  {
+   "t": "2019-10",
+   "e": 1.096
+  },
+  {
+   "t": "2019-11",
+   "e": 1.23
+  },
+  {
+   "t": "2019-12",
+   "e": 1.369
+  },
+  {
+   "t": "2020-01",
+   "e": 1.482
+  },
+  {
+   "t": "2020-02",
+   "e": 1.218
+  },
+  {
+   "t": "2020-03",
+   "e": 0.547
+  },
+  {
+   "t": "2020-04",
+   "e": 0.57
+  },
+  {
+   "t": "2020-05",
+   "e": 0.677
+  },
+  {
+   "t": "2020-06",
+   "e": 0.798
+  },
+  {
+   "t": "2020-07",
+   "e": 0.976
+  },
+  {
+   "t": "2020-08",
+   "e": 1.319
+  },
+  {
+   "t": "2020-09",
+   "e": 1.07
+  },
+  {
+   "t": "2020-10",
+   "e": 0.96
+  },
+  {
+   "t": "2020-11",
+   "e": 1.291
+  },
+  {
+   "t": "2020-12",
+   "e": 1.486
+  },
+  {
+   "t": "2021-01",
+   "e": 1.479
+  },
+  {
+   "t": "2021-02",
+   "e": 1.459
+  },
+  {
+   "t": "2021-03",
+   "e": 1.492
+  },
+  {
+   "t": "2021-04",
+   "e": 1.76
+  },
+  {
+   "t": "2021-05",
+   "e": 1.677
+  },
+  {
+   "t": "2021-06",
+   "e": 2.003
+  },
+  {
+   "t": "2021-07",
+   "e": 2.17
+  },
+  {
+   "t": "2021-08",
+   "e": 2.443
+  },
+  {
+   "t": "2021-09",
+   "e": 2.036
+  },
+  {
+   "t": "2021-10",
+   "e": 2.536
+  },
+  {
+   "t": "2021-11",
+   "e": 2.672
+  },
+  {
+   "t": "2021-12",
+   "e": 2.719
+  },
+  {
+   "t": "2022-01",
+   "e": 1.958
+  },
+  {
+   "t": "2022-02",
+   "e": 1.467
+  },
+  {
+   "t": "2022-03",
+   "e": 1.141
+  },
+  {
+   "t": "2022-04",
+   "e": 1.457
+  },
+  {
+   "t": "2022-05",
+   "e": 1.406
+  },
+  {
+   "t": "2022-06",
+   "e": 1.748
+  },
+  {
+   "t": "2022-07",
+   "e": 1.183
+  },
+  {
+   "t": "2022-08",
+   "e": 1.349
+  },
+  {
+   "t": "2022-09",
+   "e": 1.822
+  },
+  {
+   "t": "2022-10",
+   "e": 1.542
+  },
+  {
+   "t": "2022-11",
+   "e": 1.229
+  },
+  {
+   "t": "2022-12",
+   "e": 1.605
+  },
+  {
+   "t": "2023-01",
+   "e": 1.098
+  },
+  {
+   "t": "2023-02",
+   "e": 1.06
+  },
+  {
+   "t": "2023-03",
+   "e": 1.295
+  },
+  {
+   "t": "2023-04",
+   "e": 1.295
+  },
+  {
+   "t": "2023-05",
+   "e": 1.593
+  },
+  {
+   "t": "2023-06",
+   "e": 1.878
+  },
+  {
+   "t": "2023-07",
+   "e": 2.076
+  },
+  {
+   "t": "2023-08",
+   "e": 1.944
+  },
+  {
+   "t": "2023-09",
+   "e": 1.632
+  },
+  {
+   "t": "2023-10",
+   "e": 1.502
+  },
+  {
+   "t": "2023-11",
+   "e": 2.01
+  },
+  {
+   "t": "2023-12",
+   "e": 2.323
+  },
+  {
+   "t": "2024-01",
+   "e": 2.412
+  },
+  {
+   "t": "2024-02",
+   "e": 2.765
+  },
+  {
+   "t": "2024-03",
+   "e": 2.82
+  },
+  {
+   "t": "2024-04",
+   "e": 2.416
+  },
+  {
+   "t": "2024-05",
+   "e": 2.865
+  },
+  {
+   "t": "2024-06",
+   "e": 3.382
+  },
+  {
+   "t": "2024-07",
+   "e": 3.128
+  },
+  {
+   "t": "2024-08",
+   "e": 3.144
+  },
+  {
+   "t": "2024-09",
+   "e": 3.321
+  },
+  {
+   "t": "2024-10",
+   "e": 3.182
+  },
+  {
+   "t": "2024-11",
+   "e": 3.661
+  },
+  {
+   "t": "2024-12",
+   "e": 3.626
+  },
+  {
+   "t": "2025-01",
+   "e": 3.79
+  },
+  {
+   "t": "2025-02",
+   "e": 3.432
+  },
+  {
+   "t": "2025-03",
+   "e": 3.298
+  },
+  {
+   "t": "2025-04",
+   "e": 2.672
+  },
+  {
+   "t": "2025-05",
+   "e": 2.305
+  },
+  {
+   "t": "2025-06",
+   "e": 2.733
+  },
+  {
+   "t": "2025-07",
+   "e": 2.905
+  },
+  {
+   "t": "2025-08",
+   "e": 2.943
+  },
+  {
+   "t": "2025-09",
+   "e": 3.405
+  },
+  {
+   "t": "2025-10",
+   "e": 3.844
+  },
+  {
+   "t": "2025-11",
+   "e": 3.592
+  },
+  {
+   "t": "2025-12",
+   "e": 3.472
+  },
+  {
+   "t": "2026-01",
+   "e": 3.557
+  },
+  {
+   "t": "2026-02",
+   "e": 3.261
+  },
+  {
+   "t": "2026-03",
+   "e": 2.845
+  },
+  {
+   "t": "2026-04",
+   "e": 3.237
+  },
+  {
+   "t": "2026-05",
+   "e": 4.308
+  },
+  {
+   "t": "2026-06",
+   "e": 4.127
+  },
+  {
+   "t": "2026-07",
+   "e": 3.261
+  }
+ ],
+ "eq_200SMAmom0_cash": [
+  {
+   "t": "2016-01",
+   "e": 1.0
+  },
+  {
+   "t": "2016-02",
+   "e": 1.0
+  },
+  {
+   "t": "2016-03",
+   "e": 1.0
+  },
+  {
+   "t": "2016-04",
+   "e": 1.0
+  },
+  {
+   "t": "2016-05",
+   "e": 1.0
+  },
+  {
+   "t": "2016-06",
+   "e": 1.0
+  },
+  {
+   "t": "2016-07",
+   "e": 1.0
+  },
+  {
+   "t": "2016-08",
+   "e": 1.0
+  },
+  {
+   "t": "2016-09",
+   "e": 1.0
+  },
+  {
+   "t": "2016-10",
+   "e": 1.0
+  },
+  {
+   "t": "2016-11",
+   "e": 0.973
+  },
+  {
+   "t": "2016-12",
+   "e": 1.003
+  },
+  {
+   "t": "2017-01",
+   "e": 1.161
+  },
+  {
+   "t": "2017-02",
+   "e": 1.315
+  },
+  {
+   "t": "2017-03",
+   "e": 1.33
+  },
+  {
+   "t": "2017-04",
+   "e": 1.437
+  },
+  {
+   "t": "2017-05",
+   "e": 1.601
+  },
+  {
+   "t": "2017-06",
+   "e": 1.504
+  },
+  {
+   "t": "2017-07",
+   "e": 1.536
+  },
+  {
+   "t": "2017-08",
+   "e": 1.495
+  },
+  {
+   "t": "2017-09",
+   "e": 1.451
+  },
+  {
+   "t": "2017-10",
+   "e": 1.586
+  },
+  {
+   "t": "2017-11",
+   "e": 1.673
+  },
+  {
+   "t": "2017-12",
+   "e": 1.566
+  },
+  {
+   "t": "2018-01",
+   "e": 2.0
+  },
+  {
+   "t": "2018-02",
+   "e": 1.646
+  },
+  {
+   "t": "2018-03",
+   "e": 1.512
+  },
+  {
+   "t": "2018-04",
+   "e": 1.36
+  },
+  {
+   "t": "2018-05",
+   "e": 1.591
+  },
+  {
+   "t": "2018-06",
+   "e": 1.58
+  },
+  {
+   "t": "2018-07",
+   "e": 1.491
+  },
+  {
+   "t": "2018-08",
+   "e": 1.755
+  },
+  {
+   "t": "2018-09",
+   "e": 1.604
+  },
+  {
+   "t": "2018-10",
+   "e": 1.433
+  },
+  {
+   "t": "2018-11",
+   "e": 1.433
+  },
+  {
+   "t": "2018-12",
+   "e": 1.433
+  },
+  {
+   "t": "2019-01",
+   "e": 1.433
+  },
+  {
+   "t": "2019-02",
+   "e": 1.43
+  },
+  {
+   "t": "2019-03",
+   "e": 1.502
+  },
+  {
+   "t": "2019-04",
+   "e": 1.752
+  },
+  {
+   "t": "2019-05",
+   "e": 1.621
+  },
+  {
+   "t": "2019-06",
+   "e": 1.742
+  },
+  {
+   "t": "2019-07",
+   "e": 1.85
+  },
+  {
+   "t": "2019-08",
+   "e": 1.728
+  },
+  {
+   "t": "2019-09",
+   "e": 1.761
+  },
+  {
+   "t": "2019-10",
+   "e": 1.864
+  },
+  {
+   "t": "2019-11",
+   "e": 2.091
+  },
+  {
+   "t": "2019-12",
+   "e": 2.328
+  },
+  {
+   "t": "2020-01",
+   "e": 2.52
+  },
+  {
+   "t": "2020-02",
+   "e": 2.396
+  },
+  {
+   "t": "2020-03",
+   "e": 2.396
+  },
+  {
+   "t": "2020-04",
+   "e": 3.069
+  },
+  {
+   "t": "2020-05",
+   "e": 3.642
+  },
+  {
+   "t": "2020-06",
+   "e": 4.296
+  },
+  {
+   "t": "2020-07",
+   "e": 5.25
+  },
+  {
+   "t": "2020-08",
+   "e": 7.097
+  },
+  {
+   "t": "2020-09",
+   "e": 5.351
+  },
+  {
+   "t": "2020-10",
+   "e": 5.082
+  },
+  {
+   "t": "2020-11",
+   "e": 5.676
+  },
+  {
+   "t": "2020-12",
+   "e": 6.532
+  },
+  {
+   "t": "2021-01",
+   "e": 6.5
+  },
+  {
+   "t": "2021-02",
+   "e": 6.315
+  },
+  {
+   "t": "2021-03",
+   "e": 6.328
+  },
+  {
+   "t": "2021-04",
+   "e": 7.465
+  },
+  {
+   "t": "2021-05",
+   "e": 6.873
+  },
+  {
+   "t": "2021-06",
+   "e": 8.205
+  },
+  {
+   "t": "2021-07",
+   "e": 8.891
+  },
+  {
+   "t": "2021-08",
+   "e": 10.011
+  },
+  {
+   "t": "2021-09",
+   "e": 8.951
+  },
+  {
+   "t": "2021-10",
+   "e": 9.721
+  },
+  {
+   "t": "2021-11",
+   "e": 10.242
+  },
+  {
+   "t": "2021-12",
+   "e": 9.82
+  },
+  {
+   "t": "2022-01",
+   "e": 8.536
+  },
+  {
+   "t": "2022-02",
+   "e": 8.536
+  },
+  {
+   "t": "2022-03",
+   "e": 8.276
+  },
+  {
+   "t": "2022-04",
+   "e": 7.724
+  },
+  {
+   "t": "2022-05",
+   "e": 7.724
+  },
+  {
+   "t": "2022-06",
+   "e": 7.724
+  },
+  {
+   "t": "2022-07",
+   "e": 7.724
+  },
+  {
+   "t": "2022-08",
+   "e": 7.724
+  },
+  {
+   "t": "2022-09",
+   "e": 7.724
+  },
+  {
+   "t": "2022-10",
+   "e": 7.724
+  },
+  {
+   "t": "2022-11",
+   "e": 7.724
+  },
+  {
+   "t": "2022-12",
+   "e": 7.724
+  },
+  {
+   "t": "2023-01",
+   "e": 7.469
+  },
+  {
+   "t": "2023-02",
+   "e": 7.473
+  },
+  {
+   "t": "2023-03",
+   "e": 8.59
+  },
+  {
+   "t": "2023-04",
+   "e": 7.786
+  },
+  {
+   "t": "2023-05",
+   "e": 9.589
+  },
+  {
+   "t": "2023-06",
+   "e": 11.31
+  },
+  {
+   "t": "2023-07",
+   "e": 12.502
+  },
+  {
+   "t": "2023-08",
+   "e": 11.628
+  },
+  {
+   "t": "2023-09",
+   "e": 9.755
+  },
+  {
+   "t": "2023-10",
+   "e": 8.221
+  },
+  {
+   "t": "2023-11",
+   "e": 9.21
+  },
+  {
+   "t": "2023-12",
+   "e": 10.642
+  },
+  {
+   "t": "2024-01",
+   "e": 10.591
+  },
+  {
+   "t": "2024-02",
+   "e": 12.144
+  },
+  {
+   "t": "2024-03",
+   "e": 12.385
+  },
+  {
+   "t": "2024-04",
+   "e": 12.049
+  },
+  {
+   "t": "2024-05",
+   "e": 12.865
+  },
+  {
+   "t": "2024-06",
+   "e": 15.186
+  },
+  {
+   "t": "2024-07",
+   "e": 15.253
+  },
+  {
+   "t": "2024-08",
+   "e": 14.676
+  },
+  {
+   "t": "2024-09",
+   "e": 13.061
+  },
+  {
+   "t": "2024-10",
+   "e": 12.517
+  },
+  {
+   "t": "2024-11",
+   "e": 12.252
+  },
+  {
+   "t": "2024-12",
+   "e": 12.135
+  },
+  {
+   "t": "2025-01",
+   "e": 11.359
+  },
+  {
+   "t": "2025-02",
+   "e": 9.835
+  },
+  {
+   "t": "2025-03",
+   "e": 9.835
+  },
+  {
+   "t": "2025-04",
+   "e": 9.835
+  },
+  {
+   "t": "2025-05",
+   "e": 10.41
+  },
+  {
+   "t": "2025-06",
+   "e": 12.344
+  },
+  {
+   "t": "2025-07",
+   "e": 13.12
+  },
+  {
+   "t": "2025-08",
+   "e": 13.29
+  },
+  {
+   "t": "2025-09",
+   "e": 14.589
+  },
+  {
+   "t": "2025-10",
+   "e": 15.867
+  },
+  {
+   "t": "2025-11",
+   "e": 14.235
+  },
+  {
+   "t": "2025-12",
+   "e": 13.473
+  },
+  {
+   "t": "2026-01",
+   "e": 13.182
+  },
+  {
+   "t": "2026-02",
+   "e": 12.145
+  },
+  {
+   "t": "2026-03",
+   "e": 11.132
+  },
+  {
+   "t": "2026-04",
+   "e": 14.444
+  },
+  {
+   "t": "2026-05",
+   "e": 19.222
+  },
+  {
+   "t": "2026-06",
+   "e": 15.743
+  },
+  {
+   "t": "2026-07",
+   "e": 15.509
+  }
+ ],
+ "eq_200SMAmom0_sqqq": [
+  {
+   "t": "2016-01",
+   "e": 1.124
+  },
+  {
+   "t": "2016-02",
+   "e": 1.151
+  },
+  {
+   "t": "2016-03",
+   "e": 0.933
+  },
+  {
+   "t": "2016-04",
+   "e": 1.017
+  },
+  {
+   "t": "2016-05",
+   "e": 0.886
+  },
+  {
+   "t": "2016-06",
+   "e": 0.931
+  },
+  {
+   "t": "2016-07",
+   "e": 0.753
+  },
+  {
+   "t": "2016-08",
+   "e": 0.728
+  },
+  {
+   "t": "2016-09",
+   "e": 0.675
+  },
+  {
+   "t": "2016-10",
+   "e": 0.702
+  },
+  {
+   "t": "2016-11",
+   "e": 0.649
+  },
+  {
+   "t": "2016-12",
+   "e": 0.67
+  },
+  {
+   "t": "2017-01",
+   "e": 0.775
+  },
+  {
+   "t": "2017-02",
+   "e": 0.878
+  },
+  {
+   "t": "2017-03",
+   "e": 0.849
+  },
+  {
+   "t": "2017-04",
+   "e": 0.917
+  },
+  {
+   "t": "2017-05",
+   "e": 1.022
+  },
+  {
+   "t": "2017-06",
+   "e": 0.968
+  },
+  {
+   "t": "2017-07",
+   "e": 0.894
+  },
+  {
+   "t": "2017-08",
+   "e": 0.798
+  },
+  {
+   "t": "2017-09",
+   "e": 0.759
+  },
+  {
+   "t": "2017-10",
+   "e": 0.796
+  },
+  {
+   "t": "2017-11",
+   "e": 0.84
+  },
+  {
+   "t": "2017-12",
+   "e": 0.726
+  },
+  {
+   "t": "2018-01",
+   "e": 0.927
+  },
+  {
+   "t": "2018-02",
+   "e": 0.649
+  },
+  {
+   "t": "2018-03",
+   "e": 0.614
+  },
+  {
+   "t": "2018-04",
+   "e": 0.485
+  },
+  {
+   "t": "2018-05",
+   "e": 0.567
+  },
+  {
+   "t": "2018-06",
+   "e": 0.547
+  },
+  {
+   "t": "2018-07",
+   "e": 0.449
+  },
+  {
+   "t": "2018-08",
+   "e": 0.529
+  },
+  {
+   "t": "2018-09",
+   "e": 0.445
+  },
+  {
+   "t": "2018-10",
+   "e": 0.444
+  },
+  {
+   "t": "2018-11",
+   "e": 0.433
+  },
+  {
+   "t": "2018-12",
+   "e": 0.536
+  },
+  {
+   "t": "2019-01",
+   "e": 0.401
+  },
+  {
+   "t": "2019-02",
+   "e": 0.366
+  },
+  {
+   "t": "2019-03",
+   "e": 0.362
+  },
+  {
+   "t": "2019-04",
+   "e": 0.423
+  },
+  {
+   "t": "2019-05",
+   "e": 0.465
+  },
+  {
+   "t": "2019-06",
+   "e": 0.43
+  },
+  {
+   "t": "2019-07",
+   "e": 0.457
+  },
+  {
+   "t": "2019-08",
+   "e": 0.41
+  },
+  {
+   "t": "2019-09",
+   "e": 0.418
+  },
+  {
+   "t": "2019-10",
+   "e": 0.411
+  },
+  {
+   "t": "2019-11",
+   "e": 0.461
+  },
+  {
+   "t": "2019-12",
+   "e": 0.514
+  },
+  {
+   "t": "2020-01",
+   "e": 0.556
+  },
+  {
+   "t": "2020-02",
+   "e": 0.599
+  },
+  {
+   "t": "2020-03",
+   "e": 0.498
+  },
+  {
+   "t": "2020-04",
+   "e": 0.519
+  },
+  {
+   "t": "2020-05",
+   "e": 0.615
+  },
+  {
+   "t": "2020-06",
+   "e": 0.726
+  },
+  {
+   "t": "2020-07",
+   "e": 0.887
+  },
+  {
+   "t": "2020-08",
+   "e": 1.199
+  },
+  {
+   "t": "2020-09",
+   "e": 0.812
+  },
+  {
+   "t": "2020-10",
+   "e": 0.798
+  },
+  {
+   "t": "2020-11",
+   "e": 0.708
+  },
+  {
+   "t": "2020-12",
+   "e": 0.815
+  },
+  {
+   "t": "2021-01",
+   "e": 0.811
+  },
+  {
+   "t": "2021-02",
+   "e": 0.776
+  },
+  {
+   "t": "2021-03",
+   "e": 0.712
+  },
+  {
+   "t": "2021-04",
+   "e": 0.84
+  },
+  {
+   "t": "2021-05",
+   "e": 0.727
+  },
+  {
+   "t": "2021-06",
+   "e": 0.867
+  },
+  {
+   "t": "2021-07",
+   "e": 0.94
+  },
+  {
+   "t": "2021-08",
+   "e": 1.058
+  },
+  {
+   "t": "2021-09",
+   "e": 1.004
+  },
+  {
+   "t": "2021-10",
+   "e": 0.938
+  },
+  {
+   "t": "2021-11",
+   "e": 0.988
+  },
+  {
+   "t": "2021-12",
+   "e": 0.854
+  },
+  {
+   "t": "2022-01",
+   "e": 0.827
+  },
+  {
+   "t": "2022-02",
+   "e": 0.902
+  },
+  {
+   "t": "2022-03",
+   "e": 0.701
+  },
+  {
+   "t": "2022-04",
+   "e": 0.895
+  },
+  {
+   "t": "2022-05",
+   "e": 0.864
+  },
+  {
+   "t": "2022-06",
+   "e": 1.074
+  },
+  {
+   "t": "2022-07",
+   "e": 0.727
+  },
+  {
+   "t": "2022-08",
+   "e": 0.829
+  },
+  {
+   "t": "2022-09",
+   "e": 1.119
+  },
+  {
+   "t": "2022-10",
+   "e": 0.948
+  },
+  {
+   "t": "2022-11",
+   "e": 0.755
+  },
+  {
+   "t": "2022-12",
+   "e": 0.986
+  },
+  {
+   "t": "2023-01",
+   "e": 0.674
+  },
+  {
+   "t": "2023-02",
+   "e": 0.698
+  },
+  {
+   "t": "2023-03",
+   "e": 0.707
+  },
+  {
+   "t": "2023-04",
+   "e": 0.577
+  },
+  {
+   "t": "2023-05",
+   "e": 0.708
+  },
+  {
+   "t": "2023-06",
+   "e": 0.835
+  },
+  {
+   "t": "2023-07",
+   "e": 0.923
+  },
+  {
+   "t": "2023-08",
+   "e": 0.839
+  },
+  {
+   "t": "2023-09",
+   "e": 0.703
+  },
+  {
+   "t": "2023-10",
+   "e": 0.536
+  },
+  {
+   "t": "2023-11",
+   "e": 0.5
+  },
+  {
+   "t": "2023-12",
+   "e": 0.578
+  },
+  {
+   "t": "2024-01",
+   "e": 0.551
+  },
+  {
+   "t": "2024-02",
+   "e": 0.632
+  },
+  {
+   "t": "2024-03",
+   "e": 0.645
+  },
+  {
+   "t": "2024-04",
+   "e": 0.698
+  },
+  {
+   "t": "2024-05",
+   "e": 0.668
+  },
+  {
+   "t": "2024-06",
+   "e": 0.789
+  },
+  {
+   "t": "2024-07",
+   "e": 0.841
+  },
+  {
+   "t": "2024-08",
+   "e": 0.747
+  },
+  {
+   "t": "2024-09",
+   "e": 0.556
+  },
+  {
+   "t": "2024-10",
+   "e": 0.533
+  },
+  {
+   "t": "2024-11",
+   "e": 0.44
+  },
+  {
+   "t": "2024-12",
+   "e": 0.436
+  },
+  {
+   "t": "2025-01",
+   "e": 0.359
+  },
+  {
+   "t": "2025-02",
+   "e": 0.297
+  },
+  {
+   "t": "2025-03",
+   "e": 0.362
+  },
+  {
+   "t": "2025-04",
+   "e": 0.294
+  },
+  {
+   "t": "2025-05",
+   "e": 0.253
+  },
+  {
+   "t": "2025-06",
+   "e": 0.3
+  },
+  {
+   "t": "2025-07",
+   "e": 0.319
+  },
+  {
+   "t": "2025-08",
+   "e": 0.323
+  },
+  {
+   "t": "2025-09",
+   "e": 0.337
+  },
+  {
+   "t": "2025-10",
+   "e": 0.352
+  },
+  {
+   "t": "2025-11",
+   "e": 0.299
+  },
+  {
+   "t": "2025-12",
+   "e": 0.278
+  },
+  {
+   "t": "2026-01",
+   "e": 0.259
+  },
+  {
+   "t": "2026-02",
+   "e": 0.237
+  },
+  {
+   "t": "2026-03",
+   "e": 0.227
+  },
+  {
+   "t": "2026-04",
+   "e": 0.249
+  },
+  {
+   "t": "2026-05",
+   "e": 0.331
+  },
+  {
+   "t": "2026-06",
+   "e": 0.218
+  },
+  {
+   "t": "2026-07",
+   "e": 0.263
+  }
+ ]
+};
+const SVGTAGS=['svg','g','rect','line','text','path','circle','polyline','defs','linearGradient','stop'];
+const el=(t,a={},...c)=>{const n=SVGTAGS.includes(t)?document.createElementNS('http://www.w3.org/2000/svg',t):document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const $=s=>document.querySelector(s);
+const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+const t200=DATA.timers.find(r=>r.strategy==='200SMA'&&r.off==='cash');
+const KPI=[
+ {v:'+3,101%',l:'Timer total (10.5y)',s:'vs +2,765% TQQQ buy&hold'},
+ {v:'−45%',l:'Best-timer max DD',s:'vs −82% TQQQ buy&hold'},
+ {v:'1.01',l:'Best Sharpe',s:'MA-Shift timer; 200-SMA 0.93'},
+ {v:'cash ≫ SQQQ',l:'Defensive leg',s:'shorting always lost'},
+];
+$('#kpis').append(...KPI.map(k=>{const d=el('div',{class:'kpi'});d.innerHTML=`<div class="v acc">${k.v}</div><div class="l">${k.l}</div><div class="s">${k.s}</div>`;return d;}));
+
+/* equity chart, log scale */
+function drawEq(){
+ const host=$('#eqChart');host.innerHTML='';
+ const series=[['eq_qqq',cvar('--muted'),1.4],['eq_tqqq',cvar('--gold'),1.8],['eq_200SMA_cash',cvar('--accent'),2.2]];
+ const all=series.flatMap(s=>DATA[s[0]].map(p=>+p.e));
+ const lo=Math.log10(Math.max(Math.min(...all),0.3)),hi=Math.log10(Math.max(...all)*1.1);
+ const n=DATA.eq_qqq.length;
+ const W=host.clientWidth||1000,H=320,padL=48,padR=14,padT=14,padB=26;
+ const X=i=>padL+i/(n-1)*(W-padL-padR),Y=v=>padT+(hi-Math.log10(Math.max(v,0.3)))/(hi-lo)*(H-padT-padB);
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ [1,3,10,30].forEach(v=>{if(Math.log10(v)>=lo&&Math.log10(v)<=hi){const y=Y(v);
+   svg.append(el('line',{x1:padL,y1:y,x2:W-padR,y2:y,stroke:cvar('--grid')}));
+   svg.append(el('text',{x:padL-8,y:y+3,'text-anchor':'end',class:'axis'},v+'×'));}});
+ // year ticks
+ DATA.eq_qqq.forEach((p,i)=>{if(p.t.endsWith('-12')||i===0||i===n-1){
+   svg.append(el('text',{x:X(i),y:H-8,'text-anchor':'middle',class:'axis'},p.t.slice(0,4)));}});
+ series.forEach(([key,col,wdt])=>{const pts=DATA[key];let d='';
+  pts.forEach((p,i)=>{d+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(+p.e).toFixed(1)+' ';});
+  svg.append(el('path',{d,fill:'none',stroke:col,'stroke-width':wdt,'stroke-linejoin':'round'}));
+  svg.append(el('circle',{cx:X(pts.length-1),cy:Y(+pts[pts.length-1].e),r:3,fill:col}));});
+ host.append(svg);
+}
+
+/* table */
+function drawTbl(){
+ const tb=$('#tbl tbody');tb.innerHTML='';
+ const bench=[['Buy & hold QQQ',DATA.bh_qqq,1],['Buy & hold TQQQ',DATA.bh_tqqq,1]];
+ function row(name,m,cls){const tr=el('tr',cls?{class:cls}:{});
+  tr.innerHTML=`<td>${name}</td><td class="pos">+${Math.round(m.total*100)}%</td><td>${(m.cagr*100).toFixed(1)}%</td>
+   <td class="neg">${Math.round(m.maxdd*100)}%</td><td class="acc">${m.sharpe.toFixed(2)}</td>
+   <td>${m.pct_in!=null?Math.round(m.pct_in*100)+'%':'100%'}</td>`;tb.append(tr);}
+ bench.forEach(([n,m])=>row(n,m,'bench'));
+ function grp(lbl){const tr=el('tr');tr.innerHTML=`<td colspan="6" class="grouplbl">${lbl}</td>`;tb.append(tr);}
+ grp('risk-off = CASH  (winners)');
+ DATA.timers.filter(r=>r.off==='cash').sort((a,b)=>b.sharpe-a.sharpe).forEach(r=>
+   row(r.strategy+' → cash', r, r.strategy==='MAShift regime'?'hi':''));
+ grp('risk-off = SQQQ  (short — all underperform)');
+ DATA.timers.filter(r=>r.off==='SQQQ').sort((a,b)=>b.sharpe-a.sharpe).forEach(r=>row(r.strategy+' → SQQQ', r,'bad'));
+}
+
+function renderAll(){drawEq();drawTbl();}
+const btn=$('#themeBtn');
+function curDark(){const a=document.documentElement.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',curDark()?'light':'dark');requestAnimationFrame(renderAll);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>requestAnimationFrame(renderAll));
+new ResizeObserver(()=>renderAll()).observe(document.body);
+renderAll();
+</script>

@@ -1,0 +1,2523 @@
+<title>Is Nasdaq the Right Asset? — 29-Asset Search</title>
+<style>
+  :root{--bg:#0b1015;--panel:#121a21;--panel2:#16202a;--border:#243240;--text:#e0e9ef;--muted:#8496a2;--faint:#5c6d78;
+    --accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1d2932;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;--maxw:1140px;}
+  @media (prefers-color-scheme:light){:root{--bg:#edf0f4;--panel:#fff;--panel2:#f5f7fa;--border:#d6dee6;--text:#141f29;--muted:#57687a;--faint:#8797a3;--accent:#0b93a0;--gain:#0f8c59;--loss:#d43b37;--gold:#a2731a;--violet:#6551d0;--grid:#e3e9ef;}}
+  :root[data-theme="dark"]{--bg:#0b1015;--panel:#121a21;--panel2:#16202a;--border:#243240;--text:#e0e9ef;--muted:#8496a2;--faint:#5c6d78;--accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1d2932;}
+  :root[data-theme="light"]{--bg:#edf0f4;--panel:#fff;--panel2:#f5f7fa;--border:#d6dee6;--text:#141f29;--muted:#57687a;--faint:#8797a3;--accent:#0b93a0;--gain:#0f8c59;--loss:#d43b37;--gold:#a2731a;--violet:#6551d0;--grid:#e3e9ef;}
+  *{box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:var(--mono)}.pos{color:var(--gain)}.neg{color:var(--loss)}.acc{color:var(--accent)}.gld{color:var(--gold)}.vlt{color:var(--violet)}
+  h1,h2{margin:0;text-wrap:balance}
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:54px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px}.brand .dot{color:var(--accent)}.spacer{flex:1}
+  .tf-pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  header{padding:48px 0 26px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:var(--mono);font-size:clamp(24px,4vw,40px);line-height:1.07;letter-spacing:-.02em}
+  h1 .u{color:var(--muted)}
+  .lede{max-width:70ch;color:var(--muted);font-size:16.5px;margin-top:18px}.lede b{color:var(--text);font-weight:600}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px}
+  .kpi .v{font-family:var(--mono);font-size:19px;font-weight:700;line-height:1.15}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-top:8px}.kpi .s{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:4px}
+  section{padding:38px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}.sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  h2{font-size:22px}.sub{color:var(--muted);max-width:80ch;margin:10px 0 20px;font-size:15px}.sub b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px}
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:8px 10px;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+  thead th{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--panel2)}
+  tbody td{border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+  tbody td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+  tr.ours td{background:color-mix(in srgb,var(--gain) 14%,transparent)}tr.ours td:first-child{box-shadow:inset 3px 0 0 var(--gain)}
+  tr.trap td{background:color-mix(in srgb,var(--loss) 11%,transparent)}tr.trap td:first-child{box-shadow:inset 3px 0 0 var(--loss)}
+  tr.warn td{background:color-mix(in srgb,var(--gold) 11%,transparent)}tr.warn td:first-child{box-shadow:inset 3px 0 0 var(--gold)}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;background:var(--panel);padding:15px 19px;margin-top:15px}
+  .callout.warn{border-left-color:var(--gold)}.callout.crit{border-left-color:var(--loss)}.callout.good{border-left-color:var(--gain)}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .callout.warn .h{color:var(--gold)}.callout.crit .h{color:var(--loss)}.callout.good .h{color:var(--gain)}
+  .callout p{margin:0;color:var(--muted);font-size:14px}.callout p+p{margin-top:8px}.callout b{color:var(--text)}
+  ul.clean{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ul.clean li{padding-left:22px;position:relative;color:var(--muted);font-size:14px}ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}ul.clean li b{color:var(--text)}
+  footer{padding:28px 0 60px;color:var(--faint);font-size:12.5px}footer .mono{color:var(--muted)}
+  @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="topbar"><div class="wrap row">
+  <span class="brand">BEST<span class="dot">·</span>ASSET</span>
+  <span class="tf-pill">29 assets · indices, crypto, stocks, sectors</span>
+  <span class="spacer"></span>
+  <button class="toggle" id="themeBtn">◐ theme</button>
+</div></div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">The question I hadn't actually asked</div>
+    <h1>Bitcoin looks like the winner.<br><span class="u">Then you split the sample.</span></h1>
+    <p class="lede">You were right to push on this — the earlier 8-market test asked whether the <b>rules</b> generalise,
+      not whether there's a <b>better asset</b>. So I ran the same rules across <b>29 assets</b>: global indices, crypto,
+      semiconductors, sector ETFs and mega-cap stocks. Two things looked like they beat the Nasdaq. <b>Both fell apart
+      under scrutiny</b> — and the reason each one failed is more useful than the ranking itself.</p>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <!-- 1 the ranking -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">01</span><h2>The raw ranking (each asset's full history)</h2></div>
+    <p class="sub">Identical rules everywhere. Note the histories differ wildly — Bitcoin has 12 years, the Nasdaq 41 —
+      so this table is a <b>starting point, not a verdict</b>.</p>
+    <div class="tbl-scroll"><table id="full"><thead><tr>
+      <th>Asset</th><th>Lev</th><th>From</th><th>Yrs</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>Sharpe</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="callout warn">
+      <div class="h">Two apparent winners</div>
+      <p><b>Bitcoin</b> tops the table (Calmar 1.28 at 3×), and <b>mega-cap stocks</b> like Apple and Nvidia look strong.
+        Everything else — semiconductors, India, Korea, Taiwan, Brazil, sector ETFs, gold — <b>fails to beat the
+        Nasdaq</b>. So there are exactly two candidates to interrogate.</p>
+    </div>
+  </section>
+
+  <!-- 2 bitcoin -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">02</span><h2>Candidate 1: Bitcoin — a decaying edge</h2></div>
+    <p class="sub">On the common 2015–2026 window Bitcoin genuinely dominates, and blending it with the Nasdaq sleeve
+      improves every metric — a 50/50 blend reaches <b>Calmar 1.40, Sharpe 1.54</b>. That looks compelling until you
+      split the sample.</p>
+    <div class="tbl-scroll"><table id="combo"><thead><tr>
+      <th>Allocation (2015–2026)</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>Sharpe</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="panel" style="margin-top:15px">
+      <div class="mono" style="font-size:11px;color:var(--muted);margin-bottom:10px">THE SPLIT-SAMPLE TEST</div>
+      <div id="decay"></div>
+    </div>
+    <div class="callout crit">
+      <div class="h">Bitcoin's edge collapsed by 90%</div>
+      <p>2015–2020: Calmar <b>2.52</b> (87.7%/yr). 2021–2026: Calmar <b>0.23</b> (7.7%/yr). Over the most recent
+        5½ years the Bitcoin version earned <b>7.7%/yr against the Nasdaq version's 24.6%</b>. The spectacular
+        full-history numbers come almost entirely from the 2015–2020 adoption boom.</p>
+      <p>By contrast the Nasdaq sleeve went 1.31 → 0.79 — it declined, but it <b>held up</b>. Every impressive blend
+        figure above is powered by a period that is unlikely to repeat, so I would not act on them. If you want crypto
+        exposure, treat it as a small speculative sleeve justified by conviction, <b>not</b> by this backtest.</p>
+    </div>
+  </section>
+
+  <!-- 3 single stocks -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">03</span><h2>Candidate 2: mega-cap stocks — a hindsight trap</h2></div>
+    <p class="sub">Testing "the strategy on Nvidia" is cheating: I picked Nvidia <b>because I already know it won</b>.
+      In 1999 nobody did. The honest version picks by a rule knowable at the time — hold whichever mega-cap has the
+      best trailing 12-month momentum, rebalanced monthly.</p>
+    <div class="tbl-scroll"><table id="hind"><thead><tr>
+      <th>Approach</th><th>Lev</th><th>CAGR</th><th>Max DD</th><th>Calmar</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="callout good">
+      <div class="h">The surprise: the hindsight pick isn't even good</div>
+      <p><b>Always-Nvidia scores Calmar 0.49</b> — worse than the Nasdaq index (0.78) and worse than the rule-picked
+        rotation (0.72). Over its full history since 1999, Nvidia endured <b>−62% drawdowns</b> through the dot-com
+        bust, 2008, 2018 and 2022. The "Nvidia is unbeatable" impression is a story about the last few years only.</p>
+      <p>The <b>rule-picked momentum rotation is legitimately implementable</b> and earns more raw return (31% vs 20% at
+        2×) — but with a −43% drawdown against the index's −26%, so <b>lower Calmar</b>. More return, more pain, worse
+        ratio, plus single-stock blow-up risk the index doesn't carry.</p>
+    </div>
+    <div class="callout">
+      <div class="h">Why the index quietly wins</div>
+      <p>The Nasdaq-100 is <b>cap-weighted and reconstituted</b> — it automatically accumulates the winners and sheds
+        the losers. You already own the Nvidia effect, without having to guess which stock it will be, and with the
+        drawdowns diluted across 100 names. That is why the plain index beats both the hindsight pick and the honest
+        rule-based pick.</p>
+    </div>
+  </section>
+
+  <!-- 4 stability -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">04</span><h2>Stability — the test that decides it</h2></div>
+    <p class="sub">Searching 29 assets for a winner is itself a selection process that manufactures false champions.
+      So: split each candidate's history in half and require it to work in <b>both</b>.</p>
+    <div class="tbl-scroll"><table id="stab"><thead><tr>
+      <th>Asset</th><th>Lev</th><th>1st half Calmar</th><th>2nd half Calmar</th><th>Verdict</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="callout good">
+      <div class="h">The Nasdaq is the most stable performer in the universe</div>
+      <p>Nasdaq-100 at 3×: <b>0.87 → 0.72</b>. Mild decay, strong in both halves, across 41 years. Bitcoin collapses
+        (2.27 → 0.59), Semis ETF is erratic (0.14 → 0.73), India is weak in both (0.29 / 0.35). Nvidia and Apple
+        <i>improve</i> — but that direction is exactly what survivorship looks like from the winners' side.</p>
+    </div>
+  </section>
+
+  <!-- 5 answer -->
+  <section style="border-bottom:none">
+    <div class="sec-head"><span class="sec-idx">05</span><h2>So — does anything beat what we have?</h2></div>
+    <ul class="clean">
+      <li><b>No, nothing beats it reliably.</b> Of 29 assets, the Nasdaq-100 has the best <i>stable</i> risk-adjusted result, backed by 41 years and consistent across both halves of its history.</li>
+      <li><b>Bitcoin beats it on paper but not in the present.</b> Full-history Calmar 1.28 vs our 0.77 — yet its edge fell from 2.52 to 0.23, and in the last 5½ years it delivered a third of the Nasdaq version's return. The backtest is dominated by a one-off adoption phase.</li>
+      <li><b>Single stocks are a trap.</b> The hindsight pick (Nvidia, Calmar 0.49) is <i>worse</i> than the index, and even the honest rule-based rotation trades a better return for a worse ratio and real blow-up risk.</li>
+      <li><b>Everything else was worse:</b> semiconductors, India, Korea, Taiwan, Brazil, Mexico, EuroStoxx, DAX, Nikkei, Hang Seng, gold, gold miners, biotech, ARKK, sector ETFs.</li>
+      <li><b>Genuinely useful side-finding:</b> across almost every asset, <b>2× produced a better Calmar than 3×</b> — the third independent confirmation of that result.</li>
+    </ul>
+    <div class="callout warn" style="margin-top:18px">
+      <div class="h">The honest bottom line</div>
+      <p>The Nasdaq-100 wasn't chosen by searching — it was where we started, and it survived a search designed to
+        dethrone it. That's the strongest form of confirmation available here. <b>If you want more return you can take
+        more risk (a small Bitcoin sleeve, or the mega-cap momentum rotation) — but you'd be buying return with
+        drawdown, not finding a better strategy.</b></p>
+    </div>
+  </section>
+
+  <footer>
+    <p class="mono">Method — 29 assets via yfinance, identical rules (EMA-100 gate, vol-target 0.20, ER&lt;0.25 → half
+      size, Aug–Sep half, weekly rebalance, synthetic 10-y treasury off-leg, no gold sleeve so the asset is isolated),
+      each with its own simulated leveraged sleeve (lev×index − 0.95%/252 − (lev−1)×T-bill). Ranked on own history,
+      re-checked on a common 2015–2026 window and by split-sample stability. Hindsight test: monthly rotation to the
+      trailing-12-month momentum leader among 12 mega-caps vs fixed hindsight picks. Code: bestasset.py, assetcombo.py.</p>
+    <p style="margin-top:8px;color:var(--faint)">Research only — not investment advice. Leveraged and crypto exposure can lose most of its value.</p>
+  </footer>
+</div>
+
+<script>
+const D = {
+ "full": [
+  {
+   "asset": "Nasdaq-100",
+   "lev": 1,
+   "cagr": 0.12672619987504352,
+   "maxdd": -0.19361708397277277,
+   "calmar": 0.654519721476976,
+   "sharpe": 1.1224194603893844,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.1453096200310937,
+   "bh_dd": -0.8289721157242125,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Nasdaq-100",
+   "lev": 2,
+   "cagr": 0.20176309175996332,
+   "maxdd": -0.25890886423529424,
+   "calmar": 0.7792822866682644,
+   "sharpe": 0.996073407313912,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.1453096200310937,
+   "bh_dd": -0.8289721157242125,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Nasdaq-100",
+   "lev": 3,
+   "cagr": 0.27309271613936437,
+   "maxdd": -0.35244581787892204,
+   "calmar": 0.7748502104036361,
+   "sharpe": 0.9478003826267838,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.1453096200310937,
+   "bh_dd": -0.8289721157242125,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Semiconductors",
+   "lev": 1,
+   "cagr": 0.10803871896325634,
+   "maxdd": -0.21560409293414529,
+   "calmar": 0.5010977180115778,
+   "sharpe": 0.8879528670919028,
+   "yrs": 32.2217659137577,
+   "bh_cagr": 0.15340369787797536,
+   "bh_dd": -0.8714518260070794,
+   "start": "1994-05-04"
+  },
+  {
+   "asset": "Semiconductors",
+   "lev": 2,
+   "cagr": 0.1656633760501378,
+   "maxdd": -0.35878922719176787,
+   "calmar": 0.4617289581038425,
+   "sharpe": 0.7784256638602615,
+   "yrs": 32.2217659137577,
+   "bh_cagr": 0.15340369787797536,
+   "bh_dd": -0.8714518260070794,
+   "start": "1994-05-04"
+  },
+  {
+   "asset": "Semiconductors",
+   "lev": 3,
+   "cagr": 0.21333810151164267,
+   "maxdd": -0.5804673680911014,
+   "calmar": 0.3675281561704608,
+   "sharpe": 0.7364569240851737,
+   "yrs": 32.2217659137577,
+   "bh_cagr": 0.15340369787797536,
+   "bh_dd": -0.8714518260070794,
+   "start": "1994-05-04"
+  },
+  {
+   "asset": "S&P 500",
+   "lev": 1,
+   "cagr": 0.07159576435235704,
+   "maxdd": -0.21255070794608522,
+   "calmar": 0.33684086514789563,
+   "sharpe": 0.8073269102847063,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.09478850417305473,
+   "bh_dd": -0.5677538774277285,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "S&P 500",
+   "lev": 2,
+   "cagr": 0.09275503806021579,
+   "maxdd": -0.368052495984601,
+   "calmar": 0.25201578327048374,
+   "sharpe": 0.6373136474524977,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.09478850417305473,
+   "bh_dd": -0.5677538774277285,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "S&P 500",
+   "lev": 3,
+   "cagr": 0.11183811989845527,
+   "maxdd": -0.5511805645225121,
+   "calmar": 0.20290650123946347,
+   "sharpe": 0.5741436313244245,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.09478850417305473,
+   "bh_dd": -0.5677538774277285,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Russell 2000",
+   "lev": 1,
+   "cagr": 0.08307038453603632,
+   "maxdd": -0.25134970484825214,
+   "calmar": 0.3304972432181234,
+   "sharpe": 0.8641258731443082,
+   "yrs": 38.86926762491444,
+   "bh_cagr": 0.07616180855876542,
+   "bh_dd": -0.5988875493048398,
+   "start": "1987-09-10"
+  },
+  {
+   "asset": "Russell 2000",
+   "lev": 2,
+   "cagr": 0.11237967887267764,
+   "maxdd": -0.4052311403098182,
+   "calmar": 0.27732241600869595,
+   "sharpe": 0.694717108492191,
+   "yrs": 38.86926762491444,
+   "bh_cagr": 0.07616180855876542,
+   "bh_dd": -0.5988875493048398,
+   "start": "1987-09-10"
+  },
+  {
+   "asset": "Russell 2000",
+   "lev": 3,
+   "cagr": 0.13789368606361996,
+   "maxdd": -0.5532755829827954,
+   "calmar": 0.2492314685571582,
+   "sharpe": 0.630735320842388,
+   "yrs": 38.86926762491444,
+   "bh_cagr": 0.07616180855876542,
+   "bh_dd": -0.5988875493048398,
+   "start": "1987-09-10"
+  },
+  {
+   "asset": "India Nifty",
+   "lev": 1,
+   "cagr": 0.05751244915739373,
+   "maxdd": -0.19505549908499986,
+   "calmar": 0.2948517187527811,
+   "sharpe": 0.6185604389510478,
+   "yrs": 18.850102669404517,
+   "bh_cagr": 0.09237169530856892,
+   "bh_dd": -0.5985591399335762,
+   "start": "2007-09-17"
+  },
+  {
+   "asset": "India Nifty",
+   "lev": 2,
+   "cagr": 0.09385116473354893,
+   "maxdd": -0.2827340671694295,
+   "calmar": 0.3319414801093221,
+   "sharpe": 0.5972051499142346,
+   "yrs": 18.850102669404517,
+   "bh_cagr": 0.09237169530856892,
+   "bh_dd": -0.5985591399335762,
+   "start": "2007-09-17"
+  },
+  {
+   "asset": "India Nifty",
+   "lev": 3,
+   "cagr": 0.12716777686374514,
+   "maxdd": -0.40896048251200134,
+   "calmar": 0.31095370409050044,
+   "sharpe": 0.5914801132279877,
+   "yrs": 18.850102669404517,
+   "bh_cagr": 0.09237169530856892,
+   "bh_dd": -0.5985591399335762,
+   "start": "2007-09-17"
+  },
+  {
+   "asset": "Korea",
+   "lev": 1,
+   "cagr": 0.1018179310145586,
+   "maxdd": -0.2723520062443786,
+   "calmar": 0.3738468183825253,
+   "sharpe": 0.9456388840540256,
+   "yrs": 29.61533196440794,
+   "bh_cagr": 0.07896085541652798,
+   "bh_dd": -0.6465940403573602,
+   "start": "1996-12-11"
+  },
+  {
+   "asset": "Korea",
+   "lev": 2,
+   "cagr": 0.16281153392478775,
+   "maxdd": -0.47488548444412004,
+   "calmar": 0.3428437786751215,
+   "sharpe": 0.8585742681769035,
+   "yrs": 29.61533196440794,
+   "bh_cagr": 0.07896085541652798,
+   "bh_dd": -0.6465940403573602,
+   "start": "1996-12-11"
+  },
+  {
+   "asset": "Korea",
+   "lev": 3,
+   "cagr": 0.21912276060459046,
+   "maxdd": -0.6398649655950956,
+   "calmar": 0.342451567731637,
+   "sharpe": 0.8230482855513793,
+   "yrs": 29.61533196440794,
+   "bh_cagr": 0.07896085541652798,
+   "bh_dd": -0.6465940403573602,
+   "start": "1996-12-11"
+  },
+  {
+   "asset": "Taiwan",
+   "lev": 1,
+   "cagr": 0.08810484731951318,
+   "maxdd": -0.22535182521749164,
+   "calmar": 0.39096575869523753,
+   "sharpe": 0.8467003618670457,
+   "yrs": 29.059548254620122,
+   "bh_cagr": 0.05585671083472099,
+   "bh_dd": -0.6622042393968413,
+   "start": "1997-07-02"
+  },
+  {
+   "asset": "Taiwan",
+   "lev": 2,
+   "cagr": 0.13014504565559237,
+   "maxdd": -0.4232433551840449,
+   "calmar": 0.307494598701968,
+   "sharpe": 0.7283123344433348,
+   "yrs": 29.059548254620122,
+   "bh_cagr": 0.05585671083472099,
+   "bh_dd": -0.6622042393968413,
+   "start": "1997-07-02"
+  },
+  {
+   "asset": "Taiwan",
+   "lev": 3,
+   "cagr": 0.16695533571082644,
+   "maxdd": -0.5742715194457957,
+   "calmar": 0.29072543223447284,
+   "sharpe": 0.6846210910236019,
+   "yrs": 29.059548254620122,
+   "bh_cagr": 0.05585671083472099,
+   "bh_dd": -0.6622042393968413,
+   "start": "1997-07-02"
+  },
+  {
+   "asset": "Nikkei",
+   "lev": 1,
+   "cagr": 0.09755447139136897,
+   "maxdd": -0.2623898217093227,
+   "calmar": 0.3717921326210607,
+   "sharpe": 0.9199642901746238,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.04062882188542649,
+   "bh_dd": -0.8187120117786129,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Nikkei",
+   "lev": 2,
+   "cagr": 0.12525201570331768,
+   "maxdd": -0.4012950105755707,
+   "calmar": 0.31211954398254493,
+   "sharpe": 0.7042138058565311,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.04062882188542649,
+   "bh_dd": -0.8187120117786129,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Nikkei",
+   "lev": 3,
+   "cagr": 0.14603078762140154,
+   "maxdd": -0.5614886832343025,
+   "calmar": 0.26007788221167877,
+   "sharpe": 0.6227480254124849,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.04062882188542649,
+   "bh_dd": -0.8187120117786129,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "DAX",
+   "lev": 1,
+   "cagr": 0.0814037682843829,
+   "maxdd": -0.271336685861312,
+   "calmar": 0.30001018117391876,
+   "sharpe": 0.8159787879083821,
+   "yrs": 38.56536618754278,
+   "bh_cagr": 0.08701315044409275,
+   "bh_dd": -0.7268483450958192,
+   "start": "1987-12-30"
+  },
+  {
+   "asset": "DAX",
+   "lev": 2,
+   "cagr": 0.10873279520415213,
+   "maxdd": -0.43872110824033805,
+   "calmar": 0.24784035498147644,
+   "sharpe": 0.6462759579901454,
+   "yrs": 38.56536618754278,
+   "bh_cagr": 0.08701315044409275,
+   "bh_dd": -0.7268483450958192,
+   "start": "1987-12-30"
+  },
+  {
+   "asset": "DAX",
+   "lev": 3,
+   "cagr": 0.13108041394623515,
+   "maxdd": -0.5849055033604367,
+   "calmar": 0.22410528400424262,
+   "sharpe": 0.585611266704607,
+   "yrs": 38.56536618754278,
+   "bh_cagr": 0.08701315044409275,
+   "bh_dd": -0.7268483450958192,
+   "start": "1987-12-30"
+  },
+  {
+   "asset": "Hang Seng",
+   "lev": 1,
+   "cagr": 0.07609955423645687,
+   "maxdd": -0.4052243730680808,
+   "calmar": 0.18779609345875048,
+   "sharpe": 0.7059515208601496,
+   "yrs": 39.56194387405886,
+   "bh_cagr": 0.05916781404888538,
+   "bh_dd": -0.6518186042408534,
+   "start": "1986-12-31"
+  },
+  {
+   "asset": "Hang Seng",
+   "lev": 2,
+   "cagr": 0.09203164649416729,
+   "maxdd": -0.6514118021182522,
+   "calmar": 0.14128028720833735,
+   "sharpe": 0.5302588381442167,
+   "yrs": 39.56194387405886,
+   "bh_cagr": 0.05916781404888538,
+   "bh_dd": -0.6518186042408534,
+   "start": "1986-12-31"
+  },
+  {
+   "asset": "Hang Seng",
+   "lev": 3,
+   "cagr": 0.0997536617752206,
+   "maxdd": -0.8315201208720336,
+   "calmar": 0.11996542148686279,
+   "sharpe": 0.4672683528664253,
+   "yrs": 39.56194387405886,
+   "bh_cagr": 0.05916781404888538,
+   "bh_dd": -0.6518186042408534,
+   "start": "1986-12-31"
+  },
+  {
+   "asset": "Brazil",
+   "lev": 1,
+   "cagr": 0.14763897658911573,
+   "maxdd": -0.22157086497358058,
+   "calmar": 0.6663284751211299,
+   "sharpe": 1.1123452364119109,
+   "yrs": 33.24024640657084,
+   "bh_cagr": 0.30577459241464533,
+   "bh_dd": -0.6503635161929939,
+   "start": "1993-04-27"
+  },
+  {
+   "asset": "Brazil",
+   "lev": 2,
+   "cagr": 0.24905568188477312,
+   "maxdd": -0.4862613813089076,
+   "calmar": 0.5121847867382981,
+   "sharpe": 1.022667206776208,
+   "yrs": 33.24024640657084,
+   "bh_cagr": 0.30577459241464533,
+   "bh_dd": -0.6503635161929939,
+   "start": "1993-04-27"
+  },
+  {
+   "asset": "Brazil",
+   "lev": 3,
+   "cagr": 0.3430633438236059,
+   "maxdd": -0.676030146501564,
+   "calmar": 0.5074675228596662,
+   "sharpe": 0.9885242962913565,
+   "yrs": 33.24024640657084,
+   "bh_cagr": 0.30577459241464533,
+   "bh_dd": -0.6503635161929939,
+   "start": "1993-04-27"
+  },
+  {
+   "asset": "Mexico",
+   "lev": 1,
+   "cagr": 0.08495804865142964,
+   "maxdd": -0.26685336825481343,
+   "calmar": 0.3183697819032389,
+   "sharpe": 0.78506216633976,
+   "yrs": 34.70773442847365,
+   "bh_cagr": 0.1171719790777257,
+   "bh_dd": -0.4938408686625221,
+   "start": "1991-11-08"
+  },
+  {
+   "asset": "Mexico",
+   "lev": 2,
+   "cagr": 0.11779138697614133,
+   "maxdd": -0.4382556082177579,
+   "calmar": 0.2687732564453889,
+   "sharpe": 0.6431505895235979,
+   "yrs": 34.70773442847365,
+   "bh_cagr": 0.1171719790777257,
+   "bh_dd": -0.4938408686625221,
+   "start": "1991-11-08"
+  },
+  {
+   "asset": "Mexico",
+   "lev": 3,
+   "cagr": 0.14328586375378904,
+   "maxdd": -0.5740811028242048,
+   "calmar": 0.24959167450189712,
+   "sharpe": 0.5932021323004559,
+   "yrs": 34.70773442847365,
+   "bh_cagr": 0.1171719790777257,
+   "bh_dd": -0.4938408686625221,
+   "start": "1991-11-08"
+  },
+  {
+   "asset": "EuroStoxx",
+   "lev": 1,
+   "cagr": 0.005118488103199592,
+   "maxdd": -0.34909272963390126,
+   "calmar": 0.014662259247184629,
+   "sharpe": 0.10168462483538857,
+   "yrs": 19.318275154004105,
+   "bh_cagr": 0.021289627961839752,
+   "bh_dd": -0.6028629181168896,
+   "start": "2007-03-30"
+  },
+  {
+   "asset": "EuroStoxx",
+   "lev": 2,
+   "cagr": -0.015676573601780652,
+   "maxdd": -0.5592064467960586,
+   "calmar": -0.02803360671465554,
+   "sharpe": -0.016795285173338684,
+   "yrs": 19.318275154004105,
+   "bh_cagr": 0.021289627961839752,
+   "bh_dd": -0.6028629181168896,
+   "start": "2007-03-30"
+  },
+  {
+   "asset": "EuroStoxx",
+   "lev": 3,
+   "cagr": -0.03925152356376205,
+   "maxdd": -0.7110419951782492,
+   "calmar": -0.055202820409956506,
+   "sharpe": -0.05016549771142018,
+   "yrs": 19.318275154004105,
+   "bh_cagr": 0.021289627961839752,
+   "bh_dd": -0.6028629181168896,
+   "start": "2007-03-30"
+  },
+  {
+   "asset": "Bitcoin",
+   "lev": 1,
+   "cagr": 0.2162905623289222,
+   "maxdd": -0.2447328367075341,
+   "calmar": 0.8837823531927528,
+   "sharpe": 1.2669254296498778,
+   "yrs": 11.849418206707734,
+   "bh_cagr": 0.5176016264932979,
+   "bh_dd": -0.8303625055816858,
+   "start": "2014-09-17"
+  },
+  {
+   "asset": "Bitcoin",
+   "lev": 2,
+   "cagr": 0.4281663423180466,
+   "maxdd": -0.34742574491539546,
+   "calmar": 1.2323967022717703,
+   "sharpe": 1.2815764521287578,
+   "yrs": 11.849418206707734,
+   "bh_cagr": 0.5176016264932979,
+   "bh_dd": -0.8303625055816858,
+   "start": "2014-09-17"
+  },
+  {
+   "asset": "Bitcoin",
+   "lev": 3,
+   "cagr": 0.6400196972463288,
+   "maxdd": -0.4998140546965296,
+   "calmar": 1.2805156062186513,
+   "sharpe": 1.2811982806894513,
+   "yrs": 11.849418206707734,
+   "bh_cagr": 0.5176016264932979,
+   "bh_dd": -0.8303625055816858,
+   "start": "2014-09-17"
+  },
+  {
+   "asset": "Ethereum",
+   "lev": 1,
+   "cagr": 0.12409374044614596,
+   "maxdd": -0.38067413162406194,
+   "calmar": 0.32598416897078736,
+   "sharpe": 0.8461900318201223,
+   "yrs": 8.70362765229295,
+   "bh_cagr": 0.22373753472188596,
+   "bh_dd": -0.9351344908696619,
+   "start": "2017-11-09"
+  },
+  {
+   "asset": "Ethereum",
+   "lev": 2,
+   "cagr": 0.23177477294168192,
+   "maxdd": -0.5552945179572161,
+   "calmar": 0.41739070969819936,
+   "sharpe": 0.8719384799319216,
+   "yrs": 8.70362765229295,
+   "bh_cagr": 0.22373753472188596,
+   "bh_dd": -0.9351344908696619,
+   "start": "2017-11-09"
+  },
+  {
+   "asset": "Ethereum",
+   "lev": 3,
+   "cagr": 0.32604952165047885,
+   "maxdd": -0.6890903022237987,
+   "calmar": 0.47315935313306207,
+   "sharpe": 0.8749995508666674,
+   "yrs": 8.70362765229295,
+   "bh_cagr": 0.22373753472188596,
+   "bh_dd": -0.9351344908696619,
+   "start": "2017-11-09"
+  },
+  {
+   "asset": "Semis ETF",
+   "lev": 1,
+   "cagr": 0.09643703233644474,
+   "maxdd": -0.21753016464646746,
+   "calmar": 0.4433271702486656,
+   "sharpe": 0.8318575846621259,
+   "yrs": 26.132785763175907,
+   "bh_cagr": 0.1043874843828485,
+   "bh_dd": -0.8592459592400734,
+   "start": "2000-06-05"
+  },
+  {
+   "asset": "Semis ETF",
+   "lev": 2,
+   "cagr": 0.14747655665339776,
+   "maxdd": -0.32976355759044473,
+   "calmar": 0.44721908548960615,
+   "sharpe": 0.7310403141271858,
+   "yrs": 26.132785763175907,
+   "bh_cagr": 0.1043874843828485,
+   "bh_dd": -0.8592459592400734,
+   "start": "2000-06-05"
+  },
+  {
+   "asset": "Semis ETF",
+   "lev": 3,
+   "cagr": 0.18965996796257212,
+   "maxdd": -0.46982796138643224,
+   "calmar": 0.4036796094529957,
+   "sharpe": 0.6931313382632579,
+   "yrs": 26.132785763175907,
+   "bh_cagr": 0.1043874843828485,
+   "bh_dd": -0.8592459592400734,
+   "start": "2000-06-05"
+  },
+  {
+   "asset": "Tech ETF",
+   "lev": 1,
+   "cagr": 0.09047461231865772,
+   "maxdd": -0.20901750590332613,
+   "calmar": 0.4328566257053304,
+   "sharpe": 0.8780447294497465,
+   "yrs": 27.586584531143053,
+   "bh_cagr": 0.10252360589869003,
+   "bh_dd": -0.8204649958084649,
+   "start": "1998-12-22"
+  },
+  {
+   "asset": "Tech ETF",
+   "lev": 2,
+   "cagr": 0.14671431094504084,
+   "maxdd": -0.2717943083342773,
+   "calmar": 0.5397990555585817,
+   "sharpe": 0.8061656386838739,
+   "yrs": 27.586584531143053,
+   "bh_cagr": 0.10252360589869003,
+   "bh_dd": -0.8204649958084649,
+   "start": "1998-12-22"
+  },
+  {
+   "asset": "Tech ETF",
+   "lev": 3,
+   "cagr": 0.19876546602975642,
+   "maxdd": -0.37413843136412883,
+   "calmar": 0.5312618254827414,
+   "sharpe": 0.7794526575842327,
+   "yrs": 27.586584531143053,
+   "bh_cagr": 0.10252360589869003,
+   "bh_dd": -0.8204649958084649,
+   "start": "1998-12-22"
+  },
+  {
+   "asset": "Biotech",
+   "lev": 1,
+   "cagr": 0.03982448925278326,
+   "maxdd": -0.41709804892928093,
+   "calmar": 0.09547992217900667,
+   "sharpe": 0.3826332294961754,
+   "yrs": 20.459958932238195,
+   "bh_cagr": 0.11742163915582249,
+   "bh_dd": -0.6389026631281409,
+   "start": "2006-02-06"
+  },
+  {
+   "asset": "Biotech",
+   "lev": 2,
+   "cagr": 0.048463880206717214,
+   "maxdd": -0.6236310602052821,
+   "calmar": 0.07771242213427318,
+   "sharpe": 0.32269066333233193,
+   "yrs": 20.459958932238195,
+   "bh_cagr": 0.11742163915582249,
+   "bh_dd": -0.6389026631281409,
+   "start": "2006-02-06"
+  },
+  {
+   "asset": "Biotech",
+   "lev": 3,
+   "cagr": 0.04677959077553773,
+   "maxdd": -0.7649368478237301,
+   "calmar": 0.061154840309532964,
+   "sharpe": 0.30456004033343087,
+   "yrs": 20.459958932238195,
+   "bh_cagr": 0.11742163915582249,
+   "bh_dd": -0.6389026631281409,
+   "start": "2006-02-06"
+  },
+  {
+   "asset": "ARKK",
+   "lev": 1,
+   "cagr": 0.031390840167235146,
+   "maxdd": -0.342810998532484,
+   "calmar": 0.09156894119971072,
+   "sharpe": 0.30244948975035535,
+   "yrs": 11.728952772073923,
+   "bh_cagr": 0.12325342911595083,
+   "bh_dd": -0.8091410758425104,
+   "start": "2014-10-31"
+  },
+  {
+   "asset": "ARKK",
+   "lev": 2,
+   "cagr": 0.037125754274306644,
+   "maxdd": -0.4919034077953609,
+   "calmar": 0.07547366756554674,
+   "sharpe": 0.2721991615318601,
+   "yrs": 11.728952772073923,
+   "bh_cagr": 0.12325342911595083,
+   "bh_dd": -0.8091410758425104,
+   "start": "2014-10-31"
+  },
+  {
+   "asset": "ARKK",
+   "lev": 3,
+   "cagr": 0.030188971041932744,
+   "maxdd": -0.6460426248732389,
+   "calmar": 0.04672907000193086,
+   "sharpe": 0.2652958923141046,
+   "yrs": 11.728952772073923,
+   "bh_cagr": 0.12325342911595083,
+   "bh_dd": -0.8091410758425104,
+   "start": "2014-10-31"
+  },
+  {
+   "asset": "Apple",
+   "lev": 1,
+   "cagr": 0.16295443381645391,
+   "maxdd": -0.22096611733535998,
+   "calmar": 0.7374634436334788,
+   "sharpe": 1.1842460262076526,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.2387990189913558,
+   "bh_dd": -0.8180144851389763,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Apple",
+   "lev": 2,
+   "cagr": 0.2686718668539183,
+   "maxdd": -0.40488477451439153,
+   "calmar": 0.663576117862561,
+   "sharpe": 1.065004736683148,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.2387990189913558,
+   "bh_dd": -0.8180144851389763,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Apple",
+   "lev": 3,
+   "cagr": 0.3661110100136513,
+   "maxdd": -0.5526907570843105,
+   "calmar": 0.6624156552663368,
+   "sharpe": 1.017085533489835,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.2387990189913558,
+   "bh_dd": -0.8180144851389763,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Microsoft",
+   "lev": 1,
+   "cagr": 0.1235978712440382,
+   "maxdd": -0.33012831777881835,
+   "calmar": 0.37439342397415043,
+   "sharpe": 0.939409669575436,
+   "yrs": 40.36413415468857,
+   "bh_cagr": 0.24276624120589152,
+   "bh_dd": -0.6938623205377816,
+   "start": "1986-03-13"
+  },
+  {
+   "asset": "Microsoft",
+   "lev": 2,
+   "cagr": 0.19069402064677354,
+   "maxdd": -0.6453787757784367,
+   "calmar": 0.29547612627447206,
+   "sharpe": 0.8216050817463963,
+   "yrs": 40.36413415468857,
+   "bh_cagr": 0.24276624120589152,
+   "bh_dd": -0.6938623205377816,
+   "start": "1986-03-13"
+  },
+  {
+   "asset": "Microsoft",
+   "lev": 3,
+   "cagr": 0.24644112943515473,
+   "maxdd": -0.828461683474605,
+   "calmar": 0.29746834929235316,
+   "sharpe": 0.7783928181911403,
+   "yrs": 40.36413415468857,
+   "bh_cagr": 0.24276624120589152,
+   "bh_dd": -0.6938623205377816,
+   "start": "1986-03-13"
+  },
+  {
+   "asset": "Nvidia",
+   "lev": 1,
+   "cagr": 0.15838576275445404,
+   "maxdd": -0.23968263236873633,
+   "calmar": 0.6608145162173775,
+   "sharpe": 1.0817110215223067,
+   "yrs": 27.50171115674196,
+   "bh_cagr": 0.36780749592411754,
+   "bh_dd": -0.8972243342725413,
+   "start": "1999-01-22"
+  },
+  {
+   "asset": "Nvidia",
+   "lev": 2,
+   "cagr": 0.275535195302109,
+   "maxdd": -0.4474020420001624,
+   "calmar": 0.615855918024641,
+   "sharpe": 1.0153783259895333,
+   "yrs": 27.50171115674196,
+   "bh_cagr": 0.36780749592411754,
+   "bh_dd": -0.8972243342725413,
+   "start": "1999-01-22"
+  },
+  {
+   "asset": "Nvidia",
+   "lev": 3,
+   "cagr": 0.38250116912168686,
+   "maxdd": -0.6205452309502013,
+   "calmar": 0.6163953085836905,
+   "sharpe": 0.9867766184630016,
+   "yrs": 27.50171115674196,
+   "bh_cagr": 0.36780749592411754,
+   "bh_dd": -0.8972243342725413,
+   "start": "1999-01-22"
+  },
+  {
+   "asset": "Amazon",
+   "lev": 1,
+   "cagr": 0.10706006718841676,
+   "maxdd": -0.32293359772204977,
+   "calmar": 0.33152347090426865,
+   "sharpe": 0.7564162920954894,
+   "yrs": 29.190965092402465,
+   "bh_cagr": 0.3050054919976992,
+   "bh_dd": -0.9440421779932858,
+   "start": "1997-05-15"
+  },
+  {
+   "asset": "Amazon",
+   "lev": 2,
+   "cagr": 0.1635024582072686,
+   "maxdd": -0.5597702111392179,
+   "calmar": 0.2920885301747589,
+   "sharpe": 0.6727637550651615,
+   "yrs": 29.190965092402465,
+   "bh_cagr": 0.3050054919976992,
+   "bh_dd": -0.9440421779932858,
+   "start": "1997-05-15"
+  },
+  {
+   "asset": "Amazon",
+   "lev": 3,
+   "cagr": 0.20214643157109435,
+   "maxdd": -0.7453565799855368,
+   "calmar": 0.27120768367674014,
+   "sharpe": 0.6424120158379788,
+   "yrs": 29.190965092402465,
+   "bh_cagr": 0.3050054919976992,
+   "bh_dd": -0.9440421779932858,
+   "start": "1997-05-15"
+  },
+  {
+   "asset": "Google",
+   "lev": 1,
+   "cagr": 0.11555439014393332,
+   "maxdd": -0.23488474373610402,
+   "calmar": 0.49196209300745447,
+   "sharpe": 0.8678606505170975,
+   "yrs": 21.927446954141,
+   "bh_cagr": 0.24787448364611397,
+   "bh_dd": -0.6529476064011746,
+   "start": "2004-08-19"
+  },
+  {
+   "asset": "Google",
+   "lev": 2,
+   "cagr": 0.19552604184093747,
+   "maxdd": -0.3078607172454735,
+   "calmar": 0.6351120194559746,
+   "sharpe": 0.8172358164782503,
+   "yrs": 21.927446954141,
+   "bh_cagr": 0.24787448364611397,
+   "bh_dd": -0.6529476064011746,
+   "start": "2004-08-19"
+  },
+  {
+   "asset": "Google",
+   "lev": 3,
+   "cagr": 0.26400069241003066,
+   "maxdd": -0.467119903223183,
+   "calmar": 0.5651668674111174,
+   "sharpe": 0.7999785753362374,
+   "yrs": 21.927446954141,
+   "bh_cagr": 0.24787448364611397,
+   "bh_dd": -0.6529476064011746,
+   "start": "2004-08-19"
+  },
+  {
+   "asset": "Tesla",
+   "lev": 1,
+   "cagr": 0.12750476417730594,
+   "maxdd": -0.24712649751086335,
+   "calmar": 0.5159493840667612,
+   "sharpe": 0.8781606531336215,
+   "yrs": 16.0684462696783,
+   "bh_cagr": 0.38909108729244357,
+   "bh_dd": -0.7363221744219122,
+   "start": "2010-06-29"
+  },
+  {
+   "asset": "Tesla",
+   "lev": 2,
+   "cagr": 0.227838003693124,
+   "maxdd": -0.48763028048508605,
+   "calmar": 0.4672351427119636,
+   "sharpe": 0.8633060043581561,
+   "yrs": 16.0684462696783,
+   "bh_cagr": 0.38909108729244357,
+   "bh_dd": -0.7363221744219122,
+   "start": "2010-06-29"
+  },
+  {
+   "asset": "Tesla",
+   "lev": 3,
+   "cagr": 0.31342263100551393,
+   "maxdd": -0.6670042970768773,
+   "calmar": 0.469895969754734,
+   "sharpe": 0.8542978523863093,
+   "yrs": 16.0684462696783,
+   "bh_cagr": 0.38909108729244357,
+   "bh_dd": -0.7363221744219122,
+   "start": "2010-06-29"
+  },
+  {
+   "asset": "Gold",
+   "lev": 1,
+   "cagr": 0.04527858211188418,
+   "maxdd": -0.2792423991721138,
+   "calmar": 0.16214794832777626,
+   "sharpe": 0.4570849960311917,
+   "yrs": 25.897330595482547,
+   "bh_cagr": 0.1098028361674015,
+   "bh_dd": -0.4436384412589516,
+   "start": "2000-08-30"
+  },
+  {
+   "asset": "Gold",
+   "lev": 2,
+   "cagr": 0.059941760556923906,
+   "maxdd": -0.40269553234738076,
+   "calmar": 0.1488513175388691,
+   "sharpe": 0.3893793615636276,
+   "yrs": 25.897330595482547,
+   "bh_cagr": 0.1098028361674015,
+   "bh_dd": -0.4436384412589516,
+   "start": "2000-08-30"
+  },
+  {
+   "asset": "Gold",
+   "lev": 3,
+   "cagr": 0.06763178870041386,
+   "maxdd": -0.5359685048150462,
+   "calmar": 0.1261861249174566,
+   "sharpe": 0.37078398490342124,
+   "yrs": 25.897330595482547,
+   "bh_cagr": 0.1098028361674015,
+   "bh_dd": -0.4436384412589516,
+   "start": "2000-08-30"
+  },
+  {
+   "asset": "Gold miners",
+   "lev": 1,
+   "cagr": 0.04474140930593373,
+   "maxdd": -0.3569715563035777,
+   "calmar": 0.12533606254018878,
+   "sharpe": 0.420821288257905,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.03254303201379671,
+   "bh_dd": -0.8303559699921368,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Gold miners",
+   "lev": 2,
+   "cagr": 0.026836114029538338,
+   "maxdd": -0.691283038373578,
+   "calmar": 0.03882073266643028,
+   "sharpe": 0.2304716303248895,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.03254303201379671,
+   "bh_dd": -0.8303559699921368,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Gold miners",
+   "lev": 3,
+   "cagr": -0.00048130727532869066,
+   "maxdd": -0.8629356546671677,
+   "calmar": -0.0005577556944432083,
+   "sharpe": 0.15981354948171633,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.03254303201379671,
+   "bh_dd": -0.8303559699921368,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Nasdaq Comp",
+   "lev": 1,
+   "cagr": 0.12377023633662465,
+   "maxdd": -0.17646741912498187,
+   "calmar": 0.7013772681118275,
+   "sharpe": 1.2008053549997235,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.1162166333225616,
+   "bh_dd": -0.7793238628593402,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Nasdaq Comp",
+   "lev": 2,
+   "cagr": 0.19476337023264412,
+   "maxdd": -0.240488933224413,
+   "calmar": 0.8098641697200264,
+   "sharpe": 1.0614053830412427,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.1162166333225616,
+   "bh_dd": -0.7793238628593402,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Nasdaq Comp",
+   "lev": 3,
+   "cagr": 0.26446489174383836,
+   "maxdd": -0.36069560919897126,
+   "calmar": 0.7332079598394863,
+   "sharpe": 1.005444455507137,
+   "yrs": 40.80766598220397,
+   "bh_cagr": 0.1162166333225616,
+   "bh_dd": -0.7793238628593402,
+   "start": "1985-10-02"
+  },
+  {
+   "asset": "Dow",
+   "lev": 1,
+   "cagr": 0.05211984741960962,
+   "maxdd": -0.21570772593018706,
+   "calmar": 0.24162253435687325,
+   "sharpe": 0.6391591881412156,
+   "yrs": 34.55715263518138,
+   "bh_cagr": 0.08426455968271096,
+   "bh_dd": -0.5377856040192823,
+   "start": "1992-01-02"
+  },
+  {
+   "asset": "Dow",
+   "lev": 2,
+   "cagr": 0.06030823238510785,
+   "maxdd": -0.3723408516093215,
+   "calmar": 0.16197049591643048,
+   "sharpe": 0.468065948203033,
+   "yrs": 34.55715263518138,
+   "bh_cagr": 0.08426455968271096,
+   "bh_dd": -0.5377856040192823,
+   "start": "1992-01-02"
+  },
+  {
+   "asset": "Dow",
+   "lev": 3,
+   "cagr": 0.06682216970582289,
+   "maxdd": -0.5164555750345049,
+   "calmar": 0.12938609424703845,
+   "sharpe": 0.40718328313708035,
+   "yrs": 34.55715263518138,
+   "bh_cagr": 0.08426455968271096,
+   "bh_dd": -0.5377856040192823,
+   "start": "1992-01-02"
+  }
+ ],
+ "common": [
+  {
+   "asset": "Nasdaq-100",
+   "lev": 1,
+   "cagr": 0.10325114207978969,
+   "maxdd": -0.19361708397277244,
+   "calmar": 0.5332749567404366,
+   "sharpe": 0.9845722649494694,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nasdaq-100",
+   "lev": 2,
+   "cagr": 0.19029240588927188,
+   "maxdd": -0.2489485568303983,
+   "calmar": 0.7643844507960446,
+   "sharpe": 0.9827808916694187,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nasdaq-100",
+   "lev": 3,
+   "cagr": 0.2768562893630342,
+   "maxdd": -0.3114093761212605,
+   "calmar": 0.8890428824314794,
+   "sharpe": 0.9847506132695907,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Semiconductors",
+   "lev": 1,
+   "cagr": 0.08126515163915626,
+   "maxdd": -0.2156040929341455,
+   "calmar": 0.37691840879838046,
+   "sharpe": 0.6567980035052013,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Semiconductors",
+   "lev": 2,
+   "cagr": 0.14333443144923574,
+   "maxdd": -0.358789227191768,
+   "calmar": 0.39949480248086,
+   "sharpe": 0.6575182278506535,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Semiconductors",
+   "lev": 3,
+   "cagr": 0.19330639848219966,
+   "maxdd": -0.5023488527762863,
+   "calmar": 0.38480509592859735,
+   "sharpe": 0.6604349011144243,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "S&P 500",
+   "lev": 1,
+   "cagr": 0.03946743140189324,
+   "maxdd": -0.21255070794608488,
+   "calmar": 0.18568477980277748,
+   "sharpe": 0.5029434965474824,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "S&P 500",
+   "lev": 2,
+   "cagr": 0.05965532931901785,
+   "maxdd": -0.3327920403432906,
+   "calmar": 0.17925707975912097,
+   "sharpe": 0.4585742741329173,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "S&P 500",
+   "lev": 3,
+   "cagr": 0.07835076412960507,
+   "maxdd": -0.4416492750354384,
+   "calmar": 0.17740494224363465,
+   "sharpe": 0.45136205724956063,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Russell 2000",
+   "lev": 1,
+   "cagr": 0.022313522842177802,
+   "maxdd": -0.25134970484825037,
+   "calmar": 0.08877481219104413,
+   "sharpe": 0.2658278214969458,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Russell 2000",
+   "lev": 2,
+   "cagr": 0.021924819983476285,
+   "maxdd": -0.4052311403098193,
+   "calmar": 0.05410447964762449,
+   "sharpe": 0.20955186362810435,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Russell 2000",
+   "lev": 3,
+   "cagr": 0.01591249145158047,
+   "maxdd": -0.5532755829827931,
+   "calmar": 0.028760516352075032,
+   "sharpe": 0.19678420585187906,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "India Nifty",
+   "lev": 1,
+   "cagr": 0.04403970126737633,
+   "maxdd": -0.1950554990850002,
+   "calmar": 0.22578036237873486,
+   "sharpe": 0.5456215156755194,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "India Nifty",
+   "lev": 2,
+   "cagr": 0.07879754360147939,
+   "maxdd": -0.27939985270967194,
+   "calmar": 0.2820242846847846,
+   "sharpe": 0.5705104242743781,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "India Nifty",
+   "lev": 3,
+   "cagr": 0.1124619074444353,
+   "maxdd": -0.38665144440724164,
+   "calmar": 0.2908612112308172,
+   "sharpe": 0.5858174178672599,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Korea",
+   "lev": 1,
+   "cagr": 0.08177618619099847,
+   "maxdd": -0.2723520062443803,
+   "calmar": 0.3002591657710098,
+   "sharpe": 0.793906947675409,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Korea",
+   "lev": 2,
+   "cagr": 0.15666034840045717,
+   "maxdd": -0.38502231763487405,
+   "calmar": 0.40688640950164856,
+   "sharpe": 0.8471827062600868,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Korea",
+   "lev": 3,
+   "cagr": 0.22932372170623894,
+   "maxdd": -0.48535261225534654,
+   "calmar": 0.4724888996488815,
+   "sharpe": 0.8652143691942322,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Taiwan",
+   "lev": 1,
+   "cagr": 0.10722702025527409,
+   "maxdd": -0.17836579457158908,
+   "calmar": 0.6011635835941478,
+   "sharpe": 1.0359052331024476,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Taiwan",
+   "lev": 2,
+   "cagr": 0.1967761890658739,
+   "maxdd": -0.2226187311340313,
+   "calmar": 0.8839156887809299,
+   "sharpe": 1.03022611544534,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Taiwan",
+   "lev": 3,
+   "cagr": 0.2869024260082118,
+   "maxdd": -0.3289676265601057,
+   "calmar": 0.8721296651839139,
+   "sharpe": 1.0299223664346977,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nikkei",
+   "lev": 1,
+   "cagr": 0.05393770785961838,
+   "maxdd": -0.26238982170932235,
+   "calmar": 0.20556326273726816,
+   "sharpe": 0.5589153251042839,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nikkei",
+   "lev": 2,
+   "cagr": 0.07796703733856014,
+   "maxdd": -0.3859591574939437,
+   "calmar": 0.20200851780484977,
+   "sharpe": 0.48667210912721376,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nikkei",
+   "lev": 3,
+   "cagr": 0.09640146505753133,
+   "maxdd": -0.5083754166320289,
+   "calmar": 0.18962652776601197,
+   "sharpe": 0.46571454528557854,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "DAX",
+   "lev": 1,
+   "cagr": 0.014920153240390865,
+   "maxdd": -0.27133668586131077,
+   "calmar": 0.0549876003424655,
+   "sharpe": 0.20895703712330113,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "DAX",
+   "lev": 2,
+   "cagr": 0.017666599791902327,
+   "maxdd": -0.4387211082403356,
+   "calmar": 0.040268406192629315,
+   "sharpe": 0.1890724608770089,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "DAX",
+   "lev": 3,
+   "cagr": 0.01701548092896532,
+   "maxdd": -0.584905503360438,
+   "calmar": 0.02909099133314159,
+   "sharpe": 0.19229740511316415,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Hang Seng",
+   "lev": 1,
+   "cagr": -0.01677277017303258,
+   "maxdd": -0.4052243730680819,
+   "calmar": -0.04139131623806493,
+   "sharpe": -0.10233748756549377,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Hang Seng",
+   "lev": 2,
+   "cagr": -0.05360818495832509,
+   "maxdd": -0.6514118021182524,
+   "calmar": -0.0822953848610091,
+   "sharpe": -0.1785449998847619,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Hang Seng",
+   "lev": 3,
+   "cagr": -0.09618695628444418,
+   "maxdd": -0.8280858463597905,
+   "calmar": -0.11615577866386141,
+   "sharpe": -0.19594537688355224,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Brazil",
+   "lev": 1,
+   "cagr": 0.0497445909414338,
+   "maxdd": -0.22157086497358125,
+   "calmar": 0.22450871845161158,
+   "sharpe": 0.49198761062179797,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Brazil",
+   "lev": 2,
+   "cagr": 0.07866410445136385,
+   "maxdd": -0.3368922918674502,
+   "calmar": 0.2334992706877192,
+   "sharpe": 0.46903476780204123,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Brazil",
+   "lev": 3,
+   "cagr": 0.09998484627529969,
+   "maxdd": -0.44647599948098804,
+   "calmar": 0.22394226429086536,
+   "sharpe": 0.4659359222766628,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Mexico",
+   "lev": 1,
+   "cagr": 0.012540224694459257,
+   "maxdd": -0.1968723687890238,
+   "calmar": 0.06369723070634588,
+   "sharpe": 0.1870683875072811,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Mexico",
+   "lev": 2,
+   "cagr": 0.006052365271377758,
+   "maxdd": -0.29279478307834284,
+   "calmar": 0.020671014721455373,
+   "sharpe": 0.11592937443376723,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Mexico",
+   "lev": 3,
+   "cagr": -0.0029002460225632243,
+   "maxdd": -0.38948719543799826,
+   "calmar": -0.007446319305315671,
+   "sharpe": 0.0988298268211124,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "EuroStoxx",
+   "lev": 1,
+   "cagr": -0.007779174287980584,
+   "maxdd": -0.3490927296339005,
+   "calmar": -0.022283976799341357,
+   "sharpe": -0.044769831315531264,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "EuroStoxx",
+   "lev": 2,
+   "cagr": -0.027517134502154206,
+   "maxdd": -0.559206446796058,
+   "calmar": -0.049207470085175314,
+   "sharpe": -0.09612872020214212,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "EuroStoxx",
+   "lev": 3,
+   "cagr": -0.04969108471781092,
+   "maxdd": -0.7069094019651154,
+   "calmar": -0.07029342738924708,
+   "sharpe": -0.10047260886167064,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Bitcoin",
+   "lev": 1,
+   "cagr": 0.21834401719169128,
+   "maxdd": -0.24473283670753476,
+   "calmar": 0.8921729512440574,
+   "sharpe": 1.2645425268244783,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Bitcoin",
+   "lev": 2,
+   "cagr": 0.4364129075179095,
+   "maxdd": -0.34742574491539535,
+   "calmar": 1.256132897186949,
+   "sharpe": 1.2878951953766982,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Bitcoin",
+   "lev": 3,
+   "cagr": 0.6552832379027766,
+   "maxdd": -0.49981405469652984,
+   "calmar": 1.3110540444898902,
+   "sharpe": 1.2907058279638521,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Semis ETF",
+   "lev": 1,
+   "cagr": 0.12067845280136269,
+   "maxdd": -0.2175301646464668,
+   "calmar": 0.5547665216798373,
+   "sharpe": 0.9143303069221703,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Semis ETF",
+   "lev": 2,
+   "cagr": 0.22238131777169046,
+   "maxdd": -0.3297635575904435,
+   "calmar": 0.6743659590423312,
+   "sharpe": 0.9081992915302046,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Semis ETF",
+   "lev": 3,
+   "cagr": 0.3155961676769139,
+   "maxdd": -0.45636594861823687,
+   "calmar": 0.6915418835091903,
+   "sharpe": 0.907721998363602,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Tech ETF",
+   "lev": 1,
+   "cagr": 0.11598814872706509,
+   "maxdd": -0.2090175059033258,
+   "calmar": 0.5549207384605939,
+   "sharpe": 1.0343704971231706,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Tech ETF",
+   "lev": 2,
+   "cagr": 0.22047206689261345,
+   "maxdd": -0.2717943083342772,
+   "calmar": 0.8111724938016619,
+   "sharpe": 1.0464286958134106,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Tech ETF",
+   "lev": 3,
+   "cagr": 0.32491371638072764,
+   "maxdd": -0.34041109270462333,
+   "calmar": 0.9544745260773777,
+   "sharpe": 1.0531105222646868,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Biotech",
+   "lev": 1,
+   "cagr": 0.021563734970766912,
+   "maxdd": -0.4170980489292825,
+   "calmar": 0.05169943859992251,
+   "sharpe": 0.2362911611616911,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Biotech",
+   "lev": 2,
+   "cagr": 0.017693618060461214,
+   "maxdd": -0.6236310602052819,
+   "calmar": 0.02837193204366211,
+   "sharpe": 0.19091785457700453,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Biotech",
+   "lev": 3,
+   "cagr": 0.0038592636839276384,
+   "maxdd": -0.7649368478237295,
+   "calmar": 0.0050452056204474535,
+   "sharpe": 0.17868379714967664,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "ARKK",
+   "lev": 1,
+   "cagr": 0.03286051270399759,
+   "maxdd": -0.34281099853248354,
+   "calmar": 0.09585606309210598,
+   "sharpe": 0.3121969148264457,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "ARKK",
+   "lev": 2,
+   "cagr": 0.040881682685672605,
+   "maxdd": -0.4919034077953611,
+   "calmar": 0.08310916744589818,
+   "sharpe": 0.28664159570979275,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "ARKK",
+   "lev": 3,
+   "cagr": 0.03600023975736466,
+   "maxdd": -0.6460426248732398,
+   "calmar": 0.055724248480397524,
+   "sharpe": 0.28132264399098966,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Apple",
+   "lev": 1,
+   "cagr": 0.13792288624264848,
+   "maxdd": -0.20738563000873356,
+   "calmar": 0.6650551739618612,
+   "sharpe": 1.0416904483349922,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Apple",
+   "lev": 2,
+   "cagr": 0.2532057948180866,
+   "maxdd": -0.38912256379427335,
+   "calmar": 0.650709617939182,
+   "sharpe": 1.0171741526627345,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Apple",
+   "lev": 3,
+   "cagr": 0.36335246333360627,
+   "maxdd": -0.536056575489648,
+   "calmar": 0.677824841532278,
+   "sharpe": 1.009846859202535,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Microsoft",
+   "lev": 1,
+   "cagr": 0.0949975973654067,
+   "maxdd": -0.2153638836076608,
+   "calmar": 0.44110273168396513,
+   "sharpe": 0.7894288063532021,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Microsoft",
+   "lev": 2,
+   "cagr": 0.169933336794311,
+   "maxdd": -0.2858683603334732,
+   "calmar": 0.5944461170731842,
+   "sharpe": 0.7793051325736842,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Microsoft",
+   "lev": 3,
+   "cagr": 0.23708039570598727,
+   "maxdd": -0.39600096594175227,
+   "calmar": 0.5986864076004789,
+   "sharpe": 0.7781244920246968,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nvidia",
+   "lev": 1,
+   "cagr": 0.2028797063519472,
+   "maxdd": -0.23968263236873577,
+   "calmar": 0.8464514276521724,
+   "sharpe": 1.2240497842326037,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nvidia",
+   "lev": 2,
+   "cagr": 0.4002544139601636,
+   "maxdd": -0.31512385027628664,
+   "calmar": 1.2701495415508481,
+   "sharpe": 1.2297192428255805,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nvidia",
+   "lev": 3,
+   "cagr": 0.5966265794110062,
+   "maxdd": -0.4008314294562044,
+   "calmar": 1.4884725487231152,
+   "sharpe": 1.2295602251391435,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Amazon",
+   "lev": 1,
+   "cagr": 0.08875118521439451,
+   "maxdd": -0.3229335977220511,
+   "calmar": 0.27482797033333967,
+   "sharpe": 0.6730377548501503,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Amazon",
+   "lev": 2,
+   "cagr": 0.16002001250438647,
+   "maxdd": -0.4646368726889738,
+   "calmar": 0.3443980060779706,
+   "sharpe": 0.6859980643782843,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Amazon",
+   "lev": 3,
+   "cagr": 0.21768129562655147,
+   "maxdd": -0.5986312554877068,
+   "calmar": 0.36363169084648916,
+   "sharpe": 0.692407536377906,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Google",
+   "lev": 1,
+   "cagr": 0.07454985627501398,
+   "maxdd": -0.2348847437361029,
+   "calmar": 0.3173890951332797,
+   "sharpe": 0.6095170551511797,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Google",
+   "lev": 2,
+   "cagr": 0.12832772501596024,
+   "maxdd": -0.3043200181647979,
+   "calmar": 0.4216867683888844,
+   "sharpe": 0.6082548363666332,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Google",
+   "lev": 3,
+   "cagr": 0.17008922676899974,
+   "maxdd": -0.41198568265127755,
+   "calmar": 0.41285227601700564,
+   "sharpe": 0.6106075788264791,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Tesla",
+   "lev": 1,
+   "cagr": 0.10613858500142648,
+   "maxdd": -0.24712649751086213,
+   "calmar": 0.4294909128340691,
+   "sharpe": 0.7614425746470252,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Tesla",
+   "lev": 2,
+   "cagr": 0.18911829115006507,
+   "maxdd": -0.48763028048508605,
+   "calmar": 0.3878313113819214,
+   "sharpe": 0.7641814738487183,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Tesla",
+   "lev": 3,
+   "cagr": 0.2565056408801887,
+   "maxdd": -0.6670042970768773,
+   "calmar": 0.3845637007202436,
+   "sharpe": 0.7618423057473248,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Gold",
+   "lev": 1,
+   "cagr": 0.05505288756730109,
+   "maxdd": -0.2792423991721137,
+   "calmar": 0.1971508901603754,
+   "sharpe": 0.5517855077649303,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Gold",
+   "lev": 2,
+   "cagr": 0.08956178544566962,
+   "maxdd": -0.40269553234738076,
+   "calmar": 0.2224057091559937,
+   "sharpe": 0.532362508007592,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Gold",
+   "lev": 3,
+   "cagr": 0.11801510332748677,
+   "maxdd": -0.5210989272103753,
+   "calmar": 0.22647351043162353,
+   "sharpe": 0.5307675959998919,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Gold miners",
+   "lev": 1,
+   "cagr": 0.01646163177134996,
+   "maxdd": -0.345050897279355,
+   "calmar": 0.047707836441365746,
+   "sharpe": 0.1921741475133469,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Gold miners",
+   "lev": 2,
+   "cagr": 0.011941277948189333,
+   "maxdd": -0.5225188861413992,
+   "calmar": 0.022853294426104048,
+   "sharpe": 0.16863367277481375,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Gold miners",
+   "lev": 3,
+   "cagr": -0.003762304042918996,
+   "maxdd": -0.6866864938898614,
+   "calmar": -0.0054789253558880065,
+   "sharpe": 0.1629391792740897,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nasdaq Comp",
+   "lev": 1,
+   "cagr": 0.0776653142693049,
+   "maxdd": -0.17646741912498076,
+   "calmar": 0.44011135117411926,
+   "sharpe": 0.782983538521151,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nasdaq Comp",
+   "lev": 2,
+   "cagr": 0.13479842314895918,
+   "maxdd": -0.2179258478906635,
+   "calmar": 0.6185517893067438,
+   "sharpe": 0.761337809720971,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Nasdaq Comp",
+   "lev": 3,
+   "cagr": 0.1888737131656988,
+   "maxdd": -0.2862924930799656,
+   "calmar": 0.659722897844002,
+   "sharpe": 0.758013301782245,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Dow",
+   "lev": 1,
+   "cagr": 0.02139838967285268,
+   "maxdd": -0.2157077259301864,
+   "calmar": 0.09920084957818455,
+   "sharpe": 0.29993407385840704,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Dow",
+   "lev": 2,
+   "cagr": 0.02393609043311562,
+   "maxdd": -0.3723408516093233,
+   "calmar": 0.06428542645712816,
+   "sharpe": 0.2346457642677426,
+   "yrs": 11.5564681724846
+  },
+  {
+   "asset": "Dow",
+   "lev": 3,
+   "cagr": 0.024875588461440667,
+   "maxdd": -0.5164555750345055,
+   "calmar": 0.048165979154700146,
+   "sharpe": 0.22302214801048512,
+   "yrs": 11.5564681724846
+  }
+ ],
+ "stab": [
+  {
+   "asset": "Nasdaq-100",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.23488114834193197,
+    "maxdd": -0.25890886423529424,
+    "calmar": 0.9071962407917943,
+    "sharpe": 1.062020993925144,
+    "yrs": 20.372347707049965
+   },
+   "h2": {
+    "cagr": 0.17038566269304178,
+    "maxdd": -0.24894855683039785,
+    "calmar": 0.6844211706321363,
+    "sharpe": 0.9287789189748351,
+    "yrs": 20.435318275154003
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Nasdaq-100",
+   "lev": 3,
+   "h1": {
+    "cagr": 0.3082548416524633,
+    "maxdd": -0.35244581787892204,
+    "calmar": 0.8746162559328766,
+    "sharpe": 0.9864023922619315,
+    "yrs": 20.372347707049965
+   },
+   "h2": {
+    "cagr": 0.24017062205508388,
+    "maxdd": -0.3328803824325657,
+    "calmar": 0.7214922678831553,
+    "sharpe": 0.9120558882935413,
+    "yrs": 20.435318275154003
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Semiconductors",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.1664135884443223,
+    "maxdd": -0.3191134795084911,
+    "calmar": 0.5214871797350519,
+    "sharpe": 0.8047224591955772,
+    "yrs": 16.10130047912389
+   },
+   "h2": {
+    "cagr": 0.16420501399780818,
+    "maxdd": -0.35878922719176776,
+    "calmar": 0.45766428184880514,
+    "sharpe": 0.7527563321039676,
+    "yrs": 16.12046543463381
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Semiconductors",
+   "lev": 3,
+   "h1": {
+    "cagr": 0.20250822203301988,
+    "maxdd": -0.5804673680911014,
+    "calmar": 0.34887098425356655,
+    "sharpe": 0.7278912753378335,
+    "yrs": 16.10130047912389
+   },
+   "h2": {
+    "cagr": 0.22350680168078108,
+    "maxdd": -0.5023488527762867,
+    "calmar": 0.44492348384105174,
+    "sharpe": 0.7439330911631932,
+    "yrs": 16.12046543463381
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Bitcoin",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.7330018385916095,
+    "maxdd": -0.34742574491539546,
+    "calmar": 2.10980864060638,
+    "sharpe": 1.694372216439284,
+    "yrs": 5.919233401779603
+   },
+   "h2": {
+    "cagr": 0.1761081702001548,
+    "maxdd": -0.33971300593281595,
+    "calmar": 0.5184027903688303,
+    "sharpe": 0.7479490459333786,
+    "yrs": 5.930184804928132
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Bitcoin",
+   "lev": 3,
+   "h1": {
+    "cagr": 1.13529598196823,
+    "maxdd": -0.4998140546965296,
+    "calmar": 2.2714366899056966,
+    "sharpe": 1.6662912469729114,
+    "yrs": 5.919233401779603
+   },
+   "h2": {
+    "cagr": 0.2581081672737384,
+    "maxdd": -0.434816599214069,
+    "calmar": 0.593602377968709,
+    "sharpe": 0.7828070638972503,
+    "yrs": 5.930184804928132
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Nvidia",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.21660090320746872,
+    "maxdd": -0.33800634959200004,
+    "calmar": 0.6408190362959834,
+    "sharpe": 0.8973031509933302,
+    "yrs": 13.738535249828884
+   },
+   "h2": {
+    "cagr": 0.33710874186291395,
+    "maxdd": -0.3151238502762862,
+    "calmar": 1.069765876392258,
+    "sharpe": 1.1214874442494587,
+    "yrs": 13.763175906913073
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Nvidia",
+   "lev": 3,
+   "h1": {
+    "cagr": 0.27802552941994385,
+    "maxdd": -0.4989263733922197,
+    "calmar": 0.5572476105635338,
+    "sharpe": 0.8345267963930096,
+    "yrs": 13.738535249828884
+   },
+   "h2": {
+    "cagr": 0.49519260167839385,
+    "maxdd": -0.40083142945620454,
+    "calmar": 1.2354136060393421,
+    "sharpe": 1.1213350650487959,
+    "yrs": 13.763175906913073
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "India Nifty",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.09182220957764198,
+    "maxdd": -0.2827340671694295,
+    "calmar": 0.3247652838475144,
+    "sharpe": 0.5499399411474165,
+    "yrs": 9.415468856947296
+   },
+   "h2": {
+    "cagr": 0.09407437386342354,
+    "maxdd": -0.27939985270967127,
+    "calmar": 0.33670158717362564,
+    "sharpe": 0.6511721006836054,
+    "yrs": 9.434633812457221
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "India Nifty",
+   "lev": 3,
+   "h1": {
+    "cagr": 0.1178216521521136,
+    "maxdd": -0.40896048251200134,
+    "calmar": 0.2881003353390165,
+    "sharpe": 0.5318349218446551,
+    "yrs": 9.415468856947296
+   },
+   "h2": {
+    "cagr": 0.13375537532640203,
+    "maxdd": -0.386651444407241,
+    "calmar": 0.34593269276791855,
+    "sharpe": 0.6603402906056203,
+    "yrs": 9.434633812457221
+   },
+   "ok": "weak"
+  },
+  {
+   "asset": "Apple",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.21704541523642207,
+    "maxdd": -0.40488477451439153,
+    "calmar": 0.5360671205696504,
+    "sharpe": 0.9133621621934297,
+    "yrs": 20.372347707049965
+   },
+   "h2": {
+    "cagr": 0.32362278416526613,
+    "maxdd": -0.3891225637942737,
+    "calmar": 0.8316731392023907,
+    "sharpe": 1.2146001809092584,
+    "yrs": 20.435318275154003
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Apple",
+   "lev": 3,
+   "h1": {
+    "cagr": 0.2684183859689395,
+    "maxdd": -0.5526907570843105,
+    "calmar": 0.4856574540615911,
+    "sharpe": 0.8300881455838064,
+    "yrs": 20.372347707049965
+   },
+   "h2": {
+    "cagr": 0.47313902772070127,
+    "maxdd": -0.5360565754896487,
+    "calmar": 0.8826289040266379,
+    "sharpe": 1.1990514259050682,
+    "yrs": 20.435318275154003
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Microsoft",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.21466526334638636,
+    "maxdd": -0.644850464416893,
+    "calmar": 0.33289153872362914,
+    "sharpe": 0.8595041204383111,
+    "yrs": 20.1533196440794
+   },
+   "h2": {
+    "cagr": 0.16722607951649326,
+    "maxdd": -0.28586836033347196,
+    "calmar": 0.5849758235623566,
+    "sharpe": 0.7820884280419147,
+    "yrs": 20.210814510609172
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Microsoft",
+   "lev": 3,
+   "h1": {
+    "cagr": 0.26499917461857914,
+    "maxdd": -0.8282061273054575,
+    "calmar": 0.31996765766602764,
+    "sharpe": 0.7912157352764309,
+    "yrs": 20.1533196440794
+   },
+   "h2": {
+    "cagr": 0.22816914545704026,
+    "maxdd": -0.3960009659417524,
+    "calmar": 0.5761833052967895,
+    "sharpe": 0.7673974025325615,
+    "yrs": 20.210814510609172
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Tech ETF",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.08951307037091905,
+    "maxdd": -0.2681191910701526,
+    "calmar": 0.3338555140855181,
+    "sharpe": 0.5602069621572313,
+    "yrs": 13.78507871321013
+   },
+   "h2": {
+    "cagr": 0.2067690184485711,
+    "maxdd": -0.27179430833427587,
+    "calmar": 0.7607555129310098,
+    "sharpe": 1.0298976627187173,
+    "yrs": 13.801505817932922
+   },
+   "ok": "YES"
+  },
+  {
+   "asset": "Tech ETF",
+   "lev": 3,
+   "h1": {
+    "cagr": 0.10172096027110777,
+    "maxdd": -0.37413843136412883,
+    "calmar": 0.27188054405485074,
+    "sharpe": 0.4957934061624864,
+    "yrs": 13.78507871321013
+   },
+   "h2": {
+    "cagr": 0.3042133217623344,
+    "maxdd": -0.34041109270462233,
+    "calmar": 0.8936645376192337,
+    "sharpe": 1.034983280476483,
+    "yrs": 13.801505817932922
+   },
+   "ok": "weak"
+  },
+  {
+   "asset": "Semis ETF",
+   "lev": 2,
+   "h1": {
+    "cagr": 0.07003977221585722,
+    "maxdd": -0.3284934606848081,
+    "calmar": 0.21321511871148296,
+    "sharpe": 0.45362348215754633,
+    "yrs": 13.062286105407255
+   },
+   "h2": {
+    "cagr": 0.2309548729377513,
+    "maxdd": -0.32976355759044385,
+    "calmar": 0.7003650573923942,
+    "sharpe": 0.9536223586887573,
+    "yrs": 13.070499657768652
+   },
+   "ok": "weak"
+  },
+  {
+   "asset": "Semis ETF",
+   "lev": 3,
+   "h1": {
+    "cagr": 0.06370562230085342,
+    "maxdd": -0.46982796138643224,
+    "calmar": 0.13559350983041155,
+    "sharpe": 0.36138896329115905,
+    "yrs": 13.062286105407255
+   },
+   "h2": {
+    "cagr": 0.3312203009642465,
+    "maxdd": -0.45636594861823665,
+    "calmar": 0.7257778586835844,
+    "sharpe": 0.9531821859236971,
+    "yrs": 13.070499657768652
+   },
+   "ok": "no"
+  }
+ ],
+ "hind": [
+  {
+   "lbl": "Rule-picked momentum leader (implementable)",
+   "lev": 2,
+   "cagr": 0.31,
+   "maxdd": -0.43,
+   "calmar": 0.72
+  },
+  {
+   "lbl": "HINDSIGHT: always NVDA",
+   "lev": 2,
+   "cagr": 0.218,
+   "maxdd": -0.45,
+   "calmar": 0.49
+  },
+  {
+   "lbl": "HINDSIGHT: always AAPL",
+   "lev": 2,
+   "cagr": 0.269,
+   "maxdd": -0.4,
+   "calmar": 0.66
+  },
+  {
+   "lbl": "Nasdaq-100 index",
+   "lev": 2,
+   "cagr": 0.202,
+   "maxdd": -0.26,
+   "calmar": 0.78
+  },
+  {
+   "lbl": "Rule-picked momentum leader (implementable)",
+   "lev": 3,
+   "cagr": 0.417,
+   "maxdd": -0.63,
+   "calmar": 0.67
+  },
+  {
+   "lbl": "HINDSIGHT: always NVDA",
+   "lev": 3,
+   "cagr": 0.286,
+   "maxdd": -0.62,
+   "calmar": 0.46
+  },
+  {
+   "lbl": "HINDSIGHT: always AAPL",
+   "lev": 3,
+   "cagr": 0.366,
+   "maxdd": -0.55,
+   "calmar": 0.66
+  },
+  {
+   "lbl": "Nasdaq-100 index",
+   "lev": 3,
+   "cagr": 0.274,
+   "maxdd": -0.35,
+   "calmar": 0.78
+  }
+ ],
+ "combo": [
+  {
+   "lbl": "100% Nasdaq 3x",
+   "cagr": 0.278,
+   "maxdd": -0.31,
+   "calmar": 0.89,
+   "sharpe": 0.99
+  },
+  {
+   "lbl": "100% Bitcoin 3x",
+   "cagr": 0.655,
+   "maxdd": -0.5,
+   "calmar": 1.31,
+   "sharpe": 1.29
+  },
+  {
+   "lbl": "100% Bitcoin 2x",
+   "cagr": 0.436,
+   "maxdd": -0.35,
+   "calmar": 1.26,
+   "sharpe": 1.29
+  },
+  {
+   "lbl": "90% Nasdaq 3x + 10% BTC 2x",
+   "cagr": 0.303,
+   "maxdd": -0.3,
+   "calmar": 1.0,
+   "sharpe": 1.12
+  },
+  {
+   "lbl": "80% Nasdaq 3x + 20% BTC 2x",
+   "cagr": 0.326,
+   "maxdd": -0.29,
+   "calmar": 1.11,
+   "sharpe": 1.26
+  },
+  {
+   "lbl": "70% Nasdaq 3x + 30% BTC 2x",
+   "cagr": 0.348,
+   "maxdd": -0.29,
+   "calmar": 1.22,
+   "sharpe": 1.39
+  },
+  {
+   "lbl": "50/50 Nasdaq 3x + BTC 2x",
+   "cagr": 0.384,
+   "maxdd": -0.27,
+   "calmar": 1.4,
+   "sharpe": 1.54
+  },
+  {
+   "lbl": "80% Nasdaq 2x + 20% BTC 2x",
+   "cagr": 0.249,
+   "maxdd": -0.24,
+   "calmar": 1.02,
+   "sharpe": 1.35
+  }
+ ],
+ "decay": [
+  {
+   "lbl": "Bitcoin sleeve 2x",
+   "p1": 2.52,
+   "c1": 0.877,
+   "p2": 0.23,
+   "c2": 0.077
+  },
+  {
+   "lbl": "Nasdaq sleeve 3x",
+   "p1": 1.31,
+   "c1": 0.309,
+   "p2": 0.79,
+   "c2": 0.246
+  }
+ ]
+};
+const el=(t,a={},...c)=>{const n=document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const $=s=>document.querySelector(s);
+const pc=(x,d=1)=>(x==null||isNaN(x))?'—':(x*100).toFixed(d)+'%';
+const pc0=x=>(x==null||isNaN(x))?'—':Math.round(x*100)+'%';
+
+$('#kpis').append(...[
+ {v:'29 assets',l:'Tested with identical rules',s:'indices · crypto · stocks · sectors'},
+ {v:'2.52 → 0.23',l:'Bitcoin Calmar, 1st→2nd half',s:'the edge decayed ~90%'},
+ {v:'0.49',l:'Hindsight Nvidia Calmar',s:'worse than the index (0.78)'},
+ {v:'Nasdaq holds',l:'Most stable of all 29',s:'0.87 → 0.72 across 41 years'},
+].map(k=>{const d=el('div',{class:'kpi'});d.innerHTML=`<div class="v acc">${k.v}</div><div class="l">${k.l}</div><div class="s">${k.s}</div>`;return d;}));
+
+(function(){const tb=$('#full tbody');
+ [...D.full].sort((a,b)=>b.calmar-a.calmar).slice(0,18).forEach(r=>{
+  const nq=r.asset.startsWith('Nasdaq'); const btc=r.asset==='Bitcoin';
+  const stock=['Apple','Nvidia','Google','Microsoft','Amazon','Tesla'].includes(r.asset);
+  const tr=el('tr',nq?{class:'ours'}:(btc?{class:'warn'}:(stock?{class:'trap'}:{})));
+  tr.innerHTML=`<td>${r.asset}</td><td>${r.lev}×</td><td class="mono" style="font-size:11px">${r.start}</td>
+   <td>${Math.round(r.yrs)}</td><td>${pc(r.cagr)}</td><td class="neg">${pc0(r.maxdd)}</td>
+   <td class="acc"><b>${r.calmar.toFixed(2)}</b></td><td>${r.sharpe.toFixed(2)}</td>`;tb.append(tr);});})();
+
+(function(){const tb=$('#combo tbody');
+ D.combo.forEach(r=>{const nq=r.lbl.startsWith('100% Nasdaq');const tr=el('tr',nq?{class:'ours'}:{});
+  tr.innerHTML=`<td>${r.lbl}</td><td>${pc(r.cagr)}</td><td class="neg">${pc0(r.maxdd)}</td>
+   <td class="acc"><b>${r.calmar.toFixed(2)}</b></td><td>${r.sharpe.toFixed(2)}</td>`;tb.append(tr);});})();
+
+(function(){const h=$('#decay');
+ h.innerHTML=D.decay.map(d=>{
+  const drop=d.p2<d.p1*0.5;
+  return `<div style="display:flex;align-items:center;gap:14px;padding:9px 0;border-bottom:1px solid var(--border)">
+    <div style="width:170px;font-family:var(--mono);font-size:12.5px;color:var(--text)">${d.lbl}</div>
+    <div style="font-family:var(--mono);font-size:13px">2015–20 <b class="pos">${d.p1.toFixed(2)}</b>
+      <span style="color:var(--faint)">(${(d.c1*100).toFixed(1)}%/yr)</span></div>
+    <div style="color:var(--faint)">→</div>
+    <div style="font-family:var(--mono);font-size:13px">2021–26 <b class="${drop?'neg':'acc'}">${d.p2.toFixed(2)}</b>
+      <span style="color:var(--faint)">(${(d.c2*100).toFixed(1)}%/yr)</span></div>
+    <div style="font-family:var(--mono);font-size:11.5px;color:${drop?'var(--loss)':'var(--gain)'}">
+      ${drop?'COLLAPSED':'held up'}</div></div>`;}).join('');})();
+
+(function(){const tb=$('#hind tbody');
+ D.hind.forEach(r=>{const nq=r.lbl.startsWith('Nasdaq');const hind=r.lbl.startsWith('HINDSIGHT');
+  const tr=el('tr',nq?{class:'ours'}:(hind?{class:'trap'}:{}));
+  tr.innerHTML=`<td>${r.lbl}</td><td>${r.lev}×</td><td>${pc(r.cagr)}</td>
+   <td class="neg">${pc0(r.maxdd)}</td><td class="acc"><b>${r.calmar.toFixed(2)}</b></td>`;tb.append(tr);});})();
+
+(function(){const tb=$('#stab tbody');
+ D.stab.forEach(r=>{const nq=r.asset.startsWith('Nasdaq');
+  const bad=r.ok==='no'||r.ok==='weak';
+  const collapse=r.h1.calmar>r.h2.calmar*2.5;
+  const tr=el('tr',nq?{class:'ours'}:(collapse?{class:'warn'}:(bad?{class:'trap'}:{})));
+  tr.innerHTML=`<td>${r.asset}</td><td>${r.lev}×</td>
+   <td>${r.h1.calmar.toFixed(2)} <span style="color:var(--faint)">(${pc(r.h1.cagr,0)})</span></td>
+   <td>${r.h2.calmar.toFixed(2)} <span style="color:var(--faint)">(${pc(r.h2.cagr,0)})</span></td>
+   <td class="${r.ok==='YES'&&!collapse?'pos':(bad?'neg':'gld')}">${collapse?'decayed':r.ok}</td>`;tb.append(tr);});})();
+
+const btn=$('#themeBtn');
+function dark(){const a=document.documentElement.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',dark()?'light':'dark');});
+</script>

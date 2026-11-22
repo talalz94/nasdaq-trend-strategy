@@ -1,0 +1,915 @@
+<title>Addendum — Tier 1 Tests &amp; Cross-Market Validation</title>
+<style>
+  :root{--bg:#0b1015;--panel:#121a21;--panel2:#16202a;--border:#243240;--text:#e0e9ef;--muted:#8496a2;--faint:#5c6d78;
+    --accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1d2932;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;--maxw:1120px;}
+  @media (prefers-color-scheme:light){:root{--bg:#edf0f4;--panel:#fff;--panel2:#f5f7fa;--border:#d6dee6;--text:#141f29;--muted:#57687a;--faint:#8797a3;--accent:#0b93a0;--gain:#0f8c59;--loss:#d43b37;--gold:#a2731a;--violet:#6551d0;--grid:#e3e9ef;}}
+  :root[data-theme="dark"]{--bg:#0b1015;--panel:#121a21;--panel2:#16202a;--border:#243240;--text:#e0e9ef;--muted:#8496a2;--faint:#5c6d78;--accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1d2932;}
+  :root[data-theme="light"]{--bg:#edf0f4;--panel:#fff;--panel2:#f5f7fa;--border:#d6dee6;--text:#141f29;--muted:#57687a;--faint:#8797a3;--accent:#0b93a0;--gain:#0f8c59;--loss:#d43b37;--gold:#a2731a;--violet:#6551d0;--grid:#e3e9ef;}
+  *{box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:var(--mono)}.pos{color:var(--gain)}.neg{color:var(--loss)}.acc{color:var(--accent)}.gld{color:var(--gold)}
+  h1,h2{margin:0;text-wrap:balance}
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:54px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px}.brand .dot{color:var(--accent)}.spacer{flex:1}
+  .tf-pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  header{padding:50px 0 28px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:var(--mono);font-size:clamp(24px,4.1vw,42px);line-height:1.06;letter-spacing:-.02em}
+  h1 .u{color:var(--muted)}
+  .lede{max-width:70ch;color:var(--muted);font-size:16.5px;margin-top:18px}.lede b{color:var(--text);font-weight:600}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:15px}
+  .kpi .v{font-family:var(--mono);font-size:20px;font-weight:700;line-height:1.1}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-top:8px}.kpi .s{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:4px}
+  section{padding:38px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}.sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  h2{font-size:22px}.sub{color:var(--muted);max-width:80ch;margin:10px 0 20px;font-size:15px}.sub b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px}
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:8px 11px;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+  thead th{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--panel2)}
+  tbody td{border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+  tbody td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+  tr.win td{background:color-mix(in srgb,var(--gain) 13%,transparent)}tr.win td:first-child{box-shadow:inset 3px 0 0 var(--gain)}
+  tr.bench td{background:color-mix(in srgb,var(--gold) 8%,transparent)}
+  tr.dim td{color:var(--faint)}
+  tr.outlier td{background:color-mix(in srgb,var(--violet) 14%,transparent)}tr.outlier td:first-child{box-shadow:inset 3px 0 0 var(--violet)}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:16px 18px}
+  .card.good{border-left:3px solid var(--gain)}.card.bad{border-left:3px solid var(--loss)}.card.neut{border-left:3px solid var(--gold)}
+  .card .t{font-family:var(--mono);font-size:12px;font-weight:600;margin-bottom:9px}
+  .card.good .t{color:var(--gain)}.card.bad .t{color:var(--loss)}.card.neut .t{color:var(--gold)}
+  .card ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+  .card li{font-size:13.5px;color:var(--muted);padding-left:18px;position:relative}.card li b{color:var(--text)}
+  .card.good li::before{content:"✓";position:absolute;left:0;color:var(--gain)}
+  .card.bad li::before{content:"✗";position:absolute;left:0;color:var(--loss)}
+  .card.neut li::before{content:"≈";position:absolute;left:0;color:var(--gold)}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;background:var(--panel);padding:15px 19px;margin-top:15px}
+  .callout.warn{border-left-color:var(--gold)}.callout.crit{border-left-color:var(--loss)}.callout.good{border-left-color:var(--gain)}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .callout.warn .h{color:var(--gold)}.callout.crit .h{color:var(--loss)}.callout.good .h{color:var(--gain)}
+  .callout p{margin:0;color:var(--muted);font-size:14px}.callout p+p{margin-top:8px}.callout b{color:var(--text)}
+  ul.clean{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ul.clean li{padding-left:22px;position:relative;color:var(--muted);font-size:14px}ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}ul.clean li b{color:var(--text)}
+  .menu{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:16px 18px}
+  .menu.a{border-left:3px solid var(--gold)}.menu.b{border-left:3px solid var(--gain)}.menu.c{border-left:3px solid var(--accent)}
+  .menu .n{font-family:var(--mono);font-size:12px;font-weight:700;margin-bottom:8px}
+  .menu.a .n{color:var(--gold)}.menu.b .n{color:var(--gain)}.menu.c .n{color:var(--accent)}
+  .menu .m{font-family:var(--mono);font-size:19px;font-weight:700;margin:4px 0}
+  .menu .d{font-size:12.5px;color:var(--muted);margin-top:8px}
+  footer{padding:28px 0 60px;color:var(--faint);font-size:12.5px}footer .mono{color:var(--muted)}
+  @media (max-width:900px){.kpis,.cols2,.cols3{grid-template-columns:1fr 1fr}}
+</style>
+
+<div class="topbar"><div class="wrap row">
+  <span class="brand">ADDENDUM<span class="dot">·</span>VALIDATION</span>
+  <span class="tf-pill">Tier 1 tests · 8 markets</span>
+  <span class="spacer"></span>
+  <button class="toggle" id="themeBtn">◐ theme</button>
+</div></div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">The last four tests · and the finding that reframes everything</div>
+    <h1>The rules generalize.<br><span class="u">The spectacular numbers don't.</span></h1>
+    <p class="lede">I ran the three untested ideas and the cross-market check. Result: <b>nothing beat the existing
+      strategy's 0.79 Calmar</b> — but two variants tied it with meaningfully different risk profiles, one fixed the
+      2022 failure for free, and the ensemble idea failed. Then the important one: applying the identical rules to
+      <b>eight different markets</b> shows they beat buy-and-hold in <b>7 of 8</b> — genuine, general edge — but the
+      median market scores <b>0.23 Calmar, not 0.79</b>. <b>The Nasdaq result is a 3× outlier.</b></p>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <!-- 1 tier 1 -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">01</span><h2>Tier 1 — the three untested ideas</h2></div>
+    <div class="tbl-scroll"><table id="t1"><thead><tr>
+      <th>Variant</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>Sharpe</th><th>2011 whipsaw</th><th>2022 bear</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="cols3" style="margin-top:15px">
+      <div class="card neut"><div class="t">2× INSTEAD OF 3× — a tie, not an upgrade</div><ul>
+        <li>2× at vol-target 0.30: <b>Calmar 0.79</b> (identical), <b>Sharpe 0.97</b> (better), drawdown <b>−25% vs −31%</b>.</li>
+        <li>But CAGR falls <b>24.2% → 19.5%</b>. It's a different point on the same risk curve, not free improvement.</li>
+        <li>Also softened 2011: −16.2% vs −21.6%.</li>
+      </ul></div>
+      <div class="card good"><div class="t">DURATION-MATCHED BONDS — free fix for 2022</div><ul>
+        <li>Short bills when rates are rising, long bonds when falling.</li>
+        <li><b>2022: −21.9% → −14.1%</b> at <b>identical 0.79 Calmar</b>.</li>
+        <li>Catch: it gives back deflationary-crisis protection (dot-com +4.4%→−2.3%, GFC −0.3%→−5.2%). A regime swap, not a pure win.</li>
+      </ul></div>
+      <div class="card bad"><div class="t">SIGNAL ENSEMBLE — failed</div><ul>
+        <li>Averaging 4 EMA lookbacks into continuous exposure: <b>Calmar 0.69–0.72 vs 0.79</b>.</li>
+        <li>It <i>did</i> soften 2011 (−18.2%) — but diluted the signal everywhere else, which cost more than the whipsaw it saved.</li>
+        <li>My hypothesis was wrong; the single clean trend gate is better.</li>
+      </ul></div>
+    </div>
+    <div class="callout warn">
+      <div class="h">So there is no single "best" — there's a menu</div>
+      <p>Three configurations tie at <b>0.79 Calmar</b>. Which you'd pick depends entirely on what you care about, not on
+        which is "better".</p>
+    </div>
+    <div class="cols3" style="margin-top:14px" id="menu"></div>
+  </section>
+
+  <!-- 2 cross market -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">02</span><h2>Cross-market — the test that matters most</h2></div>
+    <p class="sub">Identical rules (EMA-100 gate, vol-target 0.20, half-size in chop, Aug–Sep, bond off-leg), each market
+      with its own 3×-simulated sleeve, engine only so we isolate the <b>timing</b>. If the rules were Nasdaq-fitted,
+      they should fail here.</p>
+    <div class="tbl-scroll"><table id="cm"><thead><tr>
+      <th>Market</th><th>Strategy CAGR</th><th>Max DD</th><th>Strategy Calmar</th><th>1× buy&amp;hold Calmar</th><th>3× buy&amp;hold Calmar</th><th>Beat 1×?</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="cols2" style="margin-top:15px">
+      <div class="callout good" style="margin-top:0">
+        <div class="h">The good news — the rules are real</div>
+        <p>The strategy beat 1× buy-and-hold on Calmar in <b>7 of 8 markets</b> and 3× buy-and-hold in <b>8 of 8</b>.
+          Median Calmar <b>0.23 vs 0.12</b> for buy-and-hold — the rules roughly <b>double</b> risk-adjusted return
+          across unrelated markets. That is not what a curve-fit looks like.</p>
+      </div>
+      <div class="callout crit" style="margin-top:0">
+        <div class="h">The sobering news — Nasdaq is an outlier</div>
+        <p>Nasdaq scores <b>0.73</b>. The next best is Canada at <b>0.33</b>; the median market is <b>0.23</b>; the S&amp;P
+          only <b>0.16</b>. The strategy needs a <i>strongly and persistently trending</i> market, and the Nasdaq trended
+          harder than anything else in this era. <b>Gold miners actually lost</b> (−0.01).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 which components generalize -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">03</span><h2>Which components generalize — and which was luck</h2></div>
+    <p class="sub">Same perturbations, but now measured as the <b>median across all eight markets</b>. This separates
+      real structure from Nasdaq-specific fortune.</p>
+    <div class="panel"><div id="sens"></div></div>
+    <div class="callout crit">
+      <div class="h">The single most important line in this whole project</div>
+      <p>Across eight markets, <b>less leverage is better risk-adjusted</b>: 1× scores a median Calmar of <b>0.29</b>,
+        2× scores <b>0.26</b>, 3× scores <b>0.23</b>. The Nasdaq is the <i>only</i> market where 3× was the right answer.</p>
+      <p>That means the leverage choice — the most exciting part of the strategy — is the part <b>least supported by
+        evidence</b>. It worked on the Nasdaq because the Nasdaq's trend was strong enough to outrun the decay. There is
+        no guarantee that persists.</p>
+    </div>
+    <div class="callout good">
+      <div class="h">What the cross-market test confirms</div>
+      <p>Both of the rules I derived from the Nasdaq hold up independently elsewhere: removing the <b>half-size-in-chop</b>
+        rule drops the median from 0.23 → <b>0.16</b>, and removing the <b>Aug–Sep</b> rule drops it to <b>0.20</b>.
+        Both earn their place on out-of-market evidence, which is much stronger than the in-sample case.</p>
+    </div>
+  </section>
+
+  <!-- 4 revised expectations -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">04</span><h2>Revised expectations</h2></div>
+    <ul class="clean">
+      <li><b>The strategy design is sound.</b> The rules add value in unrelated markets, each component is independently justified, and it beats buy-and-hold nearly everywhere. That conclusion survived every test I could devise.</li>
+      <li><b>The 24%/yr headline should not be your planning number.</b> It assumes the Nasdaq keeps out-trending every other major market as it did for 40 years. If the next decades look like the median market instead, the same rules deliver roughly <b>9–14%/yr with −40% to −55% drawdowns</b>.</li>
+      <li><b>Consider 2× rather than 3×.</b> It ties on Calmar, wins on Sharpe, cuts the drawdown by 6 points, and — critically — is the choice better supported by cross-market evidence.</li>
+      <li><b>Take the duration-matched bond leg</b> if you think inflation/rate shocks are the bigger forward risk; keep long bonds if you think deflationary crashes are. It's a genuine either/or.</li>
+      <li><b>Two things remain unfixed:</b> V-shaped whipsaws (the ensemble idea failed to solve it) and the stocks-and-bonds-down regime (duration-matching helps but doesn't cure).</li>
+    </ul>
+    <div class="callout">
+      <div class="h">Is this the best that can be done?</div>
+      <p>On this data, close to it. I've now tested ~230 variants; the measured selection cost (0.07–0.15 Calmar) means
+        further searching is roughly as likely to mislead as to help. The remaining honest gains are not in the backtest
+        — they're in <b>implementation</b>: taxes and account type, using futures instead of leveraged ETFs to avoid
+        decay and fees, position sizing relative to total net worth, and paper-trading long enough to know whether you
+        can actually hold through a −30% drawdown.</p>
+    </div>
+  </section>
+
+  <section style="border-bottom:none">
+    <div class="sec-head"><span class="sec-idx">05</span><h2>Caveats specific to this addendum</h2></div>
+    <ul class="clean">
+      <li><b>The 2× sleeve is simulated</b> (validated against real QLD: correlation 0.996, 4.3%/yr tracking error, conservative — sim x70 vs real x84 over 20 years).</li>
+      <li><b>Cross-market leveraged sleeves are all simulated</b> from index returns with the same 0.95% expense + financing model. Real 3× products for DAX/Nikkei/HSI either don't exist or are illiquid — so those rows are a test of the <i>rules</i>, not investable strategies.</li>
+      <li><b>All markets share one off-leg</b> (US 10-year treasuries), which flatters non-US markets slightly.</li>
+      <li><b>Eight markets is a small sample</b> and they are correlated. 7-of-8 is encouraging, not conclusive.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="mono">Method — 2× sleeve: 2×index − 0.95%/252 − 1×T-bill, daily-compounded, validated vs QLD 2006–2026.
+      Ensemble: mean of price&gt;EMA(50/100/150/200) as continuous exposure. Duration-matched off-leg: synthetic 2-year
+      (duration 1.9) when 10-y yield &gt; its 200-day MA, else synthetic 10-year (duration 7.5). Cross-market: ^NDX, ^GSPC,
+      ^RUT, ^GDAXI, ^N225, ^HSI, ^GSPTSE, ^XAU with per-market signals, weekly rebalance, 3 bps/turnover, no lookahead.
+      Code: tier1.py, crossmarket.py, engine.py. Supersedes the expectations section of Final_Report.html.</p>
+    <p style="margin-top:8px;color:var(--faint)">Research only — not investment advice.</p>
+  </footer>
+</div>
+
+<script>
+const D = {
+ "tier1": [
+  {
+   "name": "FINAL (3x, single EMA, TLT)",
+   "grp": "base",
+   "cagr": 0.24173018409129154,
+   "maxdd": -0.3071091758885688,
+   "sharpe": 0.942907046546194,
+   "calmar": 0.7871148212745057,
+   "total": 4215.068970980086,
+   "dec": {
+    "1988-89": 0.217,
+    "1990s": 0.3835,
+    "2000s": 0.109,
+    "2010s": 0.2148,
+    "2020s": 0.303
+   },
+   "ev_2011 EU crisis": -0.2155784470476595,
+   "ev_2022 bear": -0.21870495995192352,
+   "ev_dot-com": 0.04395134747933027,
+   "ev_GFC": -0.003021250611603743,
+   "dCal": 0.0
+  },
+  {
+   "name": "T1 2x QLD voltgt0.2",
+   "grp": "T1",
+   "cagr": 0.1783702250509589,
+   "maxdd": -0.24283172012153098,
+   "sharpe": 0.9634044718570972,
+   "calmar": 0.7345425258351307,
+   "total": 558.7980648466306,
+   "dec": {
+    "1988-89": 0.1771,
+    "1990s": 0.2765,
+    "2000s": 0.1029,
+    "2010s": 0.1412,
+    "2020s": 0.2131
+   },
+   "ev_2011 EU crisis": -0.1436267257671745,
+   "ev_2022 bear": -0.18119521339900613,
+   "ev_dot-com": 0.14502201545638593,
+   "ev_GFC": 0.05476327444296314,
+   "dCal": -0.05257229543937503
+  },
+  {
+   "name": "T1 2x QLD voltgt0.3",
+   "grp": "T1",
+   "cagr": 0.19518097360313513,
+   "maxdd": -0.2474564477832959,
+   "sharpe": 0.9692384218992908,
+   "calmar": 0.7887487893387213,
+   "total": 965.4911097423287,
+   "dec": {
+    "1988-89": 0.1781,
+    "1990s": 0.3298,
+    "2000s": 0.1074,
+    "2010s": 0.1381,
+    "2020s": 0.2359
+   },
+   "ev_2011 EU crisis": -0.16186363275268412,
+   "ev_2022 bear": -0.20289045874727496,
+   "ev_dot-com": 0.06319589764479128,
+   "ev_GFC": 0.05957710762644486,
+   "dCal": 0.001633968064215563
+  },
+  {
+   "name": "T1 2x QLD voltgt0.4",
+   "grp": "T1",
+   "cagr": 0.1985001710173342,
+   "maxdd": -0.2964908431503869,
+   "sharpe": 0.9591168761362883,
+   "calmar": 0.669498487400673,
+   "total": 1074.5500851630031,
+   "dec": {
+    "1988-89": 0.1781,
+    "1990s": 0.3449,
+    "2000s": 0.1052,
+    "2010s": 0.1379,
+    "2020s": 0.2389
+   },
+   "ev_2011 EU crisis": -0.16186363275268412,
+   "ev_2022 bear": -0.21235763336932323,
+   "ev_dot-com": -0.019229008886945675,
+   "ev_GFC": 0.05743703284269741,
+   "dCal": -0.11761633387383275
+  },
+  {
+   "name": "T2 ensemble 50/100/150/200",
+   "grp": "T2",
+   "cagr": 0.22595249021813202,
+   "maxdd": -0.3268713685894179,
+   "sharpe": 0.9048850557320021,
+   "calmar": 0.6912581276029417,
+   "total": 2574.177633679732,
+   "dec": {
+    "1988-89": 0.2022,
+    "1990s": 0.369,
+    "2000s": 0.0926,
+    "2010s": 0.2061,
+    "2020s": 0.275
+   },
+   "ev_2011 EU crisis": -0.23284975696899735,
+   "ev_2022 bear": -0.23332837432714426,
+   "ev_dot-com": 0.0433677756662898,
+   "ev_GFC": -0.012497517303416084,
+   "dCal": -0.09585669367156402
+  },
+  {
+   "name": "T2 ensemble 20/50/100/200",
+   "grp": "T2",
+   "cagr": 0.22059889593880477,
+   "maxdd": -0.31512184625135087,
+   "sharpe": 0.9093457667018809,
+   "calmar": 0.7000431692154034,
+   "total": 2174.370717428252,
+   "dec": {
+    "1988-89": 0.2009,
+    "1990s": 0.3674,
+    "2000s": 0.0831,
+    "2010s": 0.2078,
+    "2020s": 0.2591
+   },
+   "ev_2011 EU crisis": -0.18186703957508366,
+   "ev_2022 bear": -0.2214679593758313,
+   "ev_dot-com": 0.11877313211289842,
+   "ev_GFC": -0.038962896339753694,
+   "dCal": -0.08707165205910228
+  },
+  {
+   "name": "T2 ensemble + 2x",
+   "grp": "T2",
+   "cagr": 0.18353083541465698,
+   "maxdd": -0.2848714905125149,
+   "sharpe": 0.9367757469729696,
+   "calmar": 0.6442583464019687,
+   "total": 661.514559029228,
+   "dec": {
+    "1988-89": 0.1686,
+    "1990s": 0.3209,
+    "2000s": 0.0917,
+    "2010s": 0.1335,
+    "2020s": 0.215
+   },
+   "ev_2011 EU crisis": -0.17448357541230464,
+   "ev_2022 bear": -0.2095320936100188,
+   "ev_dot-com": 0.060607331523144126,
+   "ev_GFC": 0.05099362497466231,
+   "dCal": -0.14285647487253705
+  },
+  {
+   "name": "T3 duration-matched off-leg",
+   "grp": "T3",
+   "cagr": 0.23913635677437228,
+   "maxdd": -0.30312331298586404,
+   "sharpe": 0.9392141041659464,
+   "calmar": 0.7889078356224097,
+   "total": 3888.53283410772,
+   "dec": {
+    "1988-89": 0.2034,
+    "1990s": 0.3932,
+    "2000s": 0.0931,
+    "2010s": 0.2107,
+    "2020s": 0.3129
+   },
+   "ev_2011 EU crisis": -0.2211307755354276,
+   "ev_2022 bear": -0.14128203150541718,
+   "ev_dot-com": -0.022902415352745842,
+   "ev_GFC": -0.05247685794718204,
+   "dCal": 0.0017930143479040206
+  },
+  {
+   "name": "T3 short-bills only off-leg",
+   "grp": "T3",
+   "cagr": 0.2365965390283764,
+   "maxdd": -0.3105962840622791,
+   "sharpe": 0.9337527940863108,
+   "calmar": 0.761749419323173,
+   "total": 3592.7270473740055,
+   "dec": {
+    "1988-89": 0.2113,
+    "1990s": 0.3758,
+    "2000s": 0.0952,
+    "2010s": 0.2072,
+    "2020s": 0.3218
+   },
+   "ev_2011 EU crisis": -0.22744030428218387,
+   "ev_2022 bear": -0.14102639842938824,
+   "ev_dot-com": -0.06503233732422498,
+   "ev_GFC": -0.07624096289614757,
+   "dCal": -0.025365401951332744
+  },
+  {
+   "name": "T3 cash off-leg (for contrast)",
+   "grp": "T3",
+   "cagr": 0.22526778971230121,
+   "maxdd": -0.32194788367745086,
+   "sharpe": 0.8990140163756107,
+   "calmar": 0.6997026572722861,
+   "total": 2519.3082091843908,
+   "dec": {
+    "1988-89": 0.2023,
+    "1990s": 0.3606,
+    "2000s": 0.0784,
+    "2010s": 0.1958,
+    "2020s": 0.3257
+   },
+   "ev_2011 EU crisis": -0.2371431484359081,
+   "ev_2022 bear": -0.12050969634512065,
+   "ev_dot-com": -0.1297739270611159,
+   "ev_GFC": -0.12191579585035994,
+   "dCal": -0.08741216400221963
+  },
+  {
+   "name": "C1 2x + ensemble + duration",
+   "grp": "combo",
+   "cagr": 0.18031520978347326,
+   "maxdd": -0.2585039626015134,
+   "sharpe": 0.9307472502086127,
+   "calmar": 0.6975336392093573,
+   "total": 595.5457739353365,
+   "dec": {
+    "1988-89": 0.1554,
+    "1990s": 0.328,
+    "2000s": 0.0762,
+    "2010s": 0.1293,
+    "2020s": 0.2233
+   },
+   "ev_2011 EU crisis": -0.18030450499134987,
+   "ev_2022 bear": -0.13223380729586043,
+   "ev_dot-com": -0.0042171939741832976,
+   "ev_GFC": -0.0002597139143571958,
+   "dCal": -0.08958118206514842
+  },
+  {
+   "name": "C2 3x + ensemble + duration",
+   "grp": "combo",
+   "cagr": 0.22331285695740055,
+   "maxdd": -0.3110559152574902,
+   "sharpe": 0.9008185274347709,
+   "calmar": 0.7179186956549066,
+   "total": 2368.8396872930807,
+   "dec": {
+    "1988-89": 0.1883,
+    "1990s": 0.3776,
+    "2000s": 0.0769,
+    "2010s": 0.2017,
+    "2020s": 0.2865
+   },
+   "ev_2011 EU crisis": -0.2382807808590931,
+   "ev_2022 bear": -0.1529955886093315,
+   "ev_dot-com": -0.025601994107647297,
+   "ev_GFC": -0.06148304990088771,
+   "dCal": -0.06919612561959909
+  },
+  {
+   "name": "C3 2x + duration",
+   "grp": "combo",
+   "cagr": 0.19189912824739142,
+   "maxdd": -0.24990982184233212,
+   "sharpe": 0.9631730680585101,
+   "calmar": 0.7678734946578466,
+   "total": 868.2819377870956,
+   "dec": {
+    "1988-89": 0.1648,
+    "1990s": 0.3378,
+    "2000s": 0.0918,
+    "2010s": 0.1341,
+    "2020s": 0.2422
+   },
+   "ev_2011 EU crisis": -0.16777287549183473,
+   "ev_2022 bear": -0.13102641012677219,
+   "ev_dot-com": 0.0015212309203898045,
+   "ev_GFC": 0.007905181854739096,
+   "dCal": -0.019241326616659116
+  },
+  {
+   "name": "C4 2x voltgt0.40 + ensemble + duration",
+   "grp": "combo",
+   "cagr": 0.18300638625450438,
+   "maxdd": -0.3146963452743323,
+   "sharpe": 0.9230706778988784,
+   "calmar": 0.5815332430853972,
+   "total": 650.2904037196596,
+   "dec": {
+    "1988-89": 0.1551,
+    "1990s": 0.342,
+    "2000s": 0.0724,
+    "2010s": 0.1292,
+    "2020s": 0.227
+   },
+   "ev_2011 EU crisis": -0.18030450499134987,
+   "ev_2022 bear": -0.13798642058877586,
+   "ev_dot-com": -0.07388423417113021,
+   "ev_GFC": -0.003939234040302053,
+   "dCal": -0.2055815781891085
+  }
+ ],
+ "cross": [
+  {
+   "market": "Nasdaq-100",
+   "strat": {
+    "cagr": 0.2579539696320825,
+    "maxdd": -0.3524458178789218,
+    "sharpe": 0.9098975274077598,
+    "calmar": 0.7318968095138505,
+    "total": 6953.136980939434
+   },
+   "bh1": {
+    "cagr": 0.1441983633577517,
+    "maxdd": -0.8289721157242125,
+    "sharpe": 0.6493059380474993,
+    "calmar": 0.17394838815751495,
+    "total": 179.02137500000055
+   },
+   "bh3": {
+    "cagr": 0.14212316970376415,
+    "maxdd": -0.9998054662425653,
+    "sharpe": 0.5610000939249079,
+    "calmar": 0.14215082283745317,
+    "total": 166.85361264230747
+   },
+   "beats_bh1": true,
+   "beats_bh3": true,
+   "dec": {
+    "1988-89": 0.2383,
+    "1990s": 0.4499,
+    "2000s": 0.0924,
+    "2010s": 0.2369,
+    "2020s": 0.2968
+   }
+  },
+  {
+   "market": "S&P 500",
+   "strat": {
+    "cagr": 0.09016451352058641,
+    "maxdd": -0.5511805645225117,
+    "sharpe": 0.49566414099477557,
+    "calmar": 0.16358434844068934,
+    "total": 26.885667957599303
+   },
+   "bh1": {
+    "cagr": 0.09223155243895187,
+    "maxdd": -0.5677538774277291,
+    "sharpe": 0.5836862293258678,
+    "calmar": 0.16244988560327758,
+    "total": 28.998299844342238
+   },
+   "bh3": {
+    "cagr": 0.10397861252774931,
+    "maxdd": -0.9870709376746756,
+    "sharpe": 0.4554944315383435,
+    "calmar": 0.10534056728759567,
+    "total": 44.311191176826
+   },
+   "beats_bh1": true,
+   "beats_bh3": true,
+   "dec": {
+    "1988-89": -0.0034,
+    "1990s": 0.1907,
+    "2000s": 0.0015,
+    "2010s": 0.1086,
+    "2020s": 0.0868
+   }
+  },
+  {
+   "market": "Russell 2000",
+   "strat": {
+    "cagr": 0.13843791385744808,
+    "maxdd": -0.5532755829827951,
+    "sharpe": 0.6315960709909973,
+    "calmar": 0.25021511542422975,
+    "total": 147.19034204224317
+   },
+   "bh1": {
+    "cagr": 0.08631587780603045,
+    "maxdd": -0.5988875493048396,
+    "sharpe": 0.4965335694946708,
+    "calmar": 0.14412702001606453,
+    "total": 23.33150676426126
+   },
+   "bh3": {
+    "cagr": 0.042060815169697285,
+    "maxdd": -0.984897901619148,
+    "sharpe": 0.3887330521668757,
+    "calmar": 0.04270576178561284,
+    "total": 3.895619705986193
+   },
+   "beats_bh1": true,
+   "beats_bh3": true,
+   "dec": {
+    "1988-89": 0.4281,
+    "1990s": 0.2965,
+    "2000s": 0.08,
+    "2010s": 0.1091,
+    "2020s": -0.0161
+   }
+  },
+  {
+   "market": "DAX",
+   "strat": {
+    "cagr": 0.1310659773330396,
+    "maxdd": -0.584905503360438,
+    "sharpe": 0.5854683894517704,
+    "calmar": 0.2240806020460239,
+    "total": 114.35853746854428
+   },
+   "bh1": {
+    "cagr": 0.08704535514513467,
+    "maxdd": -0.7268483450958192,
+    "sharpe": 0.4926598883454427,
+    "calmar": 0.11975724472986127,
+    "total": 23.969408707845737
+   },
+   "bh3": {
+    "cagr": 0.03839574160813397,
+    "maxdd": -0.9939302898647957,
+    "sharpe": 0.3874705585928569,
+    "calmar": 0.03863021582062555,
+    "total": 3.2738293247070764
+   },
+   "beats_bh1": true,
+   "beats_bh3": true,
+   "dec": {
+    "1988-89": 0.5557,
+    "1990s": 0.3064,
+    "2000s": 0.0985,
+    "2010s": 0.0385,
+    "2020s": -0.0176
+   }
+  },
+  {
+   "market": "Nikkei",
+   "strat": {
+    "cagr": 0.12356948821260128,
+    "maxdd": -0.5083754166320305,
+    "sharpe": 0.5666680449074354,
+    "calmar": 0.24306739501930455,
+    "total": 88.27141562034664
+   },
+   "bh1": {
+    "cagr": 0.028873685516595193,
+    "maxdd": -0.8187120117786119,
+    "sharpe": 0.23895538980979975,
+    "calmar": 0.0352672064183699,
+    "total": 1.9962506231450736
+   },
+   "bh3": {
+    "cagr": -0.13204581837618068,
+    "maxdd": -0.9999702494466951,
+    "sharpe": 0.13867596528047424,
+    "calmar": -0.1320497469292156,
+    "total": -0.9957445205560559
+   },
+   "beats_bh1": true,
+   "beats_bh3": true,
+   "dec": {
+    "1988-89": 0.7035,
+    "1990s": 0.0848,
+    "2000s": 0.0848,
+    "2010s": 0.1024,
+    "2020s": 0.1356
+   }
+  },
+  {
+   "market": "Hang Seng",
+   "strat": {
+    "cagr": 0.09090458547967972,
+    "maxdd": -0.8315201208720335,
+    "sharpe": 0.44141612363712085,
+    "calmar": 0.10932337438130309,
+    "total": 27.62485159441002
+   },
+   "bh1": {
+    "cagr": 0.06377122119377776,
+    "maxdd": -0.6518186042408535,
+    "sharpe": 0.3746117972676405,
+    "calmar": 0.09783584079814582,
+    "total": 9.840381248668825
+   },
+   "bh3": {
+    "cagr": -0.06999504101230625,
+    "maxdd": -0.9988537397260694,
+    "sharpe": 0.28170890208256943,
+    "calmar": -0.07007536562009772,
+    "total": -0.9390387180575128
+   },
+   "beats_bh1": true,
+   "beats_bh3": true,
+   "dec": {
+    "1988-89": 0.0337,
+    "1990s": 0.4375,
+    "2000s": 0.1282,
+    "2010s": -0.0177,
+    "2020s": -0.1879
+   }
+  },
+  {
+   "market": "Canada TSX",
+   "strat": {
+    "cagr": 0.1314178793835068,
+    "maxdd": -0.3950717938261715,
+    "sharpe": 0.7150316201436971,
+    "calmar": 0.33264303206958284,
+    "total": 115.75030295541947
+   },
+   "bh1": {
+    "cagr": 0.06472360266931831,
+    "maxdd": -0.49992098356638326,
+    "sharpe": 0.4844919911854608,
+    "calmar": 0.12946766548502725,
+    "total": 10.220893973309337
+   },
+   "bh3": {
+    "cagr": 0.047213789035899456,
+    "maxdd": -0.9400480324693121,
+    "sharpe": 0.3359595232706672,
+    "calmar": 0.050224868735567245,
+    "total": 4.92101854097426
+   },
+   "beats_bh1": true,
+   "beats_bh3": true,
+   "dec": {
+    "1988-89": 0.0886,
+    "1990s": 0.2568,
+    "2000s": 0.1233,
+    "2010s": 0.06,
+    "2020s": 0.0898
+   }
+  },
+  {
+   "market": "Gold miners",
+   "strat": {
+    "cagr": -0.01254624349695932,
+    "maxdd": -0.8629356546671675,
+    "sharpe": 0.11901547037415261,
+    "calmar": -0.014539025510306884,
+    "total": -0.385372275897057
+   },
+   "bh1": {
+    "cagr": 0.027555024034349618,
+    "maxdd": -0.8303559699921367,
+    "sharpe": 0.2615527514750472,
+    "calmar": 0.03318459194628366,
+    "total": 1.8517135542047218
+   },
+   "bh3": {
+    "cagr": -0.3478222742652257,
+    "maxdd": -0.9999999899351493,
+    "sharpe": 0.20161475493464406,
+    "calmar": -0.34782227776600505,
+    "total": -0.9999999302576562
+   },
+   "beats_bh1": false,
+   "beats_bh3": true,
+   "dec": {
+    "1988-89": 0.0676,
+    "1990s": 0.0115,
+    "2000s": -0.0065,
+    "2010s": 0.0231,
+    "2020s": -0.1275
+   }
+  }
+ ],
+ "sens": [
+  {
+   "lbl": "as specified (3x, vol .20)",
+   "med": 0.23,
+   "lo": -0.01,
+   "hi": 0.73
+  },
+  {
+   "lbl": "vol target 0.15",
+   "med": 0.25,
+   "lo": 0.02,
+   "hi": 0.67
+  },
+  {
+   "lbl": "vol target 0.30",
+   "med": 0.22,
+   "lo": -0.06,
+   "hi": 0.74
+  },
+  {
+   "lbl": "chop_thr 0.20",
+   "med": 0.19,
+   "lo": -0.05,
+   "hi": 0.63
+  },
+  {
+   "lbl": "chop_thr 0.30",
+   "med": 0.24,
+   "lo": 0.0,
+   "hi": 0.7
+  },
+  {
+   "lbl": "NO chop rule (pos 1.0)",
+   "med": 0.16,
+   "lo": -0.08,
+   "hi": 0.54
+  },
+  {
+   "lbl": "NO seasonal rule",
+   "med": 0.2,
+   "lo": -0.01,
+   "hi": 0.66
+  },
+  {
+   "lbl": "2x leverage",
+   "med": 0.26,
+   "lo": 0.02,
+   "hi": 0.74
+  },
+  {
+   "lbl": "1x (no leverage)",
+   "med": 0.29,
+   "lo": 0.1,
+   "hi": 0.6
+  }
+ ],
+ "verdict": {
+  "beat_bh1": 7,
+  "beat_bh3": 8,
+  "n": 8,
+  "med_strat": 0.23,
+  "med_bh1": 0.12,
+  "med_bh3": 0.04
+ }
+};
+const SVGT=['svg','g','rect','line','text','path','circle'];
+const el=(t,a={},...c)=>{const n=SVGT.includes(t)?document.createElementNS('http://www.w3.org/2000/svg',t):document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const $=s=>document.querySelector(s);
+const cv=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const pc=(x,d=1)=>(x==null||isNaN(x))?'—':(x*100).toFixed(d)+'%';
+const pc0=x=>(x==null||isNaN(x))?'—':Math.round(x*100)+'%';
+
+$('#kpis').append(...[
+ {v:'3 tie at 0.79',l:'Nothing beat the incumbent',s:'but with different risk profiles'},
+ {v:'−21.9% → −14.1%',l:'2022 fixed, free',s:'duration-matched bonds'},
+ {v:'7 of 8',l:'Markets where rules beat buy&hold',s:'the edge is general'},
+ {v:'0.73 vs 0.23',l:'Nasdaq vs median market',s:'the magnitude is not'},
+].map(k=>{const d=el('div',{class:'kpi'});d.innerHTML=`<div class="v acc">${k.v}</div><div class="l">${k.l}</div><div class="s">${k.s}</div>`;return d;}));
+
+function t1(){
+ const tb=$('#t1 tbody');tb.innerHTML='';
+ [...D.tier1].sort((a,b)=>b.calmar-a.calmar).forEach(r=>{
+  const top=r.calmar>=0.785; const isBase=r.name.startsWith('FINAL');
+  const tr=el('tr',isBase?{class:'bench'}:(top?{class:'win'}:(r.calmar<0.72?{class:'dim'}:{})));
+  tr.innerHTML=`<td>${r.name}</td><td>${pc(r.cagr)}</td><td class="neg">${pc0(r.maxdd)}</td>
+   <td class="acc"><b>${r.calmar.toFixed(2)}</b></td><td>${r.sharpe.toFixed(2)}</td>
+   <td class="neg">${pc(r['ev_2011 EU crisis'])}</td><td class="neg">${pc(r['ev_2022 bear'])}</td>`;tb.append(tr);});
+}
+
+function menu(){
+ const h=$('#menu');h.innerHTML='';
+ const t=n=>D.tier1.find(r=>r.name===n);
+ const f=t('FINAL (3x, single EMA, TLT)'),two=t('T1 2x QLD voltgt0.3'),dur=t('T3 duration-matched off-leg');
+ [[ 'a','MAX GROWTH — 3× as researched',f,'Highest return. Deepest drawdown. Best in deflationary crashes (dot-com +4%, GFC −0%).'],
+  ['b','LOWER RISK — 2× at vol-target 0.30',two,'Same Calmar, best Sharpe, −25% drawdown, and the leverage level cross-market evidence actually supports.'],
+  ['c','INFLATION-HARDENED — 3× + duration-matched',dur,'Same return and Calmar as the incumbent, but 2022 loss cut by a third. Gives up some crash protection.']]
+ .forEach(([cls,name,r,desc])=>{const d=el('div',{class:'menu '+cls});
+  d.innerHTML=`<div class="n">${name}</div><div class="m">${pc(r.cagr)} <span style="font-size:13px;color:var(--muted)">CAGR</span></div>`+
+   `<div class="mono" style="font-size:12px;color:var(--muted)">maxDD ${pc0(r.maxdd)} · Calmar ${r.calmar.toFixed(2)} · Sharpe ${r.sharpe.toFixed(2)}</div>`+
+   `<div class="d">${desc}</div>`;h.append(d);});
+}
+
+function cm(){
+ const tb=$('#cm tbody');tb.innerHTML='';
+ [...D.cross].sort((a,b)=>b.strat.calmar-a.strat.calmar).forEach(r=>{
+  const out=r.market==='Nasdaq-100';
+  const tr=el('tr',out?{class:'outlier'}:(r.strat.calmar<0?{class:'dim'}:{}));
+  tr.innerHTML=`<td>${r.market}${out?' <span class="mono" style="color:var(--violet);font-size:10px">OUTLIER</span>':''}</td>
+   <td>${pc(r.strat.cagr)}</td><td class="neg">${pc0(r.strat.maxdd)}</td>
+   <td class="acc"><b>${r.strat.calmar.toFixed(2)}</b></td>
+   <td>${r.bh1.calmar.toFixed(2)}</td><td>${r.bh3.calmar.toFixed(2)}</td>
+   <td class="${r.beats_bh1?'pos':'neg'}">${r.beats_bh1?'yes':'no'}</td>`;tb.append(tr);});
+ const v=D.verdict;
+ const foot=el('div',{style:'font-family:var(--mono);font-size:11.5px;color:var(--muted);padding:10px 2px 0'});
+ foot.innerHTML=`median Calmar — strategy <b class="acc">${v.med_strat}</b> · 1× buy&hold ${v.med_bh1} · 3× buy&hold ${v.med_bh3}`;
+ $('#cm').parentElement.after(foot);
+}
+
+function sens(){
+ const host=$('#sens');host.innerHTML='';
+ const rows=D.sens;
+ const W=host.clientWidth||900,rh=30,padL=210,padR=60,H=rows.length*rh+12;
+ const mx=Math.max(...rows.map(r=>r.med))*1.15;
+ const X=v=>padL+(v/mx)*(W-padL-padR);
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ const base=rows[0].med;
+ svg.append(el('line',{x1:X(base),y1:4,x2:X(base),y2:H-8,stroke:cv('--faint'),'stroke-dasharray':'2 3'}));
+ rows.forEach((r,i)=>{const y=8+i*rh;
+  const better=r.med>base+0.005, worse=r.med<base-0.005;
+  const col=better?cv('--gain'):(worse?cv('--loss'):cv('--muted'));
+  svg.append(el('rect',{x:padL,y,width:Math.max(X(r.med)-padL,1),height:rh-12,rx:3,fill:col,opacity:.88}));
+  svg.append(el('text',{x:padL-9,y:y+rh/2-4,'text-anchor':'end',fill:i===0?cv('--text'):cv('--muted'),style:'font-size:10.5px','font-family':'var(--mono)'},r.lbl));
+  svg.append(el('text',{x:X(r.med)+6,y:y+rh/2-4,fill:col,style:'font-size:10.5px','font-family':'var(--mono)'},r.med.toFixed(2)));});
+ svg.append(el('text',{x:padL,y:H-1,fill:cv('--faint'),style:'font-size:9.5px','font-family':'var(--mono)'},'median Calmar across 8 markets — dashed line = strategy as specified'));
+ host.append(svg);
+}
+
+function renderAll(){t1();menu();cm();sens();}
+const btn=$('#themeBtn');
+function dark(){const a=document.documentElement.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',dark()?'light':'dark');requestAnimationFrame(renderAll);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>requestAnimationFrame(renderAll));
+new ResizeObserver(()=>renderAll()).observe(document.body);
+renderAll();
+</script>

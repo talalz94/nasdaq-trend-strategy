@@ -1,0 +1,1552 @@
+{
+ "meta": {
+  "script": "update_2026_11/critic_ablation_tranche.py",
+  "note": "value of each component = metric(with) - metric(without); Friday = research baseline; tranche = mean of 5 weekday rebalance phases (timing-luck-free). 'daily' rebalance has no phase, so its tranche comparison uses daily for the without-variant."
+ },
+ "F3": {
+  "baseline": {
+   "Fri": {
+    "IS": {
+     "cagr": 0.24134,
+     "maxdd": -0.29992,
+     "calmar": 0.8047,
+     "ulcer": 12.50121
+    },
+    "H1": {
+     "cagr": 0.23958,
+     "maxdd": -0.29992,
+     "calmar": 0.79882,
+     "ulcer": 14.24163
+    },
+    "H2": {
+     "cagr": 0.24325,
+     "maxdd": -0.27513,
+     "calmar": 0.88412,
+     "ulcer": 10.49684
+    },
+    "T1_1988-99": {
+     "cagr": 0.34544,
+     "maxdd": -0.29992,
+     "calmar": 1.1518,
+     "ulcer": 14.75322
+    },
+    "T2_2000-12": {
+     "cagr": 0.12169,
+     "maxdd": -0.26574,
+     "calmar": 0.45795,
+     "ulcer": 12.34142
+    },
+    "T3_2013-frz": {
+     "cagr": 0.27424,
+     "maxdd": -0.27513,
+     "calmar": 0.99674,
+     "ulcer": 10.06508
+    }
+   },
+   "tranche": {
+    "IS": {
+     "cagr": 0.20885,
+     "maxdd": -0.32497,
+     "calmar": 0.64266,
+     "ulcer": 13.5905
+    },
+    "H1": {
+     "cagr": 0.19873,
+     "maxdd": -0.32497,
+     "calmar": 0.61154,
+     "ulcer": 15.20497
+    },
+    "H2": {
+     "cagr": 0.21891,
+     "maxdd": -0.31439,
+     "calmar": 0.69629,
+     "ulcer": 11.78046
+    },
+    "T1_1988-99": {
+     "cagr": 0.29937,
+     "maxdd": -0.32497,
+     "calmar": 0.92123,
+     "ulcer": 15.95926
+    },
+    "T2_2000-12": {
+     "cagr": 0.1014,
+     "maxdd": -0.2403,
+     "calmar": 0.42199,
+     "ulcer": 12.51184
+    },
+    "T3_2013-frz": {
+     "cagr": 0.24013,
+     "maxdd": -0.31439,
+     "calmar": 0.76378,
+     "ulcer": 11.67989
+    }
+   }
+  },
+  "EMA gate": {
+   "Fri|IS": {
+    "d_calmar": 0.30564,
+    "d_cagr": -0.03292,
+    "d_maxdd": 0.24964,
+    "d_ulcer": -4.58636
+   },
+   "Fri|H1": {
+    "d_calmar": 0.33004,
+    "d_cagr": -0.01804,
+    "d_maxdd": 0.24964,
+    "d_ulcer": -5.03212
+   },
+   "Fri|H2": {
+    "d_calmar": 0.299,
+    "d_cagr": -0.0476,
+    "d_maxdd": 0.22194,
+    "d_ulcer": -4.10782
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.25197,
+    "d_cagr": -0.04694,
+    "d_maxdd": 0.13615,
+    "d_ulcer": 0.0122
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.17735,
+    "d_cagr": -0.03251,
+    "d_maxdd": 0.28382,
+    "d_ulcer": -10.1434
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.26165,
+    "d_cagr": -0.02147,
+    "d_maxdd": 0.12714,
+    "d_ulcer": -2.28381
+   },
+   "tranche|IS": {
+    "d_calmar": 0.15846,
+    "d_cagr": -0.06674,
+    "d_maxdd": 0.24419,
+    "d_ulcer": -4.21919
+   },
+   "tranche|H1": {
+    "d_calmar": 0.16863,
+    "d_cagr": -0.05336,
+    "d_maxdd": 0.24419,
+    "d_ulcer": -5.63106
+   },
+   "tranche|H2": {
+    "d_calmar": 0.06344,
+    "d_cagr": -0.08013,
+    "d_maxdd": 0.15814,
+    "d_ulcer": -2.42289
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.08858,
+    "d_cagr": -0.11966,
+    "d_maxdd": 0.08999,
+    "d_ulcer": 2.2424
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.22219,
+    "d_cagr": -0.01232,
+    "d_maxdd": 0.32886,
+    "d_ulcer": -12.00724
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.01065,
+    "d_cagr": -0.08232,
+    "d_maxdd": 0.11375,
+    "d_ulcer": -0.86651
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  },
+  "vol target": {
+   "Fri|IS": {
+    "d_calmar": 0.26511,
+    "d_cagr": -0.0248,
+    "d_maxdd": 0.19331,
+    "d_ulcer": -5.93698
+   },
+   "Fri|H1": {
+    "d_calmar": 0.24924,
+    "d_cagr": -0.03149,
+    "d_maxdd": 0.19331,
+    "d_ulcer": -9.51381
+   },
+   "Fri|H2": {
+    "d_calmar": 0.05475,
+    "d_cagr": -0.01835,
+    "d_maxdd": 0.04028,
+    "d_ulcer": -0.48868
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": -0.26678,
+    "d_cagr": -0.08604,
+    "d_maxdd": 0.00425,
+    "d_ulcer": -0.64913
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.24992,
+    "d_cagr": 0.01908,
+    "d_maxdd": 0.2275,
+    "d_ulcer": -13.6009
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.0544,
+    "d_cagr": -0.02299,
+    "d_maxdd": 0.04028,
+    "d_ulcer": -0.32043
+   },
+   "tranche|IS": {
+    "d_calmar": 0.20784,
+    "d_cagr": -0.01667,
+    "d_maxdd": 0.19367,
+    "d_ulcer": -7.06685
+   },
+   "tranche|H1": {
+    "d_calmar": 0.18445,
+    "d_cagr": -0.02277,
+    "d_maxdd": 0.19367,
+    "d_ulcer": -10.72228
+   },
+   "tranche|H2": {
+    "d_calmar": 0.02522,
+    "d_cagr": -0.01069,
+    "d_maxdd": 0.02774,
+    "d_ulcer": -0.57576
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.23294,
+    "d_cagr": -0.07602,
+    "d_maxdd": 0.00028,
+    "d_ulcer": -0.63249
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.27702,
+    "d_cagr": 0.02622,
+    "d_maxdd": 0.27834,
+    "d_ulcer": -16.54006
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.01908,
+    "d_cagr": -0.01466,
+    "d_maxdd": 0.02774,
+    "d_ulcer": -0.48086
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  },
+  "chop half vs full": {
+   "Fri|IS": {
+    "d_calmar": 0.20538,
+    "d_cagr": -0.03777,
+    "d_maxdd": 0.1658,
+    "d_ulcer": -8.2093
+   },
+   "Fri|H1": {
+    "d_calmar": 0.16737,
+    "d_cagr": -0.02639,
+    "d_maxdd": 0.1213,
+    "d_ulcer": -9.0426
+   },
+   "Fri|H2": {
+    "d_calmar": 0.25666,
+    "d_cagr": -0.04897,
+    "d_maxdd": 0.19058,
+    "d_ulcer": -6.69342
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.16016,
+    "d_cagr": -0.07224,
+    "d_maxdd": 0.1213,
+    "d_ulcer": -3.46152
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.28548,
+    "d_cagr": 0.04137,
+    "d_maxdd": 0.19998,
+    "d_ulcer": -15.45897
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": -0.18284,
+    "d_cagr": -0.09924,
+    "d_maxdd": 0.04149,
+    "d_ulcer": -2.65861
+   },
+   "tranche|IS": {
+    "d_calmar": 0.07152,
+    "d_cagr": -0.03341,
+    "d_maxdd": 0.09919,
+    "d_ulcer": -6.45641
+   },
+   "tranche|H1": {
+    "d_calmar": 0.09109,
+    "d_cagr": -0.02202,
+    "d_maxdd": 0.09919,
+    "d_ulcer": -7.44484
+   },
+   "tranche|H2": {
+    "d_calmar": 0.01002,
+    "d_cagr": -0.04478,
+    "d_maxdd": 0.06984,
+    "d_ulcer": -5.20949
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": 0.1299,
+    "d_cagr": -0.03628,
+    "d_maxdd": 0.09919,
+    "d_ulcer": -4.99854
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.18868,
+    "d_cagr": 0.01176,
+    "d_maxdd": 0.14393,
+    "d_ulcer": -10.96284
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": -0.12392,
+    "d_cagr": -0.08126,
+    "d_maxdd": 0.04766,
+    "d_ulcer": -2.45859
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  },
+  "chop half vs zero": {
+   "Fri|IS": {
+    "d_calmar": 0.29723,
+    "d_cagr": 0.05857,
+    "d_maxdd": 0.06025,
+    "d_ulcer": -0.12124
+   },
+   "Fri|H1": {
+    "d_calmar": 0.26677,
+    "d_cagr": 0.04795,
+    "d_maxdd": 0.06025,
+    "d_ulcer": -0.445
+   },
+   "Fri|H2": {
+    "d_calmar": 0.18725,
+    "d_cagr": 0.06886,
+    "d_maxdd": -0.02489,
+    "d_ulcer": 0.75072
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.45277,
+    "d_cagr": 0.09368,
+    "d_maxdd": 0.06025,
+    "d_ulcer": -2.77843
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": -0.09529,
+    "d_cagr": -0.02269,
+    "d_maxdd": -0.00475,
+    "d_ulcer": 3.76473
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.35224,
+    "d_cagr": 0.11295,
+    "d_maxdd": -0.02489,
+    "d_ulcer": -0.2266
+   },
+   "tranche|IS": {
+    "d_calmar": 0.06743,
+    "d_cagr": 0.05007,
+    "d_maxdd": -0.04895,
+    "d_ulcer": 1.9603
+   },
+   "tranche|H1": {
+    "d_calmar": 0.03541,
+    "d_cagr": 0.03971,
+    "d_maxdd": -0.04895,
+    "d_ulcer": 2.6932
+   },
+   "tranche|H2": {
+    "d_calmar": 0.10806,
+    "d_cagr": 0.06025,
+    "d_maxdd": -0.04467,
+    "d_ulcer": 1.20931
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": 0.04199,
+    "d_cagr": 0.05668,
+    "d_maxdd": -0.04895,
+    "d_ulcer": 2.40508
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": -0.00876,
+    "d_cagr": 0.00304,
+    "d_maxdd": -0.01195,
+    "d_ulcer": 3.65885
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.21937,
+    "d_cagr": 0.09329,
+    "d_maxdd": -0.04467,
+    "d_ulcer": -0.06881
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  },
+  "IEF vs BIL off-leg": {
+   "Fri|IS": {
+    "d_calmar": 0.08252,
+    "d_cagr": 0.02074,
+    "d_maxdd": 0.00554,
+    "d_ulcer": -0.89741
+   },
+   "Fri|H1": {
+    "d_calmar": 0.11052,
+    "d_cagr": 0.02933,
+    "d_maxdd": 0.00554,
+    "d_ulcer": -1.44784
+   },
+   "Fri|H2": {
+    "d_calmar": 0.0925,
+    "d_cagr": 0.01234,
+    "d_maxdd": 0.01656,
+    "d_ulcer": -0.18353
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.10416,
+    "d_cagr": 0.02543,
+    "d_maxdd": 0.00554,
+    "d_ulcer": -0.08368
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.16748,
+    "d_cagr": 0.03697,
+    "d_maxdd": 0.02595,
+    "d_ulcer": -3.15694
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": -0.13145,
+    "d_cagr": -0.00137,
+    "d_maxdd": -0.03085,
+    "d_ulcer": 1.15045
+   },
+   "tranche|IS": {
+    "d_calmar": 0.03007,
+    "d_cagr": 0.02146,
+    "d_maxdd": -0.01908,
+    "d_ulcer": -1.26356
+   },
+   "tranche|H1": {
+    "d_calmar": 0.06522,
+    "d_cagr": 0.03162,
+    "d_maxdd": -0.01908,
+    "d_ulcer": -1.90817
+   },
+   "tranche|H2": {
+    "d_calmar": -0.08171,
+    "d_cagr": 0.01136,
+    "d_maxdd": -0.04762,
+    "d_ulcer": -0.46138
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.02303,
+    "d_cagr": 0.02923,
+    "d_maxdd": -0.03888,
+    "d_ulcer": -0.57056
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.2167,
+    "d_cagr": 0.03861,
+    "d_maxdd": 0.06559,
+    "d_ulcer": -3.63941
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": -0.15209,
+    "d_cagr": -0.0042,
+    "d_maxdd": -0.04762,
+    "d_ulcer": 0.75189
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": false,
+   "tranche_helps_all_thirds": false
+  },
+  "15% gold vs none (core 1.0)": {
+   "Fri|IS": {
+    "d_calmar": 0.03492,
+    "d_cagr": -0.02645,
+    "d_maxdd": 0.04796,
+    "d_ulcer": -2.6035
+   },
+   "Fri|H1": {
+    "d_calmar": 0.01099,
+    "d_cagr": -0.03449,
+    "d_maxdd": 0.04796,
+    "d_ulcer": -2.81432
+   },
+   "Fri|H2": {
+    "d_calmar": 0.07803,
+    "d_cagr": -0.01869,
+    "d_maxdd": 0.04981,
+    "d_ulcer": -2.38453
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": -0.04575,
+    "d_cagr": -0.07116,
+    "d_maxdd": 0.04796,
+    "d_ulcer": -2.9769
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.11992,
+    "d_cagr": 0.01185,
+    "d_maxdd": 0.05921,
+    "d_ulcer": -2.91091
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.02307,
+    "d_cagr": -0.03168,
+    "d_maxdd": 0.03905,
+    "d_ulcer": -1.86253
+   },
+   "tranche|IS": {
+    "d_calmar": 0.03181,
+    "d_cagr": -0.02028,
+    "d_maxdd": 0.05012,
+    "d_ulcer": -2.7903
+   },
+   "tranche|H1": {
+    "d_calmar": 0.01104,
+    "d_cagr": -0.02651,
+    "d_maxdd": 0.05012,
+    "d_ulcer": -3.1612
+   },
+   "tranche|H2": {
+    "d_calmar": 0.02188,
+    "d_cagr": -0.01418,
+    "d_maxdd": 0.03122,
+    "d_ulcer": -2.24049
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.03867,
+    "d_cagr": -0.06068,
+    "d_maxdd": 0.05012,
+    "d_ulcer": -3.10178
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.11464,
+    "d_cagr": 0.01468,
+    "d_maxdd": 0.04186,
+    "d_ulcer": -3.22921
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": -0.0028,
+    "d_cagr": -0.02481,
+    "d_maxdd": 0.03122,
+    "d_ulcer": -2.07117
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  },
+  "gold vs IEF at equal 0.85 core": {
+   "Fri|IS": {
+    "d_calmar": 0.01542,
+    "d_cagr": 0.00027,
+    "d_maxdd": 0.00552,
+    "d_ulcer": -0.02863
+   },
+   "Fri|H1": {
+    "d_calmar": -0.02593,
+    "d_cagr": -0.01233,
+    "d_maxdd": 0.00552,
+    "d_ulcer": 0.19156
+   },
+   "Fri|H2": {
+    "d_calmar": 0.08896,
+    "d_cagr": 0.01241,
+    "d_maxdd": 0.01517,
+    "d_ulcer": -0.31123
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": -0.06875,
+    "d_cagr": -0.02736,
+    "d_maxdd": 0.00552,
+    "d_ulcer": -0.0033
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.04078,
+    "d_cagr": 0.01138,
+    "d_maxdd": -0.00129,
+    "d_ulcer": 0.18479
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.08988,
+    "d_cagr": 0.01097,
+    "d_maxdd": 0.01517,
+    "d_ulcer": -0.36071
+   },
+   "tranche|IS": {
+    "d_calmar": 0.01103,
+    "d_cagr": 0.00024,
+    "d_maxdd": 0.00529,
+    "d_ulcer": -0.04433
+   },
+   "tranche|H1": {
+    "d_calmar": -0.02628,
+    "d_cagr": -0.01192,
+    "d_maxdd": 0.00529,
+    "d_ulcer": 0.02285
+   },
+   "tranche|H2": {
+    "d_calmar": 0.05366,
+    "d_cagr": 0.01213,
+    "d_maxdd": 0.00737,
+    "d_ulcer": -0.06489
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.06527,
+    "d_cagr": -0.02643,
+    "d_maxdd": 0.00529,
+    "d_ulcer": 0.07948
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.04548,
+    "d_cagr": 0.01119,
+    "d_maxdd": -0.0007,
+    "d_ulcer": -0.10771
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.05047,
+    "d_cagr": 0.01061,
+    "d_maxdd": 0.00737,
+    "d_ulcer": -0.27482
+   },
+   "Fri_helps_both_halves": false,
+   "tranche_helps_both_halves": false,
+   "tranche_helps_all_thirds": false
+  },
+  "Aug-Sep half": {
+   "Fri|IS": {
+    "d_calmar": 0.07353,
+    "d_cagr": 0.00111,
+    "d_maxdd": 0.02864,
+    "d_ulcer": -1.13137
+   },
+   "Fri|H1": {
+    "d_calmar": 0.07613,
+    "d_cagr": 0.00214,
+    "d_maxdd": 0.02864,
+    "d_ulcer": -1.20527
+   },
+   "Fri|H2": {
+    "d_calmar": 0.09132,
+    "d_cagr": 0.00012,
+    "d_maxdd": 0.03154,
+    "d_ulcer": -1.06587
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.09872,
+    "d_cagr": -0.00055,
+    "d_maxdd": 0.02864,
+    "d_ulcer": -0.46326
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.05412,
+    "d_cagr": 0.00114,
+    "d_maxdd": 0.0328,
+    "d_ulcer": -1.78946
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.11058,
+    "d_cagr": 0.00247,
+    "d_maxdd": 0.03154,
+    "d_ulcer": -1.27891
+   },
+   "tranche|IS": {
+    "d_calmar": 0.02345,
+    "d_cagr": 0.00611,
+    "d_maxdd": 0.00243,
+    "d_ulcer": -1.01796
+   },
+   "tranche|H1": {
+    "d_calmar": 0.02341,
+    "d_cagr": 0.00761,
+    "d_maxdd": -0.0,
+    "d_ulcer": -1.30387
+   },
+   "tranche|H2": {
+    "d_calmar": 0.04185,
+    "d_cagr": 0.00464,
+    "d_maxdd": 0.01301,
+    "d_ulcer": -0.67621
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": 0.02635,
+    "d_cagr": 0.00856,
+    "d_maxdd": -0.0,
+    "d_ulcer": -0.59678
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.07759,
+    "d_cagr": 0.0054,
+    "d_maxdd": 0.03845,
+    "d_ulcer": -1.84796
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.04494,
+    "d_cagr": 0.00478,
+    "d_maxdd": 0.01301,
+    "d_ulcer": -0.92874
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": true
+  },
+  "weekly vs daily rebalance": {
+   "Fri|IS": {
+    "d_calmar": 0.23577,
+    "d_cagr": 0.05166,
+    "d_maxdd": 0.03348,
+    "d_ulcer": -3.34203
+   },
+   "Fri|H1": {
+    "d_calmar": 0.26922,
+    "d_cagr": 0.06579,
+    "d_maxdd": 0.02824,
+    "d_ulcer": -4.42683
+   },
+   "Fri|H2": {
+    "d_calmar": 0.26786,
+    "d_cagr": 0.03779,
+    "d_maxdd": 0.05827,
+    "d_ulcer": -1.79268
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.2221,
+    "d_cagr": 0.04036,
+    "d_maxdd": 0.02824,
+    "d_ulcer": -2.06587
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.28488,
+    "d_cagr": 0.06664,
+    "d_maxdd": 0.05238,
+    "d_ulcer": -5.78664
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.3066,
+    "d_cagr": 0.04414,
+    "d_maxdd": 0.05827,
+    "d_ulcer": -1.73273
+   },
+   "tranche|IS": {
+    "d_calmar": 0.07374,
+    "d_cagr": 0.01917,
+    "d_maxdd": 0.00843,
+    "d_ulcer": -2.25275
+   },
+   "tranche|H1": {
+    "d_calmar": 0.08195,
+    "d_cagr": 0.02494,
+    "d_maxdd": 0.00319,
+    "d_ulcer": -3.46349
+   },
+   "tranche|H2": {
+    "d_calmar": 0.08004,
+    "d_cagr": 0.01345,
+    "d_maxdd": 0.01901,
+    "d_ulcer": -0.50905
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.00847,
+    "d_cagr": -0.00571,
+    "d_maxdd": 0.00319,
+    "d_ulcer": -0.85983
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.24892,
+    "d_cagr": 0.04635,
+    "d_maxdd": 0.07782,
+    "d_ulcer": -5.61621
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.07364,
+    "d_cagr": 0.01003,
+    "d_maxdd": 0.01901,
+    "d_ulcer": -0.11792
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  }
+ },
+ "F2": {
+  "baseline": {
+   "Fri": {
+    "IS": {
+     "cagr": 0.19715,
+     "maxdd": -0.23958,
+     "calmar": 0.82288,
+     "ulcer": 8.82517
+    },
+    "H1": {
+     "cagr": 0.20955,
+     "maxdd": -0.21743,
+     "calmar": 0.96374,
+     "ulcer": 10.06423
+    },
+    "H2": {
+     "cagr": 0.18538,
+     "maxdd": -0.23958,
+     "calmar": 0.77377,
+     "ulcer": 7.3939
+    },
+    "T1_1988-99": {
+     "cagr": 0.29431,
+     "maxdd": -0.21472,
+     "calmar": 1.37067,
+     "ulcer": 9.56745
+    },
+    "T2_2000-12": {
+     "cagr": 0.10742,
+     "maxdd": -0.21743,
+     "calmar": 0.49404,
+     "ulcer": 9.41971
+    },
+    "T3_2013-frz": {
+     "cagr": 0.20416,
+     "maxdd": -0.23958,
+     "calmar": 0.85216,
+     "ulcer": 7.32944
+    }
+   },
+   "tranche": {
+    "IS": {
+     "cagr": 0.17289,
+     "maxdd": -0.27682,
+     "calmar": 0.62457,
+     "ulcer": 9.57203
+    },
+    "H1": {
+     "cagr": 0.1803,
+     "maxdd": -0.23353,
+     "calmar": 0.77205,
+     "ulcer": 10.69193
+    },
+    "H2": {
+     "cagr": 0.16587,
+     "maxdd": -0.27682,
+     "calmar": 0.59921,
+     "ulcer": 8.32526
+    },
+    "T1_1988-99": {
+     "cagr": 0.264,
+     "maxdd": -0.23353,
+     "calmar": 1.13045,
+     "ulcer": 10.30458
+    },
+    "T2_2000-12": {
+     "cagr": 0.09106,
+     "maxdd": -0.22753,
+     "calmar": 0.4002,
+     "ulcer": 9.55406
+    },
+    "T3_2013-frz": {
+     "cagr": 0.17679,
+     "maxdd": -0.27682,
+     "calmar": 0.63866,
+     "ulcer": 8.53267
+    }
+   }
+  },
+  "EMA gate": {
+   "Fri|IS": {
+    "d_calmar": 0.42349,
+    "d_cagr": -0.02007,
+    "d_maxdd": 0.30428,
+    "d_ulcer": -5.52896
+   },
+   "Fri|H1": {
+    "d_calmar": 0.55925,
+    "d_cagr": -0.01044,
+    "d_maxdd": 0.32643,
+    "d_ulcer": -7.05009
+   },
+   "Fri|H2": {
+    "d_calmar": 0.28465,
+    "d_cagr": -0.02931,
+    "d_maxdd": 0.19935,
+    "d_ulcer": -3.61486
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.41084,
+    "d_cagr": -0.03965,
+    "d_maxdd": 0.13321,
+    "d_ulcer": -0.60341
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.27797,
+    "d_cagr": -0.01009,
+    "d_maxdd": 0.32643,
+    "d_ulcer": -11.43162
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.18761,
+    "d_cagr": -0.0144,
+    "d_maxdd": 0.08931,
+    "d_ulcer": -1.47177
+   },
+   "tranche|IS": {
+    "d_calmar": 0.24367,
+    "d_cagr": -0.04506,
+    "d_maxdd": 0.29539,
+    "d_ulcer": -6.28245
+   },
+   "tranche|H1": {
+    "d_calmar": 0.39947,
+    "d_cagr": -0.03289,
+    "d_maxdd": 0.33867,
+    "d_ulcer": -9.08354
+   },
+   "tranche|H2": {
+    "d_calmar": 0.04662,
+    "d_cagr": -0.05688,
+    "d_maxdd": 0.12629,
+    "d_ulcer": -2.36784
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": 0.06139,
+    "d_cagr": -0.09078,
+    "d_maxdd": 0.09833,
+    "d_ulcer": 0.8004
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.24569,
+    "d_cagr": 0.00265,
+    "d_maxdd": 0.34467,
+    "d_ulcer": -14.26842
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.01508,
+    "d_cagr": -0.0581,
+    "d_maxdd": 0.09987,
+    "d_ulcer": -0.9911
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": true
+  },
+  "vol target": {
+   "Fri|IS": {
+    "d_calmar": 0.24748,
+    "d_cagr": -0.0022,
+    "d_maxdd": 0.10686,
+    "d_ulcer": -2.26127
+   },
+   "Fri|H1": {
+    "d_calmar": 0.35493,
+    "d_cagr": -0.00137,
+    "d_maxdd": 0.12902,
+    "d_ulcer": -3.77322
+   },
+   "Fri|H2": {
+    "d_calmar": 0.01471,
+    "d_cagr": -0.00299,
+    "d_maxdd": 0.00858,
+    "d_ulcer": -0.06996
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": -0.06464,
+    "d_cagr": -0.01388,
+    "d_maxdd": 0.0,
+    "d_ulcer": -0.0401
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.2018,
+    "d_cagr": 0.00617,
+    "d_maxdd": 0.12902,
+    "d_ulcer": -5.42498
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.0239,
+    "d_cagr": -0.00138,
+    "d_maxdd": 0.00858,
+    "d_ulcer": -0.09231
+   },
+   "tranche|IS": {
+    "d_calmar": 0.12242,
+    "d_cagr": -0.00095,
+    "d_maxdd": 0.06937,
+    "d_ulcer": -1.95797
+   },
+   "tranche|H1": {
+    "d_calmar": 0.25309,
+    "d_cagr": 0.00064,
+    "d_maxdd": 0.11266,
+    "d_ulcer": -3.34352
+   },
+   "tranche|H2": {
+    "d_calmar": -0.00551,
+    "d_cagr": -0.00248,
+    "d_maxdd": 0.00157,
+    "d_ulcer": -0.06186
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.04696,
+    "d_cagr": -0.01097,
+    "d_maxdd": 0.0,
+    "d_ulcer": -0.01841
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.15968,
+    "d_cagr": 0.00779,
+    "d_maxdd": 0.11865,
+    "d_ulcer": -5.01697
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": -0.00286,
+    "d_cagr": -0.0018,
+    "d_maxdd": 0.00157,
+    "d_ulcer": -0.07626
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": false,
+   "tranche_helps_all_thirds": false
+  },
+  "chop half vs full": {
+   "Fri|IS": {
+    "d_calmar": 0.22709,
+    "d_cagr": -0.03531,
+    "d_maxdd": 0.15059,
+    "d_ulcer": -6.78971
+   },
+   "Fri|H1": {
+    "d_calmar": 0.35819,
+    "d_cagr": -0.02672,
+    "d_maxdd": 0.17274,
+    "d_ulcer": -8.25338
+   },
+   "Fri|H2": {
+    "d_calmar": 0.16239,
+    "d_cagr": -0.04358,
+    "d_maxdd": 0.13491,
+    "d_ulcer": -4.96189
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.20105,
+    "d_cagr": -0.06403,
+    "d_maxdd": 0.09165,
+    "d_ulcer": -2.77996
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.29002,
+    "d_cagr": 0.02782,
+    "d_maxdd": 0.17274,
+    "d_ulcer": -12.49177
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": -0.20303,
+    "d_cagr": -0.08005,
+    "d_maxdd": 0.02977,
+    "d_ulcer": -1.71262
+   },
+   "tranche|IS": {
+    "d_calmar": 0.02872,
+    "d_cagr": -0.03077,
+    "d_maxdd": 0.06499,
+    "d_ulcer": -5.04347
+   },
+   "tranche|H1": {
+    "d_calmar": 0.17173,
+    "d_cagr": -0.0249,
+    "d_maxdd": 0.10828,
+    "d_ulcer": -6.15023
+   },
+   "tranche|H2": {
+    "d_calmar": -0.0508,
+    "d_cagr": -0.03647,
+    "d_maxdd": 0.03447,
+    "d_ulcer": -3.73145
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": 0.14807,
+    "d_cagr": -0.0391,
+    "d_maxdd": 0.07501,
+    "d_ulcer": -3.63242
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.15413,
+    "d_cagr": 0.00695,
+    "d_maxdd": 0.11427,
+    "d_ulcer": -8.63476
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": -0.13441,
+    "d_cagr": -0.06385,
+    "d_maxdd": 0.03447,
+    "d_ulcer": -1.58108
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": false,
+   "tranche_helps_all_thirds": false
+  },
+  "chop half vs zero": {
+   "Fri|IS": {
+    "d_calmar": 0.29759,
+    "d_cagr": 0.04663,
+    "d_maxdd": 0.04697,
+    "d_ulcer": -0.28281
+   },
+   "Fri|H1": {
+    "d_calmar": 0.37177,
+    "d_cagr": 0.03991,
+    "d_maxdd": 0.06912,
+    "d_ulcer": -0.58609
+   },
+   "Fri|H2": {
+    "d_calmar": 0.15353,
+    "d_cagr": 0.053,
+    "d_maxdd": -0.02615,
+    "d_ulcer": 0.33008
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.60716,
+    "d_cagr": 0.07553,
+    "d_maxdd": 0.07183,
+    "d_ulcer": -2.74422
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": -0.13252,
+    "d_cagr": -0.01615,
+    "d_maxdd": -0.02022,
+    "d_ulcer": 2.65218
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.29635,
+    "d_cagr": 0.08553,
+    "d_maxdd": -0.02615,
+    "d_ulcer": -0.09256
+   },
+   "tranche|IS": {
+    "d_calmar": 0.08143,
+    "d_cagr": 0.03995,
+    "d_maxdd": -0.03206,
+    "d_ulcer": 1.22957
+   },
+   "tranche|H1": {
+    "d_calmar": 0.06188,
+    "d_cagr": 0.0356,
+    "d_maxdd": -0.02978,
+    "d_ulcer": 1.7555
+   },
+   "tranche|H2": {
+    "d_calmar": 0.10187,
+    "d_cagr": 0.04414,
+    "d_maxdd": -0.03206,
+    "d_ulcer": 0.69811
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": 0.08126,
+    "d_cagr": 0.05022,
+    "d_maxdd": -0.02978,
+    "d_ulcer": 1.29998
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": -0.06076,
+    "d_cagr": 0.00238,
+    "d_maxdd": -0.03515,
+    "d_ulcer": 2.34758
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.19915,
+    "d_cagr": 0.06922,
+    "d_maxdd": -0.03206,
+    "d_ulcer": 0.05114
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  },
+  "IEF vs BIL off-leg": {
+   "Fri|IS": {
+    "d_calmar": 0.05628,
+    "d_cagr": 0.02033,
+    "d_maxdd": -0.00893,
+    "d_ulcer": -0.89423
+   },
+   "Fri|H1": {
+    "d_calmar": 0.17832,
+    "d_cagr": 0.02839,
+    "d_maxdd": 0.01322,
+    "d_ulcer": -1.71456
+   },
+   "Fri|H2": {
+    "d_calmar": 0.01759,
+    "d_cagr": 0.01263,
+    "d_maxdd": -0.01112,
+    "d_ulcer": 0.24686
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.07949,
+    "d_cagr": 0.02464,
+    "d_maxdd": -0.00586,
+    "d_ulcer": -0.1117
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.18126,
+    "d_cagr": 0.03527,
+    "d_maxdd": 0.01322,
+    "d_ulcer": -2.95472
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": -0.33309,
+    "d_cagr": 0.00081,
+    "d_maxdd": -0.06802,
+    "d_ulcer": 1.30695
+   },
+   "tranche|IS": {
+    "d_calmar": 0.11473,
+    "d_cagr": 0.02128,
+    "d_maxdd": 0.02056,
+    "d_ulcer": -1.38658
+   },
+   "tranche|H1": {
+    "d_calmar": 0.2718,
+    "d_cagr": 0.03154,
+    "d_maxdd": 0.06384,
+    "d_ulcer": -2.41954
+   },
+   "tranche|H2": {
+    "d_calmar": -0.16921,
+    "d_cagr": 0.01137,
+    "d_maxdd": -0.07576,
+    "d_ulcer": -0.01327
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.09328,
+    "d_cagr": 0.02901,
+    "d_maxdd": -0.0415,
+    "d_ulcer": -0.60792
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.22017,
+    "d_cagr": 0.03752,
+    "d_maxdd": 0.06984,
+    "d_ulcer": -3.85952
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": -0.25242,
+    "d_cagr": -0.00237,
+    "d_maxdd": -0.07576,
+    "d_ulcer": 1.09108
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": false,
+   "tranche_helps_all_thirds": false
+  },
+  "15% gold vs none (core 1.0)": {
+   "Fri|IS": {
+    "d_calmar": 0.02545,
+    "d_cagr": -0.02133,
+    "d_maxdd": 0.0344,
+    "d_ulcer": -1.85087
+   },
+   "Fri|H1": {
+    "d_calmar": 0.00486,
+    "d_cagr": -0.03227,
+    "d_maxdd": 0.03476,
+    "d_ulcer": -2.0576
+   },
+   "Fri|H2": {
+    "d_calmar": 0.05691,
+    "d_cagr": -0.01102,
+    "d_maxdd": 0.0344,
+    "d_ulcer": -1.6101
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": -0.05299,
+    "d_cagr": -0.06472,
+    "d_maxdd": 0.03747,
+    "d_ulcer": -2.12251
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.12452,
+    "d_cagr": 0.01194,
+    "d_maxdd": 0.04095,
+    "d_ulcer": -2.0223
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.02952,
+    "d_cagr": -0.02122,
+    "d_maxdd": 0.0344,
+    "d_ulcer": -1.37544
+   },
+   "tranche|IS": {
+    "d_calmar": -0.00189,
+    "d_cagr": -0.01674,
+    "d_maxdd": 0.02589,
+    "d_ulcer": -1.89291
+   },
+   "tranche|H1": {
+    "d_calmar": 0.01502,
+    "d_cagr": -0.02647,
+    "d_maxdd": 0.03959,
+    "d_ulcer": -2.23901
+   },
+   "tranche|H2": {
+    "d_calmar": 0.02646,
+    "d_cagr": -0.00751,
+    "d_maxdd": 0.02589,
+    "d_ulcer": -1.47269
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.04762,
+    "d_cagr": -0.05777,
+    "d_maxdd": 0.03959,
+    "d_ulcer": -2.20543
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.09626,
+    "d_cagr": 0.01432,
+    "d_maxdd": 0.02496,
+    "d_ulcer": -2.05627
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.00199,
+    "d_cagr": -0.01593,
+    "d_maxdd": 0.02589,
+    "d_ulcer": -1.45941
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  },
+  "gold vs IEF at equal 0.85 core": {
+   "Fri|IS": {
+    "d_calmar": 0.05276,
+    "d_cagr": 0.00033,
+    "d_maxdd": 0.01598,
+    "d_ulcer": -0.03412
+   },
+   "Fri|H1": {
+    "d_calmar": -0.03968,
+    "d_cagr": -0.01214,
+    "d_maxdd": 0.0035,
+    "d_ulcer": 0.17904
+   },
+   "Fri|H2": {
+    "d_calmar": 0.09568,
+    "d_cagr": 0.01209,
+    "d_maxdd": 0.01598,
+    "d_ulcer": -0.30382
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": -0.08146,
+    "d_cagr": -0.02651,
+    "d_maxdd": 0.00621,
+    "d_ulcer": -0.04744
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.02607,
+    "d_cagr": 0.01146,
+    "d_maxdd": -0.01237,
+    "d_ulcer": 0.27376
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.09436,
+    "d_cagr": 0.0105,
+    "d_maxdd": 0.01598,
+    "d_ulcer": -0.422
+   },
+   "tranche|IS": {
+    "d_calmar": 0.01833,
+    "d_cagr": 0.00032,
+    "d_maxdd": 0.00784,
+    "d_ulcer": 0.0581
+   },
+   "tranche|H1": {
+    "d_calmar": -0.02998,
+    "d_cagr": -0.01184,
+    "d_maxdd": 0.00604,
+    "d_ulcer": 0.16722
+   },
+   "tranche|H2": {
+    "d_calmar": 0.0582,
+    "d_cagr": 0.01187,
+    "d_maxdd": 0.00784,
+    "d_ulcer": -0.06246
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.07958,
+    "d_cagr": -0.02589,
+    "d_maxdd": 0.00604,
+    "d_ulcer": 0.0182
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.01842,
+    "d_cagr": 0.01131,
+    "d_maxdd": -0.01864,
+    "d_ulcer": 0.32427
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.05351,
+    "d_cagr": 0.01022,
+    "d_maxdd": 0.00784,
+    "d_ulcer": -0.30913
+   },
+   "Fri_helps_both_halves": false,
+   "tranche_helps_both_halves": false,
+   "tranche_helps_all_thirds": false
+  },
+  "Aug-Sep half": {
+   "Fri|IS": {
+    "d_calmar": 0.09042,
+    "d_cagr": 0.00189,
+    "d_maxdd": 0.02699,
+    "d_ulcer": -0.88889
+   },
+   "Fri|H1": {
+    "d_calmar": 0.12107,
+    "d_cagr": 0.00238,
+    "d_maxdd": 0.02841,
+    "d_ulcer": -0.87562
+   },
+   "Fri|H2": {
+    "d_calmar": 0.0837,
+    "d_cagr": 0.00143,
+    "d_maxdd": 0.02699,
+    "d_ulcer": -0.92995
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.07018,
+    "d_cagr": 0.00207,
+    "d_maxdd": 0.00999,
+    "d_ulcer": -0.47378
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.06579,
+    "d_cagr": 0.00214,
+    "d_maxdd": 0.02841,
+    "d_ulcer": -1.19334
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.09185,
+    "d_cagr": 0.00148,
+    "d_maxdd": 0.02699,
+    "d_ulcer": -1.00254
+   },
+   "tranche|IS": {
+    "d_calmar": 0.03515,
+    "d_cagr": 0.00491,
+    "d_maxdd": 0.00818,
+    "d_ulcer": -0.67746
+   },
+   "tranche|H1": {
+    "d_calmar": 0.10534,
+    "d_cagr": 0.00688,
+    "d_maxdd": 0.02658,
+    "d_ulcer": -0.91646
+   },
+   "tranche|H2": {
+    "d_calmar": 0.02778,
+    "d_cagr": 0.00302,
+    "d_maxdd": 0.00818,
+    "d_ulcer": -0.38745
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": 0.03554,
+    "d_cagr": 0.0083,
+    "d_maxdd": -0.0,
+    "d_ulcer": -0.52362
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.07089,
+    "d_cagr": 0.0054,
+    "d_maxdd": 0.03258,
+    "d_ulcer": -1.15425
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.02385,
+    "d_cagr": 0.00157,
+    "d_maxdd": 0.00818,
+    "d_ulcer": -0.50077
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": true
+  },
+  "weekly vs daily rebalance": {
+   "Fri|IS": {
+    "d_calmar": 0.29339,
+    "d_cagr": 0.04038,
+    "d_maxdd": 0.05649,
+    "d_ulcer": -2.67093
+   },
+   "Fri|H1": {
+    "d_calmar": 0.41929,
+    "d_cagr": 0.05033,
+    "d_maxdd": 0.07501,
+    "d_ulcer": -3.62934
+   },
+   "Fri|H2": {
+    "d_calmar": 0.25191,
+    "d_cagr": 0.03088,
+    "d_maxdd": 0.05649,
+    "d_ulcer": -1.37112
+   },
+   "Fri|T1_1988-99": {
+    "d_calmar": 0.22398,
+    "d_cagr": 0.0232,
+    "d_maxdd": 0.02171,
+    "d_ulcer": -1.23576
+   },
+   "Fri|T2_2000-12": {
+    "d_calmar": 0.31838,
+    "d_cagr": 0.05605,
+    "d_maxdd": 0.07501,
+    "d_ulcer": -4.58508
+   },
+   "Fri|T3_2013-frz": {
+    "d_calmar": 0.28992,
+    "d_cagr": 0.0377,
+    "d_maxdd": 0.05649,
+    "d_ulcer": -1.62516
+   },
+   "tranche|IS": {
+    "d_calmar": 0.09508,
+    "d_cagr": 0.01613,
+    "d_maxdd": 0.01925,
+    "d_ulcer": -1.92407
+   },
+   "tranche|H1": {
+    "d_calmar": 0.2276,
+    "d_cagr": 0.02108,
+    "d_maxdd": 0.05891,
+    "d_ulcer": -3.00164
+   },
+   "tranche|H2": {
+    "d_calmar": 0.07736,
+    "d_cagr": 0.01137,
+    "d_maxdd": 0.01925,
+    "d_ulcer": -0.43976
+   },
+   "tranche|T1_1988-99": {
+    "d_calmar": -0.01624,
+    "d_cagr": -0.00712,
+    "d_maxdd": 0.0029,
+    "d_ulcer": -0.49864
+   },
+   "tranche|T2_2000-12": {
+    "d_calmar": 0.22454,
+    "d_cagr": 0.03969,
+    "d_maxdd": 0.0649,
+    "d_ulcer": -4.45073
+   },
+   "tranche|T3_2013-frz": {
+    "d_calmar": 0.07642,
+    "d_cagr": 0.01033,
+    "d_maxdd": 0.01925,
+    "d_ulcer": -0.42194
+   },
+   "Fri_helps_both_halves": true,
+   "tranche_helps_both_halves": true,
+   "tranche_helps_all_thirds": false
+  }
+ }
+}

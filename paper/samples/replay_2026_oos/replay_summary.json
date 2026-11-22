@@ -1,0 +1,16 @@
+{
+ "start": "2026-07-24",
+ "end": "2026-11-17",
+ "sessions": 82,
+ "start_nav": 10000.0,
+ "end_nav": 9403.22,
+ "total_return": -0.05967800000000012,
+ "cagr": -0.1761354103404782,
+ "max_drawdown": -0.12019296609867425,
+ "decisions": 17,
+ "fills": 10,
+ "shadow_tranche_return": -0.10778632505632357,
+ "tier": "F2",
+ "route": "US",
+ "cost_bps": 5.0
+}

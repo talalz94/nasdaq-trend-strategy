@@ -1,0 +1,1563 @@
+<title>WaveTrend × Squeeze — Phase 3: The 10-Year Sweep</title>
+<style>
+  :root{
+    --bg:#0c1116;--panel:#131b22;--panel2:#17222b;--border:#25333d;--text:#dfe8ee;--muted:#8496a2;--faint:#5c6d78;
+    --accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1e2a33;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;--maxw:1120px;}
+  @media (prefers-color-scheme:light){:root{--bg:#eceff3;--panel:#fff;--panel2:#f4f7fa;--border:#d7dfe7;
+    --text:#16232d;--muted:#5a6b77;--faint:#8899a4;--accent:#0c99a6;--gain:#12945f;--loss:#d6403c;--gold:#a9791a;--violet:#6b57d6;--grid:#e2e8ee;}}
+  :root[data-theme="dark"]{--bg:#0c1116;--panel:#131b22;--panel2:#17222b;--border:#25333d;--text:#dfe8ee;--muted:#8496a2;--faint:#5c6d78;--accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1e2a33;}
+  :root[data-theme="light"]{--bg:#eceff3;--panel:#fff;--panel2:#f4f7fa;--border:#d7dfe7;--text:#16232d;--muted:#5a6b77;--faint:#8899a4;--accent:#0c99a6;--gain:#12945f;--loss:#d6403c;--gold:#a9791a;--violet:#6b57d6;--grid:#e2e8ee;}
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:var(--mono)}.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .pos{color:var(--gain)}.neg{color:var(--loss)}.acc{color:var(--accent)}.gld{color:var(--gold)}
+  h1,h2,h3{text-wrap:balance;margin:0}a{color:var(--accent)}
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:52px}
+  .brand{font-family:var(--mono);font-weight:700;letter-spacing:.02em;font-size:14px}.brand .dot{color:var(--accent)}
+  .topbar .spacer{flex:1}
+  .tf-pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  .toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+  header.hero{padding:52px 0 30px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:16px}
+  header.hero h1{font-family:var(--mono);font-size:clamp(25px,4.2vw,44px);line-height:1.06;letter-spacing:-.02em;font-weight:700}
+  header.hero h1 .u{color:var(--muted)}
+  .lede{max-width:68ch;color:var(--muted);font-size:16.5px;margin-top:18px}.lede b{color:var(--text);font-weight:600}
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:15px}
+  .kpi .v{font-family:var(--mono);font-size:22px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-top:9px;line-height:1.3}
+  .kpi .s{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:5px}
+  section{padding:42px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  section h2{font-size:23px;letter-spacing:-.01em}
+  .sec-sub{color:var(--muted);max-width:78ch;margin:10px 0 24px;font-size:15px}.sec-sub b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:20px}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:16px}.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:9px 12px;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);font-weight:600;background:var(--panel2)}
+  tbody td{border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+  tbody td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+  tr.hi td{background:color-mix(in srgb,var(--accent) 10%,transparent)}tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+  tr.warnrow td{background:color-mix(in srgb,var(--loss) 9%,transparent)}
+  .chip{font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:5px;border:1px solid var(--border);color:var(--muted)}
+  .chart-cap{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:6px;letter-spacing:.04em;text-transform:uppercase}
+  svg text{fill:var(--muted);font-family:var(--mono);font-size:11px}svg .axis{fill:var(--faint);font-size:10px}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;background:var(--panel);padding:16px 20px;margin-top:16px}
+  .callout.warn{border-left-color:var(--gold)}.callout.crit{border-left-color:var(--loss)}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:7px}
+  .callout.warn .h{color:var(--gold)}.callout.crit .h{color:var(--loss)}
+  .callout p{margin:0;color:var(--muted);font-size:14px}.callout p+p{margin-top:8px}.callout b{color:var(--text)}
+  ul.clean{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ul.clean li{padding-left:22px;position:relative;color:var(--muted);font-size:14px}
+  ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}ul.clean li b{color:var(--text)}
+  .rcard{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px 20px;display:flex;flex-direction:column;gap:6px}
+  .rcard .rg{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase}
+  .rcard.bull .rg{color:var(--gain)}.rcard.bear .rg{color:var(--loss)}.rcard.chop .rg{color:var(--gold)}
+  .rcard.bull{border-color:color-mix(in srgb,var(--gain) 35%,var(--border))}
+  .rcard.bear{border-color:color-mix(in srgb,var(--loss) 35%,var(--border))}
+  .rcard.chop{border-color:color-mix(in srgb,var(--gold) 35%,var(--border))}
+  .rcard .sig{font-size:15px;font-weight:600;font-family:var(--mono)}
+  .rcard .met{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  footer{padding:32px 0 60px;color:var(--faint);font-size:12.5px}footer .mono{color:var(--muted)}
+  code{font-family:var(--mono);background:var(--panel2);border:1px solid var(--border);padding:1px 6px;border-radius:5px;font-size:.9em}
+  @media (max-width:820px){.cols2,.kpis,.cols3{grid-template-columns:1fr}.kpis{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="topbar"><div class="wrap row">
+  <span class="brand">WAVETREND<span class="dot">×</span>SQUEEZE</span>
+  <span class="tf-pill">PHASE 3</span>
+  <span class="tf-pill">10yr daily · 498 S&amp;P 500</span>
+  <span class="spacer"></span>
+  <button class="toggle" id="themeBtn" aria-label="Toggle colour theme">◐ theme</button>
+</div></div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Phase 3 · the everything-sweep · 2016–2026</div>
+    <h1>We swept everything.<br><span class="u">Most of the "best settings" were beta.</span></h1>
+    <p class="lede">36 signal/threshold/stop configs × every S&amp;P 500 name × 10 years of clean daily data,
+      each scored <b>out-of-sample</b> (train 2016–21 / test 2022–26), then sliced by regime, sector, weekday,
+      volatility and stock. The sweep hands you spectacular per-trade numbers — <b>+211 bps out-of-sample!</b> — but
+      stress-tested against market drift, that edge <b>evaporates</b>. What actually survives is subtler and more useful:
+      a <b>regime playbook</b> and a materially <b>smoother ride</b>.</p>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <!-- 1 the drift trap -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">01</span><h2>The drift trap — why the "winner" isn't one</h2></div>
+    <p class="sec-sub">The sweep's champion (MA-Shift + trend filter) shows <b>+304 bps per trade</b>. But it holds ~48 days,
+      and over <b>any</b> random 48-day window in this decade the market returned <b>+308 bps</b>. Subtract the drift and
+      the timing edge is <b class="neg">−4 bps</b> — essentially zero. The big number was <b>market beta wearing a signal's
+      costume</b>. On daily holds, longer = bigger per-trade P&amp;L purely from more exposure (the weekly "1,163 bps" in §6
+      is the same illusion, amplified).</p>
+    <div class="cols2" style="align-items:start">
+      <div class="panel">
+        <div class="chart-cap">Champion per-trade vs matched 48-day market drift</div>
+        <div id="driftChart"></div>
+      </div>
+      <div class="callout crit">
+        <div class="h">The honest verdict</div>
+        <p>On a raw-return basis the strategies <b>trail buy &amp; hold</b>: champion CAGR <b>11.3%</b>, regime-combo <b>14.6%</b>,
+          vs equal-weight buy &amp; hold <b>15.8%</b>. A long-only signal in a decade-long bull market mostly re-discovers
+          the bull market.</p>
+        <p>This is exactly why a sweep needs a <b>drift benchmark</b> — rank by raw P&amp;L and you'll "optimise" your way
+          into leveraged beta and call it alpha.</p>
+      </div>
+    </div>
+    <div class="callout">
+      <div class="h">So where's the real timing edge?</div>
+      <p>At <b>intraday</b> timeframes. On 1h bars (phase 1–2) the oversold-bounce held <b>+36 bps over matched drift</b> —
+        because a ~10-hour hold has almost zero drift, so the signal's <i>timing</i> carries the result. Stretch the hold to
+        weeks and drift drowns the signal. <b>Edge lives on short holds; beta lives on long ones.</b></p>
+    </div>
+  </section>
+
+  <!-- 2 what survives: regime playbook -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">02</span><h2>What actually survives: the regime playbook</h2></div>
+    <p class="sec-sub">The durable finding isn't one magic setting — it's that <b>different signals own different regimes</b>
+      (market vs its 200-day SMA + volatility → BULL / BEAR / CHOPPY). Each cell below is the best signal for that regime,
+      scored on <b>out-of-sample</b> test-period trades. This is a real, data-driven playbook.</p>
+    <div class="cols3" id="regimeCards"></div>
+    <div class="callout warn">
+      <div class="h">Read the regimes right</div>
+      <p><b>Bull → trend-follow</b> (buy MA-Shift pullbacks in uptrends). <b>Bear → buy capitulation</b> (SQZ-colour oversold-
+        momentum bounces, PF 4.7). <b>Choppy → fade extremes</b> (WaveTrend deep-oversold −70 mean-reversion).
+        Caveat: clean BEAR days are rare (<span id="bearpct">~1%</span> of the decade), so the bear cell rests on a thin sample —
+        directionally clear, statistically light.</p>
+    </div>
+  </section>
+
+  <!-- 3 the payoff: risk-adjusted -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">03</span><h2>The payoff is risk-adjusted, not raw</h2></div>
+    <p class="sec-sub">Switching signals by regime doesn't beat buy &amp; hold on <i>return</i> — but it delivers a far better
+      <b>ride</b>: higher Sharpe, shallower drawdowns, and it sits partly in cash. For anyone using leverage or who can't
+      stomach a −35% index drawdown, that's the whole game.</p>
+    <div class="tbl-scroll"><table id="portTbl"><thead><tr>
+      <th>Strategy</th><th>Total (10yr)</th><th>CAGR</th><th>Max DD</th><th>Sharpe</th><th>Test CAGR</th><th>Test Sharpe</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="panel" style="margin-top:16px">
+      <div class="chart-cap">Regime-switched portfolio equity — $100k start, capital-constrained</div>
+      <div id="equityChart"></div>
+    </div>
+  </section>
+
+  <!-- 4 ranking -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">04</span><h2>Full config ranking — out-of-sample</h2></div>
+    <p class="sec-sub">Every config, ranked by the <b>worst</b> of its train and test average (so nothing that only works in
+      one era rises). Read these as <b>relative</b> quality — the absolute bps are drift-inflated (§01). Two honest signals
+      cut through: deeper oversold thresholds monotonically raise per-trade quality, and <b>stops mostly reduce return</b>
+      (don't cut winners) while improving risk.</p>
+    <div class="tbl-scroll"><table id="rankTbl"><thead><tr>
+      <th>Config</th><th>Train n</th><th>Train bps</th><th>Train PF</th><th>Test n</th><th>Test bps</th><th>Test PF</th><th>Robust</th>
+    </tr></thead><tbody></tbody></table></div>
+  </section>
+
+  <!-- 5 sector / weekday -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">05</span><h2>Sector &amp; calendar structure</h2></div>
+    <p class="sec-sub">With the momentum champion, the sector profile <b>inverts</b> phase-1's mean-reversion result:
+      momentum wants <b>high-beta</b> sectors (Tech, Financials, Energy), while defensives lag — <b>Utilities actually loses</b>
+      (PF 0.79). Weekday effects are minor but real (Tuesday best; all positive).</p>
+    <div class="cols2" style="align-items:start">
+      <div class="panel"><div class="chart-cap">Champion avg bps by sector (bar) · PF (label)</div><div id="sectorChart"></div></div>
+      <div class="panel"><div class="chart-cap">Champion by weekday</div><div id="dowChart"></div>
+        <div class="chart-cap" style="margin-top:16px">By volatility bucket (per-stock)</div>
+        <div class="tbl-scroll"><table id="volTbl"><thead><tr><th>Vol</th><th>n</th><th>Avg bps</th><th>PF</th><th>Win</th></tr></thead><tbody></tbody></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 timeframe -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">06</span><h2>Timeframe — bigger numbers, same beta</h2></div>
+    <p class="sec-sub">Resampling daily → weekly <b>triples-to-quadruples</b> the per-trade P&amp;L (MA-Shift: 304→1,163 bps,
+      PF 1.9→3.7). Tempting — but it's the drift trap again: weekly trades hold many weeks, so they simply bank more of the
+      bull market. Higher timeframe ≠ more edge; it's more exposure. Genuine timing edge moves the <i>other</i> way — down
+      to intraday.</p>
+    <div class="panel"><div class="chart-cap">Avg bps per trade — daily vs weekly (same signals)</div><div id="tfChart"></div></div>
+  </section>
+
+  <!-- 7 stocks -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">07</span><h2>Stock dispersion</h2></div>
+    <p class="sec-sub">Champion expectancy by name (≥20 trades). Best names cluster in momentum-friendly growth; worst in
+      rate-sensitive defensives — consistent with the sector view. Noisy at the single-name level; trust the aggregate.</p>
+    <div class="cols2">
+      <div><div class="chart-cap" style="color:var(--gain)">▲ Top names</div><div class="tbl-scroll"><table id="topStk"><thead><tr><th>Ticker</th><th>n</th><th>Avg bps</th><th>PF</th><th>Win</th></tr></thead><tbody></tbody></table></div></div>
+      <div><div class="chart-cap" style="color:var(--loss)">▼ Worst names</div><div class="tbl-scroll"><table id="botStk"><thead><tr><th>Ticker</th><th>n</th><th>Avg bps</th><th>PF</th><th>Win</th></tr></thead><tbody></tbody></table></div></div>
+    </div>
+  </section>
+
+  <!-- 8 verdict -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">08</span><h2>The honest "best settings"</h2></div>
+    <p class="sec-sub">There isn't one number — it depends on what you're optimising for:</p>
+    <ul class="clean">
+      <li><b>Max raw return?</b> Just buy &amp; hold the index (15.8% CAGR). No daily signal here beats it — they capture the same beta with less exposure.</li>
+      <li><b>Best risk-adjusted ride?</b> The <b>regime-switched combo</b> — bull: MA-Shift trend-pullback · bear: SQZ-colour bounce · choppy: WaveTrend −70. Sharpe <b>1.93</b> (vs ~0.8 for equities), max DD <b>−16%</b>, test-period CAGR <b>12.8%</b> at Sharpe 1.44.</li>
+      <li><b>Real timing alpha?</b> Go <b>intraday</b>. The 1h oversold-bounce (phase 1–2) is the only thing that beat matched drift, and it's asset-specific (works on mean-reverting equities, fails on trending gold).</li>
+      <li><b>Universal rules that held:</b> deeper oversold = higher quality; don't cut winners (stops trade return for safety); align the tactic to the regime; and always benchmark against drift.</li>
+    </ul>
+  </section>
+
+  <!-- 9 caveats -->
+  <section style="border-bottom:none">
+    <div class="sec-head"><span class="sec-idx">09</span><h2>Caveats</h2></div>
+    <ul class="clean">
+      <li><b>Survivorship:</b> 462 of the 498 tickers have full 2016 history, but they're <i>today's</i> index — delisted names that fell out over the decade aren't here, which flatters long-only results. (A point-in-time membership study is the separate follow-up.)</li>
+      <li><b>Daily only:</b> Alpaca's free hourly is served in ~291-bar pages → 10yr × 500 names ≈ 6–7 hours to pull, so intraday depth stays on the phase-1/2 data. Time-of-day isn't covered here.</li>
+      <li><b>Drift-inflated absolutes:</b> per-trade bps include market drift; the <i>relative</i> ranking and the risk-adjusted portfolio figures are the trustworthy outputs.</li>
+      <li><b>Thin BEAR sample:</b> clean bear-regime days are ~1% of the decade — the bear playbook is directional, not statistically heavy.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="mono">Phase 3 — Alpaca SIP daily 2016–2026 (split-adjusted, 503→498 usable, 462 full-history), indicators
+      recomputed, 36 configs × train/test walk-forward, regime = equal-weight index vs 200-day SMA + realised vol,
+      capital-constrained portfolio, drift benchmark. Source dirs never modified.</p>
+    <p style="margin-top:10px">New files: <span class="mono">alpaca_fetch.py (rate-limited, robust pagination) · regime.py · sweep.py ·
+      finalize_daily.py · build_alpaca_cache.py</span> · results in <span class="mono">sweep_results_1d.json / finalize_daily.json</span>.</p>
+    <p style="margin-top:10px;color:var(--faint)">Research only — not investment advice. Backtested edges decay; validate live at size zero.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = {
+ "meta": {
+  "tickers": 498,
+  "survivors": 462,
+  "years": 10.5,
+  "cost_bps": 2.0
+ },
+ "ranking": [
+  {
+   "name": "mashift_reg_stopNone",
+   "tr_n": 3355,
+   "tr_avg": 375.58,
+   "tr_pf": 2.23,
+   "te_n": 2555,
+   "te_avg": 210.96,
+   "te_pf": 1.58,
+   "robust": 210.96
+  },
+  {
+   "name": "wt_os-70_stopNone",
+   "tr_n": 758,
+   "tr_avg": 339.94,
+   "tr_pf": 2.23,
+   "te_n": 631,
+   "te_avg": 129.86,
+   "te_pf": 1.56,
+   "robust": 129.86
+  },
+  {
+   "name": "wt_os-70_stop0.08",
+   "tr_n": 758,
+   "tr_avg": 200.35,
+   "tr_pf": 1.7,
+   "te_n": 631,
+   "te_avg": 108.94,
+   "te_pf": 1.48,
+   "robust": 108.94
+  },
+  {
+   "name": "confl_os-70_stopNone",
+   "tr_n": 233,
+   "tr_avg": 190.9,
+   "tr_pf": 1.75,
+   "te_n": 204,
+   "te_avg": 99.25,
+   "te_pf": 1.38,
+   "robust": 99.25
+  },
+  {
+   "name": "sqz_zero_long_stopNone",
+   "tr_n": 16817,
+   "tr_avg": 155.24,
+   "tr_pf": 1.67,
+   "te_n": 13768,
+   "te_avg": 96.86,
+   "te_pf": 1.31,
+   "robust": 96.86
+  },
+  {
+   "name": "wt_os-70_stop0.05",
+   "tr_n": 758,
+   "tr_avg": 167.51,
+   "tr_pf": 1.68,
+   "te_n": 631,
+   "te_avg": 88.21,
+   "te_pf": 1.42,
+   "robust": 88.21
+  },
+  {
+   "name": "sqz_zero_long_stop0.05",
+   "tr_n": 16817,
+   "tr_avg": 127.33,
+   "tr_pf": 1.59,
+   "te_n": 13768,
+   "te_avg": 85.45,
+   "te_pf": 1.33,
+   "robust": 85.45
+  },
+  {
+   "name": "sqz_color_stopNone",
+   "tr_n": 15608,
+   "tr_avg": 192.31,
+   "tr_pf": 2.04,
+   "te_n": 12762,
+   "te_avg": 81.92,
+   "te_pf": 1.32,
+   "robust": 81.92
+  },
+  {
+   "name": "wt_os-60_stopNone",
+   "tr_n": 2590,
+   "tr_avg": 225.58,
+   "tr_pf": 2.06,
+   "te_n": 2858,
+   "te_avg": 64.34,
+   "te_pf": 1.29,
+   "robust": 64.34
+  },
+  {
+   "name": "wt_os-53_stopNone",
+   "tr_n": 4744,
+   "tr_avg": 179.19,
+   "tr_pf": 1.95,
+   "te_n": 5478,
+   "te_avg": 62.27,
+   "te_pf": 1.29,
+   "robust": 62.27
+  },
+  {
+   "name": "wt_os-53_stop0.08",
+   "tr_n": 4744,
+   "tr_avg": 147.87,
+   "tr_pf": 1.77,
+   "te_n": 5478,
+   "te_avg": 59.7,
+   "te_pf": 1.29,
+   "robust": 59.7
+  },
+  {
+   "name": "wt_os-60_stop0.08",
+   "tr_n": 2590,
+   "tr_avg": 171.8,
+   "tr_pf": 1.79,
+   "te_n": 2858,
+   "te_avg": 58.56,
+   "te_pf": 1.27,
+   "robust": 58.56
+  }
+ ],
+ "by_regime": [
+  {
+   "regime": "BULL",
+   "n": 4429.0,
+   "avg": 315.32,
+   "win": 0.66,
+   "pf": 1.94,
+   "sharpe": 0.24
+  },
+  {
+   "regime": "CHOPPY",
+   "n": 1412.0,
+   "avg": 276.73,
+   "win": 0.61,
+   "pf": 1.85,
+   "sharpe": 0.22
+  },
+  {
+   "regime": "BEAR",
+   "n": 69.0,
+   "avg": 170.59,
+   "win": 0.51,
+   "pf": 1.58,
+   "sharpe": 0.18
+  }
+ ],
+ "by_sector": [
+  {
+   "sector": "Information Technology",
+   "n": 957.0,
+   "avg": 513.45,
+   "win": 0.68,
+   "pf": 2.53,
+   "sharpe": 0.33
+  },
+  {
+   "sector": "Energy",
+   "n": 184.0,
+   "avg": 396.53,
+   "win": 0.67,
+   "pf": 1.82,
+   "sharpe": 0.22
+  },
+  {
+   "sector": "Communication Services",
+   "n": 251.0,
+   "avg": 382.76,
+   "win": 0.63,
+   "pf": 1.92,
+   "sharpe": 0.21
+  },
+  {
+   "sector": "Consumer Discretionary",
+   "n": 577.0,
+   "avg": 343.91,
+   "win": 0.63,
+   "pf": 1.91,
+   "sharpe": 0.23
+  },
+  {
+   "sector": "Financials",
+   "n": 942.0,
+   "avg": 341.04,
+   "win": 0.69,
+   "pf": 2.27,
+   "sharpe": 0.31
+  },
+  {
+   "sector": "Industrials",
+   "n": 979.0,
+   "avg": 298.37,
+   "win": 0.64,
+   "pf": 1.93,
+   "sharpe": 0.24
+  },
+  {
+   "sector": "Health Care",
+   "n": 670.0,
+   "avg": 271.83,
+   "win": 0.66,
+   "pf": 1.97,
+   "sharpe": 0.25
+  },
+  {
+   "sector": "Real Estate",
+   "n": 342.0,
+   "avg": 258.27,
+   "win": 0.64,
+   "pf": 1.97,
+   "sharpe": 0.25
+  },
+  {
+   "sector": "Materials",
+   "n": 282.0,
+   "avg": 207.54,
+   "win": 0.63,
+   "pf": 1.53,
+   "sharpe": 0.16
+  },
+  {
+   "sector": "Consumer Staples",
+   "n": 360.0,
+   "avg": 83.23,
+   "win": 0.58,
+   "pf": 1.24,
+   "sharpe": 0.08
+  },
+  {
+   "sector": "Utilities",
+   "n": 366.0,
+   "avg": -87.67,
+   "win": 0.48,
+   "pf": 0.79,
+   "sharpe": -0.09
+  }
+ ],
+ "by_dow": [
+  {
+   "dow": 1,
+   "n": 1198.0,
+   "avg": 370.54,
+   "win": 0.66,
+   "pf": 2.25,
+   "sharpe": 0.29
+  },
+  {
+   "dow": 3,
+   "n": 1243.0,
+   "avg": 306.16,
+   "win": 0.65,
+   "pf": 1.89,
+   "sharpe": 0.22
+  },
+  {
+   "dow": 4,
+   "n": 1216.0,
+   "avg": 298.04,
+   "win": 0.64,
+   "pf": 1.89,
+   "sharpe": 0.23
+  },
+  {
+   "dow": 0,
+   "n": 1132.0,
+   "avg": 288.73,
+   "win": 0.63,
+   "pf": 1.89,
+   "sharpe": 0.23
+  },
+  {
+   "dow": 2,
+   "n": 1121.0,
+   "avg": 254.54,
+   "win": 0.64,
+   "pf": 1.7,
+   "sharpe": 0.19
+  }
+ ],
+ "by_vol": [
+  {
+   "volb": "hi",
+   "n": 1916.0,
+   "avg": 472.05,
+   "win": 0.66,
+   "pf": 2.08,
+   "sharpe": 0.27
+  },
+  {
+   "volb": "mid",
+   "n": 1959.0,
+   "avg": 300.17,
+   "win": 0.66,
+   "pf": 2.01,
+   "sharpe": 0.27
+  },
+  {
+   "volb": "lo",
+   "n": 2035.0,
+   "avg": 150.65,
+   "win": 0.61,
+   "pf": 1.56,
+   "sharpe": 0.17
+  }
+ ],
+ "per_regime": {
+  "BULL": [
+   {
+    "name": "mashift_reg_stopNone",
+    "n": 1892,
+    "avg": 319.82,
+    "win": 0.63,
+    "pf": 1.93,
+    "sharpe": 0.23
+   },
+   {
+    "name": "mashift_reg_stop0.05",
+    "n": 2032,
+    "avg": 111.38,
+    "win": 0.36,
+    "pf": 1.35,
+    "sharpe": 0.11
+   },
+   {
+    "name": "sqz_zero_long_stopNone",
+    "n": 9625,
+    "avg": 84.95,
+    "win": 0.4,
+    "pf": 1.28,
+    "sharpe": 0.07
+   },
+   {
+    "name": "sqz_color_stopNone",
+    "n": 9379,
+    "avg": 83.08,
+    "win": 0.54,
+    "pf": 1.34,
+    "sharpe": 0.09
+   },
+   {
+    "name": "sqz_zero_long_stop0.05",
+    "n": 9625,
+    "avg": 74.84,
+    "win": 0.36,
+    "pf": 1.3,
+    "sharpe": 0.07
+   }
+  ],
+  "BEAR": [
+   {
+    "name": "sqz_color_stop0.05",
+    "n": 514,
+    "avg": 447.59,
+    "win": 0.66,
+    "pf": 4.69,
+    "sharpe": 0.49
+   },
+   {
+    "name": "sqz_color_stopNone",
+    "n": 342,
+    "avg": 435.35,
+    "win": 0.72,
+    "pf": 4.96,
+    "sharpe": 0.51
+   },
+   {
+    "name": "sqz_color_ma40_stopNone",
+    "n": 206,
+    "avg": 273.25,
+    "win": 0.67,
+    "pf": 3.37,
+    "sharpe": 0.44
+   },
+   {
+    "name": "sqz_color_ma40_stop0.05",
+    "n": 240,
+    "avg": 261.21,
+    "win": 0.64,
+    "pf": 3.22,
+    "sharpe": 0.43
+   },
+   {
+    "name": "sqz_zero_long_stopNone",
+    "n": 200,
+    "avg": 242.93,
+    "win": 0.6,
+    "pf": 2.55,
+    "sharpe": 0.31
+   }
+  ],
+  "CHOPPY": [
+   {
+    "name": "confl_os-70_stopNone",
+    "n": 76,
+    "avg": 325.97,
+    "win": 0.57,
+    "pf": 2.57,
+    "sharpe": 0.3
+   },
+   {
+    "name": "wt_os-70_stopNone",
+    "n": 241,
+    "avg": 285.51,
+    "win": 0.58,
+    "pf": 2.42,
+    "sharpe": 0.29
+   },
+   {
+    "name": "confl_os-70_stop0.08",
+    "n": 76,
+    "avg": 269.8,
+    "win": 0.54,
+    "pf": 2.32,
+    "sharpe": 0.28
+   },
+   {
+    "name": "wt_os-70_stop0.08",
+    "n": 241,
+    "avg": 265.48,
+    "win": 0.56,
+    "pf": 2.33,
+    "sharpe": 0.29
+   },
+   {
+    "name": "wt_os-70_stop0.05",
+    "n": 241,
+    "avg": 211.8,
+    "win": 0.51,
+    "pf": 2.09,
+    "sharpe": 0.26
+   }
+  ]
+ },
+ "regime_days": {
+  "BULL": 1942,
+  "CHOPPY": 674,
+  "BEAR": 37
+ },
+ "stock_top": [
+  {
+   "ticker": "DECK",
+   "n": 20.0,
+   "avg": 885.61,
+   "win": 0.85,
+   "pf": 4.17,
+   "sharpe": 0.54
+  },
+  {
+   "ticker": "AMAT",
+   "n": 22.0,
+   "avg": 875.29,
+   "win": 0.77,
+   "pf": 7.33,
+   "sharpe": 0.76
+  },
+  {
+   "ticker": "URI",
+   "n": 21.0,
+   "avg": 610.43,
+   "win": 0.62,
+   "pf": 2.38,
+   "sharpe": 0.37
+  },
+  {
+   "ticker": "AVGO",
+   "n": 22.0,
+   "avg": 511.03,
+   "win": 0.77,
+   "pf": 2.94,
+   "sharpe": 0.47
+  },
+  {
+   "ticker": "CASY",
+   "n": 20.0,
+   "avg": 449.73,
+   "win": 0.85,
+   "pf": 5.01,
+   "sharpe": 0.75
+  },
+  {
+   "ticker": "MSFT",
+   "n": 20.0,
+   "avg": 384.36,
+   "win": 0.75,
+   "pf": 3.77,
+   "sharpe": 0.63
+  },
+  {
+   "ticker": "KLAC",
+   "n": 22.0,
+   "avg": 352.35,
+   "win": 0.59,
+   "pf": 2.0,
+   "sharpe": 0.25
+  },
+  {
+   "ticker": "JBL",
+   "n": 20.0,
+   "avg": 302.3,
+   "win": 0.6,
+   "pf": 1.81,
+   "sharpe": 0.24
+  },
+  {
+   "ticker": "PGR",
+   "n": 20.0,
+   "avg": 259.52,
+   "win": 0.75,
+   "pf": 2.66,
+   "sharpe": 0.41
+  }
+ ],
+ "stock_bot": [
+  {
+   "ticker": "AMAT",
+   "n": 22.0,
+   "avg": 875.29,
+   "win": 0.77,
+   "pf": 7.33,
+   "sharpe": 0.76
+  },
+  {
+   "ticker": "URI",
+   "n": 21.0,
+   "avg": 610.43,
+   "win": 0.62,
+   "pf": 2.38,
+   "sharpe": 0.37
+  },
+  {
+   "ticker": "AVGO",
+   "n": 22.0,
+   "avg": 511.03,
+   "win": 0.77,
+   "pf": 2.94,
+   "sharpe": 0.47
+  },
+  {
+   "ticker": "CASY",
+   "n": 20.0,
+   "avg": 449.73,
+   "win": 0.85,
+   "pf": 5.01,
+   "sharpe": 0.75
+  },
+  {
+   "ticker": "MSFT",
+   "n": 20.0,
+   "avg": 384.36,
+   "win": 0.75,
+   "pf": 3.77,
+   "sharpe": 0.63
+  },
+  {
+   "ticker": "KLAC",
+   "n": 22.0,
+   "avg": 352.35,
+   "win": 0.59,
+   "pf": 2.0,
+   "sharpe": 0.25
+  },
+  {
+   "ticker": "JBL",
+   "n": 20.0,
+   "avg": 302.3,
+   "win": 0.6,
+   "pf": 1.81,
+   "sharpe": 0.24
+  },
+  {
+   "ticker": "PGR",
+   "n": 20.0,
+   "avg": 259.52,
+   "win": 0.75,
+   "pf": 2.66,
+   "sharpe": 0.41
+  }
+ ],
+ "champ_port": {
+  "full": {
+   "cagr": 0.11253844268575319,
+   "maxdd": -0.17414347276373854,
+   "sharpe": 1.423891893999362,
+   "final": 269462.49716394156,
+   "yrs": 9.295003422313483,
+   "total": 1.6946249716394157
+  },
+  "test": {
+   "cagr": 0.05841089709488734,
+   "maxdd": -0.17414347276373854,
+   "sharpe": 0.73673149121052,
+   "final": 129434.38688076449,
+   "yrs": 4.544832306639288,
+   "total": 0.29434386880764496
+  }
+ },
+ "combo_port": {
+  "full": {
+   "cagr": 0.14600561647543997,
+   "maxdd": -0.15929300390877743,
+   "sharpe": 1.9302408550218422,
+   "final": 416385.92861017573,
+   "yrs": 10.466803559206022,
+   "total": 3.163859286101757
+  },
+  "test": {
+   "cagr": 0.12829628067566023,
+   "maxdd": -0.15466295972841493,
+   "sharpe": 1.4355212630344727,
+   "final": 173083.01647069587,
+   "yrs": 4.544832306639288,
+   "total": 0.7308301647069588
+  }
+ },
+ "bh": {
+  "total": 369.49455779132825,
+  "cagr": 15.789203692454246
+ },
+ "combo_equity": [
+  {
+   "t": "2016-02",
+   "e": 99497
+  },
+  {
+   "t": "2016-03",
+   "e": 114969
+  },
+  {
+   "t": "2016-04",
+   "e": 114969
+  },
+  {
+   "t": "2016-05",
+   "e": 114969
+  },
+  {
+   "t": "2016-06",
+   "e": 114820
+  },
+  {
+   "t": "2016-07",
+   "e": 115774
+  },
+  {
+   "t": "2017-04",
+   "e": 115774
+  },
+  {
+   "t": "2017-05",
+   "e": 115641
+  },
+  {
+   "t": "2017-06",
+   "e": 119613
+  },
+  {
+   "t": "2017-07",
+   "e": 119988
+  },
+  {
+   "t": "2017-08",
+   "e": 121499
+  },
+  {
+   "t": "2017-09",
+   "e": 122800
+  },
+  {
+   "t": "2017-10",
+   "e": 126173
+  },
+  {
+   "t": "2017-11",
+   "e": 128872
+  },
+  {
+   "t": "2017-12",
+   "e": 131246
+  },
+  {
+   "t": "2018-01",
+   "e": 135023
+  },
+  {
+   "t": "2018-02",
+   "e": 139620
+  },
+  {
+   "t": "2018-03",
+   "e": 140353
+  },
+  {
+   "t": "2018-04",
+   "e": 138369
+  },
+  {
+   "t": "2018-05",
+   "e": 138580
+  },
+  {
+   "t": "2018-06",
+   "e": 139440
+  },
+  {
+   "t": "2018-07",
+   "e": 141336
+  },
+  {
+   "t": "2018-08",
+   "e": 147431
+  },
+  {
+   "t": "2018-09",
+   "e": 146994
+  },
+  {
+   "t": "2018-10",
+   "e": 148621
+  },
+  {
+   "t": "2018-11",
+   "e": 147367
+  },
+  {
+   "t": "2018-12",
+   "e": 142371
+  },
+  {
+   "t": "2019-01",
+   "e": 148598
+  },
+  {
+   "t": "2019-02",
+   "e": 173083
+  },
+  {
+   "t": "2019-03",
+   "e": 174603
+  },
+  {
+   "t": "2019-04",
+   "e": 180497
+  },
+  {
+   "t": "2019-05",
+   "e": 183293
+  },
+  {
+   "t": "2019-06",
+   "e": 184684
+  },
+  {
+   "t": "2019-07",
+   "e": 184250
+  },
+  {
+   "t": "2019-08",
+   "e": 190034
+  },
+  {
+   "t": "2019-09",
+   "e": 195959
+  },
+  {
+   "t": "2019-10",
+   "e": 197896
+  },
+  {
+   "t": "2019-11",
+   "e": 201443
+  },
+  {
+   "t": "2019-12",
+   "e": 204778
+  },
+  {
+   "t": "2020-01",
+   "e": 210668
+  },
+  {
+   "t": "2020-02",
+   "e": 211878
+  },
+  {
+   "t": "2020-03",
+   "e": 208270
+  },
+  {
+   "t": "2020-04",
+   "e": 179684
+  },
+  {
+   "t": "2020-05",
+   "e": 179684
+  },
+  {
+   "t": "2020-07",
+   "e": 179684
+  },
+  {
+   "t": "2020-08",
+   "e": 180069
+  },
+  {
+   "t": "2020-09",
+   "e": 180485
+  },
+  {
+   "t": "2020-10",
+   "e": 188222
+  },
+  {
+   "t": "2020-11",
+   "e": 194159
+  },
+  {
+   "t": "2020-12",
+   "e": 198582
+  },
+  {
+   "t": "2021-01",
+   "e": 201948
+  },
+  {
+   "t": "2021-02",
+   "e": 208075
+  },
+  {
+   "t": "2021-03",
+   "e": 212890
+  },
+  {
+   "t": "2021-04",
+   "e": 214513
+  },
+  {
+   "t": "2021-05",
+   "e": 223217
+  },
+  {
+   "t": "2021-06",
+   "e": 224472
+  },
+  {
+   "t": "2021-07",
+   "e": 224844
+  },
+  {
+   "t": "2021-08",
+   "e": 228594
+  },
+  {
+   "t": "2021-09",
+   "e": 225771
+  },
+  {
+   "t": "2021-10",
+   "e": 228292
+  },
+  {
+   "t": "2021-11",
+   "e": 231402
+  },
+  {
+   "t": "2021-12",
+   "e": 233623
+  },
+  {
+   "t": "2022-01",
+   "e": 245261
+  },
+  {
+   "t": "2022-02",
+   "e": 242228
+  },
+  {
+   "t": "2022-03",
+   "e": 236592
+  },
+  {
+   "t": "2022-04",
+   "e": 237443
+  },
+  {
+   "t": "2022-05",
+   "e": 235914
+  },
+  {
+   "t": "2022-06",
+   "e": 224539
+  },
+  {
+   "t": "2022-07",
+   "e": 225596
+  },
+  {
+   "t": "2022-08",
+   "e": 234290
+  },
+  {
+   "t": "2022-09",
+   "e": 234324
+  },
+  {
+   "t": "2022-10",
+   "e": 227919
+  },
+  {
+   "t": "2022-11",
+   "e": 241711
+  },
+  {
+   "t": "2022-12",
+   "e": 241711
+  },
+  {
+   "t": "2023-01",
+   "e": 246501
+  },
+  {
+   "t": "2023-02",
+   "e": 246965
+  },
+  {
+   "t": "2023-03",
+   "e": 247019
+  },
+  {
+   "t": "2023-04",
+   "e": 243335
+  },
+  {
+   "t": "2023-05",
+   "e": 247243
+  },
+  {
+   "t": "2023-06",
+   "e": 253418
+  },
+  {
+   "t": "2023-07",
+   "e": 256432
+  },
+  {
+   "t": "2023-08",
+   "e": 267262
+  },
+  {
+   "t": "2023-09",
+   "e": 265442
+  },
+  {
+   "t": "2023-10",
+   "e": 266089
+  },
+  {
+   "t": "2023-11",
+   "e": 277315
+  },
+  {
+   "t": "2023-12",
+   "e": 278798
+  },
+  {
+   "t": "2024-01",
+   "e": 291279
+  },
+  {
+   "t": "2024-02",
+   "e": 308825
+  },
+  {
+   "t": "2024-03",
+   "e": 315276
+  },
+  {
+   "t": "2024-04",
+   "e": 315289
+  },
+  {
+   "t": "2024-05",
+   "e": 312519
+  },
+  {
+   "t": "2024-06",
+   "e": 314690
+  },
+  {
+   "t": "2024-07",
+   "e": 316650
+  },
+  {
+   "t": "2024-08",
+   "e": 313769
+  },
+  {
+   "t": "2024-09",
+   "e": 314393
+  },
+  {
+   "t": "2024-10",
+   "e": 319674
+  },
+  {
+   "t": "2024-11",
+   "e": 350410
+  },
+  {
+   "t": "2024-12",
+   "e": 349358
+  },
+  {
+   "t": "2025-01",
+   "e": 344143
+  },
+  {
+   "t": "2025-02",
+   "e": 352720
+  },
+  {
+   "t": "2025-03",
+   "e": 345826
+  },
+  {
+   "t": "2025-04",
+   "e": 306642
+  },
+  {
+   "t": "2025-05",
+   "e": 313019
+  },
+  {
+   "t": "2025-06",
+   "e": 316629
+  },
+  {
+   "t": "2025-07",
+   "e": 321739
+  },
+  {
+   "t": "2025-08",
+   "e": 328975
+  },
+  {
+   "t": "2025-09",
+   "e": 365478
+  },
+  {
+   "t": "2025-10",
+   "e": 367552
+  },
+  {
+   "t": "2025-11",
+   "e": 376056
+  },
+  {
+   "t": "2025-12",
+   "e": 382435
+  },
+  {
+   "t": "2026-01",
+   "e": 383344
+  },
+  {
+   "t": "2026-02",
+   "e": 394318
+  },
+  {
+   "t": "2026-03",
+   "e": 383076
+  },
+  {
+   "t": "2026-04",
+   "e": 390916
+  },
+  {
+   "t": "2026-05",
+   "e": 399045
+  },
+  {
+   "t": "2026-06",
+   "e": 422690
+  },
+  {
+   "t": "2026-07",
+   "e": 416386
+  }
+ ],
+ "tf": [
+  {
+   "tf": "daily",
+   "signal": "mashift_reg",
+   "n": 5910,
+   "avg": 304.41020610406036,
+   "win": 0.6424703891708968,
+   "pf": 1.915900047690181
+  },
+  {
+   "tf": "daily",
+   "signal": "wt_os-70",
+   "n": 1389,
+   "avg": 244.50472372128556,
+   "win": 0.5241180705543557,
+   "pf": 1.9536337799033527
+  },
+  {
+   "tf": "daily",
+   "signal": "sqz_zero_long",
+   "n": 30585,
+   "avg": 128.95894301962582,
+   "win": 0.43426516266143533,
+   "pf": 1.4832479640698626
+  },
+  {
+   "tf": "weekly",
+   "signal": "mashift_reg",
+   "n": 732,
+   "avg": 1163.1054509330095,
+   "win": 0.6953551912568307,
+   "pf": 3.688052874699021
+  },
+  {
+   "tf": "weekly",
+   "signal": "wt_os-70",
+   "n": 204,
+   "avg": 568.4880631087989,
+   "win": 0.5490196078431373,
+   "pf": 2.272136584388312
+  },
+  {
+   "tf": "weekly",
+   "signal": "sqz_zero_long",
+   "n": 5993,
+   "avg": 593.7625548996372,
+   "win": 0.43350575671616887,
+   "pf": 2.0064506989220967
+  }
+ ],
+ "edge_note": {
+  "champ_avg": 304,
+  "drift": 308,
+  "edge": -4,
+  "hold_days": 48
+ }
+};
+const SVGTAGS=['svg','g','rect','line','text','path','circle','polyline','defs','linearGradient','stop'];
+const el=(t,a={},...c)=>{const n=SVGTAGS.includes(t)?document.createElementNS('http://www.w3.org/2000/svg',t):document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const $=s=>document.querySelector(s);
+const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const f0=v=>(v>0?'+':'')+Math.round(v);
+const sgn=v=>v>0?'pos':(v<0?'neg':'');
+
+const KPI=[
+ {v:'462',l:'Full-history names',s:'of 498 usable · 10.5 yr'},
+ {v:'−4 bps',l:'Champion edge vs drift',s:'304 signal − 308 drift ≈ 0'},
+ {v:'1.93',l:'Regime-combo Sharpe',s:'vs ~0.8 for equities'},
+ {v:'−16%',l:'Combo max drawdown',s:'index saw −25 to −35%'},
+ {v:'3',l:'Regime playbook',s:'bull · bear · choppy'},
+];
+$('#kpis').append(...KPI.map(k=>{const d=el('div',{class:'kpi'});d.innerHTML=`<div class="v acc">${k.v}</div><div class="l">${k.l}</div><div class="s">${k.s}</div>`;return d;}));
+
+/* drift chart */
+function drawDrift(){
+ const host=$('#driftChart');host.innerHTML='';const e=DATA.edge_note;
+ const rows=[['Champion signal',e.champ_avg,cvar('--accent')],['Random 48-day hold (drift)',e.drift,cvar('--muted')]];
+ const W=host.clientWidth||480,H=150,padL=180,padR=50,rh=48,max=Math.max(e.champ_avg,e.drift)*1.15;
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ rows.forEach((r,i)=>{const y=18+i*rh,w=(r[1]/max)*(W-padL-padR);
+  svg.append(el('rect',{x:padL,y,width:Math.max(w,1),height:rh-16,rx:3,fill:r[2],opacity:.9}));
+  svg.append(el('text',{x:padL-10,y:y+rh/2-6,'text-anchor':'end',fill:cvar('--text')},r[0]));
+  svg.append(el('text',{x:padL+w+6,y:y+rh/2-6,fill:r[2]},'+'+r[1]+' bps'));});
+ svg.append(el('text',{x:padL,y:H-6,fill:cvar('--loss'),style:'font-size:11px'},'→ timing edge = −4 bps (≈ zero)'));
+ host.append(svg);
+}
+
+/* regime cards */
+function regimeCards(){
+ const host=$('#regimeCards');host.innerHTML='';
+ const map={BULL:{cls:'bull',label:'Bull → trend-follow'},BEAR:{cls:'bear',label:'Bear → buy capitulation'},CHOPPY:{cls:'chop',label:'Choppy → fade extremes'}};
+ ['BULL','BEAR','CHOPPY'].forEach(rg=>{
+  const best=DATA.per_regime[rg][0];const m=map[rg];
+  const d=el('div',{class:'rcard '+m.cls});
+  d.innerHTML=`<div class="rg">${m.label}</div><div class="sig">${best.name.replace(/_/g,' ')}</div>
+   <div class="met">test: <b class="pos">+${Math.round(best.avg)} bps</b> · PF ${(+best.pf).toFixed(2)} · win ${Math.round(best.win*100)}% · n=${best.n}</div>`;
+  host.append(d);});
+ const rd=DATA.regime_days;const tot=Object.values(rd).reduce((a,b)=>a+b,0);
+ $('#bearpct').textContent='~'+Math.round((rd.BEAR||0)/tot*100)+'%';
+}
+
+/* portfolio table */
+function portTbl(){
+ const tb=$('#portTbl tbody');tb.innerHTML='';
+ const rows=[['Regime-switched combo',DATA.combo_port,true],['MA-Shift champion',DATA.champ_port,false],
+   ['Buy & hold (equal-wt)',{full:{total:DATA.bh.total/100,cagr:DATA.bh.cagr/100,maxdd:null,sharpe:null},test:{cagr:null,sharpe:null}},false]];
+ rows.forEach(([nm,p,hi])=>{const tr=el('tr',hi?{class:'hi'}:{});const f=p.full,t=p.test;
+  tr.innerHTML=`<td>${nm}</td><td class="pos">+${Math.round(f.total*100)}%</td><td>${(f.cagr*100).toFixed(1)}%</td>
+   <td class="${f.maxdd!=null?'neg':''}">${f.maxdd!=null?Math.round(f.maxdd*100)+'%':'—'}</td>
+   <td class="acc">${f.sharpe!=null?f.sharpe.toFixed(2):'—'}</td>
+   <td>${t.cagr!=null?(t.cagr*100).toFixed(1)+'%':'—'}</td>
+   <td class="acc">${t.sharpe!=null?t.sharpe.toFixed(2):'—'}</td>`;tb.append(tr);});
+}
+
+/* equity curve */
+function drawEquity(){
+ const host=$('#equityChart');host.innerHTML='';const pts=DATA.combo_equity;
+ const W=host.clientWidth||1000,H=250,padL=54,padR=16,padT=14,padB=26;
+ const ys=pts.map(p=>+p.e),min=Math.min(...ys),max=Math.max(...ys),pad=(max-min)*0.1||1;
+ const lo=min-pad,hi=max+pad;
+ const X=i=>padL+i/(pts.length-1)*(W-padL-padR),Y=v=>padT+(1-(v-lo)/(hi-lo))*(H-padT-padB);
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ const g=el('g',{});for(let t=0;t<=4;t++){const v=lo+(hi-lo)*t/4,y=Y(v);
+  g.append(el('line',{x1:padL,y1:y,x2:W-padR,y2:y,stroke:cvar('--grid')}));
+  svg.append(el('text',{x:padL-8,y:y+3,'text-anchor':'end',class:'axis'},'$'+Math.round(v/1000)+'k'));}
+ svg.append(g);
+ const grad=el('linearGradient',{id:'eg',x1:0,y1:0,x2:0,y2:1});
+ grad.append(el('stop',{offset:'0%','stop-color':cvar('--accent'),'stop-opacity':0.25}));
+ grad.append(el('stop',{offset:'100%','stop-color':cvar('--accent'),'stop-opacity':0}));
+ svg.append(el('defs',{},grad));
+ let dl='',da=`M ${X(0)} ${Y(ys[0])}`;
+ pts.forEach((p,i)=>{const x=X(i),y=Y(+p.e);dl+=(i?' L':'M')+` ${x.toFixed(1)} ${y.toFixed(1)}`;if(i)da+=` L ${x.toFixed(1)} ${y.toFixed(1)}`;});
+ da+=` L ${X(pts.length-1)} ${Y(lo)} L ${X(0)} ${Y(lo)} Z`;
+ svg.append(el('path',{d:da,fill:'url(#eg)'}));
+ svg.append(el('path',{d:dl,fill:'none',stroke:cvar('--accent'),'stroke-width':2,'stroke-linejoin':'round'}));
+ svg.append(el('circle',{cx:X(pts.length-1),cy:Y(+pts[pts.length-1].e),r:3.5,fill:cvar('--accent')}));
+ [0,Math.floor(pts.length/2),pts.length-1].forEach(i=>svg.append(el('text',{x:X(i),y:H-8,'text-anchor':i===0?'start':(i===pts.length-1?'end':'middle'),class:'axis'},pts[i].t)));
+ host.append(svg);
+}
+
+/* ranking table */
+function rankTbl(){
+ const tb=$('#rankTbl tbody');tb.innerHTML='';
+ DATA.ranking.forEach((r,i)=>{const tr=el('tr',i===0?{class:'hi'}:{});
+  tr.innerHTML=`<td>${r.name.replace(/_/g,' ')}</td><td>${r.tr_n}</td><td class="${sgn(r.tr_avg)}">${f0(r.tr_avg)}</td>
+   <td>${(+r.tr_pf).toFixed(2)}</td><td>${r.te_n}</td><td class="${sgn(r.te_avg)}"><b>${f0(r.te_avg)}</b></td>
+   <td>${(+r.te_pf).toFixed(2)}</td><td class="acc">${f0(r.robust)}</td>`;tb.append(tr);});
+}
+
+/* sector bars */
+function drawSector(){
+ const host=$('#sectorChart');host.innerHTML='';
+ const rows=DATA.by_sector.filter(r=>r.sector).sort((a,b)=>b.avg-a.avg);
+ const W=host.clientWidth||520,rh=27,padL=150,padR=48,H=rows.length*rh+12;
+ const max=Math.max(...rows.map(r=>Math.abs(r.avg)))*1.08;
+ const zero=padL+ (max)/(2*max)*(W-padL-padR);
+ const scale=v=>padL+(v+max)/(2*max)*(W-padL-padR);
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ svg.append(el('line',{x1:scale(0),y1:6,x2:scale(0),y2:H-8,stroke:cvar('--faint'),'stroke-dasharray':'2 3'}));
+ rows.forEach((r,i)=>{const y=8+i*rh,col=r.avg>=0?cvar('--gain'):cvar('--loss');
+  const x=scale(Math.min(0,r.avg)),w=Math.abs(scale(r.avg)-scale(0));
+  svg.append(el('rect',{x,y,width:Math.max(w,1),height:rh-11,rx:3,fill:col,opacity:.9}));
+  svg.append(el('text',{x:padL-8,y:y+rh/2-3,'text-anchor':'end',fill:cvar('--text'),style:'font-size:10px'},r.sector.length>19?r.sector.slice(0,18):r.sector));
+  const lx=r.avg>=0?scale(r.avg)+5:scale(r.avg)-5;
+  svg.append(el('text',{x:lx,y:y+rh/2-3,'text-anchor':r.avg>=0?'start':'end',fill:cvar('--muted'),style:'font-size:9.5px'},`PF ${(+r.pf).toFixed(2)}`));});
+ host.append(svg);
+}
+
+/* dow bars */
+function drawDow(){
+ const host=$('#dowChart');host.innerHTML='';
+ const names=['Mon','Tue','Wed','Thu','Fri'];
+ const rows=DATA.by_dow.filter(r=>r.dow!==''&&r.dow!=null).map(r=>({d:+r.dow,avg:+r.avg,pf:+r.pf})).sort((a,b)=>a.d-b.d);
+ const W=host.clientWidth||480,H=140,padL=20,padR=12,padT=12,padB=26,gw=(W-padL-padR)/rows.length;
+ const max=Math.max(...rows.map(r=>r.avg))*1.15;
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ rows.forEach((r,i)=>{const x=padL+i*gw+gw*0.2,bw=gw*0.6,h=(r.avg/max)*(H-padT-padB),y=H-padB-h;
+  svg.append(el('rect',{x,y,width:bw,height:Math.max(h,1),rx:3,fill:cvar('--accent'),opacity:.85}));
+  svg.append(el('text',{x:x+bw/2,y:y-4,'text-anchor':'middle',fill:cvar('--accent'),style:'font-size:9.5px'},Math.round(r.avg)));
+  svg.append(el('text',{x:x+bw/2,y:H-padB+15,'text-anchor':'middle',fill:cvar('--muted'),style:'font-size:10px'},names[r.d]||String(r.d)));});
+ host.append(svg);
+}
+
+/* vol table */
+function volTbl(){
+ const tb=$('#volTbl tbody');tb.innerHTML='';
+ const order={lo:0,mid:1,hi:2};
+ DATA.by_vol.filter(r=>r.volb).sort((a,b)=>order[a.volb]-order[b.volb]).forEach(r=>{const tr=el('tr');
+  tr.innerHTML=`<td>${r.volb}</td><td>${r.n}</td><td class="${sgn(r.avg)}">${f0(r.avg)}</td><td>${(+r.pf).toFixed(2)}</td><td>${Math.round(r.win*100)}%</td>`;tb.append(tr);});
+}
+
+/* timeframe grouped bars */
+function drawTF(){
+ const host=$('#tfChart');host.innerHTML='';
+ const sigs=[...new Set(DATA.tf.map(r=>r.signal))];
+ const W=host.clientWidth||900,H=210,padL=40,padR=12,padT=14,padB=44,gw=(W-padL-padR)/sigs.length;
+ const max=Math.max(...DATA.tf.map(r=>r.avg))*1.12;
+ const Y=v=>padT+(1-v/max)*(H-padT-padB);
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ svg.append(el('line',{x1:padL,y1:Y(0),x2:W-padR,y2:Y(0),stroke:cvar('--grid')}));
+ sigs.forEach((sg,i)=>{const cx=padL+i*gw+gw/2,bw=Math.min(38,gw/3);
+  [['daily',cvar('--accent'),-1],['weekly',cvar('--gold'),1]].forEach(([tf,col,side])=>{
+   const row=DATA.tf.find(r=>r.signal===sg&&r.tf===tf);if(!row)return;
+   const x=cx+(side<0?-bw-2:2),yv=Y(row.avg);
+   svg.append(el('rect',{x,y:yv,width:bw,height:Math.max(H-padB-yv,1),rx:3,fill:col,opacity:.9}));
+   svg.append(el('text',{x:x+bw/2,y:yv-4,'text-anchor':'middle',fill:col,style:'font-size:9px'},Math.round(row.avg)));});
+  svg.append(el('text',{x:cx,y:H-padB+16,'text-anchor':'middle',fill:cvar('--text'),style:'font-size:10px'},sg.replace(/_/g,' ')));});
+ svg.append(el('rect',{x:padL,y:H-15,width:10,height:10,fill:cvar('--accent')}));
+ svg.append(el('text',{x:padL+14,y:H-6,fill:cvar('--muted'),style:'font-size:10px'},'daily'));
+ svg.append(el('rect',{x:padL+70,y:H-15,width:10,height:10,fill:cvar('--gold')}));
+ svg.append(el('text',{x:padL+84,y:H-6,fill:cvar('--muted'),style:'font-size:10px'},'weekly (more drift)'));
+ host.append(svg);
+}
+
+/* stock tables */
+function stkTables(){
+ function fill(sel,rows){const tb=$(sel+' tbody');tb.innerHTML='';
+  rows.forEach(r=>{const tr=el('tr');tr.innerHTML=`<td><b>${r.ticker}</b></td><td>${r.n}</td>
+   <td class="${sgn(r.avg)}">${f0(r.avg)}</td><td>${(+r.pf).toFixed(2)}</td><td>${Math.round(r.win*100)}%</td>`;tb.append(tr);});}
+ fill('#topStk',DATA.stock_top);fill('#botStk',DATA.stock_bot);
+}
+
+function renderAll(){drawDrift();regimeCards();portTbl();drawEquity();rankTbl();drawSector();drawDow();volTbl();drawTF();stkTables();}
+const btn=$('#themeBtn');
+function curDark(){const a=document.documentElement.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',curDark()?'light':'dark');requestAnimationFrame(renderAll);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>requestAnimationFrame(renderAll));
+new ResizeObserver(()=>renderAll()).observe(document.body);
+renderAll();
+</script>

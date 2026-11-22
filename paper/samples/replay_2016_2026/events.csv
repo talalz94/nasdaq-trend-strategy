@@ -1,0 +1,656 @@
+time_utc,kind,detail
+2026-11-19T15:33:17Z,init,"paper account started with $10,000.00 on 2016-01-04 (F2, US route)"
+2026-11-19T15:33:23Z,decision,"decision 2015-12-31: RISK-ON (official close 2015-12-31 (initial entry of a new account, executed at the 2016-01-04 close)) -> 3 order(s) for 2016-01-04"
+2026-11-19T15:33:24Z,decision,decision 2016-01-08: RISK-OFF (official close 2016-01-08) -> 3 order(s) for 2016-01-08
+2026-11-19T15:33:24Z,decision,decision 2016-01-15: RISK-OFF (official close 2016-01-15) -> 0 order(s) for 2016-01-15
+2026-11-19T15:33:24Z,decision,decision 2016-01-22: RISK-OFF (official close 2016-01-22) -> 0 order(s) for 2016-01-22
+2026-11-19T15:33:25Z,decision,decision 2016-01-29: RISK-OFF (official close 2016-01-29) -> 0 order(s) for 2016-01-29
+2026-11-19T15:33:25Z,dividend,IEF ex 2016-02-01: 76.0 x 0.159 = $12.08
+2026-11-19T15:33:25Z,decision,decision 2016-02-05: RISK-OFF (official close 2016-02-05) -> 0 order(s) for 2016-02-05
+2026-11-19T15:33:25Z,decision,decision 2016-02-12: RISK-OFF (official close 2016-02-12) -> 0 order(s) for 2016-02-12
+2026-11-19T15:33:26Z,decision,decision 2016-02-19: RISK-OFF (official close 2016-02-19) -> 0 order(s) for 2016-02-19
+2026-11-19T15:33:26Z,decision,decision 2016-02-26: RISK-OFF (official close 2016-02-26) -> 0 order(s) for 2016-02-26
+2026-11-19T15:33:26Z,dividend,IEF ex 2016-03-01: 76.0 x 0.157 = $11.93
+2026-11-19T15:33:27Z,decision,decision 2016-03-04: RISK-OFF (official close 2016-03-04) -> 0 order(s) for 2016-03-04
+2026-11-19T15:33:27Z,decision,decision 2016-03-11: RISK-ON (official close 2016-03-11) -> 3 order(s) for 2016-03-11
+2026-11-19T15:33:28Z,decision,decision 2016-03-18: RISK-ON (official close 2016-03-18) -> 0 order(s) for 2016-03-18
+2026-11-19T15:33:28Z,decision,decision 2016-03-24: RISK-ON (official close 2016-03-24) -> 0 order(s) for 2016-03-24
+2026-11-19T15:33:29Z,decision,decision 2016-04-01: RISK-ON (official close 2016-04-01) -> 0 order(s) for 2016-04-01
+2026-11-19T15:33:29Z,decision,decision 2016-04-08: RISK-ON (official close 2016-04-08) -> 0 order(s) for 2016-04-08
+2026-11-19T15:33:30Z,decision,decision 2016-04-15: RISK-ON (official close 2016-04-15) -> 0 order(s) for 2016-04-15
+2026-11-19T15:33:31Z,decision,decision 2016-04-22: RISK-ON (official close 2016-04-22) -> 2 order(s) for 2016-04-22
+2026-11-19T15:33:32Z,decision,decision 2016-04-29: RISK-OFF (official close 2016-04-29) -> 2 order(s) for 2016-04-29
+2026-11-19T15:33:32Z,dividend,IEF ex 2016-05-02: 78.0 x 0.161 = $12.56
+2026-11-19T15:33:33Z,decision,decision 2016-05-06: RISK-OFF (official close 2016-05-06) -> 0 order(s) for 2016-05-06
+2026-11-19T15:33:34Z,decision,decision 2016-05-13: RISK-OFF (official close 2016-05-13) -> 0 order(s) for 2016-05-13
+2026-11-19T15:33:35Z,decision,decision 2016-05-20: RISK-OFF (official close 2016-05-20) -> 0 order(s) for 2016-05-20
+2026-11-19T15:33:35Z,decision,decision 2016-05-27: RISK-ON (official close 2016-05-27) -> 2 order(s) for 2016-05-27
+2026-11-19T15:33:36Z,decision,decision 2016-06-03: RISK-ON (official close 2016-06-03) -> 0 order(s) for 2016-06-03
+2026-11-19T15:33:37Z,decision,decision 2016-06-10: RISK-ON (official close 2016-06-10) -> 2 order(s) for 2016-06-10
+2026-11-19T15:33:38Z,decision,decision 2016-06-17: RISK-OFF (official close 2016-06-17) -> 3 order(s) for 2016-06-17
+2026-11-19T15:33:38Z,decision,decision 2016-06-24: RISK-OFF (official close 2016-06-24) -> 0 order(s) for 2016-06-24
+2026-11-19T15:33:39Z,decision,decision 2016-07-01: RISK-ON (official close 2016-07-01) -> 2 order(s) for 2016-07-01
+2026-11-19T15:33:39Z,dividend,IEF ex 2016-07-01: 74.0 x 0.158 = $11.69
+2026-11-19T15:33:40Z,decision,decision 2016-07-08: RISK-ON (official close 2016-07-08) -> 0 order(s) for 2016-07-08
+2026-11-19T15:33:40Z,decision,decision 2016-07-15: RISK-ON (official close 2016-07-15) -> 0 order(s) for 2016-07-15
+2026-11-19T15:33:41Z,decision,decision 2016-07-22: RISK-ON (official close 2016-07-22) -> 2 order(s) for 2016-07-22
+2026-11-19T15:33:42Z,decision,decision 2016-07-29: RISK-ON (official close 2016-07-29) -> 2 order(s) for 2016-07-29
+2026-11-19T15:33:43Z,decision,decision 2016-08-05: RISK-ON (official close 2016-08-05) -> 2 order(s) for 2016-08-05
+2026-11-19T15:33:43Z,decision,decision 2016-08-12: RISK-ON (official close 2016-08-12) -> 0 order(s) for 2016-08-12
+2026-11-19T15:33:44Z,decision,decision 2016-08-19: RISK-ON (official close 2016-08-19) -> 0 order(s) for 2016-08-19
+2026-11-19T15:33:45Z,decision,decision 2016-08-26: RISK-ON (official close 2016-08-26) -> 2 order(s) for 2016-08-26
+2026-11-19T15:33:46Z,dividend,IEF ex 2016-09-01: 60.0 x 0.155 = $9.3
+2026-11-19T15:33:46Z,decision,decision 2016-09-02: RISK-ON (official close 2016-09-02) -> 0 order(s) for 2016-09-02
+2026-11-19T15:33:46Z,decision,decision 2016-09-09: RISK-ON (official close 2016-09-09) -> 2 order(s) for 2016-09-09
+2026-11-19T15:33:47Z,decision,decision 2016-09-16: RISK-ON (official close 2016-09-16) -> 3 order(s) for 2016-09-16
+2026-11-19T15:33:48Z,decision,decision 2016-09-23: RISK-ON (official close 2016-09-23) -> 0 order(s) for 2016-09-23
+2026-11-19T15:33:49Z,decision,decision 2016-09-30: RISK-ON (official close 2016-09-30) -> 0 order(s) for 2016-09-30
+2026-11-19T15:33:49Z,dividend,IEF ex 2016-10-03: 61.0 x 0.15 = $9.15
+2026-11-19T15:33:49Z,decision,decision 2016-10-07: RISK-ON (official close 2016-10-07) -> 2 order(s) for 2016-10-07
+2026-11-19T15:33:50Z,decision,decision 2016-10-14: RISK-ON (official close 2016-10-14) -> 2 order(s) for 2016-10-14
+2026-11-19T15:33:51Z,decision,decision 2016-10-21: RISK-ON (official close 2016-10-21) -> 0 order(s) for 2016-10-21
+2026-11-19T15:33:52Z,decision,decision 2016-10-28: RISK-ON (official close 2016-10-28) -> 0 order(s) for 2016-10-28
+2026-11-19T15:33:52Z,dividend,IEF ex 2016-11-01: 40.0 x 0.154 = $6.16
+2026-11-19T15:33:52Z,decision,decision 2016-11-04: RISK-OFF (official close 2016-11-04) -> 2 order(s) for 2016-11-04
+2026-11-19T15:33:53Z,decision,decision 2016-11-11: RISK-ON (official close 2016-11-11) -> 2 order(s) for 2016-11-11
+2026-11-19T15:33:54Z,decision,decision 2016-11-18: RISK-ON (official close 2016-11-18) -> 0 order(s) for 2016-11-18
+2026-11-19T15:33:54Z,decision,decision 2016-11-25: RISK-ON (official close 2016-11-25) -> 0 order(s) for 2016-11-25
+2026-11-19T15:33:55Z,dividend,IEF ex 2016-12-01: 39.0 x 0.149 = $5.81
+2026-11-19T15:33:55Z,decision,decision 2016-12-02: RISK-OFF (official close 2016-12-02) -> 3 order(s) for 2016-12-02
+2026-11-19T15:33:56Z,decision,decision 2016-12-09: RISK-ON (official close 2016-12-09) -> 2 order(s) for 2016-12-09
+2026-11-19T15:33:57Z,decision,decision 2016-12-16: RISK-ON (official close 2016-12-16) -> 0 order(s) for 2016-12-16
+2026-11-19T15:33:58Z,dividend,QLD ex 2016-12-21: 758.0 x 0.003688 = $2.8
+2026-11-19T15:33:58Z,dividend,IEF ex 2016-12-22: 39.0 x 0.165 = $6.44
+2026-11-19T15:33:58Z,decision,decision 2016-12-23: RISK-ON (official close 2016-12-23) -> 0 order(s) for 2016-12-23
+2026-11-19T15:33:59Z,decision,decision 2016-12-30: RISK-ON (official close 2016-12-30) -> 2 order(s) for 2016-12-30
+2026-11-19T15:33:59Z,decision,decision 2017-01-06: RISK-ON (official close 2017-01-06) -> 0 order(s) for 2017-01-06
+2026-11-19T15:34:00Z,decision,decision 2017-01-13: RISK-ON (official close 2017-01-13) -> 0 order(s) for 2017-01-13
+2026-11-19T15:34:01Z,decision,decision 2017-01-20: RISK-ON (official close 2017-01-20) -> 0 order(s) for 2017-01-20
+2026-11-19T15:34:02Z,decision,decision 2017-01-27: RISK-ON (official close 2017-01-27) -> 0 order(s) for 2017-01-27
+2026-11-19T15:34:03Z,decision,decision 2017-02-03: RISK-ON (official close 2017-02-03) -> 0 order(s) for 2017-02-03
+2026-11-19T15:34:04Z,decision,decision 2017-02-10: RISK-ON (official close 2017-02-10) -> 0 order(s) for 2017-02-10
+2026-11-19T15:34:05Z,decision,decision 2017-02-17: RISK-ON (official close 2017-02-17) -> 0 order(s) for 2017-02-17
+2026-11-19T15:34:06Z,decision,decision 2017-02-24: RISK-ON (official close 2017-02-24) -> 0 order(s) for 2017-02-24
+2026-11-19T15:34:07Z,decision,decision 2017-03-03: RISK-ON (official close 2017-03-03) -> 0 order(s) for 2017-03-03
+2026-11-19T15:34:08Z,decision,decision 2017-03-10: RISK-ON (official close 2017-03-10) -> 0 order(s) for 2017-03-10
+2026-11-19T15:34:08Z,decision,decision 2017-03-17: RISK-ON (official close 2017-03-17) -> 0 order(s) for 2017-03-17
+2026-11-19T15:34:09Z,dividend,QLD ex 2017-03-22: 1527.0 x 0.001188 = $1.81
+2026-11-19T15:34:09Z,decision,decision 2017-03-24: RISK-ON (official close 2017-03-24) -> 2 order(s) for 2017-03-24
+2026-11-19T15:34:10Z,decision,decision 2017-03-31: RISK-ON (official close 2017-03-31) -> 0 order(s) for 2017-03-31
+2026-11-19T15:34:10Z,dividend,IEF ex 2017-04-03: 46.0 x 0.159 = $7.31
+2026-11-19T15:34:11Z,decision,decision 2017-04-07: RISK-ON (official close 2017-04-07) -> 0 order(s) for 2017-04-07
+2026-11-19T15:34:12Z,decision,decision 2017-04-13: RISK-ON (official close 2017-04-13) -> 0 order(s) for 2017-04-13
+2026-11-19T15:34:12Z,decision,decision 2017-04-21: RISK-ON (official close 2017-04-21) -> 2 order(s) for 2017-04-21
+2026-11-19T15:34:13Z,decision,decision 2017-04-28: RISK-ON (official close 2017-04-28) -> 1 order(s) for 2017-04-28
+2026-11-19T15:34:14Z,decision,decision 2017-05-05: RISK-ON (official close 2017-05-05) -> 0 order(s) for 2017-05-05
+2026-11-19T15:34:15Z,decision,decision 2017-05-12: RISK-ON (official close 2017-05-12) -> 0 order(s) for 2017-05-12
+2026-11-19T15:34:16Z,decision,decision 2017-05-19: RISK-ON (official close 2017-05-19) -> 0 order(s) for 2017-05-19
+2026-11-19T15:34:17Z,decision,decision 2017-05-26: RISK-ON (official close 2017-05-26) -> 0 order(s) for 2017-05-26
+2026-11-19T15:34:18Z,decision,decision 2017-06-02: RISK-ON (official close 2017-06-02) -> 0 order(s) for 2017-06-02
+2026-11-19T15:34:19Z,decision,decision 2017-06-09: RISK-ON (official close 2017-06-09) -> 2 order(s) for 2017-06-09
+2026-11-19T15:34:20Z,decision,decision 2017-06-16: RISK-ON (official close 2017-06-16) -> 0 order(s) for 2017-06-16
+2026-11-19T15:34:20Z,dividend,QLD ex 2017-06-21: 732.0 x 0.000438 = $0.32
+2026-11-19T15:34:21Z,decision,decision 2017-06-23: RISK-ON (official close 2017-06-23) -> 1 order(s) for 2017-06-23
+2026-11-19T15:34:22Z,decision,decision 2017-06-30: RISK-ON (official close 2017-06-30) -> 2 order(s) for 2017-06-30
+2026-11-19T15:34:22Z,decision,decision 2017-07-07: RISK-ON (official close 2017-07-07) -> 2 order(s) for 2017-07-07
+2026-11-19T15:34:23Z,decision,decision 2017-07-14: RISK-ON (official close 2017-07-14) -> 0 order(s) for 2017-07-14
+2026-11-19T15:34:24Z,decision,decision 2017-07-21: RISK-ON (official close 2017-07-21) -> 0 order(s) for 2017-07-21
+2026-11-19T15:34:25Z,decision,decision 2017-07-28: RISK-ON (official close 2017-07-28) -> 2 order(s) for 2017-07-28
+2026-11-19T15:34:26Z,decision,decision 2017-08-04: RISK-ON (official close 2017-08-04) -> 2 order(s) for 2017-08-04
+2026-11-19T15:34:27Z,decision,decision 2017-08-11: RISK-ON (official close 2017-08-11) -> 2 order(s) for 2017-08-11
+2026-11-19T15:34:27Z,decision,decision 2017-08-18: RISK-ON (official close 2017-08-18) -> 0 order(s) for 2017-08-18
+2026-11-19T15:34:28Z,decision,decision 2017-08-25: RISK-ON (official close 2017-08-25) -> 0 order(s) for 2017-08-25
+2026-11-19T15:34:29Z,decision,decision 2017-09-01: RISK-ON (official close 2017-09-01) -> 0 order(s) for 2017-09-01
+2026-11-19T15:34:29Z,dividend,IEF ex 2017-09-01: 77.0 x 0.162 = $12.47
+2026-11-19T15:34:30Z,decision,decision 2017-09-08: RISK-ON (official close 2017-09-08) -> 0 order(s) for 2017-09-08
+2026-11-19T15:34:31Z,decision,decision 2017-09-15: RISK-ON (official close 2017-09-15) -> 2 order(s) for 2017-09-15
+2026-11-19T15:34:32Z,decision,decision 2017-09-22: RISK-ON (official close 2017-09-22) -> 2 order(s) for 2017-09-22
+2026-11-19T15:34:33Z,decision,decision 2017-09-29: RISK-ON (official close 2017-09-29) -> 0 order(s) for 2017-09-29
+2026-11-19T15:34:33Z,dividend,IEF ex 2017-10-02: 78.0 x 0.159 = $12.4
+2026-11-19T15:34:34Z,decision,decision 2017-10-06: RISK-ON (official close 2017-10-06) -> 2 order(s) for 2017-10-06
+2026-11-19T15:34:34Z,decision,decision 2017-10-13: RISK-ON (official close 2017-10-13) -> 0 order(s) for 2017-10-13
+2026-11-19T15:34:35Z,decision,decision 2017-10-20: RISK-ON (official close 2017-10-20) -> 0 order(s) for 2017-10-20
+2026-11-19T15:34:36Z,decision,decision 2017-10-27: RISK-ON (official close 2017-10-27) -> 0 order(s) for 2017-10-27
+2026-11-19T15:34:37Z,decision,decision 2017-11-03: RISK-ON (official close 2017-11-03) -> 0 order(s) for 2017-11-03
+2026-11-19T15:34:38Z,decision,decision 2017-11-10: RISK-ON (official close 2017-11-10) -> 0 order(s) for 2017-11-10
+2026-11-19T15:34:39Z,decision,decision 2017-11-17: RISK-ON (official close 2017-11-17) -> 0 order(s) for 2017-11-17
+2026-11-19T15:34:39Z,decision,decision 2017-11-24: RISK-ON (official close 2017-11-24) -> 0 order(s) for 2017-11-24
+2026-11-19T15:34:40Z,decision,decision 2017-12-01: RISK-ON (official close 2017-12-01) -> 2 order(s) for 2017-12-01
+2026-11-19T15:34:41Z,decision,decision 2017-12-08: RISK-ON (official close 2017-12-08) -> 0 order(s) for 2017-12-08
+2026-11-19T15:34:42Z,decision,decision 2017-12-15: RISK-ON (official close 2017-12-15) -> 0 order(s) for 2017-12-15
+2026-11-19T15:34:43Z,dividend,IEF ex 2017-12-21: 56.0 x 0.164 = $9.18
+2026-11-19T15:34:43Z,decision,decision 2017-12-22: RISK-ON (official close 2017-12-22) -> 0 order(s) for 2017-12-22
+2026-11-19T15:34:44Z,decision,decision 2017-12-29: RISK-ON (official close 2017-12-29) -> 0 order(s) for 2017-12-29
+2026-11-19T15:34:44Z,decision,decision 2018-01-05: RISK-ON (official close 2018-01-05) -> 2 order(s) for 2018-01-05
+2026-11-19T15:34:45Z,decision,decision 2018-01-12: RISK-ON (official close 2018-01-12) -> 0 order(s) for 2018-01-12
+2026-11-19T15:34:46Z,decision,decision 2018-01-19: RISK-ON (official close 2018-01-19) -> 0 order(s) for 2018-01-19
+2026-11-19T15:34:47Z,decision,decision 2018-01-26: RISK-ON (official close 2018-01-26) -> 1 order(s) for 2018-01-26
+2026-11-19T15:34:49Z,decision,decision 2018-02-02: RISK-ON (official close 2018-02-02) -> 2 order(s) for 2018-02-02
+2026-11-19T15:34:50Z,decision,decision 2018-02-09: RISK-ON (official close 2018-02-09) -> 1 order(s) for 2018-02-09
+2026-11-19T15:34:51Z,decision,decision 2018-02-16: RISK-ON (official close 2018-02-16) -> 0 order(s) for 2018-02-16
+2026-11-19T15:34:52Z,decision,decision 2018-02-23: RISK-ON (official close 2018-02-23) -> 0 order(s) for 2018-02-23
+2026-11-19T15:34:53Z,dividend,IEF ex 2018-03-01: 62.0 x 0.159 = $9.86
+2026-11-19T15:34:53Z,decision,decision 2018-03-02: RISK-ON (official close 2018-03-02) -> 0 order(s) for 2018-03-02
+2026-11-19T15:34:54Z,decision,decision 2018-03-09: RISK-ON (official close 2018-03-09) -> 2 order(s) for 2018-03-09
+2026-11-19T15:34:55Z,decision,decision 2018-03-16: RISK-ON (official close 2018-03-16) -> 2 order(s) for 2018-03-16
+2026-11-19T15:34:57Z,decision,decision 2018-03-23: RISK-OFF (official close 2018-03-23) -> 3 order(s) for 2018-03-23
+2026-11-19T15:34:58Z,decision,decision 2018-03-29: RISK-OFF (official close 2018-03-29) -> 0 order(s) for 2018-03-29
+2026-11-19T15:34:58Z,dividend,IEF ex 2018-04-02: 120.0 x 0.175 = $21.0
+2026-11-19T15:34:59Z,decision,decision 2018-04-06: RISK-OFF (official close 2018-04-06) -> 0 order(s) for 2018-04-06
+2026-11-19T15:35:00Z,decision,decision 2018-04-13: RISK-ON (official close 2018-04-13) -> 2 order(s) for 2018-04-13
+2026-11-19T15:35:01Z,decision,decision 2018-04-20: RISK-ON (official close 2018-04-20) -> 0 order(s) for 2018-04-20
+2026-11-19T15:35:02Z,decision,decision 2018-04-27: RISK-ON (official close 2018-04-27) -> 0 order(s) for 2018-04-27
+2026-11-19T15:35:03Z,dividend,IEF ex 2018-05-01: 61.0 x 0.191 = $11.65
+2026-11-19T15:35:04Z,decision,decision 2018-05-04: RISK-ON (official close 2018-05-04) -> 2 order(s) for 2018-05-04
+2026-11-19T15:35:06Z,decision,decision 2018-05-11: RISK-ON (official close 2018-05-11) -> 0 order(s) for 2018-05-11
+2026-11-19T15:35:07Z,decision,decision 2018-05-18: RISK-ON (official close 2018-05-18) -> 2 order(s) for 2018-05-18
+2026-11-19T15:35:08Z,decision,decision 2018-05-25: RISK-ON (official close 2018-05-25) -> 2 order(s) for 2018-05-25
+2026-11-19T15:35:09Z,decision,decision 2018-06-01: RISK-ON (official close 2018-06-01) -> 0 order(s) for 2018-06-01
+2026-11-19T15:35:10Z,decision,decision 2018-06-08: RISK-ON (official close 2018-06-08) -> 0 order(s) for 2018-06-08
+2026-11-19T15:35:11Z,decision,decision 2018-06-15: RISK-ON (official close 2018-06-15) -> 1 order(s) for 2018-06-15
+2026-11-19T15:35:12Z,decision,decision 2018-06-22: RISK-ON (official close 2018-06-22) -> 0 order(s) for 2018-06-22
+2026-11-19T15:35:13Z,decision,decision 2018-06-29: RISK-ON (official close 2018-06-29) -> 2 order(s) for 2018-06-29
+2026-11-19T15:35:13Z,dividend,IEF ex 2018-07-02: 63.0 x 0.19 = $11.97
+2026-11-19T15:35:13Z,decision,decision 2018-07-06: RISK-ON (official close 2018-07-06) -> 0 order(s) for 2018-07-06
+2026-11-19T15:35:14Z,decision,decision 2018-07-13: RISK-ON (official close 2018-07-13) -> 2 order(s) for 2018-07-13
+2026-11-19T15:35:15Z,decision,decision 2018-07-20: RISK-ON (official close 2018-07-20) -> 0 order(s) for 2018-07-20
+2026-11-19T15:35:16Z,decision,decision 2018-07-27: RISK-ON (official close 2018-07-27) -> 0 order(s) for 2018-07-27
+2026-11-19T15:35:16Z,dividend,IEF ex 2018-08-01: 66.0 x 0.2 = $13.2
+2026-11-19T15:35:17Z,decision,decision 2018-08-03: RISK-ON (official close 2018-08-03) -> 2 order(s) for 2018-08-03
+2026-11-19T15:35:17Z,decision,decision 2018-08-10: RISK-ON (official close 2018-08-10) -> 0 order(s) for 2018-08-10
+2026-11-19T15:35:18Z,decision,decision 2018-08-17: RISK-ON (official close 2018-08-17) -> 0 order(s) for 2018-08-17
+2026-11-19T15:35:19Z,decision,decision 2018-08-24: RISK-ON (official close 2018-08-24) -> 2 order(s) for 2018-08-24
+2026-11-19T15:35:20Z,decision,decision 2018-08-31: RISK-ON (official close 2018-08-31) -> 0 order(s) for 2018-08-31
+2026-11-19T15:35:20Z,dividend,IEF ex 2018-09-04: 66.0 x 0.206 = $13.6
+2026-11-19T15:35:21Z,decision,decision 2018-09-07: RISK-ON (official close 2018-09-07) -> 2 order(s) for 2018-09-07
+2026-11-19T15:35:22Z,decision,decision 2018-09-14: RISK-ON (official close 2018-09-14) -> 0 order(s) for 2018-09-14
+2026-11-19T15:35:23Z,decision,decision 2018-09-21: RISK-ON (official close 2018-09-21) -> 0 order(s) for 2018-09-21
+2026-11-19T15:35:24Z,decision,decision 2018-09-28: RISK-ON (official close 2018-09-28) -> 0 order(s) for 2018-09-28
+2026-11-19T15:35:24Z,dividend,IEF ex 2018-10-01: 99.0 x 0.204 = $20.2
+2026-11-19T15:35:25Z,decision,decision 2018-10-05: RISK-ON (official close 2018-10-05) -> 2 order(s) for 2018-10-05
+2026-11-19T15:35:26Z,decision,decision 2018-10-12: RISK-OFF (official close 2018-10-12) -> 2 order(s) for 2018-10-12
+2026-11-19T15:35:27Z,decision,decision 2018-10-19: RISK-OFF (official close 2018-10-19) -> 0 order(s) for 2018-10-19
+2026-11-19T15:35:29Z,decision,decision 2018-10-26: RISK-OFF (official close 2018-10-26) -> 0 order(s) for 2018-10-26
+2026-11-19T15:35:29Z,dividend,IEF ex 2018-11-01: 129.0 x 0.216 = $27.86
+2026-11-19T15:35:30Z,decision,decision 2018-11-02: RISK-OFF (official close 2018-11-02) -> 0 order(s) for 2018-11-02
+2026-11-19T15:35:31Z,decision,decision 2018-11-09: RISK-OFF (official close 2018-11-09) -> 0 order(s) for 2018-11-09
+2026-11-19T15:35:32Z,decision,decision 2018-11-16: RISK-OFF (official close 2018-11-16) -> 0 order(s) for 2018-11-16
+2026-11-19T15:35:33Z,decision,decision 2018-11-23: RISK-OFF (official close 2018-11-23) -> 0 order(s) for 2018-11-23
+2026-11-19T15:35:34Z,decision,decision 2018-11-30: RISK-OFF (official close 2018-11-30) -> 0 order(s) for 2018-11-30
+2026-11-19T15:35:34Z,dividend,IEF ex 2018-12-03: 129.0 x 0.212 = $27.35
+2026-11-19T15:35:34Z,closure,"no trading on 2018-12-05 (an unscheduled NYSE closure, e.g. a day of mourning); treated as a holiday"
+2026-11-19T15:35:35Z,decision,decision 2018-12-07: RISK-OFF (official close 2018-12-07) -> 0 order(s) for 2018-12-07
+2026-11-19T15:35:36Z,decision,decision 2018-12-14: RISK-OFF (official close 2018-12-14) -> 0 order(s) for 2018-12-14
+2026-11-19T15:35:36Z,dividend,IEF ex 2018-12-18: 129.0 x 0.213 = $27.48
+2026-11-19T15:35:37Z,decision,decision 2018-12-21: RISK-OFF (official close 2018-12-21) -> 0 order(s) for 2018-12-21
+2026-11-19T15:35:38Z,decision,decision 2018-12-28: RISK-OFF (official close 2018-12-28) -> 0 order(s) for 2018-12-28
+2026-11-19T15:35:38Z,decision,decision 2019-01-04: RISK-OFF (official close 2019-01-04) -> 0 order(s) for 2019-01-04
+2026-11-19T15:35:39Z,decision,decision 2019-01-11: RISK-OFF (official close 2019-01-11) -> 0 order(s) for 2019-01-11
+2026-11-19T15:35:40Z,decision,decision 2019-01-18: RISK-OFF (official close 2019-01-18) -> 0 order(s) for 2019-01-18
+2026-11-19T15:35:41Z,decision,decision 2019-01-25: RISK-OFF (official close 2019-01-25) -> 0 order(s) for 2019-01-25
+2026-11-19T15:35:42Z,decision,decision 2019-02-01: RISK-ON (official close 2019-02-01) -> 2 order(s) for 2019-02-01
+2026-11-19T15:35:42Z,dividend,IEF ex 2019-02-01: 129.0 x 0.22 = $28.38
+2026-11-19T15:35:43Z,decision,decision 2019-02-08: RISK-ON (official close 2019-02-08) -> 2 order(s) for 2019-02-08
+2026-11-19T15:35:44Z,decision,decision 2019-02-15: RISK-ON (official close 2019-02-15) -> 2 order(s) for 2019-02-15
+2026-11-19T15:35:45Z,decision,decision 2019-02-22: RISK-ON (official close 2019-02-22) -> 0 order(s) for 2019-02-22
+2026-11-19T15:35:46Z,decision,decision 2019-03-01: RISK-ON (official close 2019-03-01) -> 0 order(s) for 2019-03-01
+2026-11-19T15:35:47Z,decision,decision 2019-03-08: RISK-ON (official close 2019-03-08) -> 2 order(s) for 2019-03-08
+2026-11-19T15:35:48Z,decision,decision 2019-03-15: RISK-ON (official close 2019-03-15) -> 2 order(s) for 2019-03-15
+2026-11-19T15:35:49Z,dividend,QLD ex 2019-03-20: 1299.0 x 0.007875 = $10.23
+2026-11-19T15:35:49Z,decision,decision 2019-03-22: RISK-ON (official close 2019-03-22) -> 0 order(s) for 2019-03-22
+2026-11-19T15:35:51Z,decision,decision 2019-03-29: RISK-ON (official close 2019-03-29) -> 2 order(s) for 2019-03-29
+2026-11-19T15:35:51Z,dividend,IEF ex 2019-04-01: 68.0 x 0.218 = $14.82
+2026-11-19T15:35:52Z,decision,decision 2019-04-05: RISK-ON (official close 2019-04-05) -> 2 order(s) for 2019-04-05
+2026-11-19T15:35:53Z,decision,decision 2019-04-12: RISK-ON (official close 2019-04-12) -> 0 order(s) for 2019-04-12
+2026-11-19T15:35:53Z,decision,decision 2019-04-18: RISK-ON (official close 2019-04-18) -> 1 order(s) for 2019-04-18
+2026-11-19T15:35:54Z,decision,decision 2019-04-26: RISK-ON (official close 2019-04-26) -> 0 order(s) for 2019-04-26
+2026-11-19T15:35:55Z,decision,decision 2019-05-03: RISK-ON (official close 2019-05-03) -> 0 order(s) for 2019-05-03
+2026-11-19T15:35:56Z,decision,decision 2019-05-10: RISK-ON (official close 2019-05-10) -> 2 order(s) for 2019-05-10
+2026-11-19T15:35:57Z,decision,decision 2019-05-17: RISK-ON (official close 2019-05-17) -> 0 order(s) for 2019-05-17
+2026-11-19T15:35:58Z,decision,decision 2019-05-24: RISK-OFF (official close 2019-05-24) -> 3 order(s) for 2019-05-24
+2026-11-19T15:35:58Z,decision,decision 2019-05-31: RISK-OFF (official close 2019-05-31) -> 0 order(s) for 2019-05-31
+2026-11-19T15:35:59Z,dividend,IEF ex 2019-06-03: 134.0 x 0.213 = $28.54
+2026-11-19T15:35:59Z,decision,decision 2019-06-07: RISK-ON (official close 2019-06-07) -> 2 order(s) for 2019-06-07
+2026-11-19T15:36:00Z,decision,decision 2019-06-14: RISK-ON (official close 2019-06-14) -> 0 order(s) for 2019-06-14
+2026-11-19T15:36:01Z,decision,decision 2019-06-21: RISK-ON (official close 2019-06-21) -> 2 order(s) for 2019-06-21
+2026-11-19T15:36:01Z,dividend,QLD ex 2019-06-25: 1258.0 x 0.005125 = $6.45
+2026-11-19T15:36:02Z,decision,decision 2019-06-28: RISK-ON (official close 2019-06-28) -> 0 order(s) for 2019-06-28
+2026-11-19T15:36:03Z,decision,decision 2019-07-05: RISK-ON (official close 2019-07-05) -> 0 order(s) for 2019-07-05
+2026-11-19T15:36:04Z,decision,decision 2019-07-12: RISK-ON (official close 2019-07-12) -> 0 order(s) for 2019-07-12
+2026-11-19T15:36:05Z,decision,decision 2019-07-19: RISK-ON (official close 2019-07-19) -> 2 order(s) for 2019-07-19
+2026-11-19T15:36:05Z,decision,decision 2019-07-26: RISK-ON (official close 2019-07-26) -> 2 order(s) for 2019-07-26
+2026-11-19T15:36:06Z,decision,decision 2019-08-02: RISK-ON (official close 2019-08-02) -> 2 order(s) for 2019-08-02
+2026-11-19T15:36:07Z,decision,decision 2019-08-09: RISK-ON (official close 2019-08-09) -> 0 order(s) for 2019-08-09
+2026-11-19T15:36:08Z,decision,decision 2019-08-16: RISK-ON (official close 2019-08-16) -> 0 order(s) for 2019-08-16
+2026-11-19T15:36:09Z,decision,decision 2019-08-23: RISK-OFF (official close 2019-08-23) -> 3 order(s) for 2019-08-23
+2026-11-19T15:36:10Z,decision,decision 2019-08-30: RISK-ON (official close 2019-08-30) -> 2 order(s) for 2019-08-30
+2026-11-19T15:36:10Z,dividend,IEF ex 2019-09-03: 99.0 x 0.19 = $18.81
+2026-11-19T15:36:10Z,decision,decision 2019-09-06: RISK-ON (official close 2019-09-06) -> 0 order(s) for 2019-09-06
+2026-11-19T15:36:11Z,decision,decision 2019-09-13: RISK-ON (official close 2019-09-13) -> 2 order(s) for 2019-09-13
+2026-11-19T15:36:12Z,decision,decision 2019-09-20: RISK-ON (official close 2019-09-20) -> 2 order(s) for 2019-09-20
+2026-11-19T15:36:12Z,decision,decision 2019-09-27: RISK-ON (official close 2019-09-27) -> 0 order(s) for 2019-09-27
+2026-11-19T15:36:13Z,dividend,IEF ex 2019-10-01: 100.0 x 0.171 = $17.1
+2026-11-19T15:36:13Z,decision,decision 2019-10-04: RISK-ON (official close 2019-10-04) -> 2 order(s) for 2019-10-04
+2026-11-19T15:36:14Z,decision,decision 2019-10-11: RISK-ON (official close 2019-10-11) -> 0 order(s) for 2019-10-11
+2026-11-19T15:36:15Z,decision,decision 2019-10-18: RISK-ON (official close 2019-10-18) -> 0 order(s) for 2019-10-18
+2026-11-19T15:36:16Z,decision,decision 2019-10-25: RISK-ON (official close 2019-10-25) -> 2 order(s) for 2019-10-25
+2026-11-19T15:36:16Z,decision,decision 2019-11-01: RISK-ON (official close 2019-11-01) -> 0 order(s) for 2019-11-01
+2026-11-19T15:36:17Z,decision,decision 2019-11-08: RISK-ON (official close 2019-11-08) -> 0 order(s) for 2019-11-08
+2026-11-19T15:36:18Z,decision,decision 2019-11-15: RISK-ON (official close 2019-11-15) -> 0 order(s) for 2019-11-15
+2026-11-19T15:36:18Z,decision,decision 2019-11-22: RISK-ON (official close 2019-11-22) -> 0 order(s) for 2019-11-22
+2026-11-19T15:36:19Z,decision,decision 2019-11-29: RISK-ON (official close 2019-11-29) -> 1 order(s) for 2019-11-29
+2026-11-19T15:36:20Z,decision,decision 2019-12-06: RISK-ON (official close 2019-12-06) -> 2 order(s) for 2019-12-06
+2026-11-19T15:36:21Z,decision,decision 2019-12-13: RISK-ON (official close 2019-12-13) -> 2 order(s) for 2019-12-13
+2026-11-19T15:36:21Z,decision,decision 2019-12-20: RISK-ON (official close 2019-12-20) -> 0 order(s) for 2019-12-20
+2026-11-19T15:36:22Z,dividend,QLD ex 2019-12-24: 1154.0 x 0.00625 = $7.21
+2026-11-19T15:36:22Z,decision,decision 2019-12-27: RISK-ON (official close 2019-12-27) -> 0 order(s) for 2019-12-27
+2026-11-19T15:36:23Z,decision,decision 2020-01-03: RISK-ON (official close 2020-01-03) -> 0 order(s) for 2020-01-03
+2026-11-19T15:36:23Z,decision,decision 2020-01-10: RISK-ON (official close 2020-01-10) -> 1 order(s) for 2020-01-10
+2026-11-19T15:36:24Z,decision,decision 2020-01-17: RISK-ON (official close 2020-01-17) -> 0 order(s) for 2020-01-17
+2026-11-19T15:36:25Z,decision,decision 2020-01-24: RISK-ON (official close 2020-01-24) -> 0 order(s) for 2020-01-24
+2026-11-19T15:36:25Z,decision,decision 2020-01-31: RISK-ON (official close 2020-01-31) -> 2 order(s) for 2020-01-31
+2026-11-19T15:36:25Z,dividend,IEF ex 2020-02-03: 80.0 x 0.153 = $12.24
+2026-11-19T15:36:26Z,decision,decision 2020-02-07: RISK-ON (official close 2020-02-07) -> 2 order(s) for 2020-02-07
+2026-11-19T15:36:27Z,decision,decision 2020-02-14: RISK-ON (official close 2020-02-14) -> 0 order(s) for 2020-02-14
+2026-11-19T15:36:27Z,decision,decision 2020-02-21: RISK-ON (official close 2020-02-21) -> 2 order(s) for 2020-02-21
+2026-11-19T15:36:28Z,decision,decision 2020-02-28: RISK-OFF (official close 2020-02-28) -> 2 order(s) for 2020-02-28
+2026-11-19T15:36:28Z,dividend,IEF ex 2020-03-02: 151.0 x 0.14 = $21.14
+2026-11-19T15:36:29Z,decision,decision 2020-03-06: RISK-OFF (official close 2020-03-06) -> 0 order(s) for 2020-03-06
+2026-11-19T15:36:29Z,decision,decision 2020-03-13: RISK-OFF (official close 2020-03-13) -> 0 order(s) for 2020-03-13
+2026-11-19T15:36:30Z,decision,decision 2020-03-20: RISK-OFF (official close 2020-03-20) -> 0 order(s) for 2020-03-20
+2026-11-19T15:36:31Z,decision,decision 2020-03-27: RISK-OFF (official close 2020-03-27) -> 0 order(s) for 2020-03-27
+2026-11-19T15:36:32Z,dividend,IEF ex 2020-04-01: 151.0 x 0.144 = $21.74
+2026-11-19T15:36:32Z,decision,decision 2020-04-03: RISK-OFF (official close 2020-04-03) -> 0 order(s) for 2020-04-03
+2026-11-19T15:36:33Z,decision,decision 2020-04-09: RISK-OFF (official close 2020-04-09) -> 0 order(s) for 2020-04-09
+2026-11-19T15:36:33Z,decision,decision 2020-04-17: RISK-ON (official close 2020-04-17) -> 3 order(s) for 2020-04-17
+2026-11-19T15:36:34Z,decision,decision 2020-04-24: RISK-ON (official close 2020-04-24) -> 2 order(s) for 2020-04-24
+2026-11-19T15:36:35Z,decision,decision 2020-05-01: RISK-ON (official close 2020-05-01) -> 2 order(s) for 2020-05-01
+2026-11-19T15:36:35Z,dividend,IEF ex 2020-05-01: 102.0 x 0.128 = $13.06
+2026-11-19T15:36:36Z,decision,decision 2020-05-08: RISK-ON (official close 2020-05-08) -> 2 order(s) for 2020-05-08
+2026-11-19T15:36:37Z,decision,decision 2020-05-15: RISK-ON (official close 2020-05-15) -> 2 order(s) for 2020-05-15
+2026-11-19T15:36:38Z,decision,decision 2020-05-22: RISK-ON (official close 2020-05-22) -> 2 order(s) for 2020-05-22
+2026-11-19T15:36:39Z,decision,decision 2020-05-29: RISK-ON (official close 2020-05-29) -> 0 order(s) for 2020-05-29
+2026-11-19T15:36:39Z,decision,decision 2020-06-05: RISK-ON (official close 2020-06-05) -> 1 order(s) for 2020-06-05
+2026-11-19T15:36:40Z,decision,decision 2020-06-12: RISK-ON (official close 2020-06-12) -> 0 order(s) for 2020-06-12
+2026-11-19T15:36:41Z,decision,decision 2020-06-19: RISK-ON (official close 2020-06-19) -> 0 order(s) for 2020-06-19
+2026-11-19T15:36:42Z,decision,decision 2020-06-26: RISK-ON (official close 2020-06-26) -> 2 order(s) for 2020-06-26
+2026-11-19T15:36:42Z,dividend,IEF ex 2020-07-01: 88.0 x 0.11 = $9.68
+2026-11-19T15:36:42Z,decision,decision 2020-07-02: RISK-ON (official close 2020-07-02) -> 2 order(s) for 2020-07-02
+2026-11-19T15:36:43Z,decision,decision 2020-07-10: RISK-ON (official close 2020-07-10) -> 0 order(s) for 2020-07-10
+2026-11-19T15:36:44Z,decision,decision 2020-07-17: RISK-ON (official close 2020-07-17) -> 0 order(s) for 2020-07-17
+2026-11-19T15:36:44Z,decision,decision 2020-07-24: RISK-ON (official close 2020-07-24) -> 2 order(s) for 2020-07-24
+2026-11-19T15:36:45Z,decision,decision 2020-07-31: RISK-ON (official close 2020-07-31) -> 0 order(s) for 2020-07-31
+2026-11-19T15:36:45Z,dividend,IEF ex 2020-08-03: 94.0 x 0.1 = $9.4
+2026-11-19T15:36:46Z,decision,decision 2020-08-07: RISK-ON (official close 2020-08-07) -> 2 order(s) for 2020-08-07
+2026-11-19T15:36:47Z,decision,decision 2020-08-14: RISK-ON (official close 2020-08-14) -> 0 order(s) for 2020-08-14
+2026-11-19T15:36:47Z,decision,decision 2020-08-21: RISK-ON (official close 2020-08-21) -> 2 order(s) for 2020-08-21
+2026-11-19T15:36:48Z,decision,decision 2020-08-28: RISK-ON (official close 2020-08-28) -> 0 order(s) for 2020-08-28
+2026-11-19T15:36:48Z,dividend,IEF ex 2020-09-01: 101.0 x 0.088 = $8.89
+2026-11-19T15:36:49Z,decision,decision 2020-09-04: RISK-ON (official close 2020-09-04) -> 2 order(s) for 2020-09-04
+2026-11-19T15:36:49Z,decision,decision 2020-09-11: RISK-ON (official close 2020-09-11) -> 0 order(s) for 2020-09-11
+2026-11-19T15:36:50Z,decision,decision 2020-09-18: RISK-ON (official close 2020-09-18) -> 0 order(s) for 2020-09-18
+2026-11-19T15:36:51Z,decision,decision 2020-09-25: RISK-ON (official close 2020-09-25) -> 2 order(s) for 2020-09-25
+2026-11-19T15:36:51Z,dividend,IEF ex 2020-10-01: 157.0 x 0.079 = $12.4
+2026-11-19T15:36:51Z,decision,decision 2020-10-02: RISK-ON (official close 2020-10-02) -> 2 order(s) for 2020-10-02
+2026-11-19T15:36:52Z,decision,decision 2020-10-09: RISK-ON (official close 2020-10-09) -> 2 order(s) for 2020-10-09
+2026-11-19T15:36:53Z,decision,decision 2020-10-16: RISK-ON (official close 2020-10-16) -> 2 order(s) for 2020-10-16
+2026-11-19T15:36:54Z,decision,decision 2020-10-23: RISK-ON (official close 2020-10-23) -> 2 order(s) for 2020-10-23
+2026-11-19T15:36:55Z,decision,decision 2020-10-30: RISK-ON (official close 2020-10-30) -> 1 order(s) for 2020-10-30
+2026-11-19T15:36:55Z,dividend,IEF ex 2020-11-02: 102.0 x 0.076 = $7.75
+2026-11-19T15:36:56Z,decision,decision 2020-11-06: RISK-ON (official close 2020-11-06) -> 2 order(s) for 2020-11-06
+2026-11-19T15:36:57Z,decision,decision 2020-11-13: RISK-ON (official close 2020-11-13) -> 0 order(s) for 2020-11-13
+2026-11-19T15:36:58Z,decision,decision 2020-11-20: RISK-ON (official close 2020-11-20) -> 0 order(s) for 2020-11-20
+2026-11-19T15:36:58Z,decision,decision 2020-11-27: RISK-ON (official close 2020-11-27) -> 3 order(s) for 2020-11-27
+2026-11-19T15:36:59Z,decision,decision 2020-12-04: RISK-ON (official close 2020-12-04) -> 2 order(s) for 2020-12-04
+2026-11-19T15:37:00Z,decision,decision 2020-12-11: RISK-ON (official close 2020-12-11) -> 2 order(s) for 2020-12-11
+2026-11-19T15:37:01Z,decision,decision 2020-12-18: RISK-ON (official close 2020-12-18) -> 0 order(s) for 2020-12-18
+2026-11-19T15:37:02Z,decision,decision 2020-12-24: RISK-ON (official close 2020-12-24) -> 0 order(s) for 2020-12-24
+2026-11-19T15:37:02Z,decision,decision 2020-12-31: RISK-ON (official close 2020-12-31) -> 0 order(s) for 2020-12-31
+2026-11-19T15:37:03Z,decision,decision 2021-01-08: RISK-ON (official close 2021-01-08) -> 0 order(s) for 2021-01-08
+2026-11-19T15:37:04Z,decision,decision 2021-01-15: RISK-ON (official close 2021-01-15) -> 2 order(s) for 2021-01-15
+2026-11-19T15:37:04Z,decision,decision 2021-01-22: RISK-ON (official close 2021-01-22) -> 2 order(s) for 2021-01-22
+2026-11-19T15:37:05Z,decision,decision 2021-01-29: RISK-ON (official close 2021-01-29) -> 2 order(s) for 2021-01-29
+2026-11-19T15:37:05Z,dividend,IEF ex 2021-02-01: 115.0 x 0.078 = $8.97
+2026-11-19T15:37:06Z,decision,decision 2021-02-05: RISK-ON (official close 2021-02-05) -> 1 order(s) for 2021-02-05
+2026-11-19T15:37:07Z,decision,decision 2021-02-12: RISK-ON (official close 2021-02-12) -> 2 order(s) for 2021-02-12
+2026-11-19T15:37:07Z,decision,decision 2021-02-19: RISK-ON (official close 2021-02-19) -> 2 order(s) for 2021-02-19
+2026-11-19T15:37:08Z,decision,decision 2021-02-26: RISK-ON (official close 2021-02-26) -> 1 order(s) for 2021-02-26
+2026-11-19T15:37:08Z,dividend,IEF ex 2021-03-01: 119.0 x 0.07 = $8.33
+2026-11-19T15:37:09Z,decision,decision 2021-03-05: RISK-ON (official close 2021-03-05) -> 2 order(s) for 2021-03-05
+2026-11-19T15:37:10Z,decision,decision 2021-03-12: RISK-ON (official close 2021-03-12) -> 2 order(s) for 2021-03-12
+2026-11-19T15:37:11Z,decision,decision 2021-03-19: RISK-ON (official close 2021-03-19) -> 2 order(s) for 2021-03-19
+2026-11-19T15:37:11Z,decision,decision 2021-03-26: RISK-ON (official close 2021-03-26) -> 2 order(s) for 2021-03-26
+2026-11-19T15:37:12Z,decision,decision 2021-04-01: RISK-ON (official close 2021-04-01) -> 0 order(s) for 2021-04-01
+2026-11-19T15:37:12Z,dividend,IEF ex 2021-04-01: 125.0 x 0.07 = $8.75
+2026-11-19T15:37:13Z,decision,decision 2021-04-09: RISK-ON (official close 2021-04-09) -> 3 order(s) for 2021-04-09
+2026-11-19T15:37:14Z,decision,decision 2021-04-16: RISK-ON (official close 2021-04-16) -> 0 order(s) for 2021-04-16
+2026-11-19T15:37:15Z,decision,decision 2021-04-23: RISK-ON (official close 2021-04-23) -> 0 order(s) for 2021-04-23
+2026-11-19T15:37:15Z,decision,decision 2021-04-30: RISK-ON (official close 2021-04-30) -> 2 order(s) for 2021-04-30
+2026-11-19T15:37:16Z,dividend,IEF ex 2021-05-03: 124.0 x 0.074 = $9.18
+2026-11-19T15:37:16Z,decision,decision 2021-05-07: RISK-ON (official close 2021-05-07) -> 0 order(s) for 2021-05-07
+2026-11-19T15:37:17Z,decision,decision 2021-05-14: RISK-ON (official close 2021-05-14) -> 1 order(s) for 2021-05-14
+2026-11-19T15:37:18Z,decision,decision 2021-05-21: RISK-ON (official close 2021-05-21) -> 0 order(s) for 2021-05-21
+2026-11-19T15:37:18Z,decision,decision 2021-05-28: RISK-ON (official close 2021-05-28) -> 0 order(s) for 2021-05-28
+2026-11-19T15:37:18Z,dividend,IEF ex 2021-06-01: 124.0 x 0.079 = $9.8
+2026-11-19T15:37:19Z,decision,decision 2021-06-04: RISK-ON (official close 2021-06-04) -> 0 order(s) for 2021-06-04
+2026-11-19T15:37:20Z,decision,decision 2021-06-11: RISK-ON (official close 2021-06-11) -> 2 order(s) for 2021-06-11
+2026-11-19T15:37:20Z,decision,decision 2021-06-18: RISK-ON (official close 2021-06-18) -> 0 order(s) for 2021-06-18
+2026-11-19T15:37:21Z,decision,decision 2021-06-25: RISK-ON (official close 2021-06-25) -> 0 order(s) for 2021-06-25
+2026-11-19T15:37:22Z,decision,decision 2021-07-02: RISK-ON (official close 2021-07-02) -> 0 order(s) for 2021-07-02
+2026-11-19T15:37:22Z,decision,decision 2021-07-09: RISK-ON (official close 2021-07-09) -> 0 order(s) for 2021-07-09
+2026-11-19T15:37:23Z,decision,decision 2021-07-16: RISK-ON (official close 2021-07-16) -> 0 order(s) for 2021-07-16
+2026-11-19T15:37:24Z,decision,decision 2021-07-23: RISK-ON (official close 2021-07-23) -> 1 order(s) for 2021-07-23
+2026-11-19T15:37:25Z,decision,decision 2021-07-30: RISK-ON (official close 2021-07-30) -> 2 order(s) for 2021-07-30
+2026-11-19T15:37:26Z,dividend,IEF ex 2021-08-02: 137.0 x 0.076 = $10.41
+2026-11-19T15:37:26Z,decision,decision 2021-08-06: RISK-ON (official close 2021-08-06) -> 3 order(s) for 2021-08-06
+2026-11-19T15:37:27Z,decision,decision 2021-08-13: RISK-ON (official close 2021-08-13) -> 2 order(s) for 2021-08-13
+2026-11-19T15:37:28Z,decision,decision 2021-08-20: RISK-ON (official close 2021-08-20) -> 2 order(s) for 2021-08-20
+2026-11-19T15:37:29Z,decision,decision 2021-08-27: RISK-ON (official close 2021-08-27) -> 2 order(s) for 2021-08-27
+2026-11-19T15:37:30Z,dividend,IEF ex 2021-09-01: 140.0 x 0.08 = $11.2
+2026-11-19T15:37:30Z,decision,decision 2021-09-03: RISK-ON (official close 2021-09-03) -> 0 order(s) for 2021-09-03
+2026-11-19T15:37:30Z,decision,decision 2021-09-10: RISK-ON (official close 2021-09-10) -> 2 order(s) for 2021-09-10
+2026-11-19T15:37:31Z,decision,decision 2021-09-17: RISK-ON (official close 2021-09-17) -> 2 order(s) for 2021-09-17
+2026-11-19T15:37:32Z,decision,decision 2021-09-24: RISK-ON (official close 2021-09-24) -> 2 order(s) for 2021-09-24
+2026-11-19T15:37:33Z,decision,decision 2021-10-01: RISK-ON (official close 2021-10-01) -> 2 order(s) for 2021-10-01
+2026-11-19T15:37:33Z,dividend,IEF ex 2021-10-01: 209.0 x 0.08 = $16.72
+2026-11-19T15:37:33Z,decision,decision 2021-10-08: RISK-ON (official close 2021-10-08) -> 2 order(s) for 2021-10-08
+2026-11-19T15:37:34Z,decision,decision 2021-10-15: RISK-ON (official close 2021-10-15) -> 0 order(s) for 2021-10-15
+2026-11-19T15:37:35Z,decision,decision 2021-10-22: RISK-ON (official close 2021-10-22) -> 0 order(s) for 2021-10-22
+2026-11-19T15:37:36Z,decision,decision 2021-10-29: RISK-ON (official close 2021-10-29) -> 2 order(s) for 2021-10-29
+2026-11-19T15:37:37Z,decision,decision 2021-11-05: RISK-ON (official close 2021-11-05) -> 0 order(s) for 2021-11-05
+2026-11-19T15:37:38Z,decision,decision 2021-11-12: RISK-ON (official close 2021-11-12) -> 0 order(s) for 2021-11-12
+2026-11-19T15:37:38Z,decision,decision 2021-11-19: RISK-ON (official close 2021-11-19) -> 0 order(s) for 2021-11-19
+2026-11-19T15:37:39Z,decision,decision 2021-11-26: RISK-ON (official close 2021-11-26) -> 2 order(s) for 2021-11-26
+2026-11-19T15:37:39Z,dividend,IEF ex 2021-12-01: 149.0 x 0.088 = $13.11
+2026-11-19T15:37:40Z,decision,decision 2021-12-03: RISK-ON (official close 2021-12-03) -> 0 order(s) for 2021-12-03
+2026-11-19T15:37:41Z,decision,decision 2021-12-10: RISK-ON (official close 2021-12-10) -> 0 order(s) for 2021-12-10
+2026-11-19T15:37:41Z,dividend,IEF ex 2021-12-16: 149.0 x 0.106 = $15.79
+2026-11-19T15:37:42Z,decision,decision 2021-12-17: RISK-ON (official close 2021-12-17) -> 0 order(s) for 2021-12-17
+2026-11-19T15:37:42Z,decision,decision 2021-12-23: RISK-ON (official close 2021-12-23) -> 0 order(s) for 2021-12-23
+2026-11-19T15:37:43Z,decision,decision 2021-12-31: RISK-ON (official close 2021-12-31) -> 0 order(s) for 2021-12-31
+2026-11-19T15:37:43Z,decision,decision 2022-01-07: RISK-OFF (official close 2022-01-07) -> 3 order(s) for 2022-01-07
+2026-11-19T15:37:44Z,decision,decision 2022-01-14: RISK-OFF (official close 2022-01-14) -> 0 order(s) for 2022-01-14
+2026-11-19T15:37:45Z,decision,decision 2022-01-21: RISK-OFF (official close 2022-01-21) -> 0 order(s) for 2022-01-21
+2026-11-19T15:37:45Z,decision,decision 2022-01-28: RISK-OFF (official close 2022-01-28) -> 0 order(s) for 2022-01-28
+2026-11-19T15:37:46Z,dividend,IEF ex 2022-02-01: 296.0 x 0.108 = $31.97
+2026-11-19T15:37:46Z,decision,decision 2022-02-04: RISK-OFF (official close 2022-02-04) -> 0 order(s) for 2022-02-04
+2026-11-19T15:37:47Z,decision,decision 2022-02-11: RISK-OFF (official close 2022-02-11) -> 0 order(s) for 2022-02-11
+2026-11-19T15:37:48Z,decision,decision 2022-02-18: RISK-OFF (official close 2022-02-18) -> 0 order(s) for 2022-02-18
+2026-11-19T15:37:48Z,decision,decision 2022-02-25: RISK-OFF (official close 2022-02-25) -> 0 order(s) for 2022-02-25
+2026-11-19T15:37:48Z,dividend,IEF ex 2022-03-01: 296.0 x 0.101 = $29.9
+2026-11-19T15:37:49Z,decision,decision 2022-03-04: RISK-OFF (official close 2022-03-04) -> 0 order(s) for 2022-03-04
+2026-11-19T15:37:49Z,decision,decision 2022-03-11: RISK-OFF (official close 2022-03-11) -> 0 order(s) for 2022-03-11
+2026-11-19T15:37:50Z,decision,decision 2022-03-18: RISK-OFF (official close 2022-03-18) -> 0 order(s) for 2022-03-18
+2026-11-19T15:37:51Z,decision,decision 2022-03-25: RISK-OFF (official close 2022-03-25) -> 1 order(s) for 2022-03-25
+2026-11-19T15:37:52Z,decision,decision 2022-04-01: RISK-ON (official close 2022-04-01) -> 3 order(s) for 2022-04-01
+2026-11-19T15:37:52Z,dividend,IEF ex 2022-04-01: 298.0 x 0.121 = $36.06
+2026-11-19T15:37:53Z,decision,decision 2022-04-08: RISK-OFF (official close 2022-04-08) -> 3 order(s) for 2022-04-08
+2026-11-19T15:37:53Z,decision,decision 2022-04-14: RISK-OFF (official close 2022-04-14) -> 0 order(s) for 2022-04-14
+2026-11-19T15:37:54Z,decision,decision 2022-04-22: RISK-OFF (official close 2022-04-22) -> 0 order(s) for 2022-04-22
+2026-11-19T15:37:55Z,decision,decision 2022-04-29: RISK-OFF (official close 2022-04-29) -> 0 order(s) for 2022-04-29
+2026-11-19T15:37:55Z,dividend,IEF ex 2022-05-02: 298.0 x 0.125 = $37.25
+2026-11-19T15:37:56Z,decision,decision 2022-05-06: RISK-OFF (official close 2022-05-06) -> 0 order(s) for 2022-05-06
+2026-11-19T15:37:57Z,decision,decision 2022-05-13: RISK-OFF (official close 2022-05-13) -> 0 order(s) for 2022-05-13
+2026-11-19T15:37:58Z,decision,decision 2022-05-20: RISK-OFF (official close 2022-05-20) -> 0 order(s) for 2022-05-20
+2026-11-19T15:37:59Z,decision,decision 2022-05-27: RISK-OFF (official close 2022-05-27) -> 0 order(s) for 2022-05-27
+2026-11-19T15:37:59Z,dividend,IEF ex 2022-06-01: 298.0 x 0.129 = $38.44
+2026-11-19T15:37:59Z,decision,decision 2022-06-03: RISK-OFF (official close 2022-06-03) -> 0 order(s) for 2022-06-03
+2026-11-19T15:38:00Z,decision,decision 2022-06-10: RISK-OFF (official close 2022-06-10) -> 0 order(s) for 2022-06-10
+2026-11-19T15:38:01Z,decision,decision 2022-06-17: RISK-OFF (official close 2022-06-17) -> 0 order(s) for 2022-06-17
+2026-11-19T15:38:02Z,decision,decision 2022-06-24: RISK-OFF (official close 2022-06-24) -> 0 order(s) for 2022-06-24
+2026-11-19T15:38:03Z,decision,decision 2022-07-01: RISK-OFF (official close 2022-07-01) -> 0 order(s) for 2022-07-01
+2026-11-19T15:38:03Z,dividend,IEF ex 2022-07-01: 298.0 x 0.155 = $46.19
+2026-11-19T15:38:03Z,decision,decision 2022-07-08: RISK-OFF (official close 2022-07-08) -> 0 order(s) for 2022-07-08
+2026-11-19T15:38:04Z,decision,decision 2022-07-15: RISK-OFF (official close 2022-07-15) -> 0 order(s) for 2022-07-15
+2026-11-19T15:38:04Z,decision,decision 2022-07-22: RISK-OFF (official close 2022-07-22) -> 0 order(s) for 2022-07-22
+2026-11-19T15:38:05Z,decision,decision 2022-07-29: RISK-ON (official close 2022-07-29) -> 3 order(s) for 2022-07-29
+2026-11-19T15:38:06Z,decision,decision 2022-08-05: RISK-ON (official close 2022-08-05) -> 2 order(s) for 2022-08-05
+2026-11-19T15:38:07Z,decision,decision 2022-08-12: RISK-ON (official close 2022-08-12) -> 0 order(s) for 2022-08-12
+2026-11-19T15:38:07Z,decision,decision 2022-08-19: RISK-ON (official close 2022-08-19) -> 0 order(s) for 2022-08-19
+2026-11-19T15:38:08Z,decision,decision 2022-08-26: RISK-OFF (official close 2022-08-26) -> 2 order(s) for 2022-08-26
+2026-11-19T15:38:08Z,dividend,IEF ex 2022-09-01: 298.0 x 0.179 = $53.34
+2026-11-19T15:38:09Z,decision,decision 2022-09-02: RISK-OFF (official close 2022-09-02) -> 0 order(s) for 2022-09-02
+2026-11-19T15:38:09Z,decision,decision 2022-09-09: RISK-OFF (official close 2022-09-09) -> 0 order(s) for 2022-09-09
+2026-11-19T15:38:10Z,decision,decision 2022-09-16: RISK-OFF (official close 2022-09-16) -> 0 order(s) for 2022-09-16
+2026-11-19T15:38:10Z,decision,decision 2022-09-23: RISK-OFF (official close 2022-09-23) -> 0 order(s) for 2022-09-23
+2026-11-19T15:38:11Z,decision,decision 2022-09-30: RISK-OFF (official close 2022-09-30) -> 0 order(s) for 2022-09-30
+2026-11-19T15:38:11Z,dividend,IEF ex 2022-10-03: 298.0 x 0.187 = $55.73
+2026-11-19T15:38:12Z,decision,decision 2022-10-07: RISK-OFF (official close 2022-10-07) -> 0 order(s) for 2022-10-07
+2026-11-19T15:38:13Z,decision,decision 2022-10-14: RISK-OFF (official close 2022-10-14) -> 0 order(s) for 2022-10-14
+2026-11-19T15:38:14Z,decision,decision 2022-10-21: RISK-OFF (official close 2022-10-21) -> 0 order(s) for 2022-10-21
+2026-11-19T15:38:15Z,decision,decision 2022-10-28: RISK-OFF (official close 2022-10-28) -> 0 order(s) for 2022-10-28
+2026-11-19T15:38:15Z,dividend,IEF ex 2022-11-01: 298.0 x 0.203 = $60.49
+2026-11-19T15:38:15Z,decision,decision 2022-11-04: RISK-OFF (official close 2022-11-04) -> 0 order(s) for 2022-11-04
+2026-11-19T15:38:16Z,decision,decision 2022-11-11: RISK-OFF (official close 2022-11-11) -> 0 order(s) for 2022-11-11
+2026-11-19T15:38:17Z,decision,decision 2022-11-18: RISK-OFF (official close 2022-11-18) -> 0 order(s) for 2022-11-18
+2026-11-19T15:38:18Z,decision,decision 2022-11-25: RISK-OFF (official close 2022-11-25) -> 0 order(s) for 2022-11-25
+2026-11-19T15:38:18Z,dividend,IEF ex 2022-12-01: 298.0 x 0.194 = $57.81
+2026-11-19T15:38:19Z,decision,decision 2022-12-02: RISK-ON (official close 2022-12-02) -> 3 order(s) for 2022-12-02
+2026-11-19T15:38:20Z,decision,decision 2022-12-09: RISK-OFF (official close 2022-12-09) -> 3 order(s) for 2022-12-09
+2026-11-19T15:38:21Z,dividend,IEF ex 2022-12-15: 289.0 x 0.192 = $55.49
+2026-11-19T15:38:21Z,decision,decision 2022-12-16: RISK-OFF (official close 2022-12-16) -> 0 order(s) for 2022-12-16
+2026-11-19T15:38:22Z,decision,decision 2022-12-23: RISK-OFF (official close 2022-12-23) -> 0 order(s) for 2022-12-23
+2026-11-19T15:38:22Z,decision,decision 2022-12-30: RISK-OFF (official close 2022-12-30) -> 0 order(s) for 2022-12-30
+2026-11-19T15:38:23Z,decision,decision 2023-01-06: RISK-OFF (official close 2023-01-06) -> 0 order(s) for 2023-01-06
+2026-11-19T15:38:23Z,decision,decision 2023-01-13: RISK-OFF (official close 2023-01-13) -> 0 order(s) for 2023-01-13
+2026-11-19T15:38:24Z,decision,decision 2023-01-20: RISK-ON (official close 2023-01-20) -> 3 order(s) for 2023-01-20
+2026-11-19T15:38:25Z,decision,decision 2023-01-27: RISK-ON (official close 2023-01-27) -> 2 order(s) for 2023-01-27
+2026-11-19T15:38:25Z,decision,decision 2023-02-03: RISK-ON (official close 2023-02-03) -> 0 order(s) for 2023-02-03
+2026-11-19T15:38:26Z,decision,decision 2023-02-10: RISK-ON (official close 2023-02-10) -> 2 order(s) for 2023-02-10
+2026-11-19T15:38:27Z,decision,decision 2023-02-17: RISK-ON (official close 2023-02-17) -> 0 order(s) for 2023-02-17
+2026-11-19T15:38:27Z,decision,decision 2023-02-24: RISK-ON (official close 2023-02-24) -> 0 order(s) for 2023-02-24
+2026-11-19T15:38:28Z,dividend,IEF ex 2023-03-01: 156.0 x 0.196 = $30.58
+2026-11-19T15:38:28Z,decision,decision 2023-03-03: RISK-ON (official close 2023-03-03) -> 0 order(s) for 2023-03-03
+2026-11-19T15:38:29Z,decision,decision 2023-03-10: RISK-OFF (official close 2023-03-10) -> 3 order(s) for 2023-03-10
+2026-11-19T15:38:29Z,decision,decision 2023-03-17: RISK-ON (official close 2023-03-17) -> 3 order(s) for 2023-03-17
+2026-11-19T15:38:30Z,decision,decision 2023-03-24: RISK-ON (official close 2023-03-24) -> 2 order(s) for 2023-03-24
+2026-11-19T15:38:31Z,decision,decision 2023-03-31: RISK-ON (official close 2023-03-31) -> 0 order(s) for 2023-03-31
+2026-11-19T15:38:31Z,decision,decision 2023-04-06: RISK-ON (official close 2023-04-06) -> 0 order(s) for 2023-04-06
+2026-11-19T15:38:32Z,decision,decision 2023-04-14: RISK-ON (official close 2023-04-14) -> 2 order(s) for 2023-04-14
+2026-11-19T15:38:33Z,decision,decision 2023-04-21: RISK-ON (official close 2023-04-21) -> 0 order(s) for 2023-04-21
+2026-11-19T15:38:34Z,decision,decision 2023-04-28: RISK-ON (official close 2023-04-28) -> 0 order(s) for 2023-04-28
+2026-11-19T15:38:35Z,dividend,IEF ex 2023-05-01: 161.0 x 0.239 = $38.48
+2026-11-19T15:38:35Z,decision,decision 2023-05-05: RISK-ON (official close 2023-05-05) -> 0 order(s) for 2023-05-05
+2026-11-19T15:38:36Z,decision,decision 2023-05-12: RISK-ON (official close 2023-05-12) -> 0 order(s) for 2023-05-12
+2026-11-19T15:38:37Z,decision,decision 2023-05-19: RISK-ON (official close 2023-05-19) -> 2 order(s) for 2023-05-19
+2026-11-19T15:38:38Z,decision,decision 2023-05-26: RISK-ON (official close 2023-05-26) -> 1 order(s) for 2023-05-26
+2026-11-19T15:38:38Z,decision,decision 2023-06-02: RISK-ON (official close 2023-06-02) -> 0 order(s) for 2023-06-02
+2026-11-19T15:38:39Z,decision,decision 2023-06-09: RISK-ON (official close 2023-06-09) -> 0 order(s) for 2023-06-09
+2026-11-19T15:38:40Z,decision,decision 2023-06-16: RISK-ON (official close 2023-06-16) -> 2 order(s) for 2023-06-16
+2026-11-19T15:38:41Z,decision,decision 2023-06-23: RISK-ON (official close 2023-06-23) -> 0 order(s) for 2023-06-23
+2026-11-19T15:38:42Z,decision,decision 2023-06-30: RISK-ON (official close 2023-06-30) -> 0 order(s) for 2023-06-30
+2026-11-19T15:38:42Z,decision,decision 2023-07-07: RISK-ON (official close 2023-07-07) -> 0 order(s) for 2023-07-07
+2026-11-19T15:38:43Z,decision,decision 2023-07-14: RISK-ON (official close 2023-07-14) -> 2 order(s) for 2023-07-14
+2026-11-19T15:38:44Z,decision,decision 2023-07-21: RISK-ON (official close 2023-07-21) -> 0 order(s) for 2023-07-21
+2026-11-19T15:38:44Z,decision,decision 2023-07-28: RISK-ON (official close 2023-07-28) -> 2 order(s) for 2023-07-28
+2026-11-19T15:38:45Z,decision,decision 2023-08-04: RISK-ON (official close 2023-08-04) -> 2 order(s) for 2023-08-04
+2026-11-19T15:38:46Z,decision,decision 2023-08-11: RISK-ON (official close 2023-08-11) -> 0 order(s) for 2023-08-11
+2026-11-19T15:38:47Z,decision,decision 2023-08-18: RISK-ON (official close 2023-08-18) -> 2 order(s) for 2023-08-18
+2026-11-19T15:38:47Z,decision,decision 2023-08-25: RISK-ON (official close 2023-08-25) -> 0 order(s) for 2023-08-25
+2026-11-19T15:38:48Z,decision,decision 2023-09-01: RISK-ON (official close 2023-09-01) -> 2 order(s) for 2023-09-01
+2026-11-19T15:38:48Z,dividend,IEF ex 2023-09-01: 197.0 x 0.242 = $47.67
+2026-11-19T15:38:49Z,decision,decision 2023-09-08: RISK-ON (official close 2023-09-08) -> 0 order(s) for 2023-09-08
+2026-11-19T15:38:49Z,decision,decision 2023-09-15: RISK-ON (official close 2023-09-15) -> 0 order(s) for 2023-09-15
+2026-11-19T15:38:50Z,dividend,QLD ex 2023-09-20: 293.0 x 0.088 = $25.78
+2026-11-19T15:38:50Z,decision,decision 2023-09-22: RISK-ON (official close 2023-09-22) -> 0 order(s) for 2023-09-22
+2026-11-19T15:38:51Z,decision,decision 2023-09-29: RISK-ON (official close 2023-09-29) -> 2 order(s) for 2023-09-29
+2026-11-19T15:38:51Z,dividend,IEF ex 2023-10-02: 203.0 x 0.239 = $48.52
+2026-11-19T15:38:52Z,decision,decision 2023-10-06: RISK-ON (official close 2023-10-06) -> 0 order(s) for 2023-10-06
+2026-11-19T15:38:53Z,decision,decision 2023-10-13: RISK-ON (official close 2023-10-13) -> 0 order(s) for 2023-10-13
+2026-11-19T15:38:54Z,decision,decision 2023-10-20: RISK-OFF (official close 2023-10-20) -> 3 order(s) for 2023-10-20
+2026-11-19T15:38:55Z,decision,decision 2023-10-27: RISK-OFF (official close 2023-10-27) -> 0 order(s) for 2023-10-27
+2026-11-19T15:38:56Z,dividend,IEF ex 2023-11-01: 411.0 x 0.249 = $102.34
+2026-11-19T15:38:56Z,decision,decision 2023-11-03: RISK-ON (official close 2023-11-03) -> 2 order(s) for 2023-11-03
+2026-11-19T15:38:57Z,decision,decision 2023-11-10: RISK-ON (official close 2023-11-10) -> 0 order(s) for 2023-11-10
+2026-11-19T15:38:58Z,decision,decision 2023-11-17: RISK-ON (official close 2023-11-17) -> 2 order(s) for 2023-11-17
+2026-11-19T15:38:59Z,decision,decision 2023-11-24: RISK-ON (official close 2023-11-24) -> 0 order(s) for 2023-11-24
+2026-11-19T15:39:01Z,decision,decision 2023-12-01: RISK-ON (official close 2023-12-01) -> 0 order(s) for 2023-12-01
+2026-11-19T15:39:02Z,decision,decision 2023-12-08: RISK-ON (official close 2023-12-08) -> 0 order(s) for 2023-12-08
+2026-11-19T15:39:03Z,decision,decision 2023-12-15: RISK-ON (official close 2023-12-15) -> 0 order(s) for 2023-12-15
+2026-11-19T15:39:03Z,dividend,QLD ex 2023-12-20: 1159.0 x 0.039 = $45.2
+2026-11-19T15:39:03Z,decision,decision 2023-12-22: RISK-ON (official close 2023-12-22) -> 0 order(s) for 2023-12-22
+2026-11-19T15:39:04Z,decision,decision 2023-12-29: RISK-ON (official close 2023-12-29) -> 0 order(s) for 2023-12-29
+2026-11-19T15:39:05Z,decision,decision 2024-01-05: RISK-ON (official close 2024-01-05) -> 2 order(s) for 2024-01-05
+2026-11-19T15:39:06Z,decision,decision 2024-01-12: RISK-ON (official close 2024-01-12) -> 0 order(s) for 2024-01-12
+2026-11-19T15:39:06Z,decision,decision 2024-01-19: RISK-ON (official close 2024-01-19) -> 3 order(s) for 2024-01-19
+2026-11-19T15:39:07Z,decision,decision 2024-01-26: RISK-ON (official close 2024-01-26) -> 0 order(s) for 2024-01-26
+2026-11-19T15:39:08Z,dividend,IEF ex 2024-02-01: 227.0 x 0.236 = $53.57
+2026-11-19T15:39:08Z,decision,decision 2024-02-02: RISK-ON (official close 2024-02-02) -> 2 order(s) for 2024-02-02
+2026-11-19T15:39:09Z,decision,decision 2024-02-09: RISK-ON (official close 2024-02-09) -> 0 order(s) for 2024-02-09
+2026-11-19T15:39:09Z,decision,decision 2024-02-16: RISK-ON (official close 2024-02-16) -> 2 order(s) for 2024-02-16
+2026-11-19T15:39:10Z,decision,decision 2024-02-23: RISK-ON (official close 2024-02-23) -> 0 order(s) for 2024-02-23
+2026-11-19T15:39:11Z,decision,decision 2024-03-01: RISK-ON (official close 2024-03-01) -> 2 order(s) for 2024-03-01
+2026-11-19T15:39:11Z,dividend,IEF ex 2024-03-01: 234.0 x 0.249 = $58.27
+2026-11-19T15:39:12Z,decision,decision 2024-03-08: RISK-ON (official close 2024-03-08) -> 2 order(s) for 2024-03-08
+2026-11-19T15:39:13Z,decision,decision 2024-03-15: RISK-ON (official close 2024-03-15) -> 0 order(s) for 2024-03-15
+2026-11-19T15:39:14Z,dividend,QLD ex 2024-03-20: 521.0 x 0.0275 = $14.33
+2026-11-19T15:39:14Z,decision,decision 2024-03-22: RISK-ON (official close 2024-03-22) -> 0 order(s) for 2024-03-22
+2026-11-19T15:39:15Z,decision,decision 2024-03-28: RISK-ON (official close 2024-03-28) -> 0 order(s) for 2024-03-28
+2026-11-19T15:39:15Z,dividend,IEF ex 2024-04-01: 234.0 x 0.276 = $64.58
+2026-11-19T15:39:16Z,decision,decision 2024-04-05: RISK-ON (official close 2024-04-05) -> 0 order(s) for 2024-04-05
+2026-11-19T15:39:17Z,decision,decision 2024-04-12: RISK-ON (official close 2024-04-12) -> 0 order(s) for 2024-04-12
+2026-11-19T15:39:18Z,decision,decision 2024-04-19: RISK-OFF (official close 2024-04-19) -> 3 order(s) for 2024-04-19
+2026-11-19T15:39:20Z,decision,decision 2024-04-26: RISK-ON (official close 2024-04-26) -> 3 order(s) for 2024-04-26
+2026-11-19T15:39:20Z,dividend,IEF ex 2024-05-01: 231.0 x 0.271 = $62.6
+2026-11-19T15:39:21Z,decision,decision 2024-05-03: RISK-ON (official close 2024-05-03) -> 0 order(s) for 2024-05-03
+2026-11-19T15:39:21Z,decision,decision 2024-05-10: RISK-ON (official close 2024-05-10) -> 0 order(s) for 2024-05-10
+2026-11-19T15:39:22Z,decision,decision 2024-05-17: RISK-ON (official close 2024-05-17) -> 2 order(s) for 2024-05-17
+2026-11-19T15:39:23Z,decision,decision 2024-05-24: RISK-ON (official close 2024-05-24) -> 0 order(s) for 2024-05-24
+2026-11-19T15:39:23Z,decision,decision 2024-05-31: RISK-ON (official close 2024-05-31) -> 0 order(s) for 2024-05-31
+2026-11-19T15:39:24Z,decision,decision 2024-06-07: RISK-ON (official close 2024-06-07) -> 0 order(s) for 2024-06-07
+2026-11-19T15:39:24Z,decision,decision 2024-06-14: RISK-ON (official close 2024-06-14) -> 1 order(s) for 2024-06-14
+2026-11-19T15:39:25Z,decision,decision 2024-06-21: RISK-ON (official close 2024-06-21) -> 0 order(s) for 2024-06-21
+2026-11-19T15:39:25Z,dividend,QLD ex 2024-06-26: 995.0 x 0.053 = $52.73
+2026-11-19T15:39:25Z,decision,decision 2024-06-28: RISK-ON (official close 2024-06-28) -> 0 order(s) for 2024-06-28
+2026-11-19T15:39:26Z,decision,decision 2024-07-05: RISK-ON (official close 2024-07-05) -> 1 order(s) for 2024-07-05
+2026-11-19T15:39:27Z,decision,decision 2024-07-12: RISK-ON (official close 2024-07-12) -> 0 order(s) for 2024-07-12
+2026-11-19T15:39:27Z,decision,decision 2024-07-19: RISK-ON (official close 2024-07-19) -> 2 order(s) for 2024-07-19
+2026-11-19T15:39:28Z,decision,decision 2024-07-26: RISK-ON (official close 2024-07-26) -> 0 order(s) for 2024-07-26
+2026-11-19T15:39:29Z,dividend,IEF ex 2024-08-01: 254.0 x 0.289 = $73.41
+2026-11-19T15:39:29Z,decision,decision 2024-08-02: RISK-OFF (official close 2024-08-02) -> 2 order(s) for 2024-08-02
+2026-11-19T15:39:30Z,decision,decision 2024-08-09: RISK-OFF (official close 2024-08-09) -> 0 order(s) for 2024-08-09
+2026-11-19T15:39:31Z,decision,decision 2024-08-16: RISK-ON (official close 2024-08-16) -> 3 order(s) for 2024-08-16
+2026-11-19T15:39:32Z,decision,decision 2024-08-23: RISK-ON (official close 2024-08-23) -> 0 order(s) for 2024-08-23
+2026-11-19T15:39:33Z,decision,decision 2024-08-30: RISK-ON (official close 2024-08-30) -> 2 order(s) for 2024-08-30
+2026-11-19T15:39:33Z,dividend,IEF ex 2024-09-03: 239.0 x 0.288 = $68.83
+2026-11-19T15:39:34Z,decision,decision 2024-09-06: RISK-OFF (official close 2024-09-06) -> 3 order(s) for 2024-09-06
+2026-11-19T15:39:35Z,decision,decision 2024-09-13: RISK-ON (official close 2024-09-13) -> 3 order(s) for 2024-09-13
+2026-11-19T15:39:36Z,decision,decision 2024-09-20: RISK-ON (official close 2024-09-20) -> 0 order(s) for 2024-09-20
+2026-11-19T15:39:37Z,dividend,QLD ex 2024-09-25: 234.0 x 0.0255 = $5.97
+2026-11-19T15:39:37Z,decision,decision 2024-09-27: RISK-ON (official close 2024-09-27) -> 0 order(s) for 2024-09-27
+2026-11-19T15:39:37Z,dividend,IEF ex 2024-10-01: 340.0 x 0.286 = $97.24
+2026-11-19T15:39:38Z,decision,decision 2024-10-04: RISK-ON (official close 2024-10-04) -> 2 order(s) for 2024-10-04
+2026-11-19T15:39:39Z,decision,decision 2024-10-11: RISK-ON (official close 2024-10-11) -> 0 order(s) for 2024-10-11
+2026-11-19T15:39:40Z,decision,decision 2024-10-18: RISK-ON (official close 2024-10-18) -> 2 order(s) for 2024-10-18
+2026-11-19T15:39:41Z,decision,decision 2024-10-25: RISK-ON (official close 2024-10-25) -> 0 order(s) for 2024-10-25
+2026-11-19T15:39:41Z,decision,decision 2024-11-01: RISK-ON (official close 2024-11-01) -> 0 order(s) for 2024-11-01
+2026-11-19T15:39:41Z,dividend,IEF ex 2024-11-01: 240.0 x 0.292 = $70.08
+2026-11-19T15:39:42Z,decision,decision 2024-11-08: RISK-ON (official close 2024-11-08) -> 1 order(s) for 2024-11-08
+2026-11-19T15:39:43Z,decision,decision 2024-11-15: RISK-ON (official close 2024-11-15) -> 0 order(s) for 2024-11-15
+2026-11-19T15:39:44Z,decision,decision 2024-11-22: RISK-ON (official close 2024-11-22) -> 0 order(s) for 2024-11-22
+2026-11-19T15:39:44Z,decision,decision 2024-11-29: RISK-ON (official close 2024-11-29) -> 2 order(s) for 2024-11-29
+2026-11-19T15:39:45Z,decision,decision 2024-12-06: RISK-ON (official close 2024-12-06) -> 2 order(s) for 2024-12-06
+2026-11-19T15:39:46Z,decision,decision 2024-12-13: RISK-ON (official close 2024-12-13) -> 2 order(s) for 2024-12-13
+2026-11-19T15:39:46Z,decision,decision 2024-12-20: RISK-ON (official close 2024-12-20) -> 2 order(s) for 2024-12-20
+2026-11-19T15:39:47Z,dividend,QLD ex 2024-12-23: 424.0 x 0.0305 = $12.93
+2026-11-19T15:39:47Z,decision,decision 2024-12-27: RISK-ON (official close 2024-12-27) -> 0 order(s) for 2024-12-27
+2026-11-19T15:39:48Z,decision,decision 2025-01-03: RISK-ON (official close 2025-01-03) -> 0 order(s) for 2025-01-03
+2026-11-19T15:39:48Z,closure,"no trading on 2025-01-09 (an unscheduled NYSE closure, e.g. a day of mourning); treated as a holiday"
+2026-11-19T15:39:48Z,decision,decision 2025-01-10: RISK-ON (official close 2025-01-10) -> 0 order(s) for 2025-01-10
+2026-11-19T15:39:49Z,decision,decision 2025-01-17: RISK-ON (official close 2025-01-17) -> 0 order(s) for 2025-01-17
+2026-11-19T15:39:50Z,decision,decision 2025-01-24: RISK-ON (official close 2025-01-24) -> 0 order(s) for 2025-01-24
+2026-11-19T15:39:50Z,decision,decision 2025-01-31: RISK-ON (official close 2025-01-31) -> 0 order(s) for 2025-01-31
+2026-11-19T15:39:51Z,dividend,IEF ex 2025-02-03: 255.0 x 0.296 = $75.48
+2026-11-19T15:39:51Z,decision,decision 2025-02-07: RISK-ON (official close 2025-02-07) -> 0 order(s) for 2025-02-07
+2026-11-19T15:39:52Z,decision,decision 2025-02-14: RISK-ON (official close 2025-02-14) -> 2 order(s) for 2025-02-14
+2026-11-19T15:39:53Z,decision,decision 2025-02-21: RISK-ON (official close 2025-02-21) -> 2 order(s) for 2025-02-21
+2026-11-19T15:39:54Z,decision,decision 2025-02-28: RISK-OFF (official close 2025-02-28) -> 3 order(s) for 2025-02-28
+2026-11-19T15:39:54Z,dividend,IEF ex 2025-03-03: 486.0 x 0.275 = $133.65
+2026-11-19T15:39:55Z,decision,decision 2025-03-07: RISK-OFF (official close 2025-03-07) -> 0 order(s) for 2025-03-07
+2026-11-19T15:39:55Z,decision,decision 2025-03-14: RISK-OFF (official close 2025-03-14) -> 0 order(s) for 2025-03-14
+2026-11-19T15:39:56Z,decision,decision 2025-03-21: RISK-OFF (official close 2025-03-21) -> 0 order(s) for 2025-03-21
+2026-11-19T15:39:57Z,decision,decision 2025-03-28: RISK-OFF (official close 2025-03-28) -> 0 order(s) for 2025-03-28
+2026-11-19T15:39:57Z,dividend,IEF ex 2025-04-01: 486.0 x 0.304 = $147.74
+2026-11-19T15:39:58Z,decision,decision 2025-04-04: RISK-OFF (official close 2025-04-04) -> 0 order(s) for 2025-04-04
+2026-11-19T15:39:59Z,decision,decision 2025-04-11: RISK-OFF (official close 2025-04-11) -> 1 order(s) for 2025-04-11
+2026-11-19T15:40:00Z,decision,decision 2025-04-17: RISK-OFF (official close 2025-04-17) -> 0 order(s) for 2025-04-17
+2026-11-19T15:40:01Z,decision,decision 2025-04-25: RISK-OFF (official close 2025-04-25) -> 0 order(s) for 2025-04-25
+2026-11-19T15:40:01Z,dividend,IEF ex 2025-05-01: 492.0 x 0.313 = $154.0
+2026-11-19T15:40:02Z,decision,decision 2025-05-02: RISK-ON (official close 2025-05-02) -> 3 order(s) for 2025-05-02
+2026-11-19T15:40:03Z,decision,decision 2025-05-09: RISK-ON (official close 2025-05-09) -> 2 order(s) for 2025-05-09
+2026-11-19T15:40:04Z,decision,decision 2025-05-16: RISK-ON (official close 2025-05-16) -> 1 order(s) for 2025-05-16
+2026-11-19T15:40:04Z,decision,decision 2025-05-23: RISK-ON (official close 2025-05-23) -> 0 order(s) for 2025-05-23
+2026-11-19T15:40:05Z,decision,decision 2025-05-30: RISK-ON (official close 2025-05-30) -> 0 order(s) for 2025-05-30
+2026-11-19T15:40:06Z,decision,decision 2025-06-06: RISK-ON (official close 2025-06-06) -> 0 order(s) for 2025-06-06
+2026-11-19T15:40:07Z,decision,decision 2025-06-13: RISK-ON (official close 2025-06-13) -> 2 order(s) for 2025-06-13
+2026-11-19T15:40:08Z,decision,decision 2025-06-20: RISK-ON (official close 2025-06-20) -> 0 order(s) for 2025-06-20
+2026-11-19T15:40:09Z,dividend,QLD ex 2025-06-25: 500.0 x 0.062 = $31.0
+2026-11-19T15:40:09Z,decision,decision 2025-06-27: RISK-ON (official close 2025-06-27) -> 3 order(s) for 2025-06-27
+2026-11-19T15:40:10Z,decision,decision 2025-07-03: RISK-ON (official close 2025-07-03) -> 0 order(s) for 2025-07-03
+2026-11-19T15:40:11Z,decision,decision 2025-07-11: RISK-ON (official close 2025-07-11) -> 0 order(s) for 2025-07-11
+2026-11-19T15:40:12Z,decision,decision 2025-07-18: RISK-ON (official close 2025-07-18) -> 0 order(s) for 2025-07-18
+2026-11-19T15:40:13Z,decision,decision 2025-07-25: RISK-ON (official close 2025-07-25) -> 0 order(s) for 2025-07-25
+2026-11-19T15:40:13Z,decision,decision 2025-08-01: RISK-ON (official close 2025-08-01) -> 2 order(s) for 2025-08-01
+2026-11-19T15:40:14Z,decision,decision 2025-08-08: RISK-ON (official close 2025-08-08) -> 2 order(s) for 2025-08-08
+2026-11-19T15:40:15Z,decision,decision 2025-08-15: RISK-ON (official close 2025-08-15) -> 2 order(s) for 2025-08-15
+2026-11-19T15:40:16Z,decision,decision 2025-08-22: RISK-ON (official close 2025-08-22) -> 0 order(s) for 2025-08-22
+2026-11-19T15:40:17Z,decision,decision 2025-08-29: RISK-ON (official close 2025-08-29) -> 0 order(s) for 2025-08-29
+2026-11-19T15:40:17Z,dividend,IEF ex 2025-09-02: 451.0 x 0.314 = $141.61
+2026-11-19T15:40:17Z,decision,decision 2025-09-05: RISK-ON (official close 2025-09-05) -> 0 order(s) for 2025-09-05
+2026-11-19T15:40:18Z,decision,decision 2025-09-12: RISK-ON (official close 2025-09-12) -> 0 order(s) for 2025-09-12
+2026-11-19T15:40:18Z,decision,decision 2025-09-19: RISK-ON (official close 2025-09-19) -> 2 order(s) for 2025-09-19
+2026-11-19T15:40:19Z,dividend,QLD ex 2025-09-24: 436.0 x 0.0205 = $8.94
+2026-11-19T15:40:19Z,decision,decision 2025-09-26: RISK-ON (official close 2025-09-26) -> 0 order(s) for 2025-09-26
+2026-11-19T15:40:20Z,dividend,IEF ex 2025-10-01: 308.0 x 0.294 = $90.55
+2026-11-19T15:40:20Z,decision,decision 2025-10-03: RISK-ON (official close 2025-10-03) -> 2 order(s) for 2025-10-03
+2026-11-19T15:40:21Z,decision,decision 2025-10-10: RISK-ON (official close 2025-10-10) -> 3 order(s) for 2025-10-10
+2026-11-19T15:40:22Z,decision,decision 2025-10-17: RISK-ON (official close 2025-10-17) -> 0 order(s) for 2025-10-17
+2026-11-19T15:40:23Z,decision,decision 2025-10-24: RISK-ON (official close 2025-10-24) -> 0 order(s) for 2025-10-24
+2026-11-19T15:40:24Z,decision,decision 2025-10-31: RISK-ON (official close 2025-10-31) -> 2 order(s) for 2025-10-31
+2026-11-19T15:40:24Z,dividend,IEF ex 2025-11-03: 317.0 x 0.304 = $96.37
+2026-11-19T15:40:25Z,decision,decision 2025-11-07: RISK-ON (official close 2025-11-07) -> 0 order(s) for 2025-11-07
+2026-11-19T15:40:25Z,decision,decision 2025-11-14: RISK-ON (official close 2025-11-14) -> 0 order(s) for 2025-11-14
+2026-11-19T15:40:26Z,decision,decision 2025-11-21: RISK-ON (official close 2025-11-21) -> 2 order(s) for 2025-11-21
+2026-11-19T15:40:27Z,decision,decision 2025-11-28: RISK-ON (official close 2025-11-28) -> 0 order(s) for 2025-11-28
+2026-11-19T15:40:27Z,dividend,IEF ex 2025-12-01: 301.0 x 0.288 = $86.69
+2026-11-19T15:40:28Z,decision,decision 2025-12-05: RISK-ON (official close 2025-12-05) -> 2 order(s) for 2025-12-05
+2026-11-19T15:40:29Z,decision,decision 2025-12-12: RISK-ON (official close 2025-12-12) -> 0 order(s) for 2025-12-12
+2026-11-19T15:40:30Z,decision,decision 2025-12-19: RISK-ON (official close 2025-12-19) -> 2 order(s) for 2025-12-19
+2026-11-19T15:40:30Z,dividend,IEF ex 2025-12-19: 320.0 x 0.313 = $100.16
+2026-11-19T15:40:31Z,dividend,QLD ex 2025-12-24: 861.0 x 0.023 = $19.8
+2026-11-19T15:40:31Z,decision,decision 2025-12-26: RISK-ON (official close 2025-12-26) -> 2 order(s) for 2025-12-26
+2026-11-19T15:40:32Z,decision,decision 2026-01-02: RISK-ON (official close 2026-01-02) -> 0 order(s) for 2026-01-02
+2026-11-19T15:40:32Z,decision,decision 2026-01-09: RISK-ON (official close 2026-01-09) -> 0 order(s) for 2026-01-09
+2026-11-19T15:40:33Z,decision,decision 2026-01-16: RISK-ON (official close 2026-01-16) -> 2 order(s) for 2026-01-16
+2026-11-19T15:40:34Z,decision,decision 2026-01-23: RISK-ON (official close 2026-01-23) -> 2 order(s) for 2026-01-23
+2026-11-19T15:40:36Z,decision,decision 2026-01-30: RISK-ON (official close 2026-01-30) -> 0 order(s) for 2026-01-30
+2026-11-19T15:40:36Z,dividend,IEF ex 2026-02-02: 322.0 x 0.312 = $100.46
+2026-11-19T15:40:37Z,decision,decision 2026-02-06: RISK-ON (official close 2026-02-06) -> 0 order(s) for 2026-02-06
+2026-11-19T15:40:38Z,decision,decision 2026-02-13: RISK-OFF (official close 2026-02-13) -> 3 order(s) for 2026-02-13
+2026-11-19T15:40:39Z,decision,decision 2026-02-20: RISK-ON (official close 2026-02-20) -> 2 order(s) for 2026-02-20
+2026-11-19T15:40:40Z,decision,decision 2026-02-27: RISK-ON (official close 2026-02-27) -> 0 order(s) for 2026-02-27
+2026-11-19T15:40:40Z,dividend,IEF ex 2026-03-02: 319.0 x 0.283 = $90.28
+2026-11-19T15:40:41Z,decision,decision 2026-03-06: RISK-OFF (official close 2026-03-06) -> 3 order(s) for 2026-03-06
+2026-11-19T15:40:41Z,decision,decision 2026-03-13: RISK-OFF (official close 2026-03-13) -> 0 order(s) for 2026-03-13
+2026-11-19T15:40:42Z,decision,decision 2026-03-20: RISK-OFF (official close 2026-03-20) -> 0 order(s) for 2026-03-20
+2026-11-19T15:40:43Z,decision,decision 2026-03-27: RISK-OFF (official close 2026-03-27) -> 0 order(s) for 2026-03-27
+2026-11-19T15:40:43Z,dividend,IEF ex 2026-04-01: 635.0 x 0.317 = $201.3
+2026-11-19T15:40:44Z,decision,decision 2026-04-02: RISK-OFF (official close 2026-04-02) -> 0 order(s) for 2026-04-02
+2026-11-19T15:40:45Z,decision,decision 2026-04-10: RISK-ON (official close 2026-04-10) -> 3 order(s) for 2026-04-10
+2026-11-19T15:40:45Z,decision,decision 2026-04-17: RISK-ON (official close 2026-04-17) -> 2 order(s) for 2026-04-17
+2026-11-19T15:40:46Z,decision,decision 2026-04-24: RISK-ON (official close 2026-04-24) -> 0 order(s) for 2026-04-24
+2026-11-19T15:40:47Z,decision,decision 2026-05-01: RISK-ON (official close 2026-05-01) -> 1 order(s) for 2026-05-01
+2026-11-19T15:40:48Z,decision,decision 2026-05-08: RISK-ON (official close 2026-05-08) -> 2 order(s) for 2026-05-08
+2026-11-19T15:40:49Z,decision,decision 2026-05-15: RISK-ON (official close 2026-05-15) -> 0 order(s) for 2026-05-15
+2026-11-19T15:40:49Z,decision,decision 2026-05-22: RISK-ON (official close 2026-05-22) -> 0 order(s) for 2026-05-22
+2026-11-19T15:40:50Z,decision,decision 2026-05-29: RISK-ON (official close 2026-05-29) -> 0 order(s) for 2026-05-29
+2026-11-19T15:40:51Z,decision,decision 2026-06-05: RISK-ON (official close 2026-06-05) -> 2 order(s) for 2026-06-05
+2026-11-19T15:40:51Z,decision,decision 2026-06-12: RISK-ON (official close 2026-06-12) -> 0 order(s) for 2026-06-12
+2026-11-19T15:40:52Z,decision,decision 2026-06-18: RISK-ON (official close 2026-06-18) -> 1 order(s) for 2026-06-18
+2026-11-19T15:40:53Z,dividend,QLD ex 2026-06-24: 378.0 x 0.061 = $23.06
+2026-11-19T15:40:53Z,decision,decision 2026-06-26: RISK-ON (official close 2026-06-26) -> 0 order(s) for 2026-06-26
+2026-11-19T15:40:54Z,dividend,IEF ex 2026-07-01: 381.0 x 0.311 = $118.49
+2026-11-19T15:40:54Z,decision,decision 2026-07-02: RISK-ON (official close 2026-07-02) -> 2 order(s) for 2026-07-02
+2026-11-19T15:40:55Z,decision,decision 2026-07-10: RISK-ON (official close 2026-07-10) -> 2 order(s) for 2026-07-10
+2026-11-19T15:40:56Z,decision,decision 2026-07-17: RISK-ON (official close 2026-07-17) -> 1 order(s) for 2026-07-17
+2026-11-19T15:40:57Z,decision,decision 2026-07-24: RISK-ON (official close 2026-07-24) -> 1 order(s) for 2026-07-24

@@ -1,0 +1,1083 @@
+{
+ "meta": {
+  "script": "update_2026_11/critic_candidates.py",
+  "ucits_cost_model": {
+   "qld": 0.0015,
+   "tqqq": 0.002,
+   "ief": 0.0008,
+   "gold_phys": 0.0008,
+   "bills": 0.0008
+  },
+  "note": "Friday = research convention; tranche = mean of 5 weekday phases (timing-luck-free)"
+ },
+ "F2-IEF (QLD vt.30)": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.19715,
+    "maxdd": -0.23958,
+    "calmar": 0.82288,
+    "ex_sharpe": 0.87403
+   },
+   "H1": {
+    "cagr": 0.20955,
+    "maxdd": -0.21743,
+    "calmar": 0.96374,
+    "ex_sharpe": 0.79103
+   },
+   "H2": {
+    "cagr": 0.18538,
+    "maxdd": -0.23958,
+    "calmar": 0.77377,
+    "ex_sharpe": 0.98342
+   },
+   "2000-frz": {
+    "cagr": 0.15577,
+    "maxdd": -0.23958,
+    "calmar": 0.65016,
+    "ex_sharpe": 0.79882
+   },
+   "2010-frz": {
+    "cagr": 0.184,
+    "maxdd": -0.23958,
+    "calmar": 0.76799,
+    "ex_sharpe": 0.98382
+   },
+   "crises": {
+    "2022": -0.20423,
+    "dotcom": 0.04122,
+    "GFC": 0.10683,
+    "OOS": -0.06032
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.17289,
+    "maxdd": -0.27682,
+    "calmar": 0.62457,
+    "ex_sharpe": 0.77846
+   },
+   "H1": {
+    "cagr": 0.1803,
+    "maxdd": -0.23353,
+    "calmar": 0.77205,
+    "ex_sharpe": 0.68485
+   },
+   "H2": {
+    "cagr": 0.16587,
+    "maxdd": -0.27682,
+    "calmar": 0.59921,
+    "ex_sharpe": 0.89894
+   },
+   "2000-frz": {
+    "cagr": 0.13399,
+    "maxdd": -0.27682,
+    "calmar": 0.48405,
+    "ex_sharpe": 0.70477
+   },
+   "2010-frz": {
+    "cagr": 0.16132,
+    "maxdd": -0.27682,
+    "calmar": 0.58278,
+    "ex_sharpe": 0.88043
+   },
+   "crises": {
+    "2022": -0.2295,
+    "dotcom": 0.09116,
+    "GFC": 0.08332,
+    "OOS": -0.10691
+   }
+  }
+ },
+ "F2-IEF lag2 (Monday execution)": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.18277,
+    "maxdd": -0.25063,
+    "calmar": 0.72923,
+    "ex_sharpe": 0.80058
+   },
+   "H1": {
+    "cagr": 0.17826,
+    "maxdd": -0.24955,
+    "calmar": 0.71432,
+    "ex_sharpe": 0.65966
+   },
+   "H2": {
+    "cagr": 0.1873,
+    "maxdd": -0.25063,
+    "calmar": 0.74732,
+    "ex_sharpe": 0.9788
+   },
+   "2000-frz": {
+    "cagr": 0.15716,
+    "maxdd": -0.25063,
+    "calmar": 0.62707,
+    "ex_sharpe": 0.79163
+   },
+   "2010-frz": {
+    "cagr": 0.18846,
+    "maxdd": -0.25063,
+    "calmar": 0.75193,
+    "ex_sharpe": 0.98934
+   },
+   "crises": {
+    "2022": -0.20424,
+    "dotcom": 0.04637,
+    "GFC": 0.08344,
+    "OOS": -0.05017
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.1713,
+    "maxdd": -0.28259,
+    "calmar": 0.60618,
+    "ex_sharpe": 0.765
+   },
+   "H1": {
+    "cagr": 0.17916,
+    "maxdd": -0.2316,
+    "calmar": 0.77358,
+    "ex_sharpe": 0.67607
+   },
+   "H2": {
+    "cagr": 0.16386,
+    "maxdd": -0.28259,
+    "calmar": 0.57983,
+    "ex_sharpe": 0.87872
+   },
+   "2000-frz": {
+    "cagr": 0.13574,
+    "maxdd": -0.28259,
+    "calmar": 0.48035,
+    "ex_sharpe": 0.70589
+   },
+   "2010-frz": {
+    "cagr": 0.15967,
+    "maxdd": -0.28259,
+    "calmar": 0.56501,
+    "ex_sharpe": 0.86178
+   },
+   "crises": {
+    "2022": -0.22423,
+    "dotcom": 0.10829,
+    "GFC": 0.0766,
+    "OOS": -0.10849
+   }
+  }
+ },
+ "F2-IEF lag2 + UCITS-level costs 15/8bp": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.17012,
+    "maxdd": -0.25658,
+    "calmar": 0.66305,
+    "ex_sharpe": 0.7459
+   },
+   "H1": {
+    "cagr": 0.16627,
+    "maxdd": -0.25658,
+    "calmar": 0.64802,
+    "ex_sharpe": 0.61246
+   },
+   "H2": {
+    "cagr": 0.17401,
+    "maxdd": -0.25488,
+    "calmar": 0.68272,
+    "ex_sharpe": 0.91446
+   },
+   "2000-frz": {
+    "cagr": 0.14487,
+    "maxdd": -0.25488,
+    "calmar": 0.56837,
+    "ex_sharpe": 0.7325
+   },
+   "2010-frz": {
+    "cagr": 0.17482,
+    "maxdd": -0.25488,
+    "calmar": 0.68591,
+    "ex_sharpe": 0.92347
+   },
+   "crises": {
+    "2022": -0.21012,
+    "dotcom": 0.03512,
+    "GFC": 0.07286,
+    "OOS": -0.0529
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.15857,
+    "maxdd": -0.28625,
+    "calmar": 0.55396,
+    "ex_sharpe": 0.70818
+   },
+   "H1": {
+    "cagr": 0.16651,
+    "maxdd": -0.23857,
+    "calmar": 0.69797,
+    "ex_sharpe": 0.62498
+   },
+   "H2": {
+    "cagr": 0.15103,
+    "maxdd": -0.28625,
+    "calmar": 0.52761,
+    "ex_sharpe": 0.81451
+   },
+   "2000-frz": {
+    "cagr": 0.12372,
+    "maxdd": -0.28625,
+    "calmar": 0.43222,
+    "ex_sharpe": 0.64518
+   },
+   "2010-frz": {
+    "cagr": 0.14655,
+    "maxdd": -0.28625,
+    "calmar": 0.51197,
+    "ex_sharpe": 0.7959
+   },
+   "crises": {
+    "2022": -0.22853,
+    "dotcom": 0.09749,
+    "GFC": 0.06602,
+    "OOS": -0.11223
+   }
+  }
+ },
+ "F3-IEF (TQQQ vt.20)": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.24134,
+    "maxdd": -0.29992,
+    "calmar": 0.8047,
+    "ex_sharpe": 0.85342
+   },
+   "H1": {
+    "cagr": 0.23958,
+    "maxdd": -0.29992,
+    "calmar": 0.79882,
+    "ex_sharpe": 0.75638
+   },
+   "H2": {
+    "cagr": 0.24325,
+    "maxdd": -0.27513,
+    "calmar": 0.88412,
+    "ex_sharpe": 0.96572
+   },
+   "2000-frz": {
+    "cagr": 0.1971,
+    "maxdd": -0.27513,
+    "calmar": 0.71639,
+    "ex_sharpe": 0.79911
+   },
+   "2010-frz": {
+    "cagr": 0.25071,
+    "maxdd": -0.27513,
+    "calmar": 0.91122,
+    "ex_sharpe": 0.99238
+   },
+   "crises": {
+    "2022": -0.22123,
+    "dotcom": 0.02292,
+    "GFC": 0.03999,
+    "OOS": -0.08995
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.20885,
+    "maxdd": -0.32497,
+    "calmar": 0.64266,
+    "ex_sharpe": 0.75961
+   },
+   "H1": {
+    "cagr": 0.19873,
+    "maxdd": -0.32497,
+    "calmar": 0.61154,
+    "ex_sharpe": 0.64319
+   },
+   "H2": {
+    "cagr": 0.21891,
+    "maxdd": -0.31439,
+    "calmar": 0.69629,
+    "ex_sharpe": 0.89105
+   },
+   "2000-frz": {
+    "cagr": 0.17014,
+    "maxdd": -0.31439,
+    "calmar": 0.54117,
+    "ex_sharpe": 0.71307
+   },
+   "2010-frz": {
+    "cagr": 0.22152,
+    "maxdd": -0.31439,
+    "calmar": 0.70461,
+    "ex_sharpe": 0.89986
+   },
+   "crises": {
+    "2022": -0.24923,
+    "dotcom": 0.0762,
+    "GFC": 0.02397,
+    "OOS": -0.14914
+   }
+  }
+ },
+ "F2 off-leg 50/50 IEF/BIL": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.18718,
+    "maxdd": -0.22376,
+    "calmar": 0.83655,
+    "ex_sharpe": 0.84137
+   },
+   "H1": {
+    "cagr": 0.1955,
+    "maxdd": -0.22376,
+    "calmar": 0.87372,
+    "ex_sharpe": 0.74411
+   },
+   "H2": {
+    "cagr": 0.1793,
+    "maxdd": -0.21692,
+    "calmar": 0.8266,
+    "ex_sharpe": 0.96823
+   },
+   "2000-frz": {
+    "cagr": 0.1467,
+    "maxdd": -0.22376,
+    "calmar": 0.65563,
+    "ex_sharpe": 0.76487
+   },
+   "2010-frz": {
+    "cagr": 0.18102,
+    "maxdd": -0.21692,
+    "calmar": 0.83453,
+    "ex_sharpe": 0.98237
+   },
+   "crises": {
+    "2022": -0.15902,
+    "dotcom": -0.05055,
+    "GFC": 0.03552,
+    "OOS": -0.04772
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.16243,
+    "maxdd": -0.23393,
+    "calmar": 0.69434,
+    "ex_sharpe": 0.73986
+   },
+   "H1": {
+    "cagr": 0.16464,
+    "maxdd": -0.23393,
+    "calmar": 0.70378,
+    "ex_sharpe": 0.62717
+   },
+   "H2": {
+    "cagr": 0.16041,
+    "maxdd": -0.22337,
+    "calmar": 0.71816,
+    "ex_sharpe": 0.88305
+   },
+   "2000-frz": {
+    "cagr": 0.12514,
+    "maxdd": -0.23393,
+    "calmar": 0.53493,
+    "ex_sharpe": 0.66747
+   },
+   "2010-frz": {
+    "cagr": 0.15908,
+    "maxdd": -0.22337,
+    "calmar": 0.71218,
+    "ex_sharpe": 0.87902
+   },
+   "crises": {
+    "2022": -0.18321,
+    "dotcom": -0.01204,
+    "GFC": 0.01523,
+    "OOS": -0.09475
+   }
+  }
+ },
+ "F3 off-leg 50/50 IEF/BIL": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.23119,
+    "maxdd": -0.29893,
+    "calmar": 0.7734,
+    "ex_sharpe": 0.82665
+   },
+   "H1": {
+    "cagr": 0.22508,
+    "maxdd": -0.29893,
+    "calmar": 0.75295,
+    "ex_sharpe": 0.71792
+   },
+   "H2": {
+    "cagr": 0.23734,
+    "maxdd": -0.27856,
+    "calmar": 0.85202,
+    "ex_sharpe": 0.95156
+   },
+   "2000-frz": {
+    "cagr": 0.18792,
+    "maxdd": -0.27856,
+    "calmar": 0.67463,
+    "ex_sharpe": 0.77118
+   },
+   "2010-frz": {
+    "cagr": 0.24786,
+    "maxdd": -0.27856,
+    "calmar": 0.88978,
+    "ex_sharpe": 0.98833
+   },
+   "crises": {
+    "2022": -0.17204,
+    "dotcom": -0.06927,
+    "GFC": -0.02663,
+    "OOS": -0.07771
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.19832,
+    "maxdd": -0.30557,
+    "calmar": 0.64899,
+    "ex_sharpe": 0.72911
+   },
+   "H1": {
+    "cagr": 0.18305,
+    "maxdd": -0.30557,
+    "calmar": 0.59904,
+    "ex_sharpe": 0.59752
+   },
+   "H2": {
+    "cagr": 0.21347,
+    "maxdd": -0.26074,
+    "calmar": 0.81871,
+    "ex_sharpe": 0.87657
+   },
+   "2000-frz": {
+    "cagr": 0.16122,
+    "maxdd": -0.26074,
+    "calmar": 0.61832,
+    "ex_sharpe": 0.6835
+   },
+   "2010-frz": {
+    "cagr": 0.21934,
+    "maxdd": -0.26074,
+    "calmar": 0.84122,
+    "ex_sharpe": 0.89631
+   },
+   "crises": {
+    "2022": -0.20014,
+    "dotcom": -0.02523,
+    "GFC": -0.04109,
+    "OOS": -0.13757
+   }
+  }
+ },
+ "F1-IEF (QQQ vt.20)": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.11876,
+    "maxdd": -0.19198,
+    "calmar": 0.61863,
+    "ex_sharpe": 0.88523
+   },
+   "H1": {
+    "cagr": 0.12869,
+    "maxdd": -0.12422,
+    "calmar": 1.03597,
+    "ex_sharpe": 0.79456
+   },
+   "H2": {
+    "cagr": 0.1093,
+    "maxdd": -0.19198,
+    "calmar": 0.56932,
+    "ex_sharpe": 0.9825
+   },
+   "2000-frz": {
+    "cagr": 0.10314,
+    "maxdd": -0.19198,
+    "calmar": 0.53725,
+    "ex_sharpe": 0.88146
+   },
+   "2010-frz": {
+    "cagr": 0.10494,
+    "maxdd": -0.19198,
+    "calmar": 0.5466,
+    "ex_sharpe": 0.96172
+   },
+   "crises": {
+    "2022": -0.14385,
+    "dotcom": 0.22281,
+    "GFC": 0.16116,
+    "OOS": -0.04413
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.10901,
+    "maxdd": -0.20786,
+    "calmar": 0.52445,
+    "ex_sharpe": 0.8126
+   },
+   "H1": {
+    "cagr": 0.11706,
+    "maxdd": -0.1309,
+    "calmar": 0.89428,
+    "ex_sharpe": 0.71222
+   },
+   "H2": {
+    "cagr": 0.10134,
+    "maxdd": -0.20786,
+    "calmar": 0.48751,
+    "ex_sharpe": 0.91784
+   },
+   "2000-frz": {
+    "cagr": 0.09379,
+    "maxdd": -0.20786,
+    "calmar": 0.4512,
+    "ex_sharpe": 0.81182
+   },
+   "2010-frz": {
+    "cagr": 0.09549,
+    "maxdd": -0.20786,
+    "calmar": 0.45938,
+    "ex_sharpe": 0.87903
+   },
+   "crises": {
+    "2022": -0.15667,
+    "dotcom": 0.25,
+    "GFC": 0.15404,
+    "OOS": -0.06612
+   }
+  }
+ },
+ "F1-IEF lag2 + UCITS-level costs 8/8bp": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.10553,
+    "maxdd": -0.19525,
+    "calmar": 0.54048,
+    "ex_sharpe": 0.7564
+   },
+   "H1": {
+    "cagr": 0.10831,
+    "maxdd": -0.14878,
+    "calmar": 0.72798,
+    "ex_sharpe": 0.61283
+   },
+   "H2": {
+    "cagr": 0.10291,
+    "maxdd": -0.19525,
+    "calmar": 0.52709,
+    "ex_sharpe": 0.90824
+   },
+   "2000-frz": {
+    "cagr": 0.09645,
+    "maxdd": -0.19525,
+    "calmar": 0.49399,
+    "ex_sharpe": 0.80663
+   },
+   "2010-frz": {
+    "cagr": 0.09959,
+    "maxdd": -0.19525,
+    "calmar": 0.51009,
+    "ex_sharpe": 0.89448
+   },
+   "crises": {
+    "2022": -0.14677,
+    "dotcom": 0.22556,
+    "GFC": 0.14851,
+    "OOS": -0.03847
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.10159,
+    "maxdd": -0.21343,
+    "calmar": 0.47599,
+    "ex_sharpe": 0.73603
+   },
+   "H1": {
+    "cagr": 0.10986,
+    "maxdd": -0.1351,
+    "calmar": 0.81321,
+    "ex_sharpe": 0.64226
+   },
+   "H2": {
+    "cagr": 0.09369,
+    "maxdd": -0.21343,
+    "calmar": 0.43898,
+    "ex_sharpe": 0.83398
+   },
+   "2000-frz": {
+    "cagr": 0.08764,
+    "maxdd": -0.21343,
+    "calmar": 0.41065,
+    "ex_sharpe": 0.74167
+   },
+   "2010-frz": {
+    "cagr": 0.0877,
+    "maxdd": -0.21343,
+    "calmar": 0.4109,
+    "ex_sharpe": 0.79214
+   },
+   "crises": {
+    "2022": -0.15714,
+    "dotcom": 0.24963,
+    "GFC": 0.14567,
+    "OOS": -0.06872
+   }
+  }
+ },
+ "F2-TLT (scanner-style off-leg)": {
+  "Fri": {
+   "IS": {
+    "cagr": 0.19984,
+    "maxdd": -0.3754,
+    "calmar": 0.53234,
+    "ex_sharpe": 0.84285
+   },
+   "H1": {
+    "cagr": 0.21883,
+    "maxdd": -0.26874,
+    "calmar": 0.81429,
+    "ex_sharpe": 0.79891
+   },
+   "H2": {
+    "cagr": 0.18184,
+    "maxdd": -0.3754,
+    "calmar": 0.48438,
+    "ex_sharpe": 0.89932
+   },
+   "2000-frz": {
+    "cagr": 0.15556,
+    "maxdd": -0.3754,
+    "calmar": 0.41437,
+    "ex_sharpe": 0.75294
+   },
+   "2010-frz": {
+    "cagr": 0.18018,
+    "maxdd": -0.3754,
+    "calmar": 0.47996,
+    "ex_sharpe": 0.90059
+   },
+   "crises": {
+    "2022": -0.32092,
+    "dotcom": 0.04339,
+    "GFC": 0.13794,
+    "OOS": -0.07904
+   }
+  },
+  "tranche": {
+   "IS": {
+    "cagr": 0.17738,
+    "maxdd": -0.39922,
+    "calmar": 0.44433,
+    "ex_sharpe": 0.76188
+   },
+   "H1": {
+    "cagr": 0.19389,
+    "maxdd": -0.2786,
+    "calmar": 0.69595,
+    "ex_sharpe": 0.71535
+   },
+   "H2": {
+    "cagr": 0.16171,
+    "maxdd": -0.39922,
+    "calmar": 0.40506,
+    "ex_sharpe": 0.82094
+   },
+   "2000-frz": {
+    "cagr": 0.13387,
+    "maxdd": -0.39922,
+    "calmar": 0.33532,
+    "ex_sharpe": 0.66685
+   },
+   "2010-frz": {
+    "cagr": 0.15739,
+    "maxdd": -0.39922,
+    "calmar": 0.39425,
+    "ex_sharpe": 0.80765
+   },
+   "crises": {
+    "2022": -0.33686,
+    "dotcom": 0.1014,
+    "GFC": 0.10678,
+    "OOS": -0.1272
+   }
+  }
+ },
+ "QQQ buy-and-hold": {
+  "IS": {
+   "cagr": 0.14775,
+   "maxdd": -0.82964,
+   "calmar": 0.17809,
+   "ex_sharpe": 0.55111
+  },
+  "2000-frz": {
+   "cagr": 0.08575,
+   "maxdd": -0.82964,
+   "calmar": 0.10335,
+   "ex_sharpe": 0.37011
+  }
+ },
+ "bootstrap_IS": {
+  "F2-IEF (QLD vt.30) [Fri] minus QQQ": {
+   "dcagr": [
+    0.04817,
+    -0.01534,
+    0.11635
+   ],
+   "p_dcagr_le0": 0.0825,
+   "dcalmar": [
+    0.38835,
+    0.08977,
+    0.7909
+   ],
+   "p_dcalmar_le0": 0.007,
+   "maxdd_median": [
+    -0.30716,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.41464,
+    -0.75663
+   ]
+  },
+  "F2-IEF (QLD vt.30) [tranche] minus QQQ": {
+   "dcagr": [
+    0.02371,
+    -0.03781,
+    0.08749
+   ],
+   "p_dcagr_le0": 0.2435,
+   "dcalmar": [
+    0.28753,
+    0.01123,
+    0.62333
+   ],
+   "p_dcalmar_le0": 0.0215,
+   "maxdd_median": [
+    -0.31686,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.43769,
+    -0.75663
+   ]
+  },
+  "F3-IEF (TQQQ vt.20) [Fri] minus QQQ": {
+   "dcagr": [
+    0.0929,
+    0.01734,
+    0.17322
+   ],
+   "p_dcagr_le0": 0.006,
+   "dcalmar": [
+    0.33723,
+    0.04679,
+    0.72059
+   ],
+   "p_dcalmar_le0": 0.01,
+   "maxdd_median": [
+    -0.40719,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.54091,
+    -0.75663
+   ]
+  },
+  "F3-IEF (TQQQ vt.20) [tranche] minus QQQ": {
+   "dcagr": [
+    0.06011,
+    -0.01195,
+    0.13559
+   ],
+   "p_dcagr_le0": 0.047,
+   "dcalmar": [
+    0.23624,
+    -0.02966,
+    0.55173
+   ],
+   "p_dcalmar_le0": 0.041,
+   "maxdd_median": [
+    -0.42471,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.57159,
+    -0.75663
+   ]
+  },
+  "F1-IEF (QQQ vt.20) [Fri] minus QQQ": {
+   "dcagr": [
+    -0.03082,
+    -0.10284,
+    0.04131
+   ],
+   "p_dcagr_le0": 0.799,
+   "dcalmar": [
+    0.47645,
+    0.12786,
+    0.91203
+   ],
+   "p_dcalmar_le0": 0.004,
+   "maxdd_median": [
+    -0.16106,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.22963,
+    -0.75663
+   ]
+  },
+  "F1-IEF (QQQ vt.20) [tranche] minus QQQ": {
+   "dcagr": [
+    -0.04067,
+    -0.11378,
+    0.03294
+   ],
+   "p_dcagr_le0": 0.867,
+   "dcalmar": [
+    0.40877,
+    0.07985,
+    0.82119
+   ],
+   "p_dcalmar_le0": 0.0085,
+   "maxdd_median": [
+    -0.163,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.23336,
+    -0.75663
+   ]
+  },
+  "F2-IEF lag2 + UCITS-level costs 15/8bp [Fri] minus QQQ": {
+   "dcagr": [
+    0.02108,
+    -0.04539,
+    0.09016
+   ],
+   "p_dcagr_le0": 0.2815,
+   "dcalmar": [
+    0.21692,
+    -0.05129,
+    0.56308
+   ],
+   "p_dcalmar_le0": 0.0565,
+   "maxdd_median": [
+    -0.35962,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.49884,
+    -0.75663
+   ]
+  },
+  "F2-IEF lag2 + UCITS-level costs 15/8bp [tranche] minus QQQ": {
+   "dcagr": [
+    0.00938,
+    -0.05292,
+    0.07422
+   ],
+   "p_dcagr_le0": 0.3965,
+   "dcalmar": [
+    0.21511,
+    -0.04788,
+    0.53483
+   ],
+   "p_dcalmar_le0": 0.0505,
+   "maxdd_median": [
+    -0.33632,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.46288,
+    -0.75663
+   ]
+  },
+  "F2 off-leg 50/50 IEF/BIL [Fri] minus QQQ": {
+   "dcagr": [
+    0.03812,
+    -0.02327,
+    0.10332
+   ],
+   "p_dcagr_le0": 0.128,
+   "dcalmar": [
+    0.36036,
+    0.07341,
+    0.74633
+   ],
+   "p_dcalmar_le0": 0.009,
+   "maxdd_median": [
+    -0.30423,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.41296,
+    -0.75663
+   ]
+  },
+  "F2 off-leg 50/50 IEF/BIL [tranche] minus QQQ": {
+   "dcagr": [
+    0.0132,
+    -0.04705,
+    0.07423
+   ],
+   "p_dcagr_le0": 0.342,
+   "dcalmar": [
+    0.25184,
+    -0.01561,
+    0.56872
+   ],
+   "p_dcalmar_le0": 0.028,
+   "maxdd_median": [
+    -0.31935,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.43684,
+    -0.75663
+   ]
+  },
+  "F1-IEF lag2 + UCITS-level costs 8/8bp [Fri] minus QQQ": {
+   "dcagr": [
+    -0.04409,
+    -0.1162,
+    0.02962
+   ],
+   "p_dcagr_le0": 0.883,
+   "dcalmar": [
+    0.31935,
+    0.00843,
+    0.71234
+   ],
+   "p_dcalmar_le0": 0.0235,
+   "maxdd_median": [
+    -0.18229,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.2657,
+    -0.75663
+   ]
+  },
+  "F1-IEF lag2 + UCITS-level costs 8/8bp [tranche] minus QQQ": {
+   "dcagr": [
+    -0.04811,
+    -0.12116,
+    0.02579
+   ],
+   "p_dcagr_le0": 0.9,
+   "dcalmar": [
+    0.33195,
+    0.02937,
+    0.72498
+   ],
+   "p_dcalmar_le0": 0.018,
+   "maxdd_median": [
+    -0.17118,
+    -0.57666
+   ],
+   "maxdd_p5": [
+    -0.24801,
+    -0.75663
+   ]
+  },
+  "F2 minus F3 [Fri]": {
+   "dcagr": [
+    -0.04474,
+    -0.07546,
+    -0.01834
+   ],
+   "p_dcagr_le0": 0.9995,
+   "dcalmar": [
+    0.05112,
+    -0.06338,
+    0.17752
+   ],
+   "p_dcalmar_le0": 0.1675,
+   "maxdd_median": [
+    -0.30716,
+    -0.40719
+   ],
+   "maxdd_p5": [
+    -0.41464,
+    -0.54091
+   ]
+  },
+  "F2 50/50 minus F2 IEF [Fri]": {
+   "dcagr": [
+    -0.01004,
+    -0.01773,
+    -0.00239
+   ],
+   "p_dcagr_le0": 0.996,
+   "dcalmar": [
+    -0.02799,
+    -0.12052,
+    0.06066
+   ],
+   "p_dcalmar_le0": 0.765,
+   "maxdd_median": [
+    -0.30423,
+    -0.30716
+   ],
+   "maxdd_p5": [
+    -0.41296,
+    -0.41464
+   ]
+  },
+  "F2 minus F3 [tranche]": {
+   "dcagr": [
+    -0.0364,
+    -0.06546,
+    -0.01193
+   ],
+   "p_dcagr_le0": 0.9985,
+   "dcalmar": [
+    0.05129,
+    -0.04207,
+    0.165
+   ],
+   "p_dcalmar_le0": 0.1275,
+   "maxdd_median": [
+    -0.31686,
+    -0.42471
+   ],
+   "maxdd_p5": [
+    -0.43769,
+    -0.57159
+   ]
+  },
+  "F2 50/50 minus F2 IEF [tranche]": {
+   "dcagr": [
+    -0.01051,
+    -0.01784,
+    -0.00346
+   ],
+   "p_dcagr_le0": 0.997,
+   "dcalmar": [
+    -0.0357,
+    -0.12508,
+    0.03851
+   ],
+   "p_dcalmar_le0": 0.843,
+   "maxdd_median": [
+    -0.31935,
+    -0.31686
+   ],
+   "maxdd_p5": [
+    -0.43684,
+    -0.43769
+   ]
+  }
+ }
+}

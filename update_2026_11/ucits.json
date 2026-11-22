@@ -1,0 +1,3611 @@
+{
+ "verification": {
+  "LQQ.PA": {
+   "role": "nasdaq_2x",
+   "longName": "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc",
+   "currency": "EUR",
+   "exchange": "PAR",
+   "fullExchangeName": "Paris",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "Amundi Asset Management",
+   "netExpenseRatio": 0.6,
+   "totalAssets": 1200537088,
+   "averageDailyVolume3Month": 532421,
+   "first": "2009-01-02",
+   "last": "2026-11-17",
+   "rows": 4575,
+   "n_dividends": 0,
+   "structure_note": "UCITS ETF (Amundi, French-domiciled, swap-based), accumulating; EUR line, Euronext Paris",
+   "us_analogue": "QLD",
+   "primary_mapping": true
+  },
+  "LQQ.MI": {
+   "role": "nasdaq_2x",
+   "longName": "Amundi Nasdaq-100 Daily (2x) Leveraged UCITS ETF Acc",
+   "currency": "EUR",
+   "exchange": "MIL",
+   "fullExchangeName": "Milan",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "Amundi Asset Management",
+   "netExpenseRatio": 0.6,
+   "totalAssets": 1200537088,
+   "averageDailyVolume3Month": 55172,
+   "first": "2021-01-19",
+   "last": "2026-11-17",
+   "rows": 1483,
+   "n_dividends": 0,
+   "structure_note": "same fund as LQQ.PA; EUR line, Borsa Italiana",
+   "us_analogue": "QLD",
+   "primary_mapping": false
+  },
+  "QQQ3.L": {
+   "role": "nasdaq_3x",
+   "longName": "WisdomTree NASDAQ 100 3x Daily Leveraged",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "WisdomTree Multi Asset Issuer PLC",
+   "netExpenseRatio": null,
+   "totalAssets": 542568000,
+   "averageDailyVolume3Month": 7957,
+   "first": "2012-12-13",
+   "last": "2026-11-17",
+   "rows": 3519,
+   "n_dividends": 0,
+   "structure_note": "ETP / collateralised note (WisdomTree Multi Asset Issuer PLC) - NOT a UCITS fund; USD line, LSE",
+   "us_analogue": "TQQQ",
+   "primary_mapping": true
+  },
+  "LQQ3.L": {
+   "role": "nasdaq_3x",
+   "longName": "WisdomTree NASDAQ 100 3x Daily Leveraged",
+   "currency": "GBp",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "WisdomTree Multi Asset Issuer PLC",
+   "netExpenseRatio": null,
+   "totalAssets": 542568000,
+   "averageDailyVolume3Month": 9961,
+   "first": "2012-12-13",
+   "last": "2026-11-17",
+   "rows": 3498,
+   "n_dividends": 0,
+   "structure_note": "same ETP as QQQ3.L; GBp line, LSE",
+   "us_analogue": "TQQQ",
+   "primary_mapping": false
+  },
+  "3QQQ.L": {
+   "role": "nasdaq_3x",
+   "longName": "Leverage Shares 3x Long Nasdaq 100 ETP Securities",
+   "currency": "GBp",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "Leverage Shares PLC",
+   "netExpenseRatio": null,
+   "totalAssets": 1943648,
+   "averageDailyVolume3Month": 3246,
+   "first": "2022-06-06",
+   "last": "2026-11-17",
+   "rows": 1126,
+   "n_dividends": 0,
+   "structure_note": "ETP (Leverage Shares 3x Long Nasdaq 100) - NOT a UCITS fund; GBp line, LSE",
+   "us_analogue": "TQQQ",
+   "primary_mapping": false
+  },
+  "QQQ3.MI": {
+   "role": "nasdaq_3x",
+   "longName": "WisdomTree NASDAQ 100 3x Daily Leveraged",
+   "currency": "EUR",
+   "exchange": "MIL",
+   "fullExchangeName": "Milan",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "WisdomTree Multi Asset Issuer PLC",
+   "netExpenseRatio": null,
+   "totalAssets": 542568000,
+   "averageDailyVolume3Month": 15998,
+   "first": "2014-04-23",
+   "last": "2026-11-17",
+   "rows": 3136,
+   "n_dividends": 0,
+   "structure_note": "same ETP as QQQ3.L; EUR line, Borsa Italiana",
+   "us_analogue": "TQQQ",
+   "primary_mapping": false
+  },
+  "CNDX.L": {
+   "role": "nasdaq_1x",
+   "longName": "iShares NASDAQ 100 UCITS ETF USD (Acc)",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "BlackRock Asset Management Ireland - ETF",
+   "netExpenseRatio": 0.3,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 29205,
+   "first": "2010-09-15",
+   "last": "2026-11-17",
+   "rows": 4080,
+   "n_dividends": 0,
+   "structure_note": "UCITS ETF (iShares, Irish), physical, accumulating; USD line, LSE",
+   "us_analogue": "QQQ",
+   "primary_mapping": false
+  },
+  "EQQQ.L": {
+   "role": "nasdaq_1x",
+   "longName": "Invesco EQQQ NASDAQ-100 UCITS ETF",
+   "currency": "GBp",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "Invesco Investment Management Limited",
+   "netExpenseRatio": 0.3,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 28151,
+   "first": "2009-01-02",
+   "last": "2026-11-17",
+   "rows": 4515,
+   "n_dividends": 52,
+   "structure_note": "UCITS ETF (Invesco, Irish), physical, distributing; GBp line, LSE",
+   "us_analogue": "QQQ",
+   "primary_mapping": false
+  },
+  "CBU0.L": {
+   "role": "ust_7_10",
+   "longName": "iShares VII PLC - iShares $ Treasury Bd 7-10y ETF USD Acc",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "BlackRock Asset Management Ireland - ETF",
+   "netExpenseRatio": 0.07,
+   "totalAssets": 5167166976,
+   "averageDailyVolume3Month": 102613,
+   "first": "2011-03-08",
+   "last": "2026-11-17",
+   "rows": 3935,
+   "n_dividends": 0,
+   "structure_note": "UCITS ETF (iShares, Irish), accumulating; USD line, LSE",
+   "us_analogue": "IEF",
+   "primary_mapping": true
+  },
+  "IBTM.L": {
+   "role": "ust_7_10",
+   "longName": "iShares $ Treasury Bond 7-10yr UCITS ETF USD (Dist)",
+   "currency": "GBP",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "BlackRock Asset Management Ireland - ETF",
+   "netExpenseRatio": 0.07,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 41723,
+   "first": "2008-01-02",
+   "last": "2026-11-17",
+   "rows": 4769,
+   "n_dividends": 25,
+   "structure_note": "same fund as CBU0 (distributing share class); GBP line, LSE",
+   "us_analogue": "IEF",
+   "primary_mapping": false
+  },
+  "DTLA.L": {
+   "role": "ust_20plus",
+   "longName": "iShares $ Treasury Bond 20+yr UCITS ETF USD (Acc)",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "BlackRock Asset Management Ireland - ETF",
+   "netExpenseRatio": 0.07,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 3538214,
+   "first": "2018-05-10",
+   "last": "2026-11-17",
+   "rows": 2155,
+   "n_dividends": 0,
+   "structure_note": "UCITS ETF (iShares, Irish), accumulating; USD line, LSE",
+   "us_analogue": "TLT",
+   "primary_mapping": true
+  },
+  "IDTL.L": {
+   "role": "ust_20plus",
+   "longName": "iShares $ Treasury Bond 20+yr UCITS ETF USD (Dist)",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "BlackRock Asset Management Ireland - ETF",
+   "netExpenseRatio": 0.07,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 1242143,
+   "first": "2015-01-21",
+   "last": "2026-11-17",
+   "rows": 2989,
+   "n_dividends": 23,
+   "structure_note": "same fund as DTLA (distributing share class); USD line, LSE",
+   "us_analogue": "TLT",
+   "primary_mapping": false
+  },
+  "IBTS.L": {
+   "role": "ust_1_3",
+   "longName": "iShares $ Treasury Bond 1-3yr UCITS ETF USD (Dist)",
+   "currency": "GBP",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "BlackRock Asset Management Ireland - ETF",
+   "netExpenseRatio": 0.07,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 18611,
+   "first": "2008-01-02",
+   "last": "2026-11-17",
+   "rows": 4769,
+   "n_dividends": 26,
+   "structure_note": "UCITS ETF (iShares, Irish), distributing; GBP line, LSE",
+   "us_analogue": "SHY",
+   "primary_mapping": false
+  },
+  "IB01.L": {
+   "role": "ust_0_1",
+   "longName": "iShares $ Treasury Bond 0-1yr UCITS ETF USD (Acc)",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "BlackRock Asset Management Ireland - ETF",
+   "netExpenseRatio": 0.07,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 507540,
+   "first": "2019-02-20",
+   "last": "2026-11-18",
+   "rows": 1957,
+   "n_dividends": 0,
+   "structure_note": "UCITS ETF (iShares, Irish), accumulating; USD line, LSE",
+   "us_analogue": "BIL",
+   "primary_mapping": true
+  },
+  "IGLN.L": {
+   "role": "gold",
+   "longName": "iShares Physical Gold ETC",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "EQUITY",
+   "legalType": null,
+   "fundFamily": null,
+   "netExpenseRatio": null,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 375954,
+   "first": "2011-04-08",
+   "last": "2026-11-17",
+   "rows": 3943,
+   "n_dividends": 0,
+   "structure_note": "ETC (physically backed note, iShares Physical Metals plc) - gold cannot be a UCITS fund; USD line, LSE",
+   "us_analogue": "GLD",
+   "primary_mapping": true
+  },
+  "SGLN.L": {
+   "role": "gold",
+   "longName": "iShares Physical Gold ETC",
+   "currency": "GBp",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "EQUITY",
+   "legalType": null,
+   "fundFamily": null,
+   "netExpenseRatio": null,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 368262,
+   "first": "2011-04-08",
+   "last": "2026-11-17",
+   "rows": 3943,
+   "n_dividends": 0,
+   "structure_note": "same ETC as IGLN; GBp line, LSE",
+   "us_analogue": "GLD",
+   "primary_mapping": false
+  },
+  "PHAU.L": {
+   "role": "gold",
+   "longName": "WisdomTree Physical Gold",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "EQUITY",
+   "legalType": null,
+   "fundFamily": null,
+   "netExpenseRatio": null,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 9381,
+   "first": "2008-01-02",
+   "last": "2026-11-17",
+   "rows": 4771,
+   "n_dividends": 0,
+   "structure_note": "ETC (WisdomTree Physical Gold, Jersey issuer); USD line, LSE",
+   "us_analogue": "GLD",
+   "primary_mapping": false
+  },
+  "SGLD.L": {
+   "role": "gold",
+   "longName": "Invesco Physical Gold ETC",
+   "currency": "USD",
+   "exchange": "LSE",
+   "fullExchangeName": "LSE",
+   "quoteType": "EQUITY",
+   "legalType": null,
+   "fundFamily": null,
+   "netExpenseRatio": null,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 47555,
+   "first": "2009-06-26",
+   "last": "2026-11-17",
+   "rows": 4395,
+   "n_dividends": 0,
+   "structure_note": "ETC (Invesco Physical Gold); USD line, LSE",
+   "us_analogue": "GLD",
+   "primary_mapping": false
+  },
+  "QLD": {
+   "role": "us_analogue",
+   "longName": "ProShares Ultra QQQ",
+   "currency": "USD",
+   "exchange": "PCX",
+   "fullExchangeName": "NYSEArca",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "ProShares",
+   "netExpenseRatio": 0.89,
+   "totalAssets": 13255691264,
+   "averageDailyVolume3Month": 4799189,
+   "first": "2006-06-21",
+   "last": "2026-11-17",
+   "rows": 5135,
+   "n_dividends": 33
+  },
+  "TQQQ": {
+   "role": "us_analogue",
+   "longName": "ProShares UltraPro QQQ",
+   "currency": "USD",
+   "exchange": "NGM",
+   "fullExchangeName": "NasdaqGM",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "ProShares",
+   "netExpenseRatio": 0.78,
+   "totalAssets": 32062332928,
+   "averageDailyVolume3Month": 60758117,
+   "first": "2010-02-11",
+   "last": "2026-11-17",
+   "rows": 4218,
+   "n_dividends": 22
+  },
+  "QQQ": {
+   "role": "us_analogue",
+   "longName": "Invesco QQQ Trust",
+   "currency": "USD",
+   "exchange": "NGM",
+   "fullExchangeName": "NasdaqGM",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "Invesco",
+   "netExpenseRatio": 0.18,
+   "totalAssets": 463833595904,
+   "averageDailyVolume3Month": 39001218,
+   "first": "1999-03-10",
+   "last": "2026-11-17",
+   "rows": 6967,
+   "n_dividends": 90
+  },
+  "IEF": {
+   "role": "us_analogue",
+   "longName": "iShares 7-10 Year Treasury Bond ETF",
+   "currency": "USD",
+   "exchange": "NGM",
+   "fullExchangeName": "NasdaqGM",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "iShares",
+   "netExpenseRatio": 0.15,
+   "totalAssets": 43529359360,
+   "averageDailyVolume3Month": 10379257,
+   "first": "2002-07-30",
+   "last": "2026-11-17",
+   "rows": 6116,
+   "n_dividends": 292
+  },
+  "TLT": {
+   "role": "us_analogue",
+   "longName": "iShares 20+ Year Treasury Bond ETF",
+   "currency": "USD",
+   "exchange": "NGM",
+   "fullExchangeName": "NasdaqGM",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "iShares",
+   "netExpenseRatio": 0.15,
+   "totalAssets": 47518568448,
+   "averageDailyVolume3Month": 39162873,
+   "first": "2002-07-30",
+   "last": "2026-11-17",
+   "rows": 6116,
+   "n_dividends": 290
+  },
+  "SHY": {
+   "role": "us_analogue",
+   "longName": "iShares 1-3 Year Treasury Bond ETF",
+   "currency": "USD",
+   "exchange": "NGM",
+   "fullExchangeName": "NasdaqGM",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "iShares",
+   "netExpenseRatio": 0.15,
+   "totalAssets": 27439355904,
+   "averageDailyVolume3Month": 4776371,
+   "first": "2002-07-30",
+   "last": "2026-11-17",
+   "rows": 6116,
+   "n_dividends": 291
+  },
+  "BIL": {
+   "role": "us_analogue",
+   "longName": "State Street SPDR Bloomberg 1-3 Month T-Bill ETF",
+   "currency": "USD",
+   "exchange": "PCX",
+   "fullExchangeName": "NYSEArca",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "State Street Investment Management",
+   "netExpenseRatio": 0.1352,
+   "totalAssets": 48510820352,
+   "averageDailyVolume3Month": 11105470,
+   "first": "2007-05-30",
+   "last": "2026-11-17",
+   "rows": 4900,
+   "n_dividends": 129
+  },
+  "GLD": {
+   "role": "us_analogue",
+   "longName": "SPDR Gold Shares",
+   "currency": "USD",
+   "exchange": "PCX",
+   "fullExchangeName": "NYSEArca",
+   "quoteType": "ETF",
+   "legalType": "Exchange Traded Fund",
+   "fundFamily": "State Street Investment Management",
+   "netExpenseRatio": 0.4,
+   "totalAssets": 131009642496,
+   "averageDailyVolume3Month": 9763900,
+   "first": "2004-11-18",
+   "last": "2026-11-17",
+   "rows": 5534,
+   "n_dividends": 0
+  },
+  "EURUSD=X": {
+   "role": "fx",
+   "longName": "EUR/USD",
+   "currency": "USD",
+   "exchange": "CCY",
+   "fullExchangeName": "CCY",
+   "quoteType": "CURRENCY",
+   "legalType": null,
+   "fundFamily": null,
+   "netExpenseRatio": null,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 0,
+   "first": "2003-12-01",
+   "last": "2026-11-18",
+   "rows": 5959,
+   "n_dividends": 0
+  },
+  "GBPUSD=X": {
+   "role": "fx",
+   "longName": "GBP/USD",
+   "currency": "USD",
+   "exchange": "CCY",
+   "fullExchangeName": "CCY",
+   "quoteType": "CURRENCY",
+   "legalType": null,
+   "fundFamily": null,
+   "netExpenseRatio": null,
+   "totalAssets": null,
+   "averageDailyVolume3Month": 0,
+   "first": "2003-12-01",
+   "last": "2026-11-18",
+   "rows": 5971,
+   "n_dividends": 0
+  }
+ },
+ "probed_but_not_on_yahoo": [
+  "LQQ.DE",
+  "LQQ.SW",
+  "QQQ2.L",
+  "LQQ2.L",
+  "2QQQ.L",
+  "TQQ3.L",
+  "3NDX.L"
+ ],
+ "cleaning_log": {
+  "LQQ.PA": [
+   "trimmed first 10 sessions (2009-01-02..2009-01-15) as launch-period data",
+   "2015-01-02 split/unit change: raw move -99.52%, implied factor 206.1 -> snapped 200; earlier prices divided by 200"
+  ],
+  "LQQ.MI": [
+   "trimmed first 10 sessions (2021-01-19..2021-02-01) as launch-period data",
+   "2026-07-09 split/unit change: raw move -99.47%, implied factor 195.8 -> snapped 200; earlier prices divided by 200"
+  ],
+  "QQQ3.L": [
+   "trimmed first 10 sessions (2012-12-13..2012-12-28) as launch-period data"
+  ],
+  "LQQ3.L": [
+   "trimmed first 10 sessions (2012-12-13..2012-12-28) as launch-period data",
+   "2017-03-17 persistent level break -18.8% vs analogue -0.2% (factor 1.23, not a round split) -> earlier history discarded"
+  ],
+  "QQQ3.MI": [
+   "trimmed first 10 sessions (2014-04-23..2014-05-12) as launch-period data"
+  ],
+  "3QQQ.L": [
+   "trimmed first 10 sessions (2022-06-06..2022-06-17) as launch-period data"
+  ],
+  "CNDX.L": [
+   "trimmed first 10 sessions (2010-09-15..2010-09-28) as launch-period data"
+  ],
+  "EQQQ.L": [
+   "trimmed first 10 sessions (2009-01-02..2009-01-15) as launch-period data",
+   "2010-01-29 spike +58.7% vs analogue -1.7%, reverted next session -> dropped",
+   "2011-04-29 spike +66.6% vs analogue -0.1%, reverted next session -> dropped",
+   "2013-03-05 persistent level break +54.0% vs analogue +1.5% (factor 1.52, not a round split) -> earlier history discarded",
+   "2013-04-02 persistent level break -33.8% vs analogue +0.1% (factor 1.51, not a round split) -> earlier history discarded",
+   "2013-07-22 spike +53.8% vs analogue +0.3%, reverted next session -> dropped",
+   "2014-09-23 spike +63.5% vs analogue -0.3%, reverted next session -> dropped",
+   "2014-09-26 spike +63.5% vs analogue +1.1%, reverted next session -> dropped",
+   "2014-09-30 persistent level break +62.4% vs analogue +0.1% (factor 1.62, not a round split) -> earlier history discarded",
+   "2014-10-30 persistent level break -37.8% vs analogue +0.2% (factor 1.61, not a round split) -> earlier history discarded"
+  ],
+  "CBU0.L": [
+   "trimmed first 10 sessions (2011-03-08..2011-03-21) as launch-period data"
+  ],
+  "IBTM.L": [
+   "trimmed first 10 sessions (2008-01-02..2008-01-15) as launch-period data",
+   "2008-02-18 spike -48.9% vs analogue +0.0%, reverted next session -> dropped",
+   "2008-07-04 spike -49.5% vs analogue +0.0%, reverted next session -> dropped",
+   "2009-01-02 persistent level break -31.4% vs analogue -1.4% (factor 1.44, not a round split) -> earlier history discarded"
+  ],
+  "DTLA.L": [
+   "trimmed first 10 sessions (2018-05-10..2018-05-23) as launch-period data"
+  ],
+  "IDTL.L": [
+   "trimmed first 10 sessions (2015-01-21..2015-02-03) as launch-period data"
+  ],
+  "IBTS.L": [
+   "trimmed first 10 sessions (2008-01-02..2008-01-15) as launch-period data",
+   "2008-01-21 spike -48.5% vs analogue +0.0%, reverted next session -> dropped",
+   "2008-02-18 spike -49.0% vs analogue +0.0%, reverted next session -> dropped",
+   "2008-07-04 spike -49.6% vs analogue +0.0%, reverted next session -> dropped",
+   "2009-01-02 persistent level break -99.3% vs analogue -0.5% (factor 145.20, not a round split) -> earlier history discarded",
+   "2009-02-03 spike +10.6% vs analogue -0.1%, reverted next session -> dropped",
+   "2009-06-15 spike +20.0% vs analogue +0.1%, reverted next session -> dropped",
+   "2009-06-26 spike +16.8% vs analogue +0.0%, reverted next session -> dropped",
+   "2009-07-09 spike +14.6% vs analogue -0.0%, reverted next session -> dropped",
+   "2009-09-10 spike +14.4% vs analogue +0.1%, reverted next session -> dropped",
+   "2009-11-18 spike +11.5% vs analogue +0.0%, reverted next session -> dropped",
+   "2009-11-24 spike +11.8% vs analogue +0.1%, reverted next session -> dropped",
+   "2009-12-04 spike +11.1% vs analogue -0.3%, reverted next session -> dropped",
+   "2010-01-26 spike +15.0% vs analogue +0.0%, reverted next session -> dropped",
+   "2010-04-15 spike +13.7% vs analogue +0.1%, reverted next session -> dropped",
+   "2010-07-09 spike +19.2% vs analogue -0.0%, reverted next session -> dropped",
+   "2010-09-03 persistent level break +19.8% vs analogue -0.0% (factor 1.20, not a round split) -> earlier history discarded",
+   "2010-09-07 persistent level break -16.1% vs analogue +0.1% (factor 1.19, not a round split) -> earlier history discarded",
+   "2010-09-20 spike +19.0% vs analogue +0.0%, reverted next session -> dropped",
+   "2010-10-28 spike +13.2% vs analogue +0.1%, reverted next session -> dropped",
+   "2010-11-04 spike +14.1% vs analogue +0.0%, reverted next session -> dropped",
+   "2010-11-18 spike +17.8% vs analogue +0.0%, reverted next session -> dropped",
+   "2010-11-22 spike +16.8% vs analogue +0.1%, reverted next session -> dropped",
+   "2010-11-29 spike +18.5% vs analogue -0.0%, reverted next session -> dropped",
+   "2010-12-01 spike +19.2% vs analogue -0.1%, reverted next session -> dropped",
+   "2010-12-13 persistent level break +18.3% vs analogue +0.1% (factor 1.18, not a round split) -> earlier history discarded",
+   "2010-12-15 persistent level break -15.2% vs analogue -0.0% (factor 1.18, not a round split) -> earlier history discarded",
+   "2010-12-29 spike +17.5% vs analogue +0.2%, reverted next session -> dropped",
+   "2011-01-04 spike +16.0% vs analogue -0.0%, reverted next session -> dropped",
+   "2011-01-06 spike +18.6% vs analogue +0.1%, reverted next session -> dropped",
+   "2011-03-08 spike +16.2% vs analogue -0.0%, reverted next session -> dropped"
+  ],
+  "IB01.L": [
+   "trimmed first 10 sessions (2019-02-20..2019-03-05) as launch-period data"
+  ],
+  "IGLN.L": [
+   "trimmed first 10 sessions (2011-04-08..2011-04-21) as launch-period data"
+  ],
+  "SGLN.L": [
+   "trimmed first 10 sessions (2011-04-08..2011-04-21) as launch-period data",
+   "2011-04-28 persistent level break +68.9% vs analogue +0.4% (factor 1.68, not a round split) -> earlier history discarded",
+   "2011-05-03 spike -39.6% vs analogue -1.6%, reverted next session -> dropped",
+   "2011-05-13 spike -38.1% vs analogue -0.7%, reverted next session -> dropped",
+   "2011-05-20 persistent level break -37.4% vs analogue +1.3% (factor 1.62, not a round split) -> earlier history discarded",
+   "2011-05-26 persistent level break -38.6% vs analogue -0.2% (factor 1.63, not a round split) -> earlier history discarded",
+   "2011-06-03 persistent level break -38.7% vs analogue +0.5% (factor 1.64, not a round split) -> earlier history discarded",
+   "2011-06-20 spike +62.5% vs analogue +0.1%, reverted next session -> dropped",
+   "2011-06-28 spike +60.0% vs analogue +0.3%, reverted next session -> dropped",
+   "2011-10-10 spike +58.1% vs analogue +2.6%, reverted next session -> dropped"
+  ],
+  "PHAU.L": [
+   "trimmed first 10 sessions (2008-01-02..2008-01-15) as launch-period data"
+  ],
+  "SGLD.L": [
+   "trimmed first 10 sessions (2009-06-26..2009-07-09) as launch-period data"
+  ],
+  "FX EURUSD=X": [
+   "2008-01-08 spike +6.0% vs analogue +0.0%, reverted next session -> dropped",
+   "2008-02-08 spike +7.5% vs analogue +0.0%, reverted next session -> dropped",
+   "2008-09-08 spike +5.4% vs analogue +0.0%, reverted next session -> dropped",
+   "2008-10-08 spike +10.1% vs analogue +0.0%, reverted next session -> dropped",
+   "2008-12-08 spike +17.3% vs analogue +0.0%, reverted next session -> dropped"
+  ],
+  "FX GBPUSD=X": []
+ },
+ "overlap_full_history": {
+  "LQQ.PA": {
+   "first_week": "2009-01-16",
+   "last_week": "2026-11-13",
+   "weeks": 930,
+   "years": 17.82341,
+   "corr_weekly": 0.93089,
+   "beta_weekly": 0.88612,
+   "corr_4week": 0.98392,
+   "te_weekly_ann": 0.14231,
+   "cagr_ucits_usd": 0.34441,
+   "cagr_us": 0.34539,
+   "cagr_gap": -0.00098,
+   "vol_ucits": 0.37021,
+   "vol_us": 0.38892,
+   "corr_daily_same_day": 0.62386,
+   "corr_daily_vs_us_prev_day": 0.32529
+  },
+  "LQQ.MI": {
+   "first_week": "2021-02-05",
+   "last_week": "2026-11-13",
+   "weeks": 301,
+   "years": 5.76865,
+   "corr_weekly": 0.92018,
+   "beta_weekly": 0.8847,
+   "corr_4week": 0.96603,
+   "te_weekly_ann": 0.16441,
+   "cagr_ucits_usd": 0.1748,
+   "cagr_us": 0.17328,
+   "cagr_gap": 0.00152,
+   "vol_ucits": 0.40153,
+   "vol_us": 0.41763,
+   "corr_daily_same_day": 0.618,
+   "corr_daily_vs_us_prev_day": 0.35007
+  },
+  "QQQ3.L": {
+   "first_week": "2013-01-04",
+   "last_week": "2026-11-13",
+   "weeks": 723,
+   "years": 13.85626,
+   "corr_weekly": 0.93112,
+   "beta_weekly": 0.8865,
+   "corr_4week": 0.97602,
+   "te_weekly_ann": 0.20975,
+   "cagr_ucits_usd": 0.39685,
+   "cagr_us": 0.39981,
+   "cagr_gap": -0.00297,
+   "vol_ucits": 0.54665,
+   "vol_us": 0.57416,
+   "corr_daily_same_day": 0.60609,
+   "corr_daily_vs_us_prev_day": 0.34374
+  },
+  "LQQ3.L": {
+   "first_week": "2017-03-17",
+   "last_week": "2026-11-13",
+   "weeks": 504,
+   "years": 9.65914,
+   "corr_weekly": 0.87619,
+   "beta_weekly": 0.84747,
+   "corr_4week": 0.9652,
+   "te_weekly_ann": 0.30815,
+   "cagr_ucits_usd": 0.34054,
+   "cagr_us": 0.33895,
+   "cagr_gap": 0.00159,
+   "vol_ucits": 0.60765,
+   "vol_us": 0.62825,
+   "corr_daily_same_day": 0.58066,
+   "corr_daily_vs_us_prev_day": 0.31602
+  },
+  "QQQ3.MI": {
+   "first_week": "2014-05-16",
+   "last_week": "2026-11-13",
+   "weeks": 652,
+   "years": 12.49555,
+   "corr_weekly": 0.91619,
+   "beta_weekly": 0.88467,
+   "corr_4week": 0.9715,
+   "te_weekly_ann": 0.2402,
+   "cagr_ucits_usd": 0.36436,
+   "cagr_us": 0.36341,
+   "cagr_gap": 0.00095,
+   "vol_ucits": 0.57441,
+   "vol_us": 0.59487,
+   "corr_daily_same_day": 0.60533,
+   "corr_daily_vs_us_prev_day": 0.33343
+  },
+  "3QQQ.L": {
+   "first_week": "2022-06-24",
+   "last_week": "2026-11-13",
+   "weeks": 229,
+   "years": 4.38877,
+   "corr_weekly": 0.87047,
+   "beta_weekly": 0.88988,
+   "corr_4week": 0.97283,
+   "te_weekly_ann": 0.31714,
+   "cagr_ucits_usd": 0.35103,
+   "cagr_us": 0.39682,
+   "cagr_gap": -0.04579,
+   "vol_ucits": 0.6294,
+   "vol_us": 0.61567,
+   "corr_daily_same_day": 0.59704,
+   "corr_daily_vs_us_prev_day": 0.32047
+  },
+  "CNDX.L": {
+   "first_week": "2010-10-01",
+   "last_week": "2026-11-13",
+   "weeks": 840,
+   "years": 16.11773,
+   "corr_weekly": 0.92653,
+   "beta_weekly": 0.88266,
+   "corr_4week": 0.97811,
+   "te_weekly_ann": 0.07182,
+   "cagr_ucits_usd": 0.18621,
+   "cagr_us": 0.18725,
+   "cagr_gap": -0.00104,
+   "vol_ucits": 0.18141,
+   "vol_us": 0.19043,
+   "corr_daily_same_day": 0.6162,
+   "corr_daily_vs_us_prev_day": 0.32436
+  },
+  "EQQQ.L": {
+   "first_week": "2014-10-31",
+   "last_week": "2026-11-13",
+   "weeks": 628,
+   "years": 12.03559,
+   "corr_weekly": 0.9285,
+   "beta_weekly": 0.8784,
+   "corr_4week": 0.97223,
+   "te_weekly_ann": 0.0742,
+   "cagr_ucits_usd": 0.17102,
+   "cagr_us": 0.18004,
+   "cagr_gap": -0.00902,
+   "vol_ucits": 0.18884,
+   "vol_us": 0.19961,
+   "corr_daily_same_day": 0.61965,
+   "corr_daily_vs_us_prev_day": 0.32744
+  },
+  "CBU0.L": {
+   "first_week": "2011-03-25",
+   "last_week": "2026-11-13",
+   "weeks": 811,
+   "years": 15.6386,
+   "corr_weekly": 0.91775,
+   "beta_weekly": 0.88094,
+   "corr_4week": 0.94424,
+   "te_weekly_ann": 0.02547,
+   "cagr_ucits_usd": 0.02036,
+   "cagr_us": 0.02042,
+   "cagr_gap": -5e-05,
+   "vol_ucits": 0.0612,
+   "vol_us": 0.06376,
+   "corr_daily_same_day": 0.72288,
+   "corr_daily_vs_us_prev_day": 0.22808
+  },
+  "IBTM.L": {
+   "first_week": "2009-01-02",
+   "last_week": "2026-11-13",
+   "weeks": 932,
+   "years": 17.86174,
+   "corr_weekly": 0.84883,
+   "beta_weekly": 0.94762,
+   "corr_4week": 0.95458,
+   "te_weekly_ann": 0.03842,
+   "cagr_ucits_usd": 0.0117,
+   "cagr_us": 0.01977,
+   "cagr_gap": -0.00807,
+   "vol_ucits": 0.07239,
+   "vol_us": 0.06484,
+   "corr_daily_same_day": 0.5928,
+   "corr_daily_vs_us_prev_day": 0.18355
+  },
+  "DTLA.L": {
+   "first_week": "2018-05-25",
+   "last_week": "2026-11-13",
+   "weeks": 442,
+   "years": 8.47091,
+   "corr_weekly": 0.9472,
+   "beta_weekly": 0.92742,
+   "corr_4week": 0.98538,
+   "te_weekly_ann": 0.04668,
+   "cagr_ucits_usd": -0.01731,
+   "cagr_us": -0.01856,
+   "cagr_gap": 0.00125,
+   "vol_ucits": 0.14185,
+   "vol_us": 0.14488,
+   "corr_daily_same_day": 0.73139,
+   "corr_daily_vs_us_prev_day": 0.27888
+  },
+  "IDTL.L": {
+   "first_week": "2015-02-06",
+   "last_week": "2026-11-13",
+   "weeks": 614,
+   "years": 11.76728,
+   "corr_weekly": 0.95291,
+   "beta_weekly": 0.9378,
+   "corr_4week": 0.98828,
+   "te_weekly_ann": 0.04211,
+   "cagr_ucits_usd": -0.01376,
+   "cagr_us": -0.01424,
+   "cagr_gap": 0.00048,
+   "vol_ucits": 0.13592,
+   "vol_us": 0.13811,
+   "corr_daily_same_day": 0.74459,
+   "corr_daily_vs_us_prev_day": 0.24754
+  },
+  "IBTS.L": {
+   "first_week": "2010-12-17",
+   "last_week": "2026-11-13",
+   "weeks": 830,
+   "years": 15.90691,
+   "corr_weekly": 0.42898,
+   "beta_weekly": 0.9139,
+   "corr_4week": 0.76076,
+   "te_weekly_ann": 0.02449,
+   "cagr_ucits_usd": 0.01279,
+   "cagr_us": 0.01312,
+   "cagr_gap": -0.00034,
+   "vol_ucits": 0.02708,
+   "vol_us": 0.01271,
+   "corr_daily_same_day": 0.18676,
+   "corr_daily_vs_us_prev_day": 0.06174
+  },
+  "IB01.L": {
+   "first_week": "2019-03-08",
+   "last_week": "2026-11-13",
+   "weeks": 401,
+   "years": 7.68515,
+   "corr_weekly": 0.70615,
+   "beta_weekly": 0.95374,
+   "corr_4week": 0.94237,
+   "te_weekly_ann": 0.00285,
+   "cagr_ucits_usd": 0.02782,
+   "cagr_us": 0.02686,
+   "cagr_gap": 0.00096,
+   "vol_ucits": 0.00402,
+   "vol_us": 0.00297,
+   "corr_daily_same_day": 0.14117,
+   "corr_daily_vs_us_prev_day": 0.09269
+  },
+  "IGLN.L": {
+   "first_week": "2011-04-29",
+   "last_week": "2026-11-13",
+   "weeks": 811,
+   "years": 15.54278,
+   "corr_weekly": 0.96541,
+   "beta_weekly": 0.95843,
+   "corr_4week": 0.98968,
+   "te_weekly_ann": 0.04204,
+   "cagr_ucits_usd": 0.05945,
+   "cagr_us": 0.05601,
+   "cagr_gap": 0.00344,
+   "vol_ucits": 0.15919,
+   "vol_us": 0.16035,
+   "corr_daily_same_day": 0.82065,
+   "corr_daily_vs_us_prev_day": 0.1801
+  },
+  "SGLN.L": {
+   "first_week": "2011-06-03",
+   "last_week": "2026-11-13",
+   "weeks": 806,
+   "years": 15.44695,
+   "corr_weekly": 0.95894,
+   "beta_weekly": 0.95072,
+   "corr_4week": 0.98552,
+   "te_weekly_ann": 0.04577,
+   "cagr_ucits_usd": 0.0595,
+   "cagr_us": 0.05734,
+   "cagr_gap": 0.00215,
+   "vol_ucits": 0.15895,
+   "vol_us": 0.16033,
+   "corr_daily_same_day": 0.81634,
+   "corr_daily_vs_us_prev_day": 0.20154
+  },
+  "PHAU.L": {
+   "first_week": "2008-01-18",
+   "last_week": "2026-11-13",
+   "weeks": 982,
+   "years": 18.81999,
+   "corr_weekly": 0.95258,
+   "beta_weekly": 0.98294,
+   "corr_4week": 0.98573,
+   "te_weekly_ann": 0.05397,
+   "cagr_ucits_usd": 0.07775,
+   "cagr_us": 0.07738,
+   "cagr_gap": 0.00038,
+   "vol_ucits": 0.1771,
+   "vol_us": 0.17163,
+   "corr_daily_same_day": 0.76631,
+   "corr_daily_vs_us_prev_day": 0.2353
+  },
+  "SGLD.L": {
+   "first_week": "2009-07-10",
+   "last_week": "2026-11-13",
+   "weeks": 905,
+   "years": 17.34428,
+   "corr_weekly": 0.96409,
+   "beta_weekly": 0.95994,
+   "corr_4week": 0.99056,
+   "te_weekly_ann": 0.04239,
+   "cagr_ucits_usd": 0.08486,
+   "cagr_us": 0.08271,
+   "cagr_gap": 0.00215,
+   "vol_ucits": 0.1578,
+   "vol_us": 0.15848,
+   "corr_daily_same_day": 0.81185,
+   "corr_daily_vs_us_prev_day": 0.1873
+  }
+ },
+ "overlap_last_5y": {
+  "LQQ.PA": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.94175,
+   "beta_weekly": 0.88442,
+   "corr_4week": 0.9773,
+   "te_weekly_ann": 0.14653,
+   "cagr_ucits_usd": 0.11626,
+   "cagr_us": 0.1174,
+   "cagr_gap": -0.00114,
+   "vol_ucits": 0.40916,
+   "vol_us": 0.43568,
+   "corr_daily_same_day": 0.62631,
+   "corr_daily_vs_us_prev_day": 0.35331
+  },
+  "LQQ.MI": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.92046,
+   "beta_weekly": 0.8729,
+   "corr_4week": 0.97569,
+   "te_weekly_ann": 0.17071,
+   "cagr_ucits_usd": 0.11576,
+   "cagr_us": 0.1174,
+   "cagr_gap": -0.00164,
+   "vol_ucits": 0.41317,
+   "vol_us": 0.43568,
+   "corr_daily_same_day": 0.61918,
+   "corr_daily_vs_us_prev_day": 0.35619
+  },
+  "QQQ3.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.93852,
+   "beta_weekly": 0.87855,
+   "corr_4week": 0.97702,
+   "te_weekly_ann": 0.22533,
+   "cagr_ucits_usd": 0.04866,
+   "cagr_us": 0.06513,
+   "cagr_gap": -0.01647,
+   "vol_ucits": 0.61099,
+   "vol_us": 0.6527,
+   "corr_daily_same_day": 0.62707,
+   "corr_daily_vs_us_prev_day": 0.34887
+  },
+  "LQQ3.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.88757,
+   "beta_weekly": 0.87698,
+   "corr_4week": 0.97882,
+   "te_weekly_ann": 0.30776,
+   "cagr_ucits_usd": 0.0483,
+   "cagr_us": 0.06513,
+   "cagr_gap": -0.01683,
+   "vol_ucits": 0.64491,
+   "vol_us": 0.6527,
+   "corr_daily_same_day": 0.60424,
+   "corr_daily_vs_us_prev_day": 0.3413
+  },
+  "QQQ3.MI": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.9103,
+   "beta_weekly": 0.88406,
+   "corr_4week": 0.97707,
+   "te_weekly_ann": 0.27309,
+   "cagr_ucits_usd": 0.04867,
+   "cagr_us": 0.06513,
+   "cagr_gap": -0.01646,
+   "vol_ucits": 0.63388,
+   "vol_us": 0.6527,
+   "corr_daily_same_day": 0.61246,
+   "corr_daily_vs_us_prev_day": 0.34536
+  },
+  "3QQQ.L": {
+   "first_week": "2022-06-24",
+   "last_week": "2026-11-13",
+   "weeks": 229,
+   "years": 4.38877,
+   "corr_weekly": 0.87047,
+   "beta_weekly": 0.88988,
+   "corr_4week": 0.97283,
+   "te_weekly_ann": 0.31714,
+   "cagr_ucits_usd": 0.35103,
+   "cagr_us": 0.39682,
+   "cagr_gap": -0.04579,
+   "vol_ucits": 0.6294,
+   "vol_us": 0.61567,
+   "corr_daily_same_day": 0.59704,
+   "corr_daily_vs_us_prev_day": 0.32047
+  },
+  "CNDX.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 259,
+   "years": 4.98289,
+   "corr_weekly": 0.94108,
+   "beta_weekly": 0.87951,
+   "corr_4week": 0.97391,
+   "te_weekly_ann": 0.07369,
+   "cagr_ucits_usd": 0.11264,
+   "cagr_us": 0.1168,
+   "cagr_gap": -0.00416,
+   "vol_ucits": 0.20359,
+   "vol_us": 0.21784,
+   "corr_daily_same_day": 0.61942,
+   "corr_daily_vs_us_prev_day": 0.34511
+  },
+  "EQQQ.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.9418,
+   "beta_weekly": 0.87383,
+   "corr_4week": 0.97839,
+   "te_weekly_ann": 0.07328,
+   "cagr_ucits_usd": 0.10886,
+   "cagr_us": 0.1168,
+   "cagr_gap": -0.00794,
+   "vol_ucits": 0.20206,
+   "vol_us": 0.21778,
+   "corr_daily_same_day": 0.6504,
+   "corr_daily_vs_us_prev_day": 0.34772
+  },
+  "CBU0.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.96001,
+   "beta_weekly": 0.96529,
+   "corr_4week": 0.98871,
+   "te_weekly_ann": 0.02106,
+   "cagr_ucits_usd": -0.0158,
+   "cagr_us": -0.01736,
+   "cagr_gap": 0.00156,
+   "vol_ucits": 0.07466,
+   "vol_us": 0.07425,
+   "corr_daily_same_day": 0.80605,
+   "corr_daily_vs_us_prev_day": 0.21629
+  },
+  "IBTM.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.93085,
+   "beta_weekly": 0.97756,
+   "corr_4week": 0.97498,
+   "te_weekly_ann": 0.02854,
+   "cagr_ucits_usd": -0.01564,
+   "cagr_us": -0.01736,
+   "cagr_gap": 0.00172,
+   "vol_ucits": 0.07797,
+   "vol_us": 0.07425,
+   "corr_daily_same_day": 0.7366,
+   "corr_daily_vs_us_prev_day": 0.21859
+  },
+  "DTLA.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.95392,
+   "beta_weekly": 0.93338,
+   "corr_4week": 0.98798,
+   "te_weekly_ann": 0.04434,
+   "cagr_ucits_usd": -0.08341,
+   "cagr_us": -0.08513,
+   "cagr_gap": 0.00172,
+   "vol_ucits": 0.14409,
+   "vol_us": 0.14726,
+   "corr_daily_same_day": 0.76186,
+   "corr_daily_vs_us_prev_day": 0.22526
+  },
+  "IDTL.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.95319,
+   "beta_weekly": 0.93872,
+   "corr_4week": 0.98652,
+   "te_weekly_ann": 0.04477,
+   "cagr_ucits_usd": -0.08364,
+   "cagr_us": -0.08513,
+   "cagr_gap": 0.00149,
+   "vol_ucits": 0.14502,
+   "vol_us": 0.14726,
+   "corr_daily_same_day": 0.76141,
+   "corr_daily_vs_us_prev_day": 0.21779
+  },
+  "IBTS.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.62537,
+   "beta_weekly": 0.93698,
+   "corr_4week": 0.84651,
+   "te_weekly_ann": 0.02221,
+   "cagr_ucits_usd": 0.0208,
+   "cagr_us": 0.01936,
+   "cagr_gap": 0.00144,
+   "vol_ucits": 0.02842,
+   "vol_us": 0.01897,
+   "corr_daily_same_day": 0.28536,
+   "corr_daily_vs_us_prev_day": 0.10482
+  },
+  "IB01.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.74038,
+   "beta_weekly": 1.01264,
+   "corr_4week": 0.92387,
+   "te_weekly_ann": 0.00225,
+   "cagr_ucits_usd": 0.03735,
+   "cagr_us": 0.03775,
+   "cagr_gap": -0.0004,
+   "vol_ucits": 0.00335,
+   "vol_us": 0.00245,
+   "corr_daily_same_day": 0.2243,
+   "corr_daily_vs_us_prev_day": 0.11126
+  },
+  "IGLN.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.96293,
+   "beta_weekly": 0.93418,
+   "corr_4week": 0.99242,
+   "te_weekly_ann": 0.04642,
+   "cagr_ucits_usd": 0.15834,
+   "cagr_us": 0.156,
+   "cagr_gap": 0.00234,
+   "vol_ucits": 0.1669,
+   "vol_us": 0.17204,
+   "corr_daily_same_day": 0.85288,
+   "corr_daily_vs_us_prev_day": 0.12991
+  },
+  "SGLN.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.95776,
+   "beta_weekly": 0.94045,
+   "corr_4week": 0.99222,
+   "te_weekly_ann": 0.04965,
+   "cagr_ucits_usd": 0.15827,
+   "cagr_us": 0.156,
+   "cagr_gap": 0.00226,
+   "vol_ucits": 0.16893,
+   "vol_us": 0.17204,
+   "corr_daily_same_day": 0.85062,
+   "corr_daily_vs_us_prev_day": 0.15807
+  },
+  "PHAU.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.96268,
+   "beta_weekly": 0.93046,
+   "corr_4week": 0.99261,
+   "te_weekly_ann": 0.04656,
+   "cagr_ucits_usd": 0.15509,
+   "cagr_us": 0.156,
+   "cagr_gap": -0.00091,
+   "vol_ucits": 0.16628,
+   "vol_us": 0.17204,
+   "corr_daily_same_day": 0.85023,
+   "corr_daily_vs_us_prev_day": 0.13701
+  },
+  "SGLD.L": {
+   "first_week": "2021-11-19",
+   "last_week": "2026-11-13",
+   "weeks": 260,
+   "years": 4.98289,
+   "corr_weekly": 0.96218,
+   "beta_weekly": 0.93281,
+   "corr_4week": 0.99265,
+   "te_weekly_ann": 0.04688,
+   "cagr_ucits_usd": 0.15816,
+   "cagr_us": 0.156,
+   "cagr_gap": 0.00216,
+   "vol_ucits": 0.16678,
+   "vol_us": 0.17204,
+   "corr_daily_same_day": 0.85144,
+   "corr_daily_vs_us_prev_day": 0.13195
+  }
+ },
+ "fx_residual_regressions": {
+  "note": "weekly USD return of the line regressed on its US analogue and on the FX rate of its quote currency. If a 2x product applied its leverage to the EUR-translated index, the USD-converted line would load -(L-1) = -1.0 on EURUSD; ~0 means the quote currency is only a wrapper. Same-date Yahoo FX is ~16.5h stale at a European close, which by itself creates a positive loading; USD-line placebos show what the European close time alone produces.",
+  "LQQ.PA": {
+   "interpolated_fx (used)": {
+    "fx": "EURUSD=X",
+    "weeks": 930,
+    "coef_us_analogue": 0.88093,
+    "coef_fx": 0.11672,
+    "t_fx": 2.11392,
+    "r2": 0.86733
+   },
+   "same_date_yahoo_fx": {
+    "fx": "EURUSD=X",
+    "weeks": 930,
+    "coef_us_analogue": 0.87597,
+    "coef_fx": 0.23504,
+    "t_fx": 4.05642,
+    "r2": 0.85621
+   }
+  },
+  "LQQ.MI": {
+   "interpolated_fx (used)": {
+    "fx": "EURUSD=X",
+    "weeks": 301,
+    "coef_us_analogue": 0.87145,
+    "coef_fx": 0.28716,
+    "t_fx": 2.24021,
+    "r2": 0.84976
+   },
+   "same_date_yahoo_fx": {
+    "fx": "EURUSD=X",
+    "weeks": 301,
+    "coef_us_analogue": 0.86492,
+    "coef_fx": 0.45822,
+    "t_fx": 3.45964,
+    "r2": 0.84224
+   }
+  },
+  "QQQ3.MI": {
+   "interpolated_fx (used)": {
+    "fx": "EURUSD=X",
+    "weeks": 652,
+    "coef_us_analogue": 0.88203,
+    "coef_fx": 0.12919,
+    "t_fx": 1.06495,
+    "r2": 0.83993
+   },
+   "same_date_yahoo_fx": {
+    "fx": "EURUSD=X",
+    "weeks": 652,
+    "coef_us_analogue": 0.88062,
+    "coef_fx": 0.25826,
+    "t_fx": 2.09818,
+    "r2": 0.8365
+   }
+  },
+  "LQQ3.L": {
+   "interpolated_fx (used)": {
+    "fx": "GBPUSD=X",
+    "weeks": 504,
+    "coef_us_analogue": 0.84335,
+    "coef_fx": 0.09682,
+    "t_fx": 0.61118,
+    "r2": 0.76834
+   },
+   "same_date_yahoo_fx": {
+    "fx": "GBPUSD=X",
+    "weeks": 504,
+    "coef_us_analogue": 0.8304,
+    "coef_fx": 0.26721,
+    "t_fx": 1.67299,
+    "r2": 0.76327
+   }
+  },
+  "3QQQ.L": {
+   "interpolated_fx (used)": {
+    "fx": "GBPUSD=X",
+    "weeks": 229,
+    "coef_us_analogue": 0.87224,
+    "coef_fx": 0.47365,
+    "t_fx": 1.6897,
+    "r2": 0.76178
+   },
+   "same_date_yahoo_fx": {
+    "fx": "GBPUSD=X",
+    "weeks": 229,
+    "coef_us_analogue": 0.86378,
+    "coef_fx": 0.64057,
+    "t_fx": 2.24654,
+    "r2": 0.75523
+   }
+  },
+  "EQQQ.L": {
+   "interpolated_fx (used)": {
+    "fx": "GBPUSD=X",
+    "weeks": 628,
+    "coef_us_analogue": 0.87074,
+    "coef_fx": 0.07261,
+    "t_fx": 2.31856,
+    "r2": 0.8635
+   },
+   "same_date_yahoo_fx": {
+    "fx": "GBPUSD=X",
+    "weeks": 628,
+    "coef_us_analogue": 0.82775,
+    "coef_fx": 0.2818,
+    "t_fx": 7.50504,
+    "r2": 0.81056
+   }
+  },
+  "IBTM.L": {
+   "interpolated_fx (used)": {
+    "fx": "GBPUSD=X",
+    "weeks": 932,
+    "coef_us_analogue": 0.94639,
+    "coef_fx": 0.02193,
+    "t_fx": 1.59889,
+    "r2": 0.72158
+   },
+   "same_date_yahoo_fx": {
+    "fx": "GBPUSD=X",
+    "weeks": 932,
+    "coef_us_analogue": 0.91172,
+    "coef_fx": 0.1984,
+    "t_fx": 9.95415,
+    "r2": 0.55946
+   }
+  },
+  "IBTS.L": {
+   "interpolated_fx (used)": {
+    "fx": "GBPUSD=X",
+    "weeks": 830,
+    "coef_us_analogue": 0.87864,
+    "coef_fx": 0.04671,
+    "t_fx": 4.78515,
+    "r2": 0.20696
+   },
+   "same_date_yahoo_fx": {
+    "fx": "GBPUSD=X",
+    "weeks": 830,
+    "coef_us_analogue": 0.57389,
+    "coef_fx": 0.23205,
+    "t_fx": 11.28114,
+    "r2": 0.15993
+   }
+  },
+  "SGLN.L": {
+   "interpolated_fx (used)": {
+    "fx": "GBPUSD=X",
+    "weeks": 806,
+    "coef_us_analogue": 0.93747,
+    "coef_fx": 0.10011,
+    "t_fx": 5.39984,
+    "r2": 0.92248
+   },
+   "same_date_yahoo_fx": {
+    "fx": "GBPUSD=X",
+    "weeks": 806,
+    "coef_us_analogue": 0.87831,
+    "coef_fx": 0.31199,
+    "t_fx": 11.80046,
+    "r2": 0.84923
+   }
+  },
+  "QQQ3.L (USD-line placebo vs EURUSD)": {
+   "interpolated_fx (used)": {
+    "fx": "EURUSD=X",
+    "weeks": 723,
+    "coef_us_analogue": 0.8841,
+    "coef_fx": 0.11515,
+    "t_fx": 1.13904,
+    "r2": 0.86741
+   }
+  },
+  "CNDX.L (USD-line placebo vs EURUSD)": {
+   "interpolated_fx (used)": {
+    "fx": "EURUSD=X",
+    "weeks": 840,
+    "coef_us_analogue": 0.87922,
+    "coef_fx": 0.04477,
+    "t_fx": 1.46625,
+    "r2": 0.85899
+   }
+  },
+  "CBU0.L (USD-line placebo vs EURUSD)": {
+   "interpolated_fx (used)": {
+    "fx": "EURUSD=X",
+    "weeks": 811,
+    "coef_us_analogue": 0.87967,
+    "coef_fx": 0.01483,
+    "t_fx": 1.32809,
+    "r2": 0.8428
+   }
+  },
+  "IGLN.L (USD-line placebo vs EURUSD)": {
+   "interpolated_fx (used)": {
+    "fx": "EURUSD=X",
+    "weeks": 811,
+    "coef_us_analogue": 0.95157,
+    "coef_fx": 0.04418,
+    "t_fx": 2.19918,
+    "r2": 0.9325
+   }
+  }
+ },
+ "line_and_issuer_checks": {
+  "LQQ.MI vs LQQ.PA": {
+   "what": "same fund, Milan vs Paris",
+   "first_week": "2021-02-05",
+   "weeks": 301,
+   "corr_weekly": 0.9755,
+   "te_ann": 0.08856,
+   "cagr_gap": -1e-05
+  },
+  "LQQ3.L vs QQQ3.L": {
+   "what": "same ETP, GBp vs USD line",
+   "first_week": "2017-03-17",
+   "weeks": 504,
+   "corr_weekly": 0.93928,
+   "te_ann": 0.21034,
+   "cagr_gap": -0.00036
+  },
+  "QQQ3.MI vs QQQ3.L": {
+   "what": "same ETP, EUR vs USD line",
+   "first_week": "2014-05-16",
+   "weeks": 652,
+   "corr_weekly": 0.97828,
+   "te_ann": 0.1191,
+   "cagr_gap": -0.00027
+  },
+  "SGLN.L vs IGLN.L": {
+   "what": "same ETC, GBp vs USD line",
+   "first_week": "2011-06-03",
+   "weeks": 806,
+   "corr_weekly": 0.98778,
+   "te_ann": 0.02489,
+   "cagr_gap": -0.00028
+  },
+  "IBTM.L vs CBU0.L": {
+   "what": "same fund, Dist (GBP line, Yahoo dividend-adjusted) vs Acc (USD line)",
+   "first_week": "2011-03-25",
+   "weeks": 811,
+   "corr_weekly": 0.894,
+   "te_ann": 0.03015,
+   "cagr_gap": -0.00348
+  },
+  "IDTL.L vs DTLA.L": {
+   "what": "same fund, Dist vs Acc (USD lines)",
+   "first_week": "2018-05-25",
+   "weeks": 442,
+   "corr_weekly": 0.99158,
+   "te_ann": 0.01858,
+   "cagr_gap": 5e-05
+  },
+  "3QQQ.L vs QQQ3.L": {
+   "what": "Leverage Shares vs WisdomTree 3x",
+   "first_week": "2022-06-24",
+   "weeks": 229,
+   "corr_weekly": 0.93062,
+   "te_ann": 0.23041,
+   "cagr_gap": -0.03135
+  },
+  "PHAU.L vs IGLN.L": {
+   "what": "WisdomTree vs iShares gold ETC",
+   "first_week": "2011-04-29",
+   "weeks": 811,
+   "corr_weekly": 0.99867,
+   "te_ann": 0.00821,
+   "cagr_gap": -0.00221
+  },
+  "SGLD.L vs IGLN.L": {
+   "what": "Invesco vs iShares gold ETC",
+   "first_week": "2011-04-29",
+   "weeks": 811,
+   "corr_weekly": 0.99903,
+   "te_ann": 0.00703,
+   "cagr_gap": -0.00032
+  },
+  "EQQQ.L vs CNDX.L": {
+   "what": "Invesco Dist vs iShares Acc 1x Nasdaq",
+   "first_week": "2014-10-31",
+   "weeks": 627,
+   "corr_weekly": 0.99026,
+   "te_ann": 0.02642,
+   "cagr_gap": -0.0058
+  }
+ },
+ "liquidity_and_costs": {
+  "note": "Abdi-Ranaldo high/low spread estimator was tried and is UNINFORMATIVE here (it returns 35-107bp for QQQ/QLD/TQQQ/GLD whose quoted spreads are ~1bp); on-exchange volume understates European ETF liquidity (much trades OTC/RFQ).",
+  "LQQ.PA": {
+   "median_daily_traded_value_usd_6m": 5615811.31126,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 16:35:28",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00296,
+   "ter_yahoo_pct": 0.6,
+   "aum_yahoo": 1200537088
+  },
+  "LQQ.MI": {
+   "median_daily_traded_value_usd_6m": 569160.53587,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 16:29:55",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": 0.6,
+   "aum_yahoo": 1200537088
+  },
+  "QQQ3.L": {
+   "median_daily_traded_value_usd_6m": 3269795.9523,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.02903,
+   "snapshot_time_utc": "2026-11-17 16:35:21",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00744,
+   "ter_yahoo_pct": null,
+   "aum_yahoo": 542568000
+  },
+  "LQQ3.L": {
+   "median_daily_traded_value_usd_6m": 6681260.22509,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.01407,
+   "snapshot_time_utc": "2026-11-17 16:35:10",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00612,
+   "ter_yahoo_pct": null,
+   "aum_yahoo": 542568000
+  },
+  "QQQ3.MI": {
+   "median_daily_traded_value_usd_6m": 7377843.58362,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 16:35:17",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": null,
+   "aum_yahoo": 542568000
+  },
+  "3QQQ.L": {
+   "median_daily_traded_value_usd_6m": 68970.9677,
+   "zero_volume_share_6m": 0.02326,
+   "yahoo_quote_spread_snapshot": 0.01896,
+   "snapshot_time_utc": "2026-11-17 16:35:06",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": null,
+   "aum_yahoo": 1943648
+  },
+  "CNDX.L": {
+   "median_daily_traded_value_usd_6m": 37289261.90698,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 18:33:30",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00317,
+   "ter_yahoo_pct": 0.3,
+   "aum_yahoo": null
+  },
+  "EQQQ.L": {
+   "median_daily_traded_value_usd_6m": 27561001.51534,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.0004,
+   "snapshot_time_utc": "2026-11-17 16:35:11",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00351,
+   "ter_yahoo_pct": 0.3,
+   "aum_yahoo": null
+  },
+  "CBU0.L": {
+   "median_daily_traded_value_usd_6m": 10460949.29352,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 18:18:04",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00034,
+   "ter_yahoo_pct": 0.07,
+   "aum_yahoo": 5167166976
+  },
+  "IBTM.L": {
+   "median_daily_traded_value_usd_6m": 1312554.4718,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.00063,
+   "snapshot_time_utc": "2026-11-17 16:28:45",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": 0.07,
+   "aum_yahoo": null
+  },
+  "DTLA.L": {
+   "median_daily_traded_value_usd_6m": 7606594.32833,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 18:35:25",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": 0.07,
+   "aum_yahoo": null
+  },
+  "IDTL.L": {
+   "median_daily_traded_value_usd_6m": 1467804.75971,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.00134,
+   "snapshot_time_utc": "2026-11-17 16:35:10",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00143,
+   "ter_yahoo_pct": 0.07,
+   "aum_yahoo": null
+  },
+  "IBTS.L": {
+   "median_daily_traded_value_usd_6m": 811111.56959,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.00052,
+   "snapshot_time_utc": "2026-11-17 16:19:53",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": 0.07,
+   "aum_yahoo": null
+  },
+  "IB01.L": {
+   "median_daily_traded_value_usd_6m": 48433936.36774,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.00016,
+   "snapshot_time_utc": "2026-11-18 07:31:49",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00098,
+   "ter_yahoo_pct": 0.07,
+   "aum_yahoo": null
+  },
+  "IGLN.L": {
+   "median_daily_traded_value_usd_6m": 28670150.67459,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.0002,
+   "snapshot_time_utc": "2026-11-17 16:35:13",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": null,
+   "aum_yahoo": null
+  },
+  "SGLN.L": {
+   "median_daily_traded_value_usd_6m": 23515241.78283,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.00035,
+   "snapshot_time_utc": "2026-11-17 16:35:23",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": null,
+   "aum_yahoo": null
+  },
+  "PHAU.L": {
+   "median_daily_traded_value_usd_6m": 3748800.17529,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.0002,
+   "snapshot_time_utc": "2026-11-17 16:35:19",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": null,
+   "aum_yahoo": null
+  },
+  "SGLD.L": {
+   "median_daily_traded_value_usd_6m": 12179492.56714,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.00024,
+   "snapshot_time_utc": "2026-11-17 16:35:28",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00207,
+   "ter_yahoo_pct": null,
+   "aum_yahoo": null
+  },
+  "QLD": {
+   "median_daily_traded_value_usd_6m": 391670894.70215,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 21:00:00",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00762,
+   "ter_yahoo_pct": 0.89,
+   "aum_yahoo": 13255691264
+  },
+  "TQQQ": {
+   "median_daily_traded_value_usd_6m": 4471703547.62268,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 21:00:01",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.01073,
+   "ter_yahoo_pct": 0.78,
+   "aum_yahoo": 32062332928
+  },
+  "QQQ": {
+   "median_daily_traded_value_usd_6m": 26015804819.04297,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 21:00:00",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00346,
+   "ter_yahoo_pct": 0.18,
+   "aum_yahoo": 463833595904
+  },
+  "IEF": {
+   "median_daily_traded_value_usd_6m": 728075623.68774,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 21:00:01",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": 0.15,
+   "aum_yahoo": 43529359360
+  },
+  "TLT": {
+   "median_daily_traded_value_usd_6m": 2403950001.63727,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 21:00:01",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": 0.15,
+   "aum_yahoo": 47518568448
+  },
+  "SHY": {
+   "median_daily_traded_value_usd_6m": 288043942.24854,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": 0.00012,
+   "snapshot_time_utc": "2026-11-17 21:00:01",
+   "snapshot_note": "taken around the 16:35 London closing auction / after hours - indicative only",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00039,
+   "ter_yahoo_pct": 0.15,
+   "aum_yahoo": 27439355904
+  },
+  "BIL": {
+   "median_daily_traded_value_usd_6m": 852966908.38318,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 21:00:00",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.0,
+   "ter_yahoo_pct": 0.1352,
+   "aum_yahoo": 48510820352
+  },
+  "GLD": {
+   "median_daily_traded_value_usd_6m": 2982781472.43347,
+   "zero_volume_share_6m": 0.0,
+   "yahoo_quote_spread_snapshot": null,
+   "snapshot_time_utc": "2026-11-17 21:00:00",
+   "snapshot_note": "bid/ask missing, inverted or stale vs last price",
+   "abdi_ranaldo_spread_12m_UNRELIABLE": 0.00569,
+   "ter_yahoo_pct": 0.4,
+   "aum_yahoo": 131009642496
+  }
+ },
+ "us_etf_ttm_distribution_yield": {
+  "QLD": 0.00165,
+  "TQQQ": 0.00915,
+  "IEF": 0.04123,
+  "TLT": 0.04926,
+  "BIL": 0.03668,
+  "GLD": 0.0
+ },
+ "strategy": {
+  "F2 (2x, vt .30): LQQ.PA + CBU0.L + IGLN.L vs QLD + IEF + GLD": {
+   "window": [
+    "2011-04-28",
+    "2026-11-16"
+   ],
+   "years": 15.55373,
+   "stats": {
+    "US lag1 3bp": {
+     "window": {
+      "cagr": 0.17086,
+      "maxdd": -0.23958,
+      "sharpe": 1.00065,
+      "calmar": 0.71316,
+      "total": 10.62789,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.1796,
+      "maxdd": -0.23958,
+      "sharpe": 1.04386,
+      "calmar": 0.74962,
+      "total": 11.3917,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.06164
+    },
+    "US lag2 3bp": {
+     "window": {
+      "cagr": 0.16729,
+      "maxdd": -0.25063,
+      "sharpe": 0.96524,
+      "calmar": 0.66747,
+      "total": 10.08851,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.1751,
+      "maxdd": -0.25063,
+      "sharpe": 1.00288,
+      "calmar": 0.69862,
+      "total": 10.69062,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.0515
+    },
+    "UCITS lag2 3bp": {
+     "window": {
+      "cagr": 0.15171,
+      "maxdd": -0.2671,
+      "sharpe": 0.91951,
+      "calmar": 0.56798,
+      "total": 7.99721,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.15847,
+      "maxdd": -0.2671,
+      "sharpe": 0.95163,
+      "calmar": 0.5933,
+      "total": 8.40892,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.04376
+    },
+    "UCITS lag2 realistic-cost": {
+     "window": {
+      "cagr": 0.13886,
+      "maxdd": -0.27126,
+      "sharpe": 0.85301,
+      "calmar": 0.51192,
+      "total": 6.55672,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.1455,
+      "maxdd": -0.27126,
+      "sharpe": 0.88503,
+      "calmar": 0.53639,
+      "total": 6.92524,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.0465
+    },
+    "UCITS lag1 3bp (LOOK-AHEAD artifact)": {
+     "window": {
+      "cagr": 0.2041,
+      "maxdd": -0.20628,
+      "sharpe": 1.1989,
+      "calmar": 0.9894,
+      "total": 16.97173,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.21293,
+      "maxdd": -0.20628,
+      "sharpe": 1.2396,
+      "calmar": 1.03223,
+      "total": 17.94856,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.05155
+    },
+    "swap lev sleeve only (lag2)": {
+     "window": {
+      "cagr": 0.15592,
+      "maxdd": -0.26268,
+      "sharpe": 0.93769,
+      "calmar": 0.59356,
+      "total": 8.52223,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.16257,
+      "maxdd": -0.26268,
+      "sharpe": 0.96892,
+      "calmar": 0.6189,
+      "total": 8.92936,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.041
+    },
+    "swap bond sleeve only (lag2)": {
+     "window": {
+      "cagr": 0.16329,
+      "maxdd": -0.25395,
+      "sharpe": 0.94584,
+      "calmar": 0.64297,
+      "total": 9.51151,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.17115,
+      "maxdd": -0.25395,
+      "sharpe": 0.98361,
+      "calmar": 0.67392,
+      "total": 10.10587,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.05352
+    },
+    "swap gold sleeve only (lag2)": {
+     "window": {
+      "cagr": 0.16717,
+      "maxdd": -0.25661,
+      "sharpe": 0.97038,
+      "calmar": 0.65146,
+      "total": 10.07099,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.17502,
+      "maxdd": -0.25661,
+      "sharpe": 1.00864,
+      "calmar": 0.68206,
+      "total": 10.67936,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.05209
+    },
+    "US lag1 3bp + 5pp band": {
+     "window": {
+      "cagr": 0.17109,
+      "maxdd": -0.23958,
+      "sharpe": 1.0015,
+      "calmar": 0.71414,
+      "total": 10.66438,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.17984,
+      "maxdd": -0.23958,
+      "sharpe": 1.04471,
+      "calmar": 0.75063,
+      "total": 11.43058,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.06164
+    },
+    "UCITS lag2 realistic-cost + 5pp band": {
+     "window": {
+      "cagr": 0.1391,
+      "maxdd": -0.27126,
+      "sharpe": 0.85397,
+      "calmar": 0.51278,
+      "total": 6.58091,
+      "days": 3912
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.14574,
+      "maxdd": -0.27126,
+      "sharpe": 0.88599,
+      "calmar": 0.53728,
+      "total": 6.95061,
+      "days": 3832
+     },
+     "oos_total_return_after_freeze": -0.0465
+    }
+   },
+   "cagr_gap_vs_US_lag1_3bp": {
+    "US lag1 3bp": 0.0,
+    "US lag2 3bp": -0.00357,
+    "UCITS lag2 3bp": -0.01915,
+    "UCITS lag2 realistic-cost": -0.032,
+    "UCITS lag1 3bp (LOOK-AHEAD artifact)": 0.03324,
+    "swap lev sleeve only (lag2)": -0.01494,
+    "swap bond sleeve only (lag2)": -0.00757,
+    "swap gold sleeve only (lag2)": -0.00369,
+    "US lag1 3bp + 5pp band": 0.00024,
+    "UCITS lag2 realistic-cost + 5pp band": -0.03176
+   },
+   "bootstrap": {
+    "UCITS lag2 realistic - US lag1 3bp (total)": {
+     "mean": -0.03178,
+     "lo": -0.05489,
+     "hi": -0.00923,
+     "p_le0": 0.9965
+    },
+    "UCITS lag2 3bp - US lag2 3bp (instrument + European close, same session)": {
+     "mean": -0.01583,
+     "lo": -0.03537,
+     "hi": 0.00315,
+     "p_le0": 0.945
+    },
+    "US lag2 - US lag1 (one-session execution delay)": {
+     "mean": -0.00305,
+     "lo": -0.02885,
+     "hi": 0.02079,
+     "p_le0": 0.585
+    }
+   },
+   "strategy_level_monthly_TE_ucits_vs_us_lag2": 0.04194,
+   "analytic_extra_cost_drag_grid_per_year": {
+    "lev 8bp / bond+gold 5bp one-way": 0.00462,
+    "lev 8bp / bond+gold 8bp one-way": 0.0066,
+    "lev 8bp / bond+gold 12bp one-way": 0.00923,
+    "lev 10bp / bond+gold 5bp one-way": 0.00594,
+    "lev 10bp / bond+gold 8bp one-way": 0.00792,
+    "lev 10bp / bond+gold 12bp one-way": 0.01055,
+    "lev 15bp / bond+gold 5bp one-way": 0.00923,
+    "lev 15bp / bond+gold 8bp one-way": 0.01121,
+    "lev 15bp / bond+gold 12bp one-way": 0.01385,
+    "lev 20bp / bond+gold 5bp one-way": 0.01253,
+    "lev 20bp / bond+gold 8bp one-way": 0.01451,
+    "lev 20bp / bond+gold 12bp one-way": 0.01715,
+    "lev 30bp / bond+gold 5bp one-way": 0.01913,
+    "lev 30bp / bond+gold 8bp one-way": 0.02111,
+    "lev 30bp / bond+gold 12bp one-way": 0.02375,
+    "lev 40bp / bond+gold 5bp one-way": 0.02572,
+    "lev 40bp / bond+gold 8bp one-way": 0.0277,
+    "lev 40bp / bond+gold 12bp one-way": 0.03034
+   },
+   "yearly": {
+    "US lag1 3bp": {
+     "2011": -0.20049,
+     "2012": 0.24916,
+     "2013": 0.24018,
+     "2014": 0.15156,
+     "2015": 0.00902,
+     "2016": 0.02941,
+     "2017": 0.48035,
+     "2018": 0.12983,
+     "2019": 0.29371,
+     "2020": 0.57298,
+     "2021": 0.24305,
+     "2022": -0.20423,
+     "2023": 0.57078,
+     "2024": 0.07134,
+     "2025": 0.32216,
+     "2026": 0.04774
+    },
+    "US lag2 3bp": {
+     "2011": -0.22672,
+     "2012": 0.25951,
+     "2013": 0.21866,
+     "2014": 0.13407,
+     "2015": 0.02543,
+     "2016": 0.05272,
+     "2017": 0.46709,
+     "2018": 0.09374,
+     "2019": 0.17229,
+     "2020": 0.61159,
+     "2021": 0.33103,
+     "2022": -0.20424,
+     "2023": 0.56871,
+     "2024": 0.08832,
+     "2025": 0.25097,
+     "2026": 0.1128
+    },
+    "UCITS lag2 3bp": {
+     "2011": -0.22312,
+     "2012": 0.24479,
+     "2013": 0.19435,
+     "2014": 0.14249,
+     "2015": -0.01591,
+     "2016": 0.0484,
+     "2017": 0.45114,
+     "2018": 0.0853,
+     "2019": 0.1911,
+     "2020": 0.48639,
+     "2021": 0.32206,
+     "2022": -0.23874,
+     "2023": 0.54172,
+     "2024": 0.05901,
+     "2025": 0.29379,
+     "2026": 0.11486
+    },
+    "UCITS lag2 realistic-cost": {
+     "2011": -0.23153,
+     "2012": 0.23498,
+     "2013": 0.17972,
+     "2014": 0.1302,
+     "2015": -0.02229,
+     "2016": 0.03406,
+     "2017": 0.43863,
+     "2018": 0.07513,
+     "2019": 0.17321,
+     "2020": 0.46621,
+     "2021": 0.3039,
+     "2022": -0.24437,
+     "2023": 0.52395,
+     "2024": 0.04456,
+     "2025": 0.28078,
+     "2026": 0.1052
+    }
+   },
+   "avg_weights_US": {
+    "qld": 0.44254,
+    "ief": 0.40746,
+    "gold_phys": 0.15
+   },
+   "annual_turnover_US_lag1": {
+    "qld": 6.59614,
+    "ief": 6.59614,
+    "gold_phys": 0.0
+   },
+   "annual_turnover_UCITS_lag2": {
+    "u_lqq": 6.59614,
+    "u_cbu0": 6.59614,
+    "u_igln": 0.0
+   },
+   "turnover_attribution_lev_sleeve": {
+    "Aug/Sep season switch": 0.314,
+    "chop flag flip (ER 0.25)": 4.36437,
+    "none (risk-off)": 0.0,
+    "risk on/off switch": 1.89211,
+    "vol-target rescaling": 0.02566
+   },
+   "extra_trading_cost_drag_analytic": {
+    "central": 0.01121,
+    "pessimistic": 0.02375,
+    "one_way_cost_assumptions": {
+     "central": {
+      "u_lqq": 0.0015,
+      "u_qqq3": 0.002,
+      "u_cbu0": 0.0008,
+      "u_igln": 0.0008,
+      "u_ibtm": 0.0008,
+      "u_phau": 0.0008,
+      "u_cndx": 0.0008
+     },
+     "pessimistic": {
+      "u_lqq": 0.003,
+      "u_qqq3": 0.004,
+      "u_cbu0": 0.0012,
+      "u_igln": 0.0012,
+      "u_ibtm": 0.0012,
+      "u_phau": 0.0012,
+      "u_cndx": 0.0012
+     },
+     "US": 0.0003
+    }
+   },
+   "instrument_only_drag_from_weekly_gaps": {
+    "full_overlap": 6e-05,
+    "last_5y_gaps": 0.00048
+   },
+   "potential_nra_withholding_drag_of_US_version": {
+    "30pct_on_all_US_ETF_distributions": 0.00526,
+    "30pct_on_leveraged_ETF_only (Treasury-ETF interest exempt)": 0.00022,
+    "basis": "trailing-12m distribution yields x average weights; 0 if the broker applies the interest-related-dividend exemption to everything"
+   },
+   "gap_decomposition_cagr": {
+    "A. one-session execution delay on US ETFs (US lag2 - US lag1)": -0.00357,
+    "B. instruments + European close, same session (UCITS lag2 - US lag2)": -0.01558,
+    "   B1 leveraged sleeve swap (lag2)": -0.01137,
+    "   B2 bond sleeve swap (lag2)": -0.004,
+    "   B3 gold sleeve swap (lag2)": -0.00012,
+    "   memo: instrument-only estimate from weekly CAGR gaps x avg weights": 6e-05,
+    "C. higher European trading costs (UCITS realistic - UCITS 3bp, lag2)": -0.01285,
+    "TOTAL measured (UCITS lag2 realistic - US lag1 3bp) = A+B+C": -0.032,
+    "TOTAL with 5pp band on UCITS (vs US lag1 3bp, no band)": -0.03176,
+    "memo: look-ahead artifact if European closes are backtested at lag1 (UCITS lag1 - UCITS lag2)": 0.05239,
+    "memo: avoided 30% WHT on all US ETF distributions (adds back if the broker withholds)": 0.00526
+   },
+   "band_check_US_1988_to_freeze": {
+    "no_band_1988_2006": {
+     "cagr": 0.20955,
+     "maxdd": -0.21743,
+     "sharpe": 0.99956,
+     "calmar": 0.96374,
+     "total": 36.02735,
+     "days": 4792
+    },
+    "band_1988_2006": {
+     "cagr": 0.20792,
+     "maxdd": -0.21996,
+     "sharpe": 0.99298,
+     "calmar": 0.94528,
+     "total": 35.09417,
+     "days": 4792
+    },
+    "no_band_2007_freeze": {
+     "cagr": 0.18538,
+     "maxdd": -0.23958,
+     "sharpe": 1.07126,
+     "calmar": 0.77377,
+     "total": 26.80959,
+     "days": 4920
+    },
+    "band_2007_freeze": {
+     "cagr": 0.18589,
+     "maxdd": -0.23958,
+     "sharpe": 1.07379,
+     "calmar": 0.77588,
+     "total": 27.04305,
+     "days": 4920
+    },
+    "no_band_1988_freeze": {
+     "cagr": 0.19715,
+     "maxdd": -0.23958,
+     "sharpe": 1.02681,
+     "calmar": 0.82288,
+     "total": 1028.71531,
+     "days": 9712
+    },
+    "band_1988_freeze": {
+     "cagr": 0.19661,
+     "maxdd": -0.23958,
+     "sharpe": 1.02436,
+     "calmar": 0.82066,
+     "total": 1011.19059,
+     "days": 9712
+    },
+    "oos_total_no_band": -0.06164,
+    "oos_total_band": -0.06164,
+    "bootstrap_band_minus_noband_1988_freeze": {
+     "mean": -0.00055,
+     "lo": -0.00155,
+     "hi": 0.00038,
+     "p_le0": 0.867
+    },
+    "lev_turnover_per_year_1988_freeze_band": 6.29493,
+    "lev_turnover_per_year_1988_freeze_no_band": 6.31798
+   }
+  },
+  "F3 (3x, vt .20): QQQ3.L + CBU0.L + IGLN.L vs TQQQ + IEF + GLD": {
+   "window": [
+    "2013-01-03",
+    "2026-11-16"
+   ],
+   "years": 13.86721,
+   "stats": {
+    "US lag1 3bp": {
+     "window": {
+      "cagr": 0.25885,
+      "maxdd": -0.27513,
+      "sharpe": 1.07569,
+      "calmar": 0.94081,
+      "total": 23.34146,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.27456,
+      "maxdd": -0.27513,
+      "sharpe": 1.12658,
+      "calmar": 0.99793,
+      "total": 25.785,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.09123
+    },
+    "US lag2 3bp": {
+     "window": {
+      "cagr": 0.25766,
+      "maxdd": -0.28463,
+      "sharpe": 1.04838,
+      "calmar": 0.90525,
+      "total": 23.02623,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.2718,
+      "maxdd": -0.28463,
+      "sharpe": 1.09257,
+      "calmar": 0.95492,
+      "total": 25.00908,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.07624
+    },
+    "UCITS lag2 3bp": {
+     "window": {
+      "cagr": 0.23733,
+      "maxdd": -0.31184,
+      "sharpe": 1.00798,
+      "calmar": 0.76106,
+      "total": 18.16589,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.24945,
+      "maxdd": -0.31184,
+      "sharpe": 1.04522,
+      "calmar": 0.79992,
+      "total": 19.45323,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.06294
+    },
+    "UCITS lag2 realistic-cost": {
+     "window": {
+      "cagr": 0.21966,
+      "maxdd": -0.31594,
+      "sharpe": 0.94788,
+      "calmar": 0.69526,
+      "total": 14.70015,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.23155,
+      "maxdd": -0.31594,
+      "sharpe": 0.98512,
+      "calmar": 0.73288,
+      "total": 15.82004,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.06658
+    },
+    "UCITS lag1 3bp (LOOK-AHEAD artifact)": {
+     "window": {
+      "cagr": 0.3079,
+      "maxdd": -0.24308,
+      "sharpe": 1.25615,
+      "calmar": 1.26667,
+      "total": 40.35833,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.32359,
+      "maxdd": -0.24308,
+      "sharpe": 1.30253,
+      "calmar": 1.3312,
+      "total": 43.67117,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.07416
+    },
+    "swap lev sleeve only (lag2)": {
+     "window": {
+      "cagr": 0.23996,
+      "maxdd": -0.31399,
+      "sharpe": 1.01644,
+      "calmar": 0.76422,
+      "total": 18.73701,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.25188,
+      "maxdd": -0.31399,
+      "sharpe": 1.05286,
+      "calmar": 0.80221,
+      "total": 19.99985,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.06014
+    },
+    "swap bond sleeve only (lag2)": {
+     "window": {
+      "cagr": 0.25203,
+      "maxdd": -0.28831,
+      "sharpe": 1.02991,
+      "calmar": 0.87418,
+      "total": 21.57686,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.2661,
+      "maxdd": -0.28831,
+      "sharpe": 1.07384,
+      "calmar": 0.92296,
+      "total": 23.4719,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.07744
+    },
+    "swap gold sleeve only (lag2)": {
+     "window": {
+      "cagr": 0.25566,
+      "maxdd": -0.29069,
+      "sharpe": 1.04595,
+      "calmar": 0.87949,
+      "total": 22.50023,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.2697,
+      "maxdd": -0.29069,
+      "sharpe": 1.09023,
+      "calmar": 0.92781,
+      "total": 24.43406,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.07603
+    },
+    "US lag1 3bp + 5pp band": {
+     "window": {
+      "cagr": 0.25933,
+      "maxdd": -0.27499,
+      "sharpe": 1.07705,
+      "calmar": 0.94306,
+      "total": 23.47262,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.27533,
+      "maxdd": -0.27499,
+      "sharpe": 1.12842,
+      "calmar": 1.00121,
+      "total": 26.00343,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.09372
+    },
+    "UCITS lag2 realistic-cost + 5pp band": {
+     "window": {
+      "cagr": 0.21956,
+      "maxdd": -0.3159,
+      "sharpe": 0.94723,
+      "calmar": 0.69502,
+      "total": 14.68175,
+      "days": 3489
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.23177,
+      "maxdd": -0.3159,
+      "sharpe": 0.98531,
+      "calmar": 0.73368,
+      "total": 15.86159,
+      "days": 3409
+     },
+     "oos_total_return_after_freeze": -0.06997
+    }
+   },
+   "cagr_gap_vs_US_lag1_3bp": {
+    "US lag1 3bp": 0.0,
+    "US lag2 3bp": -0.00118,
+    "UCITS lag2 3bp": -0.02151,
+    "UCITS lag2 realistic-cost": -0.03918,
+    "UCITS lag1 3bp (LOOK-AHEAD artifact)": 0.04905,
+    "swap lev sleeve only (lag2)": -0.01889,
+    "swap bond sleeve only (lag2)": -0.00681,
+    "swap gold sleeve only (lag2)": -0.00319,
+    "US lag1 3bp + 5pp band": 0.00049,
+    "UCITS lag2 realistic-cost + 5pp band": -0.03929
+   },
+   "bootstrap": {
+    "UCITS lag2 realistic - US lag1 3bp (total)": {
+     "mean": -0.04003,
+     "lo": -0.07387,
+     "hi": -0.00607,
+     "p_le0": 0.9895
+    },
+    "UCITS lag2 3bp - US lag2 3bp (instrument + European close, same session)": {
+     "mean": -0.02075,
+     "lo": -0.05637,
+     "hi": 0.01228,
+     "p_le0": 0.8825
+    },
+    "US lag2 - US lag1 (one-session execution delay)": {
+     "mean": -0.00157,
+     "lo": -0.04235,
+     "hi": 0.03737,
+     "p_le0": 0.5115
+    }
+   },
+   "strategy_level_monthly_TE_ucits_vs_us_lag2": 0.06421,
+   "analytic_extra_cost_drag_grid_per_year": {
+    "lev 8bp / bond+gold 5bp one-way": 0.00457,
+    "lev 8bp / bond+gold 8bp one-way": 0.00654,
+    "lev 8bp / bond+gold 12bp one-way": 0.00915,
+    "lev 10bp / bond+gold 5bp one-way": 0.00588,
+    "lev 10bp / bond+gold 8bp one-way": 0.00784,
+    "lev 10bp / bond+gold 12bp one-way": 0.01046,
+    "lev 15bp / bond+gold 5bp one-way": 0.00915,
+    "lev 15bp / bond+gold 8bp one-way": 0.01111,
+    "lev 15bp / bond+gold 12bp one-way": 0.01372,
+    "lev 20bp / bond+gold 5bp one-way": 0.01242,
+    "lev 20bp / bond+gold 8bp one-way": 0.01438,
+    "lev 20bp / bond+gold 12bp one-way": 0.01699,
+    "lev 30bp / bond+gold 5bp one-way": 0.01895,
+    "lev 30bp / bond+gold 8bp one-way": 0.02091,
+    "lev 30bp / bond+gold 12bp one-way": 0.02353,
+    "lev 40bp / bond+gold 5bp one-way": 0.02549,
+    "lev 40bp / bond+gold 8bp one-way": 0.02745,
+    "lev 40bp / bond+gold 12bp one-way": 0.03006
+   },
+   "yearly": {
+    "US lag1 3bp": {
+     "2013": 0.42229,
+     "2014": 0.20738,
+     "2015": 0.00602,
+     "2016": 0.03359,
+     "2017": 0.77018,
+     "2018": 0.12195,
+     "2019": 0.41166,
+     "2020": 0.61709,
+     "2021": 0.3134,
+     "2022": -0.22123,
+     "2023": 0.85969,
+     "2024": 0.08329,
+     "2025": 0.38422,
+     "2026": 0.05417
+    },
+    "US lag2 3bp": {
+     "2013": 0.38428,
+     "2014": 0.17953,
+     "2015": 0.02604,
+     "2016": 0.06599,
+     "2017": 0.7475,
+     "2018": 0.07312,
+     "2019": 0.22729,
+     "2020": 0.67343,
+     "2021": 0.44277,
+     "2022": -0.22304,
+     "2023": 0.8722,
+     "2024": 0.11109,
+     "2025": 0.28515,
+     "2026": 0.16564
+    },
+    "UCITS lag2 3bp": {
+     "2013": 0.36929,
+     "2014": 0.20913,
+     "2015": -0.0303,
+     "2016": 0.08405,
+     "2017": 0.71159,
+     "2018": 0.0576,
+     "2019": 0.25794,
+     "2020": 0.53905,
+     "2021": 0.41534,
+     "2022": -0.26187,
+     "2023": 0.86232,
+     "2024": 0.05058,
+     "2025": 0.32985,
+     "2026": 0.15601
+    },
+    "UCITS lag2 realistic-cost": {
+     "2013": 0.34766,
+     "2014": 0.1923,
+     "2015": -0.03844,
+     "2016": 0.06481,
+     "2017": 0.69255,
+     "2018": 0.04413,
+     "2019": 0.23419,
+     "2020": 0.51355,
+     "2021": 0.38965,
+     "2022": -0.26699,
+     "2023": 0.83422,
+     "2024": 0.03229,
+     "2025": 0.31198,
+     "2026": 0.14239
+    }
+   },
+   "avg_weights_US": {
+    "tqqq": 0.43759,
+    "ief": 0.41241,
+    "gold_phys": 0.15
+   },
+   "annual_turnover_US_lag1": {
+    "tqqq": 6.53563,
+    "ief": 6.53563,
+    "gold_phys": 0.0
+   },
+   "annual_turnover_UCITS_lag2": {
+    "u_qqq3": 6.53563,
+    "u_cbu0": 6.53563,
+    "u_igln": 0.0
+   },
+   "turnover_attribution_lev_sleeve": {
+    "Aug/Sep season switch": 0.3051,
+    "chop flag flip (ER 0.25)": 4.52182,
+    "none (risk-off)": 0.0,
+    "risk on/off switch": 1.52766,
+    "vol-target rescaling": 0.18105
+   },
+   "extra_trading_cost_drag_analytic": {
+    "central": 0.01438,
+    "pessimistic": 0.03006,
+    "one_way_cost_assumptions": {
+     "central": {
+      "u_lqq": 0.0015,
+      "u_qqq3": 0.002,
+      "u_cbu0": 0.0008,
+      "u_igln": 0.0008,
+      "u_ibtm": 0.0008,
+      "u_phau": 0.0008,
+      "u_cndx": 0.0008
+     },
+     "pessimistic": {
+      "u_lqq": 0.003,
+      "u_qqq3": 0.004,
+      "u_cbu0": 0.0012,
+      "u_igln": 0.0012,
+      "u_ibtm": 0.0012,
+      "u_phau": 0.0012,
+      "u_cndx": 0.0012
+     },
+     "US": 0.0003
+    }
+   },
+   "instrument_only_drag_from_weekly_gaps": {
+    "full_overlap": -0.0008,
+    "last_5y_gaps": -0.00621
+   },
+   "potential_nra_withholding_drag_of_US_version": {
+    "30pct_on_all_US_ETF_distributions": 0.0063,
+    "30pct_on_leveraged_ETF_only (Treasury-ETF interest exempt)": 0.0012,
+    "basis": "trailing-12m distribution yields x average weights; 0 if the broker applies the interest-related-dividend exemption to everything"
+   },
+   "gap_decomposition_cagr": {
+    "A. one-session execution delay on US ETFs (US lag2 - US lag1)": -0.00118,
+    "B. instruments + European close, same session (UCITS lag2 - US lag2)": -0.02033,
+    "   B1 leveraged sleeve swap (lag2)": -0.01771,
+    "   B2 bond sleeve swap (lag2)": -0.00563,
+    "   B3 gold sleeve swap (lag2)": -0.00201,
+    "   memo: instrument-only estimate from weekly CAGR gaps x avg weights": -0.0008,
+    "C. higher European trading costs (UCITS realistic - UCITS 3bp, lag2)": -0.01767,
+    "TOTAL measured (UCITS lag2 realistic - US lag1 3bp) = A+B+C": -0.03918,
+    "TOTAL with 5pp band on UCITS (vs US lag1 3bp, no band)": -0.03929,
+    "memo: look-ahead artifact if European closes are backtested at lag1 (UCITS lag1 - UCITS lag2)": 0.07057,
+    "memo: avoided 30% WHT on all US ETF distributions (adds back if the broker withholds)": 0.0063
+   },
+   "band_check_US_1988_to_freeze": {
+    "no_band_1988_2006": {
+     "cagr": 0.23958,
+     "maxdd": -0.29992,
+     "sharpe": 0.91763,
+     "calmar": 0.79882,
+     "total": 57.98598,
+     "days": 4792
+    },
+    "band_1988_2006": {
+     "cagr": 0.23956,
+     "maxdd": -0.29993,
+     "sharpe": 0.91584,
+     "calmar": 0.79872,
+     "total": 57.9688,
+     "days": 4792
+    },
+    "no_band_2007_freeze": {
+     "cagr": 0.24325,
+     "maxdd": -0.27513,
+     "sharpe": 1.02901,
+     "calmar": 0.88412,
+     "total": 69.62539,
+     "days": 4920
+    },
+    "band_2007_freeze": {
+     "cagr": 0.2432,
+     "maxdd": -0.27499,
+     "sharpe": 1.0289,
+     "calmar": 0.88438,
+     "total": 69.57055,
+     "days": 4920
+    },
+    "no_band_1988_freeze": {
+     "cagr": 0.24134,
+     "maxdd": -0.29992,
+     "sharpe": 0.96811,
+     "calmar": 0.8047,
+     "total": 4164.90755,
+     "days": 9712
+    },
+    "band_1988_freeze": {
+     "cagr": 0.24131,
+     "maxdd": -0.29993,
+     "sharpe": 0.96695,
+     "calmar": 0.80455,
+     "total": 4160.4608,
+     "days": 9712
+    },
+    "oos_total_no_band": -0.09123,
+    "oos_total_band": -0.09372,
+    "bootstrap_band_minus_noband_1988_freeze": {
+     "mean": -4e-05,
+     "lo": -0.00261,
+     "hi": 0.00226,
+     "p_le0": 0.4915
+    },
+    "lev_turnover_per_year_1988_freeze_band": 6.02165,
+    "lev_turnover_per_year_1988_freeze_no_band": 6.12305
+   }
+  },
+  "F2 longer history: LQQ.PA + IBTM.L + PHAU.L vs QLD + IEF + GLD": {
+   "window": [
+    "2009-01-21",
+    "2026-11-16"
+   ],
+   "years": 17.81793,
+   "stats": {
+    "US lag1 3bp": {
+     "window": {
+      "cagr": 0.19198,
+      "maxdd": -0.23958,
+      "sharpe": 1.09747,
+      "calmar": 0.8013,
+      "total": 21.8522,
+      "days": 4484
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.2001,
+      "maxdd": -0.23958,
+      "sharpe": 1.13657,
+      "calmar": 0.83521,
+      "total": 23.35329,
+      "days": 4404
+     },
+     "oos_total_return_after_freeze": -0.06164
+    },
+    "US lag2 3bp": {
+     "window": {
+      "cagr": 0.19668,
+      "maxdd": -0.25063,
+      "sharpe": 1.10474,
+      "calmar": 0.78474,
+      "total": 23.51366,
+      "days": 4484
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.20418,
+      "maxdd": -0.25063,
+      "sharpe": 1.13997,
+      "calmar": 0.81468,
+      "total": 24.84477,
+      "days": 4404
+     },
+     "oos_total_return_after_freeze": -0.0515
+    },
+    "UCITS lag2 3bp": {
+     "window": {
+      "cagr": 0.18459,
+      "maxdd": -0.27004,
+      "sharpe": 1.06962,
+      "calmar": 0.68356,
+      "total": 19.45666,
+      "days": 4484
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.19125,
+      "maxdd": -0.27004,
+      "sharpe": 1.09913,
+      "calmar": 0.70821,
+      "total": 20.39245,
+      "days": 4404
+     },
+     "oos_total_return_after_freeze": -0.04374
+    },
+    "UCITS lag2 realistic-cost": {
+     "window": {
+      "cagr": 0.17109,
+      "maxdd": -0.27418,
+      "sharpe": 1.00279,
+      "calmar": 0.62401,
+      "total": 15.67791,
+      "days": 4484
+     },
+     "in_sample_to_freeze": {
+      "cagr": 0.17762,
+      "maxdd": -0.27418,
+      "sharpe": 1.03223,
+      "calmar": 0.64783,
+      "total": 16.49104,
+      "days": 4404
+     },
+     "oos_total_return_after_freeze": -0.04649
+    }
+   },
+   "cagr_gap_vs_US_lag1_3bp": {
+    "US lag1 3bp": 0.0,
+    "US lag2 3bp": 0.0047,
+    "UCITS lag2 3bp": -0.00739,
+    "UCITS lag2 realistic-cost": -0.02089
+   },
+   "bootstrap": {
+    "UCITS lag2 realistic - US lag1 3bp (total)": {
+     "mean": -0.0207,
+     "lo": -0.04293,
+     "hi": 0.00283,
+     "p_le0": 0.9585
+    },
+    "UCITS lag2 3bp - US lag2 3bp (instrument + European close, same session)": {
+     "mean": -0.01185,
+     "lo": -0.03145,
+     "hi": 0.00771,
+     "p_le0": 0.8715
+    },
+    "US lag2 - US lag1 (one-session execution delay)": {
+     "mean": 0.00467,
+     "lo": -0.01979,
+     "hi": 0.02938,
+     "p_le0": 0.3595
+    }
+   },
+   "strategy_level_monthly_TE_ucits_vs_us_lag2": 0.0441,
+   "analytic_extra_cost_drag_grid_per_year": {
+    "lev 8bp / bond+gold 5bp one-way": 0.00472,
+    "lev 8bp / bond+gold 8bp one-way": 0.00674,
+    "lev 8bp / bond+gold 12bp one-way": 0.00944,
+    "lev 10bp / bond+gold 5bp one-way": 0.00607,
+    "lev 10bp / bond+gold 8bp one-way": 0.00809,
+    "lev 10bp / bond+gold 12bp one-way": 0.01078,
+    "lev 15bp / bond+gold 5bp one-way": 0.00944,
+    "lev 15bp / bond+gold 8bp one-way": 0.01146,
+    "lev 15bp / bond+gold 12bp one-way": 0.01415,
+    "lev 20bp / bond+gold 5bp one-way": 0.01281,
+    "lev 20bp / bond+gold 8bp one-way": 0.01483,
+    "lev 20bp / bond+gold 12bp one-way": 0.01752,
+    "lev 30bp / bond+gold 5bp one-way": 0.01955,
+    "lev 30bp / bond+gold 8bp one-way": 0.02157,
+    "lev 30bp / bond+gold 12bp one-way": 0.02426,
+    "lev 40bp / bond+gold 5bp one-way": 0.02629,
+    "lev 40bp / bond+gold 8bp one-way": 0.02831,
+    "lev 40bp / bond+gold 12bp one-way": 0.031
+   },
+   "yearly": {
+    "US lag1 3bp": {
+     "2009": 0.48793,
+     "2010": 0.226,
+     "2011": -0.13865,
+     "2012": 0.24916,
+     "2013": 0.24018,
+     "2014": 0.15156,
+     "2015": 0.00902,
+     "2016": 0.02941,
+     "2017": 0.48035,
+     "2018": 0.12983,
+     "2019": 0.29371,
+     "2020": 0.57298,
+     "2021": 0.24305,
+     "2022": -0.20423,
+     "2023": 0.57078,
+     "2024": 0.07134,
+     "2025": 0.32216,
+     "2026": 0.04774
+    },
+    "US lag2 3bp": {
+     "2009": 0.48379,
+     "2010": 0.28368,
+     "2011": -0.10249,
+     "2012": 0.25951,
+     "2013": 0.21866,
+     "2014": 0.13407,
+     "2015": 0.02543,
+     "2016": 0.05272,
+     "2017": 0.46709,
+     "2018": 0.09374,
+     "2019": 0.17229,
+     "2020": 0.61159,
+     "2021": 0.33103,
+     "2022": -0.20424,
+     "2023": 0.56871,
+     "2024": 0.08832,
+     "2025": 0.25097,
+     "2026": 0.1128
+    },
+    "UCITS lag2 3bp": {
+     "2009": 0.59912,
+     "2010": 0.24726,
+     "2011": -0.1261,
+     "2012": 0.2386,
+     "2013": 0.18522,
+     "2014": 0.16288,
+     "2015": -0.01771,
+     "2016": 0.05554,
+     "2017": 0.45036,
+     "2018": 0.09079,
+     "2019": 0.19581,
+     "2020": 0.48188,
+     "2021": 0.32364,
+     "2022": -0.23874,
+     "2023": 0.53778,
+     "2024": 0.05649,
+     "2025": 0.29534,
+     "2026": 0.11537
+    },
+    "UCITS lag2 realistic-cost": {
+     "2009": 0.58275,
+     "2010": 0.22857,
+     "2011": -0.13931,
+     "2012": 0.22884,
+     "2013": 0.1707,
+     "2014": 0.15037,
+     "2015": -0.02408,
+     "2016": 0.0411,
+     "2017": 0.43786,
+     "2018": 0.08057,
+     "2019": 0.17785,
+     "2020": 0.46176,
+     "2021": 0.30546,
+     "2022": -0.24437,
+     "2023": 0.52008,
+     "2024": 0.04207,
+     "2025": 0.28232,
+     "2026": 0.10569
+    }
+   },
+   "avg_weights_US": {
+    "qld": 0.44262,
+    "ief": 0.40738,
+    "gold_phys": 0.15
+   },
+   "annual_turnover_US_lag1": {
+    "qld": 6.73982,
+    "ief": 6.73982,
+    "gold_phys": 0.0
+   },
+   "annual_turnover_UCITS_lag2": {
+    "u_lqq": 6.73982,
+    "u_ibtm": 6.73982,
+    "u_phau": 0.0
+   },
+   "turnover_attribution_lev_sleeve": {
+    "Aug/Sep season switch": 0.35758,
+    "chop flag flip (ER 0.25)": 4.39228,
+    "none (risk-off)": 0.0,
+    "risk on/off switch": 1.9626,
+    "vol-target rescaling": 0.02736
+   },
+   "extra_trading_cost_drag_analytic": {
+    "central": 0.01146,
+    "pessimistic": 0.02426,
+    "one_way_cost_assumptions": {
+     "central": {
+      "u_lqq": 0.0015,
+      "u_qqq3": 0.002,
+      "u_cbu0": 0.0008,
+      "u_igln": 0.0008,
+      "u_ibtm": 0.0008,
+      "u_phau": 0.0008,
+      "u_cndx": 0.0008
+     },
+     "pessimistic": {
+      "u_lqq": 0.003,
+      "u_qqq3": 0.004,
+      "u_cbu0": 0.0012,
+      "u_igln": 0.0012,
+      "u_ibtm": 0.0012,
+      "u_phau": 0.0012,
+      "u_cndx": 0.0012
+     },
+     "US": 0.0003
+    }
+   },
+   "instrument_only_drag_from_weekly_gaps": {
+    "full_overlap": -0.00367,
+    "last_5y_gaps": -0.00374
+   },
+   "potential_nra_withholding_drag_of_US_version": {
+    "30pct_on_all_US_ETF_distributions": 0.00526,
+    "30pct_on_leveraged_ETF_only (Treasury-ETF interest exempt)": 0.00022,
+    "basis": "trailing-12m distribution yields x average weights; 0 if the broker applies the interest-related-dividend exemption to everything"
+   }
+  }
+ },
+ "control_1x_CNDX_vs_QQQ": {
+  "window": [
+   "2010-10-01",
+   "2026-11-16"
+  ],
+  "us_qqq_lag2": {
+   "cagr": 0.10476,
+   "maxdd": -0.19374,
+   "sharpe": 1.06181,
+   "calmar": 0.54072,
+   "total": 3.9857,
+   "days": 4056
+  },
+  "ucits_cndx_lag2": {
+   "cagr": 0.10126,
+   "maxdd": -0.20742,
+   "sharpe": 1.04046,
+   "calmar": 0.48821,
+   "total": 3.73745,
+   "days": 4056
+  },
+  "cagr_gap": -0.00349,
+  "instrument_weekly_gap_CNDX_vs_QQQ": -0.00104,
+  "yearly_gap": {
+   "2010": 0.04765,
+   "2011": -0.01039,
+   "2012": -0.00304,
+   "2013": -0.00589,
+   "2014": 0.01187,
+   "2015": -0.01632,
+   "2016": 0.00567,
+   "2017": -0.00721,
+   "2018": -0.00255,
+   "2019": 0.0055,
+   "2020": -0.0471,
+   "2021": -0.01481,
+   "2022": -0.02294,
+   "2023": -0.00018,
+   "2024": -0.01786,
+   "2025": 0.02504,
+   "2026": 7e-05
+  },
+  "bootstrap": {
+   "mean": -0.00345,
+   "lo": -0.01397,
+   "hi": 0.00691,
+   "p_le0": 0.7515
+  }
+ },
+ "er_hysteresis_test": {
+  "rule": "weekly ER20 hysteresis: chop when < 0.20, clean when >= 0.30, else keep previous state (pre-specified)",
+  "adoption_rule": "at UCITS-level costs on 1988..freeze US history: CAGR and Calmar better in BOTH halves AND bootstrap 95% CI of the CAGR difference excludes 0",
+  "chop_flag_changes_per_year_1988_freeze": {
+   "baseline": 15.84548,
+   "hysteresis": 11.48862
+  },
+  "F2 primary": {
+   "US 3bp": {
+    "1988_2006": {
+     "base": {
+      "cagr": 0.20955,
+      "maxdd": -0.21743,
+      "sharpe": 0.99956,
+      "calmar": 0.96374,
+      "total": 36.02735,
+      "days": 4792
+     },
+     "hyst": {
+      "cagr": 0.21493,
+      "maxdd": -0.22197,
+      "sharpe": 1.0264,
+      "calmar": 0.96827,
+      "total": 39.28188,
+      "days": 4792
+     }
+    },
+    "2007_freeze": {
+     "base": {
+      "cagr": 0.18538,
+      "maxdd": -0.23958,
+      "sharpe": 1.07126,
+      "calmar": 0.77377,
+      "total": 26.80959,
+      "days": 4920
+     },
+     "hyst": {
+      "cagr": 0.1798,
+      "maxdd": -0.23958,
+      "sharpe": 1.03696,
+      "calmar": 0.75048,
+      "total": 24.3591,
+      "days": 4920
+     }
+    },
+    "1988_freeze": {
+     "base": {
+      "cagr": 0.19715,
+      "maxdd": -0.23958,
+      "sharpe": 1.02681,
+      "calmar": 0.82288,
+      "total": 1028.71531,
+      "days": 9712
+     },
+     "hyst": {
+      "cagr": 0.1969,
+      "maxdd": -0.23958,
+      "sharpe": 1.02664,
+      "calmar": 0.82184,
+      "total": 1020.51211,
+      "days": 9712
+     }
+    },
+    "oos_total": {
+     "base": -0.06164,
+     "hyst": -0.06164
+    },
+    "bootstrap_hyst_minus_base_1988_freeze": {
+     "mean": -0.00022,
+     "lo": -0.01255,
+     "hi": 0.0122,
+     "p_le0": 0.5105
+    }
+   },
+   "US at UCITS-level costs": {
+    "1988_2006": {
+     "base": {
+      "cagr": 0.19725,
+      "maxdd": -0.22151,
+      "sharpe": 0.95162,
+      "calmar": 0.89048,
+      "total": 29.49807,
+      "days": 4792
+     },
+     "hyst": {
+      "cagr": 0.20441,
+      "maxdd": -0.22531,
+      "sharpe": 0.98532,
+      "calmar": 0.90724,
+      "total": 33.15484,
+      "days": 4792
+     }
+    },
+    "2007_freeze": {
+     "base": {
+      "cagr": 0.17212,
+      "maxdd": -0.24572,
+      "sharpe": 1.00614,
+      "calmar": 0.70049,
+      "total": 21.32016,
+      "days": 4920
+     },
+     "hyst": {
+      "cagr": 0.16851,
+      "maxdd": -0.24572,
+      "sharpe": 0.98157,
+      "calmar": 0.68576,
+      "total": 20.01055,
+      "days": 4920
+     }
+    },
+    "1988_freeze": {
+     "base": {
+      "cagr": 0.18436,
+      "maxdd": -0.24572,
+      "sharpe": 0.97135,
+      "calmar": 0.7503,
+      "total": 679.72178,
+      "days": 9712
+     },
+     "hyst": {
+      "cagr": 0.18599,
+      "maxdd": -0.24572,
+      "sharpe": 0.97921,
+      "calmar": 0.7569,
+      "total": 716.61206,
+      "days": 9712
+     }
+    },
+    "oos_total": {
+     "base": -0.06434,
+     "hyst": -0.06434
+    },
+    "bootstrap_hyst_minus_base_1988_freeze": {
+     "mean": 0.00166,
+     "lo": -0.01069,
+     "hi": 0.01424,
+     "p_le0": 0.3895
+    }
+   },
+   "UCITS window lag2 realistic": {
+    "window": [
+     "2011-04-28",
+     "2026-11-16"
+    ],
+    "base": {
+     "cagr": 0.13886,
+     "maxdd": -0.27126,
+     "sharpe": 0.85301,
+     "calmar": 0.51192,
+     "total": 6.55672,
+     "days": 3912
+    },
+    "hyst": {
+     "cagr": 0.14033,
+     "maxdd": -0.27126,
+     "sharpe": 0.8567,
+     "calmar": 0.51735,
+     "total": 6.71,
+     "days": 3912
+    },
+    "bootstrap_hyst_minus_base": {
+     "mean": 0.00119,
+     "lo": -0.0158,
+     "hi": 0.01842,
+     "p_le0": 0.445
+    }
+   },
+   "lev_turnover_per_year_1988_freeze_hyst": 5.38882,
+   "passes_pre_stated_rule": false
+  },
+  "F3 primary": {
+   "US 3bp": {
+    "1988_2006": {
+     "base": {
+      "cagr": 0.23958,
+      "maxdd": -0.29992,
+      "sharpe": 0.91763,
+      "calmar": 0.79882,
+      "total": 57.98598,
+      "days": 4792
+     },
+     "hyst": {
+      "cagr": 0.24322,
+      "maxdd": -0.29284,
+      "sharpe": 0.93179,
+      "calmar": 0.83058,
+      "total": 61.36699,
+      "days": 4792
+     }
+    },
+    "2007_freeze": {
+     "base": {
+      "cagr": 0.24325,
+      "maxdd": -0.27513,
+      "sharpe": 1.02901,
+      "calmar": 0.88412,
+      "total": 69.62539,
+      "days": 4920
+     },
+     "hyst": {
+      "cagr": 0.23405,
+      "maxdd": -0.28027,
+      "sharpe": 0.99034,
+      "calmar": 0.83509,
+      "total": 60.08113,
+      "days": 4920
+     }
+    },
+    "1988_freeze": {
+     "base": {
+      "cagr": 0.24134,
+      "maxdd": -0.29992,
+      "sharpe": 0.96811,
+      "calmar": 0.8047,
+      "total": 4164.90755,
+      "days": 9712
+     },
+     "hyst": {
+      "cagr": 0.23847,
+      "maxdd": -0.29284,
+      "sharpe": 0.95803,
+      "calmar": 0.81434,
+      "total": 3808.44627,
+      "days": 9712
+     }
+    },
+    "oos_total": {
+     "base": -0.09123,
+     "hyst": -0.09123
+    },
+    "bootstrap_hyst_minus_base_1988_freeze": {
+     "mean": -0.00286,
+     "lo": -0.02018,
+     "hi": 0.01485,
+     "p_le0": 0.632
+    }
+   },
+   "US at UCITS-level costs": {
+    "1988_2006": {
+     "base": {
+      "cagr": 0.2239,
+      "maxdd": -0.3076,
+      "sharpe": 0.87146,
+      "calmar": 0.72788,
+      "total": 45.32013,
+      "days": 4792
+     },
+     "hyst": {
+      "cagr": 0.22964,
+      "maxdd": -0.29928,
+      "sharpe": 0.89171,
+      "calmar": 0.7673,
+      "total": 49.62577,
+      "days": 4792
+     }
+    },
+    "2007_freeze": {
+     "base": {
+      "cagr": 0.22575,
+      "maxdd": -0.28094,
+      "sharpe": 0.96993,
+      "calmar": 0.80355,
+      "total": 52.52992,
+      "days": 4920
+     },
+     "hyst": {
+      "cagr": 0.21898,
+      "maxdd": -0.29225,
+      "sharpe": 0.93955,
+      "calmar": 0.74929,
+      "total": 47.03764,
+      "days": 4920
+     }
+    },
+    "1988_freeze": {
+     "base": {
+      "cagr": 0.22475,
+      "maxdd": -0.3076,
+      "sharpe": 0.91596,
+      "calmar": 0.73065,
+      "total": 2478.51273,
+      "days": 9712
+     },
+     "hyst": {
+      "cagr": 0.22413,
+      "maxdd": -0.29928,
+      "sharpe": 0.91293,
+      "calmar": 0.7489,
+      "total": 2430.9424,
+      "days": 9712
+     }
+    },
+    "oos_total": {
+     "base": -0.09478,
+     "hyst": -0.09478
+    },
+    "bootstrap_hyst_minus_base_1988_freeze": {
+     "mean": -0.00059,
+     "lo": -0.01799,
+     "hi": 0.01692,
+     "p_le0": 0.5195
+    }
+   },
+   "UCITS window lag2 realistic": {
+    "window": [
+     "2013-01-03",
+     "2026-11-16"
+    ],
+    "base": {
+     "cagr": 0.21966,
+     "maxdd": -0.31594,
+     "sharpe": 0.94788,
+     "calmar": 0.69526,
+     "total": 14.70015,
+     "days": 3489
+    },
+    "hyst": {
+     "cagr": 0.22111,
+     "maxdd": -0.31594,
+     "sharpe": 0.94761,
+     "calmar": 0.69984,
+     "total": 14.96051,
+     "days": 3489
+    },
+    "bootstrap_hyst_minus_base": {
+     "mean": 0.00198,
+     "lo": -0.02396,
+     "hi": 0.02935,
+     "p_le0": 0.4375
+    }
+   },
+   "lev_turnover_per_year_1988_freeze_hyst": 5.29316,
+   "passes_pre_stated_rule": false
+  }
+ },
+ "hybrid_US_leveraged_plus_UCITS_bonds_gold": {
+  "F2": {
+   "window": [
+    "2011-04-28",
+    "2026-11-16"
+   ],
+   "hybrid": {
+    "cagr": 0.16014,
+    "maxdd": -0.25626,
+    "sharpe": 0.93457,
+    "calmar": 0.6249,
+    "total": 9.07773,
+    "days": 3912
+   },
+   "us_lag1_3bp": {
+    "cagr": 0.17086,
+    "maxdd": -0.23958,
+    "sharpe": 1.00065,
+    "calmar": 0.71316,
+    "total": 10.62789,
+    "days": 3912
+   },
+   "cagr_gap": -0.01072,
+   "bootstrap": {
+    "mean": -0.0103,
+    "lo": -0.03501,
+    "hi": 0.01254,
+    "p_le0": 0.7995
+   },
+   "us_situs_weight_avg": 0.44259,
+   "us_situs_weight_max": 0.85,
+   "oos_total": -0.05493
+  },
+  "F3": {
+   "window": [
+    "2013-01-03",
+    "2026-11-16"
+   ],
+   "hybrid": {
+    "cagr": 0.24855,
+    "maxdd": -0.29026,
+    "sharpe": 1.02213,
+    "calmar": 0.85628,
+    "total": 20.72085,
+    "days": 3489
+   },
+   "us_lag1_3bp": {
+    "cagr": 0.25885,
+    "maxdd": -0.27513,
+    "sharpe": 1.07569,
+    "calmar": 0.94081,
+    "total": 23.34146,
+    "days": 3489
+   },
+   "cagr_gap": -0.0103,
+   "bootstrap": {
+    "mean": -0.0107,
+    "lo": -0.04966,
+    "hi": 0.02784,
+    "p_le0": 0.696
+   },
+   "us_situs_weight_avg": 0.43748,
+   "us_situs_weight_max": 0.85,
+   "oos_total": -0.07885
+  }
+ },
+ "instruments_since_freeze_2026_07_24_to_2026_11_16": {
+  "note": "European close (~11:35 ET) vs US close at both ends; indicative only",
+  "LQQ.PA": {
+   "ucits_usd": -0.08768,
+   "QLD": -0.09517,
+   "gap_pp": 0.00749
+  },
+  "QQQ3.L": {
+   "ucits_usd": -0.16563,
+   "TQQQ": -0.1698,
+   "gap_pp": 0.00417
+  },
+  "CNDX.L": {
+   "ucits_usd": -0.02887,
+   "QQQ": -0.03185,
+   "gap_pp": 0.00298
+  },
+  "CBU0.L": {
+   "ucits_usd": -0.01838,
+   "IEF": -0.01646,
+   "gap_pp": -0.00192
+  },
+  "DTLA.L": {
+   "ucits_usd": -0.03546,
+   "TLT": -0.03105,
+   "gap_pp": -0.00441
+  },
+  "IB01.L": {
+   "ucits_usd": 0.01189,
+   "BIL": 0.01169,
+   "gap_pp": 0.00019
+  },
+  "IGLN.L": {
+   "ucits_usd": -0.05397,
+   "GLD": -0.05101,
+   "gap_pp": -0.00297
+  },
+  "SGLD.L": {
+   "ucits_usd": -0.0539,
+   "GLD": -0.05101,
+   "gap_pp": -0.00289
+  },
+  "PHAU.L": {
+   "ucits_usd": -0.05448,
+   "GLD": -0.05101,
+   "gap_pp": -0.00347
+  }
+ },
+ "current_state": {
+  "asof": "2026-11-16",
+  "above_ema100": false,
+  "ndx": 27197.15039,
+  "ema100": 29008.15183,
+  "ucits_allocation_F2_F3": {
+   "CBU0.L (UST 7-10y, USD Acc)": 0.85,
+   "IGLN.L (physical gold ETC, USD)": 0.15
+  }
+ },
+ "summary": {
+  "viable_mapping": {
+   "2x Nasdaq-100": "LQQ.PA (only 2x Nasdaq-100 UCITS found; leverage on the USD index, EUR is only the quote currency)",
+   "UST 7-10y": "CBU0.L",
+   "UST 20y+": "DTLA.L",
+   "UST 0-1y": "IB01.L",
+   "gold": "IGLN.L (ETC; SGLD.L / PHAU.L equivalent)",
+   "3x Nasdaq-100": "QQQ3.L tradable but NOT recommended (non-UCITS ETP issuer risk, thin, last-5y drag)",
+   "not viable / not verifiable": "3QQQ.L (tiny AUM), IBTS.L (Yahoo data unusable), Dist GBP lines for backtests"
+  },
+  "instrument_cagr_gap_full_history": {
+   "LQQ.PA": -0.00098,
+   "QQQ3.L": -0.00297,
+   "CBU0.L": -5e-05,
+   "DTLA.L": 0.00125,
+   "IB01.L": 0.00096,
+   "IGLN.L": 0.00344
+  },
+  "instrument_cagr_gap_last_5y": {
+   "LQQ.PA": -0.00114,
+   "QQQ3.L": -0.01647,
+   "CBU0.L": 0.00156,
+   "DTLA.L": 0.00172,
+   "IB01.L": -0.0004,
+   "IGLN.L": 0.00234
+  },
+  "F2_total_measured_gap": {
+   "2011-2026 (CBU0/IGLN)": -0.032,
+   "2009-2026 (IBTM/PHAU)": -0.02089
+  },
+  "F3_total_measured_gap_2013_2026": -0.03918,
+  "F2_extra_trading_cost_central": 0.01121,
+  "F3_extra_trading_cost_central": 0.01438,
+  "hybrid_gap": {
+   "F2": -0.01072,
+   "F3": -0.0103
+  },
+  "mitigations_tested": {
+   "5pp no-trade band": "no effect (turnover is chop flips / risk switches, not vol rescaling)",
+   "ER hysteresis 0.20/0.30": "fails pre-stated both-halves rule"
+  },
+  "look_ahead_warning": "European closes backtested at lag1 overstate CAGR by 5.2 (F2) / 7.1 (F3) pts/yr"
+ },
+ "meta": {
+  "script": "update_2026_11/ucits.py",
+  "helper": "update_2026_11/ucits_fetch.py",
+  "fetched_utc": "2026-11-18T07:57:20.426969+00:00",
+  "end": "2026-11-16",
+  "weekly_end": "2026-11-13",
+  "freeze": "2026-07-24",
+  "fx_conversion": "log-interpolated 16.5/24 between Yahoo FX bar D (~00:00 London) and the next bar",
+  "execution": "lag1 = trade at the signal (Friday US) close, July convention; lag2 = trade at the next session close. European listings close ~11:35 ET, before the signal exists, so lag2 (Monday European close) is the earliest honest execution.",
+  "variants_tested": 36,
+  "variants": [
+   "F2 primary: US lag1 3bp",
+   "F2 primary: US lag2 3bp",
+   "F2 primary: UCITS lag2 3bp",
+   "F2 primary: UCITS lag2 realistic cost",
+   "F2 primary: UCITS lag1 3bp (look-ahead artifact)",
+   "F2 primary: swap lev only lag2",
+   "F2 primary: swap bond only lag2",
+   "F2 primary: swap gold only lag2",
+   "F2 primary: US lag1 3bp + 5pp band",
+   "F2 primary: UCITS lag2 realistic + 5pp band",
+   "F3 primary: US lag1 3bp",
+   "F3 primary: US lag2 3bp",
+   "F3 primary: UCITS lag2 3bp",
+   "F3 primary: UCITS lag2 realistic cost",
+   "F3 primary: UCITS lag1 3bp (look-ahead artifact)",
+   "F3 primary: swap lev only lag2",
+   "F3 primary: swap bond only lag2",
+   "F3 primary: swap gold only lag2",
+   "F3 primary: US lag1 3bp + 5pp band",
+   "F3 primary: UCITS lag2 realistic + 5pp band",
+   "F2 longer history: US lag1 3bp",
+   "F2 longer history: US lag2 3bp",
+   "F2 longer history: UCITS lag2 3bp",
+   "F2 longer history: UCITS lag2 realistic cost",
+   "1x control: QQQ lag2 3bp (F2 rules)",
+   "1x control: CNDX.L lag2 3bp (F2 rules)",
+   "F2 primary: US lag1 3bp + ER hysteresis",
+   "F2 primary: US lag1 at UCITS-level costs",
+   "F2 primary: US lag1 at UCITS-level costs + ER hysteresis",
+   "F2 primary: UCITS lag2 realistic + ER hysteresis",
+   "F3 primary: US lag1 3bp + ER hysteresis",
+   "F3 primary: US lag1 at UCITS-level costs",
+   "F3 primary: US lag1 at UCITS-level costs + ER hysteresis",
+   "F3 primary: UCITS lag2 realistic + ER hysteresis",
+   "F2 hybrid: US QLD + CBU0.L + IGLN.L, lag2, realistic",
+   "F3 hybrid: US TQQQ + CBU0.L + IGLN.L, lag2, realistic"
+  ],
+  "overlap_pairs_measured": 18
+ }
+}

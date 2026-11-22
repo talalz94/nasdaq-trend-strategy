@@ -1,0 +1,1 @@
+This folder holds a historical replay (python paper/runner.py replay); it is not a live account.

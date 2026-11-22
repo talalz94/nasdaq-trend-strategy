@@ -1,0 +1,52 @@
+2026-11-19 15:27:47Z [INFO] RISK-ON switch on 2015-12-31 | NDX 4,593 vs EMA-100 4,537; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:27:47Z [INFO] RISK-OFF switch on 2016-01-08 | NDX 4,271 vs EMA-100 4,524; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:27:51Z [INFO] RISK-ON switch on 2016-03-11 | NDX 4,362 vs EMA-100 4,339; targets {'LQQ.PA': 0.85, 'CBU0.L': 0.0, 'IGLN.L': 0.15}
+2026-11-19 15:27:54Z [INFO] RISK-OFF switch on 2016-04-29 | NDX 4,341 vs EMA-100 4,402; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:27:56Z [INFO] RISK-ON switch on 2016-05-27 | NDX 4,513 vs EMA-100 4,394; targets {'LQQ.PA': 0.85, 'CBU0.L': 0.0, 'IGLN.L': 0.15}
+2026-11-19 15:27:57Z [INFO] RISK-OFF switch on 2016-06-17 | NDX 4,374 vs EMA-100 4,413; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:27:58Z [INFO] RISK-ON switch on 2016-07-01 | NDX 4,437 vs EMA-100 4,405; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:28:10Z [INFO] RISK-OFF switch on 2016-11-04 | NDX 4,660 vs EMA-100 4,725; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:28:10Z [INFO] RISK-ON switch on 2016-11-11 | NDX 4,752 vs EMA-100 4,731; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:28:12Z [INFO] RISK-OFF switch on 2016-12-02 | NDX 4,739 vs EMA-100 4,751; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:28:13Z [INFO] RISK-ON switch on 2016-12-09 | NDX 4,896 vs EMA-100 4,759; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:29:08Z [INFO] RISK-OFF switch on 2018-03-23 | NDX 6,508 vs EMA-100 6,609; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:29:11Z [INFO] RISK-ON switch on 2018-04-13 | NDX 6,628 vs EMA-100 6,595; targets {'LQQ.PA': 0.41336, 'CBU0.L': 0.43664, 'IGLN.L': 0.15}
+2026-11-19 15:29:36Z [INFO] RISK-OFF switch on 2018-10-12 | NDX 7,157 vs EMA-100 7,302; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:29:46Z [INFO] unscheduled market closure on 2018-12-05 | no trading on 2018-12-05 (an unscheduled NYSE closure, e.g. a day of mourning); treated as a holiday Announced closures can be added to schedule.extra_holidays in paper/config.toml.
+2026-11-19 15:29:53Z [INFO] RISK-ON switch on 2019-02-01 | NDX 6,876 vs EMA-100 6,812; targets {'LQQ.PA': 0.85, 'CBU0.L': 0.0, 'IGLN.L': 0.15}
+2026-11-19 15:30:08Z [INFO] RISK-OFF switch on 2019-05-24 | NDX 7,301 vs EMA-100 7,325; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:30:10Z [INFO] RISK-ON switch on 2019-06-07 | NDX 7,417 vs EMA-100 7,307; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:30:18Z [WARN] buy of CBU0.L cut for lack of cash on 2019-08-05 | planned 65, filled 61; the rest of the cash stays idle until the next decision
+2026-11-19 15:30:20Z [INFO] RISK-OFF switch on 2019-08-23 | NDX 7,465 vs EMA-100 7,584; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:30:21Z [INFO] RISK-ON switch on 2019-08-30 | NDX 7,691 vs EMA-100 7,588; targets {'LQQ.PA': 0.2125, 'CBU0.L': 0.6375, 'IGLN.L': 0.15}
+2026-11-19 15:30:46Z [WARN] buy of CBU0.L cut for lack of cash on 2020-02-24 | planned 53, filled 48; the rest of the cash stays idle until the next decision
+2026-11-19 15:30:47Z [INFO] RISK-OFF switch on 2020-02-28 | NDX 8,462 vs EMA-100 8,708; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:30:54Z [INFO] RISK-ON switch on 2020-04-17 | NDX 8,832 vs EMA-100 8,350; targets {'LQQ.PA': 0.46098, 'CBU0.L': 0.38902, 'IGLN.L': 0.15}
+2026-11-19 15:31:31Z [WARN] buy of LQQ.PA cut for lack of cash on 2021-03-08 | planned 3600, filled 3402; the rest of the cash stays idle until the next decision
+2026-11-19 15:32:05Z [INFO] RISK-OFF switch on 2022-01-07 | NDX 15,592 vs EMA-100 15,666; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:32:13Z [INFO] RISK-ON switch on 2022-04-01 | NDX 14,861 vs EMA-100 14,793; targets {'LQQ.PA': 0.38485, 'CBU0.L': 0.46515, 'IGLN.L': 0.15}
+2026-11-19 15:32:14Z [INFO] RISK-OFF switch on 2022-04-08 | NDX 14,327 vs EMA-100 14,780; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:32:24Z [INFO] RISK-ON switch on 2022-07-29 | NDX 12,948 vs EMA-100 12,805; targets {'LQQ.PA': 0.85, 'CBU0.L': 0.0, 'IGLN.L': 0.15}
+2026-11-19 15:32:26Z [INFO] RISK-OFF switch on 2022-08-26 | NDX 12,605 vs EMA-100 12,932; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:32:34Z [INFO] RISK-ON switch on 2022-12-02 | NDX 11,994 vs EMA-100 11,880; targets {'LQQ.PA': 0.71595, 'CBU0.L': 0.13405, 'IGLN.L': 0.15}
+2026-11-19 15:32:35Z [INFO] RISK-OFF switch on 2022-12-09 | NDX 11,563 vs EMA-100 11,854; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:32:38Z [INFO] RISK-ON switch on 2023-01-20 | NDX 11,619 vs EMA-100 11,588; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:32:42Z [INFO] RISK-OFF switch on 2023-03-10 | NDX 11,830 vs EMA-100 11,898; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:32:43Z [INFO] RISK-ON switch on 2023-03-17 | NDX 12,520 vs EMA-100 11,936; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:33:05Z [INFO] RISK-OFF switch on 2023-10-20 | NDX 14,561 vs EMA-100 14,757; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:33:08Z [INFO] RISK-ON switch on 2023-11-03 | NDX 15,099 vs EMA-100 14,720; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:33:26Z [INFO] RISK-OFF switch on 2024-04-19 | NDX 17,038 vs EMA-100 17,311; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:33:27Z [INFO] RISK-ON switch on 2024-04-26 | NDX 17,718 vs EMA-100 17,327; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:33:46Z [INFO] RISK-OFF switch on 2024-08-02 | NDX 18,441 vs EMA-100 18,792; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:33:49Z [INFO] RISK-ON switch on 2024-08-16 | NDX 19,509 vs EMA-100 18,769; targets {'LQQ.PA': 0.20378, 'CBU0.L': 0.64622, 'IGLN.L': 0.15}
+2026-11-19 15:33:52Z [INFO] RISK-OFF switch on 2024-09-06 | NDX 18,421 vs EMA-100 18,907; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:33:54Z [INFO] RISK-ON switch on 2024-09-13 | NDX 19,515 vs EMA-100 18,930; targets {'LQQ.PA': 0.2125, 'CBU0.L': 0.6375, 'IGLN.L': 0.15}
+2026-11-19 15:34:18Z [INFO] unscheduled market closure on 2025-01-09 | no trading on 2025-01-09 (an unscheduled NYSE closure, e.g. a day of mourning); treated as a holiday Announced closures can be added to schedule.extra_holidays in paper/config.toml.
+2026-11-19 15:34:27Z [INFO] RISK-OFF switch on 2025-02-28 | NDX 20,884 vs EMA-100 21,005; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:34:40Z [INFO] RISK-ON switch on 2025-05-02 | NDX 20,103 vs EMA-100 19,940; targets {'LQQ.PA': 0.22464, 'CBU0.L': 0.62536, 'IGLN.L': 0.15}
+2026-11-19 15:34:41Z [WARN] buy of LQQ.PA cut for lack of cash on 2025-05-12 | planned 4869, filled 4498; the rest of the cash stays idle until the next decision
+2026-11-19 15:35:20Z [WARN] buy of LQQ.PA cut for lack of cash on 2025-11-10 | planned 107, filled 101; the rest of the cash stays idle until the next decision
+2026-11-19 15:35:40Z [INFO] RISK-OFF switch on 2026-02-13 | NDX 24,733 vs EMA-100 24,957; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:35:41Z [INFO] RISK-ON switch on 2026-02-20 | NDX 25,013 vs EMA-100 24,949; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}
+2026-11-19 15:35:43Z [INFO] RISK-OFF switch on 2026-03-06 | NDX 24,643 vs EMA-100 24,949; targets {'LQQ.PA': 0.0, 'CBU0.L': 0.85, 'IGLN.L': 0.15}
+2026-11-19 15:35:51Z [INFO] RISK-ON switch on 2026-04-10 | NDX 25,116 vs EMA-100 24,697; targets {'LQQ.PA': 0.425, 'CBU0.L': 0.425, 'IGLN.L': 0.15}

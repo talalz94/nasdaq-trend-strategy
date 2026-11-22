@@ -1,0 +1,1899 @@
+<title>WaveTrend × Squeeze — S&P 500 Strategy Study</title>
+<style>
+  :root{
+    --bg:#0c1116; --panel:#131b22; --panel2:#17222b; --border:#25333d;
+    --text:#dfe8ee; --muted:#8496a2; --faint:#5c6d78;
+    --accent:#2bd4d9; --accent-dim:#1b8f93;
+    --gain:#3ecf8e; --loss:#f0605d; --gold:#e3b23c; --violet:#9b8cff;
+    --grid:#1e2a33;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;
+    --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;
+    --maxw:1120px;
+  }
+  @media (prefers-color-scheme: light){
+    :root{
+      --bg:#eceff3; --panel:#ffffff; --panel2:#f4f7fa; --border:#d7dfe7;
+      --text:#16232d; --muted:#5a6b77; --faint:#8899a4;
+      --accent:#0c99a6; --accent-dim:#7fd3d9;
+      --gain:#12945f; --loss:#d6403c; --gold:#a9791a; --violet:#6b57d6;
+      --grid:#e2e8ee;
+    }
+  }
+  :root[data-theme="dark"]{
+    --bg:#0c1116; --panel:#131b22; --panel2:#17222b; --border:#25333d;
+    --text:#dfe8ee; --muted:#8496a2; --faint:#5c6d78;
+    --accent:#2bd4d9; --accent-dim:#1b8f93; --gain:#3ecf8e; --loss:#f0605d;
+    --gold:#e3b23c; --violet:#9b8cff; --grid:#1e2a33;
+  }
+  :root[data-theme="light"]{
+    --bg:#eceff3; --panel:#ffffff; --panel2:#f4f7fa; --border:#d7dfe7;
+    --text:#16232d; --muted:#5a6b77; --faint:#8899a4;
+    --accent:#0c99a6; --accent-dim:#7fd3d9; --gain:#12945f; --loss:#d6403c;
+    --gold:#a9791a; --violet:#6b57d6; --grid:#e2e8ee;
+  }
+
+  *{box-sizing:border-box}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);
+    line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;
+    font-feature-settings:"tnum" 1;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:var(--mono)}
+  .num{font-family:var(--mono);font-variant-numeric:tabular-nums}
+  .pos{color:var(--gain)} .neg{color:var(--loss)} .acc{color:var(--accent)}
+  h1,h2,h3{text-wrap:balance;margin:0}
+  a{color:var(--accent)}
+
+  /* top bar */
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);
+    backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:52px}
+  .brand{font-family:var(--mono);font-weight:700;letter-spacing:.02em;font-size:14px}
+  .brand .dot{color:var(--accent)}
+  .topbar .spacer{flex:1}
+  .tf-pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);
+    padding:3px 8px;border-radius:20px}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);
+    font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  .toggle:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+  /* hero */
+  header.hero{padding:54px 0 30px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:16px}
+  header.hero h1{font-family:var(--mono);font-size:clamp(28px,4.6vw,50px);line-height:1.04;
+    letter-spacing:-.02em;font-weight:700}
+  header.hero h1 .u{color:var(--muted)}
+  .lede{max-width:64ch;color:var(--muted);font-size:16.5px;margin-top:18px}
+  .lede b{color:var(--text);font-weight:600}
+
+  /* signal config card */
+  .signal{margin-top:30px;display:grid;grid-template-columns:1.15fr .85fr;gap:1px;
+    background:var(--border);border:1px solid var(--border);border-radius:12px;overflow:hidden}
+  .signal>div{background:var(--panel);padding:22px 24px}
+  .signal .label{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;
+    color:var(--faint);margin-bottom:12px}
+  .rulebox{font-family:var(--mono);font-size:13.5px;line-height:1.9}
+  .rulebox .k{color:var(--accent)} .rulebox .c{color:var(--faint)}
+  .rulebox .tok{color:var(--gold)}
+  .verdict{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:12px;
+    padding:4px 9px;border-radius:6px;border:1px solid;margin-top:2px}
+  .v-go{color:var(--gain);border-color:color-mix(in srgb,var(--gain) 45%,transparent);
+    background:color-mix(in srgb,var(--gain) 12%,transparent)}
+  .v-warn{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 45%,transparent);
+    background:color-mix(in srgb,var(--gold) 12%,transparent)}
+  .v-no{color:var(--loss);border-color:color-mix(in srgb,var(--loss) 45%,transparent);
+    background:color-mix(in srgb,var(--loss) 12%,transparent)}
+
+  /* kpi row */
+  .kpis{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-top:26px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:15px 15px 13px}
+  .kpi .v{font-family:var(--mono);font-size:26px;font-weight:700;letter-spacing:-.02em;line-height:1}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-top:9px;line-height:1.3}
+  .kpi .s{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:5px}
+
+  /* sections */
+  section{padding:44px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}
+  .sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  section h2{font-size:24px;letter-spacing:-.01em}
+  .sec-sub{color:var(--muted);max-width:74ch;margin:10px 0 26px;font-size:15px}
+  .sec-sub b{color:var(--text)}
+
+  /* generic panel + grid */
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:20px}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+  .cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+
+  /* tables */
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:9px 12px;text-align:right;white-space:nowrap}
+  th:first-child,td:first-child{text-align:left}
+  thead th{font-family:var(--mono);font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;
+    color:var(--muted);border-bottom:1px solid var(--border);font-weight:600;background:var(--panel2)}
+  tbody td{border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+  tbody td.num,tbody td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+  tr.hi td{background:color-mix(in srgb,var(--accent) 10%,transparent)}
+  tr.hi td:first-child{box-shadow:inset 3px 0 0 var(--accent)}
+  .chip{font-family:var(--mono);font-size:10.5px;padding:2px 7px;border-radius:5px;
+    border:1px solid var(--border);color:var(--muted)}
+  .bar-cell{position:relative}
+  .mini{font-family:var(--mono);font-size:11px;color:var(--faint)}
+
+  /* charts */
+  .chart-cap{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:6px;
+    letter-spacing:.04em;text-transform:uppercase}
+  svg .grid line{stroke:var(--grid);stroke-width:1}
+  svg text{fill:var(--muted);font-family:var(--mono);font-size:11px}
+  svg .axis{fill:var(--faint);font-size:10px}
+
+  /* idea cards */
+  .ideas{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .idea{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px 20px;
+    display:flex;flex-direction:column;gap:9px}
+  .idea .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .idea .q{font-size:14.5px;font-weight:600}
+  .idea p{margin:0;color:var(--muted);font-size:13.5px}
+  .idea p b{color:var(--text)}
+
+  /* callouts */
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;
+    background:var(--panel);padding:16px 20px;margin-top:16px}
+  .callout.warn{border-left-color:var(--gold)}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.12em;text-transform:uppercase;
+    color:var(--accent);margin-bottom:7px}
+  .callout.warn .h{color:var(--gold)}
+  .callout p{margin:0;color:var(--muted);font-size:14px}
+  .callout p+p{margin-top:8px}
+
+  ul.clean{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ul.clean li{padding-left:22px;position:relative;color:var(--muted);font-size:14px}
+  ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}
+  ul.clean li b{color:var(--text)}
+
+  footer{padding:34px 0 60px;color:var(--faint);font-size:12.5px}
+  footer .mono{color:var(--muted)}
+  code{font-family:var(--mono);background:var(--panel2);border:1px solid var(--border);
+    padding:1px 6px;border-radius:5px;font-size:.9em}
+
+  @media (max-width:820px){
+    .signal,.cols2,.ideas{grid-template-columns:1fr}
+    .kpis{grid-template-columns:repeat(2,1fr)}
+    .cols3{grid-template-columns:1fr}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .eq-line{stroke-dasharray:2600;stroke-dashoffset:2600;animation:draw 1.6s ease forwards}
+    @keyframes draw{to{stroke-dashoffset:0}}
+  }
+</style>
+
+<div class="topbar">
+  <div class="wrap row">
+    <span class="brand">WAVETREND<span class="dot">×</span>SQUEEZE</span>
+    <span class="tf-pill">S&amp;P 500 · 503 names</span>
+    <span class="tf-pill">15m · 1h · 4h · 1d</span>
+    <span class="spacer"></span>
+    <button class="toggle" id="themeBtn" aria-label="Toggle colour theme">◐ theme</button>
+  </div>
+</div>
+
+<div class="wrap">
+  <header class="hero">
+    <div class="eyebrow">Quant backtest · read-only on the local price store</div>
+    <h1>Buy the WaveTrend bounce<br><span class="u">when the market is oversold.</span></h1>
+    <p class="lede">Across every S&amp;P 500 name and four timeframes, one pattern beats random timing by a wide,
+      statistically-significant margin: a <b>WaveTrend bullish cross fired from the oversold zone</b>, held until
+      momentum rolls back over. Confirm it with rising Squeeze momentum and it gets cleaner. Everything else — plain
+      crossovers, scalping out early, options — either dilutes the edge or just adds leverage and variance on top of it.</p>
+
+    <div class="signal">
+      <div>
+        <div class="label">Recommended signal — the one that survived every test</div>
+        <div class="rulebox">
+          <span class="c"># timeframe</span> <span class="tok">1h</span> <span class="c">(4h = higher edge, fewer trades)</span><br>
+          <span class="k">ENTRY</span>  wt1 crosses <span class="tok">above</span> wt2<br>
+          <span style="padding-left:52px">AND</span> wt2 <span class="tok">&lt; −53</span> <span class="c">(oversold)</span><br>
+          <span style="padding-left:52px">AND</span> squeeze momentum rising <span class="c">(confirm)</span><br>
+          <span class="k">EXIT</span>   wt1 crosses <span class="tok">below</span> wt2  <span class="c">(ride the full bounce)</span><br>
+          <span class="k">STOP</span>   <span class="tok">−2%</span> hard <span class="c">(halves drawdown, keeps the edge)</span><br>
+          <span class="k">SIZE</span>   ≤10% equity/name · ≤10–20 concurrent
+        </div>
+      </div>
+      <div>
+        <div class="label">Verdict</div>
+        <div style="display:flex;flex-direction:column;gap:10px">
+          <span class="verdict v-go">● REAL EDGE — p(mean ≤ 0) = 0.0000</span>
+          <span class="verdict v-go">● +48 bps / trade net · PF 1.58</span>
+          <span class="verdict v-warn">● 42-day sample — promising, not proven</span>
+          <span class="verdict v-no">● Skip: Comm-Services, Energy, Materials</span>
+        </div>
+        <p class="mini" style="margin-top:16px;line-height:1.7">Net of 2 bps/side. Beats matched-horizon
+          market drift by <b class="acc">6–8×</b>. Bootstrap 95% CI on mean: <b class="acc">[+25, +70] bps</b>.</p>
+      </div>
+    </div>
+
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <!-- 1 · How it works -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">01</span><h2>What the two indicators actually do here</h2></div>
+    <p class="sec-sub">Both are LazyBear oscillators, computed to the exact settings in your screenshots
+      (<b>WaveTrend</b> 10/21, OB 60/53, OS −60/−53; <b>Squeeze</b> BB 20×2.0, KC 20×1.5, TrueRange on).
+      The linear-regression momentum was validated to match <code>numpy.polyfit</code> to 6 decimals.</p>
+    <div class="cols2">
+      <div class="panel">
+        <div class="chart-cap">WaveTrend — the timing trigger</div>
+        <p style="margin:0 0 10px;color:var(--muted);font-size:14px">A normalised, scale-free oscillator. The
+          <b style="color:var(--text)">crossover</b> of its fast line (wt1) over the signal line (wt2) times entries and exits.
+          Alone it whipsaws and <b class="neg">loses money</b>. The magic is the <b style="color:var(--text)">location filter</b>:
+          only take the cross when wt2 is already deep in oversold territory (&lt;−53). That single condition flips a
+          losing crossover into a <b class="pos">+41 bps edge</b>.</p>
+        <p style="margin:0;color:var(--muted);font-size:14px">→ Confirms your idea #2 exactly: in the extreme zones,
+          price bounces — so wait for the turn rather than catching the falling knife.</p>
+      </div>
+      <div class="panel">
+        <div class="chart-cap">Squeeze Momentum — the confirmation</div>
+        <p style="margin:0 0 10px;color:var(--muted);font-size:14px">Histogram value + a 4-colour state
+          (positive rising / positive falling / negative falling / negative rising). Your idea #3 —
+          <b style="color:var(--text)">"negative but colour turning up = buy"</b> — is real but <b class="neg">weak on its own</b>
+          (p=0.18, not significant).</p>
+        <p style="margin:0;color:var(--muted);font-size:14px">As a <b style="color:var(--text)">filter on the WaveTrend
+          oversold cross</b>, though, it earns its keep: requiring momentum to already be ticking up lifts per-trade return
+          from <b>+41 → +48 bps</b> and win rate to 45%, at the cost of ~half the trades. Quality over quantity.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · honest test -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">02</span><h2>The honest test: edge over drift, not raw return</h2></div>
+    <p class="sec-sub">Raw returns lie. On the daily timeframe the market drifted up <b>+1.06% over any random 12-bar
+      hold</b> in this window — so almost any long strategy "works" on 1d/4h purely from beta. The only metric that
+      isolates the indicators is <b>return minus the unconditional drift at the same holding horizon</b>. Ranked that way,
+      the oversold-bounce family dominates — and it does best where drift is smallest (1h, 4h), which is the tell that
+      it's timing skill, not market luck.</p>
+
+    <div class="tbl-scroll">
+      <table id="edgeTbl"><thead><tr>
+        <th>Strategy</th><th>TF</th><th>Trades</th><th>Win</th><th>Avg net</th>
+        <th>Drift</th><th>Edge</th><th>PF</th><th>Sharpe*</th><th>Hold</th>
+      </tr></thead><tbody></tbody></table>
+    </div>
+    <p class="mini" style="margin-top:10px">Avg net / Drift / Edge in bps per trade (1 bp = 0.01%). Edge = avg − matched-horizon drift.
+      *Per-trade Sharpe (mean/σ of trade returns), not annualised. Rows with ≥250 trades. <span class="acc">Highlighted</span> = the recommended family.</p>
+
+    <div class="callout warn">
+      <div class="h">Why 1d looks best but isn't</div>
+      <p>The top raw daily line (WT_meanrev +115 bps) is <b>64% market drift</b> — its edge over a random daily hold is only ~41 bps,
+        on 344 trades. The 1h oversold cross earns a smaller headline (+41–48 bps) but ~<b>85% of it is genuine edge</b> over a flat
+        market, on 850–1,600 trades. More signal, less noise, less luck.</p>
+    </div>
+  </section>
+
+  <!-- 3 · exit engineering -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">03</span><h2>Exit engineering — your scalp idea, tested to destruction</h2></div>
+    <p class="sec-sub">Idea #7 was "take the small profit and get out." I tested it directly against letting the trade run to
+      the next WaveTrend bearish cross. <b>It backfires.</b> The entire edge lives in the tail of the bounce; cutting winners
+      early throws it away. The one risk control that <i>helps</i> is a wide catastrophic stop.</p>
+
+    <div class="cols2" style="align-items:start">
+      <div class="tbl-scroll">
+        <table id="exitTbl"><thead><tr>
+          <th>Exit rule (1h · Confluence entry)</th><th>Win</th><th>Avg</th><th>PF</th><th>MaxDD‡</th>
+        </tr></thead><tbody></tbody></table>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:14px">
+        <div class="callout">
+          <div class="h">Ride winners → don't scalp</div>
+          <p>Trailing 1.5% cuts avg return from <b>+41 bps to −0.1 bps</b>. A tight scalp (target 3%/stop 2%) halves it to +20 bps.
+            The full-bounce exit (bearish cross) is the profit engine.</p>
+        </div>
+        <div class="callout">
+          <div class="h">One stop worth keeping</div>
+          <p>A <b>−2% hard stop</b> barely dents return (48.1→48.1 bps on Confluence) while lifting <b>PF 1.51→1.58</b> and
+            cutting pooled drawdown ~12%. On 4h it pushes PF to <b>1.71</b>, Sharpe 0.19. This is the recommended config.</p>
+        </div>
+      </div>
+    </div>
+    <p class="mini" style="margin-top:10px">‡ MaxDD here is the drawdown of the naïve 1-unit-per-trade pooled equity curve (all trades sequential) — a
+      strategy-comparison proxy, not an account curve. The realistic account curve is in §06.</p>
+  </section>
+
+  <!-- 4 · sectors -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">04</span><h2>Sector-wise: the edge is concentrated, not universal</h2></div>
+    <p class="sec-sub">Same signal (WT oversold cross, 1h), broken out by GICS sector. Mean-reversion works cleanly in
+      <b>defensive &amp; quality</b> sectors and <b>fails outright</b> in high-beta, headline-driven ones. Communication
+      Services doesn't just underperform — it has a <b class="neg">profit factor of 0.49</b>, i.e. it actively loses. The
+      single biggest free improvement is a sector whitelist.</p>
+    <div class="panel">
+      <div class="chart-cap">Avg net return per trade, by sector — bar = bps · label = profit factor</div>
+      <div id="sectorChart"></div>
+    </div>
+    <div class="callout">
+      <div class="h">Actionable filter</div>
+      <p><b class="pos">Trade:</b> Health Care (PF 2.30), Utilities (2.04), Info Tech (1.50), Financials (1.70), Consumer Staples (1.72),
+        Real Estate (1.54), Industrials (1.42). &nbsp; <b class="neg">Avoid:</b> Communication Services (0.49), and treat Energy /
+        Materials / Consumer Discretionary as break-even noise (PF ≈ 1.06).</p>
+    </div>
+  </section>
+
+  <!-- 5 · stocks -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">05</span><h2>Stock-wise: broad but with real dispersion</h2></div>
+    <p class="sec-sub"><b id="posfrac">54.2%</b> of the 284 traded names had positive expectancy. The extremes are noisy (only
+      3–7 signals each in this short window), so read these as texture, not a shopping list — the <b>sector</b> pattern above is
+      the robust signal. Note the losers cluster exactly where the sector view predicts: media (FOX/FOXA), high-beta momentum
+      (COIN, MRNA, CIEN).</p>
+    <div class="cols2">
+      <div>
+        <div class="chart-cap" style="color:var(--gain)">▲ Top names — avg bps / trade</div>
+        <div class="tbl-scroll"><table id="topStk"><thead><tr><th>Ticker</th><th>n</th><th>Win</th><th>Avg bps</th><th>Σ%</th></tr></thead><tbody></tbody></table></div>
+      </div>
+      <div>
+        <div class="chart-cap" style="color:var(--loss)">▼ Worst names — avg bps / trade</div>
+        <div class="tbl-scroll"><table id="botStk"><thead><tr><th>Ticker</th><th>n</th><th>Win</th><th>Avg bps</th><th>Σ%</th></tr></thead><tbody></tbody></table></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6 · portfolio -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">06</span><h2>Realistic account curve — capital-constrained</h2></div>
+    <p class="sec-sub">Per-trade stats ignore capital. This is an event-driven portfolio: $100k, each signal risks a fixed
+      slice of <i>current</i> equity, capped concurrent positions, closes-before-opens, net of costs. Result over the 42-day
+      window: <b class="pos">+7.5%</b> vs <b>+0.76%</b> equal-weight buy-and-hold — ~10× the market with a shallow
+      <b class="neg">−3.6%</b> drawdown and annualised Sharpe <b class="acc">3.5</b>.</p>
+
+    <div class="panel">
+      <div class="chart-cap">Equity curve — $100k start · 10 positions · 10% risk each &nbsp;·&nbsp; dashed = buy &amp; hold</div>
+      <div id="equityChart"></div>
+    </div>
+
+    <div class="cols3" style="margin-top:16px">
+      <div class="panel" id="pv0"></div><div class="panel" id="pv1"></div><div class="panel" id="pv2"></div>
+    </div>
+    <div class="callout warn">
+      <div class="h">Capacity is the real constraint</div>
+      <p>Only <b>191 of 850</b> signals fit into 10 slots — because oversold signals <b>cluster</b> (when the market dips,
+        dozens of names flash oversold at once). Widening to 20 smaller positions banks more of them and lifts Sharpe to
+        <b>3.73</b> at half the drawdown. The strategy wants breadth, not concentration.</p>
+    </div>
+  </section>
+
+  <!-- 7 · options -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">07</span><h2>Options — leverage, not a better edge</h2></div>
+    <p class="sec-sub">Idea #6: route the same long signals through <b>ATM weekly calls</b> (Black-Scholes, realised vol as IV,
+      5-DTE, 1% premium friction). Expectancy jumps from <b>+0.48% to +11.9%</b> per trade — but that's pure delta leverage on
+      the <i>same</i> signal. The profit factor barely moves (1.56 vs 1.58), win rate <b>drops to 35%</b>, the median trade is
+      <b class="neg">−22%</b>, and all the money is in a thin right tail (best +497%).</p>
+    <div class="cols2" style="align-items:start">
+      <div class="panel">
+        <div class="chart-cap">Distribution of per-trade option P&amp;L (850 long signals)</div>
+        <div id="optChart"></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:13px">
+        <div class="tbl-scroll"><table id="optTbl"><thead><tr><th></th><th>Stock</th><th>ATM call</th></tr></thead><tbody></tbody></table></div>
+        <div class="callout warn">
+          <div class="h">Read before you lever</div>
+          <p>Options amplify a <b>real</b> edge, so expectancy is genuinely positive — but you lose on <b>65% of trades</b> and
+            survive only if you size tiny and take every signal to reach the tail. Real IV usually exceeds realised vol, so live
+            results run below this. <b>Verdict: optional turbocharge for a fraction of capital — not a replacement for the stock version.</b></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 8 · ideas scored -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">08</span><h2>Your eight ideas, scored</h2></div>
+    <p class="sec-sub">Every hypothesis you raised, tested on the data, with a verdict.</p>
+    <div class="ideas">
+      <div class="idea"><div class="top"><span class="q">#2 · WaveTrend crossovers</span><span class="verdict v-warn">HALF-RIGHT</span></div>
+        <p>Crossovers <b>alone lose</b> (whipsaw, PF 0.91). But your instinct to <b>wait for the oversold bounce</b> is the single best idea here — it's the whole strategy.</p></div>
+      <div class="idea"><div class="top"><span class="q">#2 · Fade overbought (short)</span><span class="verdict v-warn">MARGINAL</span></div>
+        <p>Shorting overbought crosses is weakly positive on 4h/1d but inconsistent and small-sample. Longs are where the money is.</p></div>
+      <div class="idea"><div class="top"><span class="q">#3 · Squeeze colour turning up</span><span class="verdict v-no">WEAK ALONE</span></div>
+        <p>"Negative but rising = buy" is directionally true but <b>not significant</b> (p=0.18) standalone. Valuable only as a <b>confirmation filter</b>.</p></div>
+      <div class="idea"><div class="top"><span class="q">#4 · Combine / thresholds</span><span class="verdict v-go">CONFIRMED</span></div>
+        <p>The winning config <i>is</i> a combination: WT cross + oversold threshold + squeeze confirm + 2% stop. 11 strategies × 5 exits × 4 TFs were swept.</p></div>
+      <div class="idea"><div class="top"><span class="q">#5 · Stock &amp; sector, all TFs</span><span class="verdict v-go">DONE</span></div>
+        <p>Full 503-name × 11-sector × 4-timeframe breakdown (§04–05). Edge concentrates in 1h/4h and in defensive sectors.</p></div>
+      <div class="idea"><div class="top"><span class="q">#6 · Options</span><span class="verdict v-warn">LEVERAGE ONLY</span></div>
+        <p>Higher expectancy per dollar, same edge quality, far more variance and a 35% win rate. Turbocharger, not upgrade (§07).</p></div>
+      <div class="idea"><div class="top"><span class="q">#7 · Scalp small wins</span><span class="verdict v-no">HURTS</span></div>
+        <p>Directly tested and <b>counterproductive</b>: early exits cut the edge by 50–100%. The bounce needs room to run (§03).</p></div>
+      <div class="idea"><div class="top"><span class="q">#8 · New ideas tried</span><span class="verdict v-go">+6 TESTED</span></div>
+        <p>Added: matched-drift benchmark, bootstrap significance, overbought-target exit, trailing stops, 2% stop, sector whitelist, capacity-aware portfolio.</p></div>
+    </div>
+  </section>
+
+  <!-- 9 · reality check -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">09</span><h2>Reality check — read this before risking a dollar</h2></div>
+    <p class="sec-sub">The edge is real <i>in this data</i>. Whether it persists live depends on things this 42-day sample can't
+      settle. Honest limitations:</p>
+    <ul class="clean">
+      <li><b>Sample is 42 trading days</b> (2026-05-26 → 07-24) — that's all the store holds. Significant, but one regime.
+        The window was choppy/mildly-up (+0.76%, −2.3% mid-drawdown), which flatters mean-reversion. A trending or crashing
+        regime could behave very differently. <b>Treat as promising, not proven.</b></li>
+      <li><b>Costs modelled at 2 bps/side</b> (liquid large-caps, commission-free). Realistic, but the edge is only ~4× costs
+        on 1h — slippage on fast fills matters. On 15m the edge (5 bps) barely clears costs; <b>don't trade this on 15m.</b></li>
+      <li><b>Entries at next-bar open</b>, no lookahead — but real fills on an oversold spike can gap past the open. Assume some slippage tax.</li>
+      <li><b>Mild survivorship bias</b>: the universe is <i>current</i> S&amp;P 500 membership. Over 2 months the distortion is small.</li>
+      <li><b>Options numbers are illustrative</b>: realised vol ≠ implied vol, mid-price fills assumed, no smile/vol-crush. Directionally right, optimistic in level.</li>
+      <li><b>Per-stock tables are noisy</b> (3–7 trades). Trust the sector and pooled numbers, not individual tickers.</li>
+      <li><b>No walk-forward / out-of-sample split yet</b> — the natural next step once the store has more history.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="mono">Method — Indicators (LazyBear WT 10/21, SQZMOM 20/2.0/1.5, TrueRange) recomputed from the local
+      read-only price store · 503 tickers · 15m/1h/4h/1d · net of 2 bps/side · signals at bar close, fills at next open ·
+      no lookahead · bootstrap 10k resamples · linreg validated vs numpy.polyfit.</p>
+    <p style="margin-top:10px">Deliverables written to your project folder: <span class="mono">indicators.py · bt.py ·
+      build_cache.py · run_matrix.py · analyze.py · drilldown.py · portfolio_and_options.py</span> — plus CSV result tables.
+      Nothing in the Stock Screener directory was modified.</p>
+    <p style="margin-top:10px;color:var(--faint)">Research only — not investment advice. Backtested edges decay; validate live in size-zero before committing capital.</p>
+  </footer>
+</div>
+
+<script>
+const DATA = {
+ "meta": {
+  "tickers": 503,
+  "window": "2026-05-26 to 2026-07-24 (42 trading days)",
+  "cost_bps_side": 2.0,
+  "ew_buyhold_pct": 0.76
+ },
+ "edge_top": [
+  {
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "config": "signal",
+   "n": 294,
+   "win": 0.47,
+   "avg_bps": 81.75,
+   "bench_bps": 27.58,
+   "edge_bps": 54.16,
+   "pf": 1.46,
+   "sharpe": 0.13,
+   "avg_bars": 9.76
+  },
+  {
+   "tf": "4h",
+   "strat": "WT_ob_short",
+   "config": "time6",
+   "n": 566,
+   "win": 0.42,
+   "avg_bps": 29.15,
+   "bench_bps": 12.52,
+   "edge_bps": 41.68,
+   "pf": 1.24,
+   "sharpe": 0.07,
+   "avg_bars": 4.86
+  },
+  {
+   "tf": "1h",
+   "strat": "Confluence_oversold",
+   "config": "signal",
+   "n": 850,
+   "win": 0.45,
+   "avg_bps": 47.18,
+   "bench_bps": 5.68,
+   "edge_bps": 41.5,
+   "pf": 1.51,
+   "sharpe": 0.14,
+   "avg_bars": 9.65
+  },
+  {
+   "tf": "1d",
+   "strat": "WT_meanrev_both",
+   "config": "signal",
+   "n": 344,
+   "win": 0.44,
+   "avg_bps": 114.59,
+   "bench_bps": 73.64,
+   "edge_bps": 40.95,
+   "pf": 1.56,
+   "sharpe": 0.15,
+   "avg_bars": 9.05
+  },
+  {
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "config": "time6",
+   "n": 294,
+   "win": 0.49,
+   "avg_bps": 49.43,
+   "bench_bps": 12.46,
+   "edge_bps": 36.97,
+   "pf": 1.31,
+   "sharpe": 0.1,
+   "avg_bars": 4.83
+  },
+  {
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "config": "signal",
+   "n": 1603,
+   "win": 0.44,
+   "avg_bps": 41.44,
+   "bench_bps": 5.95,
+   "edge_bps": 35.5,
+   "pf": 1.44,
+   "sharpe": 0.12,
+   "avg_bars": 9.98
+  },
+  {
+   "tf": "4h",
+   "strat": "WT_ob_short",
+   "config": "signal",
+   "n": 566,
+   "win": 0.35,
+   "avg_bps": 7.76,
+   "bench_bps": 22.82,
+   "edge_bps": 30.58,
+   "pf": 1.05,
+   "sharpe": 0.02,
+   "avg_bars": 8.21
+  },
+  {
+   "tf": "4h",
+   "strat": "WT_meanrev_both",
+   "config": "time6",
+   "n": 860,
+   "win": 0.44,
+   "avg_bps": 36.08,
+   "bench_bps": 12.5,
+   "edge_bps": 23.58,
+   "pf": 1.27,
+   "sharpe": 0.08,
+   "avg_bars": 4.85
+  },
+  {
+   "tf": "1h",
+   "strat": "Confluence_oversold",
+   "config": "time6",
+   "n": 850,
+   "win": 0.51,
+   "avg_bps": 24.94,
+   "bench_bps": 1.68,
+   "edge_bps": 23.27,
+   "pf": 1.31,
+   "sharpe": 0.1,
+   "avg_bars": 5.12
+  },
+  {
+   "tf": "4h",
+   "strat": "SQZ_zero_cross",
+   "config": "signal",
+   "n": 671,
+   "win": 0.44,
+   "avg_bps": 54.21,
+   "bench_bps": 34.46,
+   "edge_bps": 19.75,
+   "pf": 1.29,
+   "sharpe": 0.08,
+   "avg_bars": 15.97
+  },
+  {
+   "tf": "1d",
+   "strat": "WT_meanrev_both",
+   "config": "time6",
+   "n": 347,
+   "win": 0.46,
+   "avg_bps": 50.73,
+   "bench_bps": 31.11,
+   "edge_bps": 19.62,
+   "pf": 1.27,
+   "sharpe": 0.08,
+   "avg_bars": 4.68
+  },
+  {
+   "tf": "1h",
+   "strat": "WT_meanrev_both",
+   "config": "signal",
+   "n": 3408,
+   "win": 0.4,
+   "avg_bps": 20.73,
+   "bench_bps": 5.68,
+   "edge_bps": 15.05,
+   "pf": 1.22,
+   "sharpe": 0.06,
+   "avg_bars": 9.65
+  },
+  {
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "config": "time6",
+   "n": 1603,
+   "win": 0.49,
+   "avg_bps": 15.43,
+   "bench_bps": 1.57,
+   "edge_bps": 13.86,
+   "pf": 1.2,
+   "sharpe": 0.07,
+   "avg_bars": 5.02
+  },
+  {
+   "tf": "4h",
+   "strat": "WT_meanrev_both",
+   "config": "signal",
+   "n": 847,
+   "win": 0.39,
+   "avg_bps": 33.02,
+   "bench_bps": 24.62,
+   "edge_bps": 8.4,
+   "pf": 1.2,
+   "sharpe": 0.06,
+   "avg_bars": 8.8
+  }
+ ],
+ "exits": [
+  {
+   "n": 1603,
+   "win": 0.44,
+   "avg_bps": 41.44,
+   "pf": 1.44,
+   "sharpe": 0.12,
+   "sum": 664.34,
+   "bars": 9.98,
+   "maxdd": -200.53,
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "exit": "bearish-cross exit (base)"
+  },
+  {
+   "n": 1603,
+   "win": 0.44,
+   "avg_bps": 41.26,
+   "pf": 1.44,
+   "sharpe": 0.12,
+   "sum": 661.34,
+   "bars": 9.88,
+   "maxdd": -205.32,
+   "tf": "1h",
+   "strat": "WT_oversold_ob_exit",
+   "exit": "exit@overbought|cross"
+  },
+  {
+   "n": 1603,
+   "win": 0.41,
+   "avg_bps": -0.14,
+   "pf": 1.0,
+   "sharpe": -0.0,
+   "sum": -2.22,
+   "bars": 3.17,
+   "maxdd": -144.56,
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "exit": "trail 1.5%"
+  },
+  {
+   "n": 1603,
+   "win": 0.41,
+   "avg_bps": 6.11,
+   "pf": 1.08,
+   "sharpe": 0.03,
+   "sum": 98.01,
+   "bars": 6.47,
+   "maxdd": -156.78,
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "exit": "trail 2.5%"
+  },
+  {
+   "n": 1603,
+   "win": 0.41,
+   "avg_bps": 38.94,
+   "pf": 1.46,
+   "sharpe": 0.13,
+   "sum": 624.17,
+   "bars": 8.76,
+   "maxdd": -180.88,
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "exit": "stop 2% + cross exit"
+  },
+  {
+   "n": 1603,
+   "win": 0.4,
+   "avg_bps": -11.64,
+   "pf": 0.85,
+   "sharpe": -0.07,
+   "sum": -186.57,
+   "bars": 4.9,
+   "maxdd": -322.35,
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "exit": "stop 2% + trail 2%"
+  },
+  {
+   "n": 1603,
+   "win": 0.43,
+   "avg_bps": 19.97,
+   "pf": 1.24,
+   "sharpe": 0.1,
+   "sum": 320.18,
+   "bars": 5.78,
+   "maxdd": -130.41,
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "exit": "target 3% + stop 2%"
+  },
+  {
+   "n": 850,
+   "win": 0.45,
+   "avg_bps": 47.18,
+   "pf": 1.51,
+   "sharpe": 0.14,
+   "sum": 401.02,
+   "bars": 9.65,
+   "maxdd": -106.17,
+   "tf": "1h",
+   "strat": "Confluence_oversold",
+   "exit": "confirm + bearish-cross (base)"
+  },
+  {
+   "n": 850,
+   "win": 0.45,
+   "avg_bps": 46.12,
+   "pf": 1.49,
+   "sharpe": 0.14,
+   "sum": 392.06,
+   "bars": 9.55,
+   "maxdd": -105.98,
+   "tf": "1h",
+   "strat": "Confluence_oversold_ob_exit",
+   "exit": "confirm + exit@overbought"
+  },
+  {
+   "n": 850,
+   "win": 0.43,
+   "avg_bps": 48.07,
+   "pf": 1.58,
+   "sharpe": 0.16,
+   "sum": 408.56,
+   "bars": 8.72,
+   "maxdd": -93.38,
+   "tf": "1h",
+   "strat": "Confluence_oversold",
+   "exit": "confirm + stop 2%"
+  },
+  {
+   "n": 850,
+   "win": 0.42,
+   "avg_bps": 1.24,
+   "pf": 1.02,
+   "sharpe": 0.01,
+   "sum": 10.55,
+   "bars": 4.89,
+   "maxdd": -101.84,
+   "tf": "1h",
+   "strat": "Confluence_oversold",
+   "exit": "confirm + trail 2%"
+  },
+  {
+   "n": 294,
+   "win": 0.47,
+   "avg_bps": 81.75,
+   "pf": 1.46,
+   "sharpe": 0.13,
+   "sum": 240.34,
+   "bars": 9.76,
+   "maxdd": -210.08,
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "exit": "bearish-cross exit (base)"
+  },
+  {
+   "n": 294,
+   "win": 0.47,
+   "avg_bps": 79.16,
+   "pf": 1.45,
+   "sharpe": 0.13,
+   "sum": 232.74,
+   "bars": 9.64,
+   "maxdd": -207.67,
+   "tf": "4h",
+   "strat": "WT_oversold_ob_exit",
+   "exit": "exit@overbought|cross"
+  },
+  {
+   "n": 294,
+   "win": 0.42,
+   "avg_bps": 11.98,
+   "pf": 1.27,
+   "sharpe": 0.09,
+   "sum": 35.21,
+   "bars": 0.54,
+   "maxdd": -24.11,
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "exit": "trail 1.5%"
+  },
+  {
+   "n": 294,
+   "win": 0.38,
+   "avg_bps": -4.61,
+   "pf": 0.94,
+   "sharpe": -0.02,
+   "sum": -13.57,
+   "bars": 1.76,
+   "maxdd": -77.33,
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "exit": "trail 2.5%"
+  },
+  {
+   "n": 294,
+   "win": 0.35,
+   "avg_bps": 78.75,
+   "pf": 1.67,
+   "sharpe": 0.17,
+   "sum": 231.52,
+   "bars": 6.37,
+   "maxdd": -127.21,
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "exit": "stop 2% + cross exit"
+  },
+  {
+   "n": 294,
+   "win": 0.36,
+   "avg_bps": -29.28,
+   "pf": 0.67,
+   "sharpe": -0.13,
+   "sum": -86.08,
+   "bars": 1.03,
+   "maxdd": -119.89,
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "exit": "stop 2% + trail 2%"
+  },
+  {
+   "n": 294,
+   "win": 0.46,
+   "avg_bps": 28.58,
+   "pf": 1.29,
+   "sharpe": 0.12,
+   "sum": 84.04,
+   "bars": 2.06,
+   "maxdd": -47.77,
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "exit": "target 3% + stop 2%"
+  },
+  {
+   "n": 111,
+   "win": 0.48,
+   "avg_bps": 60.2,
+   "pf": 1.46,
+   "sharpe": 0.14,
+   "sum": 66.82,
+   "bars": 8.05,
+   "maxdd": -62.35,
+   "tf": "4h",
+   "strat": "Confluence_oversold",
+   "exit": "confirm + bearish-cross (base)"
+  },
+  {
+   "n": 111,
+   "win": 0.48,
+   "avg_bps": 57.02,
+   "pf": 1.43,
+   "sharpe": 0.13,
+   "sum": 63.3,
+   "bars": 7.95,
+   "maxdd": -62.35,
+   "tf": "4h",
+   "strat": "Confluence_oversold_ob_exit",
+   "exit": "confirm + exit@overbought"
+  },
+  {
+   "n": 111,
+   "win": 0.4,
+   "avg_bps": 71.44,
+   "pf": 1.71,
+   "sharpe": 0.19,
+   "sum": 79.3,
+   "bars": 6.32,
+   "maxdd": -55.3,
+   "tf": "4h",
+   "strat": "Confluence_oversold",
+   "exit": "confirm + stop 2%"
+  },
+  {
+   "n": 111,
+   "win": 0.42,
+   "avg_bps": 1.89,
+   "pf": 1.03,
+   "sharpe": 0.01,
+   "sum": 2.1,
+   "bars": 0.99,
+   "maxdd": -16.27,
+   "tf": "4h",
+   "strat": "Confluence_oversold",
+   "exit": "confirm + trail 2%"
+  }
+ ],
+ "sector": [
+  {
+   "sector": "Health Care",
+   "n": 161,
+   "win": 0.48,
+   "avg_bps": 99.24,
+   "sum_pct": 159.78,
+   "pf": 2.3
+  },
+  {
+   "sector": "Utilities",
+   "n": 79,
+   "win": 0.52,
+   "avg_bps": 66.25,
+   "sum_pct": 52.34,
+   "pf": 2.04
+  },
+  {
+   "sector": "Information Technology",
+   "n": 293,
+   "win": 0.46,
+   "avg_bps": 66.21,
+   "sum_pct": 193.99,
+   "pf": 1.5
+  },
+  {
+   "sector": "Financials",
+   "n": 156,
+   "win": 0.5,
+   "avg_bps": 59.22,
+   "sum_pct": 92.39,
+   "pf": 1.7
+  },
+  {
+   "sector": "Consumer Staples",
+   "n": 117,
+   "win": 0.53,
+   "avg_bps": 56.82,
+   "sum_pct": 66.48,
+   "pf": 1.72
+  },
+  {
+   "sector": "Real Estate",
+   "n": 111,
+   "win": 0.4,
+   "avg_bps": 40.29,
+   "sum_pct": 44.73,
+   "pf": 1.54
+  },
+  {
+   "sector": "Industrials",
+   "n": 225,
+   "win": 0.45,
+   "avg_bps": 39.03,
+   "sum_pct": 87.83,
+   "pf": 1.42
+  },
+  {
+   "sector": "Materials",
+   "n": 104,
+   "win": 0.35,
+   "avg_bps": 7.64,
+   "sum_pct": 7.95,
+   "pf": 1.07
+  },
+  {
+   "sector": "Energy",
+   "n": 84,
+   "win": 0.37,
+   "avg_bps": 5.97,
+   "sum_pct": 5.02,
+   "pf": 1.07
+  },
+  {
+   "sector": "Consumer Discretionary",
+   "n": 178,
+   "win": 0.4,
+   "avg_bps": 5.17,
+   "sum_pct": 9.2,
+   "pf": 1.06
+  },
+  {
+   "sector": "Communication Services",
+   "n": 95,
+   "win": 0.31,
+   "avg_bps": -58.28,
+   "sum_pct": -55.36,
+   "pf": 0.49
+  }
+ ],
+ "stock_top": [
+  {
+   "ticker": "WDC",
+   "n": 3,
+   "win": 0.7,
+   "avg_bps": 1326.2,
+   "sum_pct": 39.8
+  },
+  {
+   "ticker": "STX",
+   "n": 3,
+   "win": 0.7,
+   "avg_bps": 1017.1,
+   "sum_pct": 30.5
+  },
+  {
+   "ticker": "IQV",
+   "n": 3,
+   "win": 0.7,
+   "avg_bps": 622.4,
+   "sum_pct": 18.7
+  },
+  {
+   "ticker": "INCY",
+   "n": 3,
+   "win": 0.7,
+   "avg_bps": 594.9,
+   "sum_pct": 17.8
+  },
+  {
+   "ticker": "URI",
+   "n": 3,
+   "win": 1.0,
+   "avg_bps": 550.7,
+   "sum_pct": 16.5
+  },
+  {
+   "ticker": "MRVL",
+   "n": 3,
+   "win": 0.7,
+   "avg_bps": 411.2,
+   "sum_pct": 12.3
+  },
+  {
+   "ticker": "NXPI",
+   "n": 3,
+   "win": 1.0,
+   "avg_bps": 380.1,
+   "sum_pct": 11.4
+  },
+  {
+   "ticker": "ZBRA",
+   "n": 3,
+   "win": 0.7,
+   "avg_bps": 356.6,
+   "sum_pct": 10.7
+  },
+  {
+   "ticker": "GPN",
+   "n": 4,
+   "win": 0.5,
+   "avg_bps": 351.5,
+   "sum_pct": 14.1
+  },
+  {
+   "ticker": "PANW",
+   "n": 3,
+   "win": 0.7,
+   "avg_bps": 317.5,
+   "sum_pct": 9.5
+  },
+  {
+   "ticker": "AMGN",
+   "n": 5,
+   "win": 0.6,
+   "avg_bps": 309.8,
+   "sum_pct": 15.5
+  },
+  {
+   "ticker": "PM",
+   "n": 3,
+   "win": 1.0,
+   "avg_bps": 308.4,
+   "sum_pct": 9.3
+  }
+ ],
+ "stock_bot": [
+  {
+   "ticker": "FOX",
+   "n": 3,
+   "win": 0.0,
+   "avg_bps": -308.1,
+   "sum_pct": -9.2
+  },
+  {
+   "ticker": "Q",
+   "n": 3,
+   "win": 0.3,
+   "avg_bps": -301.5,
+   "sum_pct": -9.0
+  },
+  {
+   "ticker": "MRNA",
+   "n": 5,
+   "win": 0.0,
+   "avg_bps": -286.4,
+   "sum_pct": -14.3
+  },
+  {
+   "ticker": "CIEN",
+   "n": 5,
+   "win": 0.2,
+   "avg_bps": -264.3,
+   "sum_pct": -13.2
+  },
+  {
+   "ticker": "BLDR",
+   "n": 4,
+   "win": 0.2,
+   "avg_bps": -262.7,
+   "sum_pct": -10.5
+  },
+  {
+   "ticker": "FOXA",
+   "n": 3,
+   "win": 0.3,
+   "avg_bps": -258.3,
+   "sum_pct": -7.7
+  },
+  {
+   "ticker": "ADI",
+   "n": 3,
+   "win": 0.0,
+   "avg_bps": -251.6,
+   "sum_pct": -7.5
+  },
+  {
+   "ticker": "COIN",
+   "n": 4,
+   "win": 0.2,
+   "avg_bps": -235.5,
+   "sum_pct": -9.4
+  }
+ ],
+ "stock_pos_frac": 54.2,
+ "benchmark": [
+  {
+   "horizon": 1,
+   "mean": -0.0004,
+   "median": -0.0004,
+   "win": 0.4211,
+   "n": 547505,
+   "tf": "15m"
+  },
+  {
+   "horizon": 3,
+   "mean": -0.0003,
+   "median": -0.0005,
+   "win": 0.4484,
+   "n": 546499,
+   "tf": "15m"
+  },
+  {
+   "horizon": 6,
+   "mean": -0.0002,
+   "median": -0.0006,
+   "win": 0.4628,
+   "n": 544990,
+   "tf": "15m"
+  },
+  {
+   "horizon": 12,
+   "mean": -0.0001,
+   "median": -0.0005,
+   "win": 0.4792,
+   "n": 541972,
+   "tf": "15m"
+  },
+  {
+   "horizon": 1,
+   "mean": -0.0003,
+   "median": -0.0005,
+   "win": 0.4549,
+   "n": 147042,
+   "tf": "1h"
+  },
+  {
+   "horizon": 3,
+   "mean": -0.0001,
+   "median": -0.0006,
+   "win": 0.476,
+   "n": 146036,
+   "tf": "1h"
+  },
+  {
+   "horizon": 6,
+   "mean": 0.0003,
+   "median": -0.0,
+   "win": 0.4994,
+   "n": 144527,
+   "tf": "1h"
+  },
+  {
+   "horizon": 12,
+   "mean": 0.0008,
+   "median": 0.0002,
+   "win": 0.5037,
+   "n": 141509,
+   "tf": "1h"
+  },
+  {
+   "horizon": 1,
+   "mean": -0.0,
+   "median": -0.0004,
+   "win": 0.4843,
+   "n": 41618,
+   "tf": "4h"
+  },
+  {
+   "horizon": 3,
+   "mean": 0.0007,
+   "median": 0.0002,
+   "win": 0.503,
+   "n": 40614,
+   "tf": "4h"
+  },
+  {
+   "horizon": 6,
+   "mean": 0.0016,
+   "median": 0.0013,
+   "win": 0.5165,
+   "n": 39108,
+   "tf": "4h"
+  },
+  {
+   "horizon": 12,
+   "mean": 0.0034,
+   "median": 0.0042,
+   "win": 0.5391,
+   "n": 36096,
+   "tf": "4h"
+  },
+  {
+   "horizon": 1,
+   "mean": 0.0005,
+   "median": 0.0003,
+   "win": 0.5068,
+   "n": 20581,
+   "tf": "1d"
+  },
+  {
+   "horizon": 3,
+   "mean": 0.0019,
+   "median": 0.0015,
+   "win": 0.5183,
+   "n": 19577,
+   "tf": "1d"
+  },
+  {
+   "horizon": 6,
+   "mean": 0.0041,
+   "median": 0.0046,
+   "win": 0.5437,
+   "n": 18071,
+   "tf": "1d"
+  },
+  {
+   "horizon": 12,
+   "mean": 0.0106,
+   "median": 0.0146,
+   "win": 0.5918,
+   "n": 15059,
+   "tf": "1d"
+  }
+ ],
+ "win_tf": [
+  {
+   "tf": "4h",
+   "strat": "WT_oversold_long",
+   "n": 294,
+   "win": 0.47,
+   "avg_bps": 81.75,
+   "edge_bps": 54.16,
+   "pf": 1.46,
+   "sharpe": 0.13
+  },
+  {
+   "tf": "1h",
+   "strat": "Confluence_oversold",
+   "n": 850,
+   "win": 0.45,
+   "avg_bps": 47.18,
+   "edge_bps": 41.5,
+   "pf": 1.51,
+   "sharpe": 0.14
+  },
+  {
+   "tf": "1h",
+   "strat": "WT_oversold_long",
+   "n": 1603,
+   "win": 0.44,
+   "avg_bps": 41.44,
+   "edge_bps": 35.5,
+   "pf": 1.44,
+   "sharpe": 0.12
+  },
+  {
+   "tf": "15m",
+   "strat": "WT_oversold_long",
+   "n": 6912,
+   "win": 0.36,
+   "avg_bps": 4.27,
+   "edge_bps": 5.34,
+   "pf": 1.1,
+   "sharpe": 0.03
+  },
+  {
+   "tf": "15m",
+   "strat": "Confluence_oversold",
+   "n": 3884,
+   "win": 0.35,
+   "avg_bps": 0.44,
+   "edge_bps": 1.74,
+   "pf": 1.01,
+   "sharpe": 0.0
+  }
+ ],
+ "portfolio": {
+  "variants": [
+   {
+    "max_pos": 10,
+    "risk": "10%",
+    "total": 7.5,
+    "maxdd": -3.6,
+    "sharpe": 3.5,
+    "taken": 191
+   },
+   {
+    "max_pos": 20,
+    "risk": "5%",
+    "total": 5.4,
+    "maxdd": -1.9,
+    "sharpe": 3.73,
+    "taken": 337
+   },
+   {
+    "max_pos": 5,
+    "risk": "20%",
+    "total": 4.5,
+    "maxdd": -5.0,
+    "sharpe": 2.15,
+    "taken": 93
+   }
+  ],
+  "equity": [
+   {
+    "t": "06-02 12:00",
+    "e": 100000.0
+   },
+   {
+    "t": "06-03 06:00",
+    "e": 99760.4
+   },
+   {
+    "t": "06-03 12:00",
+    "e": 99613.7
+   },
+   {
+    "t": "06-04 06:00",
+    "e": 100049.1
+   },
+   {
+    "t": "06-04 12:00",
+    "e": 101084.8
+   },
+   {
+    "t": "06-05 06:00",
+    "e": 101084.8
+   },
+   {
+    "t": "06-05 12:00",
+    "e": 101477.2
+   },
+   {
+    "t": "06-08 06:00",
+    "e": 102269.5
+   },
+   {
+    "t": "06-08 12:00",
+    "e": 102269.5
+   },
+   {
+    "t": "06-09 06:00",
+    "e": 102613.2
+   },
+   {
+    "t": "06-09 12:00",
+    "e": 103037.7
+   },
+   {
+    "t": "06-10 06:00",
+    "e": 102344.8
+   },
+   {
+    "t": "06-10 12:00",
+    "e": 102511.7
+   },
+   {
+    "t": "06-11 06:00",
+    "e": 103174.7
+   },
+   {
+    "t": "06-11 12:00",
+    "e": 103299.3
+   },
+   {
+    "t": "06-12 06:00",
+    "e": 103324.0
+   },
+   {
+    "t": "06-12 12:00",
+    "e": 103324.0
+   },
+   {
+    "t": "06-15 06:00",
+    "e": 103207.9
+   },
+   {
+    "t": "06-15 12:00",
+    "e": 103293.4
+   },
+   {
+    "t": "06-16 06:00",
+    "e": 106840.0
+   },
+   {
+    "t": "06-16 12:00",
+    "e": 107045.5
+   },
+   {
+    "t": "06-17 06:00",
+    "e": 106089.1
+   },
+   {
+    "t": "06-17 12:00",
+    "e": 105491.4
+   },
+   {
+    "t": "06-18 06:00",
+    "e": 104193.2
+   },
+   {
+    "t": "06-18 12:00",
+    "e": 103540.5
+   },
+   {
+    "t": "06-22 06:00",
+    "e": 103611.2
+   },
+   {
+    "t": "06-22 12:00",
+    "e": 103611.2
+   },
+   {
+    "t": "06-23 06:00",
+    "e": 103611.2
+   },
+   {
+    "t": "06-23 12:00",
+    "e": 104018.7
+   },
+   {
+    "t": "06-24 06:00",
+    "e": 103580.5
+   },
+   {
+    "t": "06-24 12:00",
+    "e": 103609.9
+   },
+   {
+    "t": "06-25 06:00",
+    "e": 103400.7
+   },
+   {
+    "t": "06-25 12:00",
+    "e": 103523.8
+   },
+   {
+    "t": "06-26 06:00",
+    "e": 103688.8
+   },
+   {
+    "t": "06-26 12:00",
+    "e": 103688.8
+   },
+   {
+    "t": "06-29 06:00",
+    "e": 103413.4
+   },
+   {
+    "t": "06-29 12:00",
+    "e": 103413.4
+   },
+   {
+    "t": "06-30 06:00",
+    "e": 104430.0
+   },
+   {
+    "t": "06-30 12:00",
+    "e": 105193.5
+   },
+   {
+    "t": "07-01 06:00",
+    "e": 105005.6
+   },
+   {
+    "t": "07-01 12:00",
+    "e": 104940.0
+   },
+   {
+    "t": "07-02 06:00",
+    "e": 104940.0
+   },
+   {
+    "t": "07-02 12:00",
+    "e": 104725.9
+   },
+   {
+    "t": "07-06 06:00",
+    "e": 105181.2
+   },
+   {
+    "t": "07-06 12:00",
+    "e": 104323.1
+   },
+   {
+    "t": "07-07 06:00",
+    "e": 104586.4
+   },
+   {
+    "t": "07-07 12:00",
+    "e": 104367.2
+   },
+   {
+    "t": "07-08 06:00",
+    "e": 104153.9
+   },
+   {
+    "t": "07-08 12:00",
+    "e": 103863.2
+   },
+   {
+    "t": "07-09 06:00",
+    "e": 103552.1
+   },
+   {
+    "t": "07-09 12:00",
+    "e": 103552.1
+   },
+   {
+    "t": "07-10 06:00",
+    "e": 104075.7
+   },
+   {
+    "t": "07-10 12:00",
+    "e": 104337.1
+   },
+   {
+    "t": "07-13 06:00",
+    "e": 104337.1
+   },
+   {
+    "t": "07-13 12:00",
+    "e": 104915.2
+   },
+   {
+    "t": "07-14 06:00",
+    "e": 104642.5
+   },
+   {
+    "t": "07-14 12:00",
+    "e": 104642.5
+   },
+   {
+    "t": "07-15 06:00",
+    "e": 104454.6
+   },
+   {
+    "t": "07-15 12:00",
+    "e": 104369.8
+   },
+   {
+    "t": "07-16 06:00",
+    "e": 104583.2
+   },
+   {
+    "t": "07-16 12:00",
+    "e": 104535.5
+   },
+   {
+    "t": "07-17 06:00",
+    "e": 104750.6
+   },
+   {
+    "t": "07-17 12:00",
+    "e": 104504.2
+   },
+   {
+    "t": "07-20 06:00",
+    "e": 104504.2
+   },
+   {
+    "t": "07-20 12:00",
+    "e": 104504.2
+   },
+   {
+    "t": "07-21 06:00",
+    "e": 104456.0
+   },
+   {
+    "t": "07-21 12:00",
+    "e": 104279.5
+   },
+   {
+    "t": "07-22 06:00",
+    "e": 105752.7
+   },
+   {
+    "t": "07-22 12:00",
+    "e": 105752.7
+   },
+   {
+    "t": "07-23 06:00",
+    "e": 106692.6
+   },
+   {
+    "t": "07-23 12:00",
+    "e": 106761.1
+   },
+   {
+    "t": "07-24 06:00",
+    "e": 106761.1
+   },
+   {
+    "t": "07-24 12:00",
+    "e": 107472.9
+   }
+  ]
+ },
+ "options": {
+  "n": 850,
+  "stock_avg_pct": 0.481,
+  "stock_win": 0.429,
+  "opt_avg_pct": 11.85,
+  "opt_win": 0.352,
+  "opt_median_pct": -21.9,
+  "opt_best_pct": 497.0,
+  "opt_worst_pct": -81.0,
+  "opt_pf": 1.56,
+  "hist": [
+   {
+    "bucket": "-100..-75",
+    "n": 1
+   },
+   {
+    "bucket": "-75..-50",
+    "n": 62
+   },
+   {
+    "bucket": "-50..-25",
+    "n": 325
+   },
+   {
+    "bucket": "-25..0",
+    "n": 163
+   },
+   {
+    "bucket": "0..25",
+    "n": 70
+   },
+   {
+    "bucket": "25..50",
+    "n": 71
+   },
+   {
+    "bucket": "50..100",
+    "n": 63
+   },
+   {
+    "bucket": "100..200",
+    "n": 51
+   },
+   {
+    "bucket": "200..500",
+    "n": 44
+   }
+  ]
+ }
+};
+
+/* ---------- helpers ---------- */
+const $ = s => document.querySelector(s);
+const SVGNS='http://www.w3.org/2000/svg';
+const SVGTAGS=['svg','g','rect','line','text','path','circle','polyline','defs','linearGradient','stop'];
+const el = (t,a={},...c)=>{const n=SVGTAGS.includes(t)?document.createElementNS(SVGNS,t):document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const cvar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const fmt = (v,d=0)=> (v>0?'+':'')+v.toFixed(d);
+const sign = v => v>0?'pos':(v<0?'neg':'');
+
+/* ---------- KPIs ---------- */
+const KPI=[
+  {v:'+48<span style="font-size:14px"> bps</span>',l:'Net edge per trade',s:'Confluence · 1h · after costs'},
+  {v:'1.58',l:'Profit factor',s:'gross win ÷ gross loss'},
+  {v:'p=0.00',l:'Significance',s:'bootstrap p(mean ≤ 0)'},
+  {v:'+7.5%',l:'Portfolio · 42 days',s:'vs +0.76% buy & hold'},
+  {v:'3.5',l:'Sharpe (annualised)',s:'−3.6% max drawdown'},
+];
+$('#kpis').append(...KPI.map(k=>{const d=el('div',{class:'kpi'});d.innerHTML=`<div class="v acc">${k.v}</div><div class="l">${k.l}</div><div class="s">${k.s}</div>`;return d;}));
+
+/* ---------- edge table ---------- */
+(function(){
+  const tb=$('#edgeTbl tbody');
+  DATA.edge_top.forEach(r=>{
+    const hi=(r.strat==='WT_oversold_long'||r.strat==='Confluence_oversold');
+    const tr=el('tr',hi?{class:'hi'}:{});
+    tr.innerHTML=`<td>${r.strat.replace(/_/g,' ')}<span class="chip" style="margin-left:8px">${r.config}</span></td>
+      <td>${r.tf}</td><td>${r.n}</td><td>${(r.win*100).toFixed(0)}%</td>
+      <td class="${sign(r.avg_bps)}">${fmt(r.avg_bps,0)}</td>
+      <td style="color:var(--faint)">${fmt(r.bench_bps,0)}</td>
+      <td class="${sign(r.edge_bps)}"><b>${fmt(r.edge_bps,0)}</b></td>
+      <td>${r.pf.toFixed(2)}</td><td>${r.sharpe.toFixed(2)}</td><td>${r.avg_bars.toFixed(1)}</td>`;
+    tb.append(tr);
+  });
+})();
+
+/* ---------- exit table (1h confluence + wt oversold, key rows) ---------- */
+(function(){
+  const tb=$('#exitTbl tbody');
+  const rows=DATA.exits.filter(r=>r.tf==='1h');
+  rows.forEach(r=>{
+    const good=r.exit.includes('stop 2%')&&r.strat==='Confluence_oversold';
+    const tr=el('tr',good?{class:'hi'}:{});
+    tr.innerHTML=`<td>${r.exit.replace('confirm + ','').replace(' (base)','')}${r.strat==='Confluence_oversold'?' <span class="chip">conf</span>':''}</td>
+      <td>${(r.win*100).toFixed(0)}%</td>
+      <td class="${sign(r.avg_bps)}">${fmt(r.avg_bps,1)}</td>
+      <td>${r.pf.toFixed(2)}</td>
+      <td class="neg">${r.maxdd.toFixed(0)}</td>`;
+    tb.append(tr);
+  });
+})();
+
+/* ---------- stock tables ---------- */
+function stkTable(sel,rows){
+  const tb=$(sel+' tbody');
+  rows.forEach(r=>{const tr=el('tr');
+    tr.innerHTML=`<td><b>${r.ticker}</b></td><td>${r.n}</td><td>${(r.win*100).toFixed(0)}%</td>
+      <td class="${sign(r.avg_bps)}">${fmt(r.avg_bps,0)}</td>
+      <td class="${sign(r.sum_pct)}">${fmt(r.sum_pct,1)}</td>`;tb.append(tr);});
+}
+stkTable('#topStk',DATA.stock_top); stkTable('#botStk',DATA.stock_bot);
+$('#posfrac').textContent=DATA.stock_pos_frac+'%';
+
+/* ---------- portfolio variant cards ---------- */
+DATA.portfolio.variants.forEach((v,i)=>{
+  const d=$('#pv'+i);
+  d.innerHTML=`<div class="chart-cap">${v.max_pos} positions · ${v.risk} risk</div>
+    <div style="display:flex;gap:20px;flex-wrap:wrap">
+      <div><div class="num" style="font-size:22px;font-weight:700;color:var(--gain)">+${v.total}%</div><div class="mini">return</div></div>
+      <div><div class="num" style="font-size:22px;font-weight:700;color:var(--loss)">${v.maxdd}%</div><div class="mini">max DD</div></div>
+      <div><div class="num acc" style="font-size:22px;font-weight:700">${v.sharpe}</div><div class="mini">Sharpe</div></div>
+    </div><div class="mini" style="margin-top:10px">${v.taken} of 850 signals filled</div>`;
+});
+
+/* ---------- CHART RENDERERS (re-run on theme change) ---------- */
+function renderCharts(){
+  drawSector(); drawEquity(); drawOptions(); drawOptTable();
+}
+
+function clear(id){const n=$(id);if(n)n.innerHTML='';return n;}
+
+function drawSector(){
+  const host=clear('#sectorChart'); if(!host)return;
+  const rows=DATA.sector;
+  const W=host.clientWidth||900, rowH=30, padL=168, padR=54, H=rows.length*rowH+18;
+  const max=Math.max(...rows.map(r=>Math.abs(r.avg_bps)))*1.08;
+  const x0=padL, xW=W-padL-padR, zero=x0+ (max)/(2*max)*xW; // center 0
+  const scale=v=> x0 + (v+max)/(2*max)*xW;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H,role:'img'});
+  // zero line
+  svg.append(el('line',{x1:scale(0),y1:6,x2:scale(0),y2:H-12,stroke:cvar('--faint'),'stroke-width':1,'stroke-dasharray':'2 3'}));
+  rows.forEach((r,i)=>{
+    const y=10+i*rowH, col=r.avg_bps>=0?cvar('--gain'):cvar('--loss');
+    const x=scale(Math.min(0,r.avg_bps)), w=Math.abs(scale(r.avg_bps)-scale(0));
+    svg.append(el('rect',{x,y,width:Math.max(w,1),height:rowH-12,rx:3,fill:col,opacity:0.9}));
+    svg.append(el('text',{x:padL-10,y:y+rowH/2-4,'text-anchor':'end',fill:cvar('--text')},r.sector));
+    const lx=r.avg_bps>=0?scale(r.avg_bps)+6:scale(r.avg_bps)-6;
+    svg.append(el('text',{x:lx,y:y+rowH/2-4,'text-anchor':r.avg_bps>=0?'start':'end',fill:cvar('--muted')},
+      `${fmt(r.avg_bps,0)}  ·  PF ${r.pf.toFixed(2)}`));
+  });
+  host.append(svg);
+}
+
+function drawEquity(){
+  const host=clear('#equityChart'); if(!host)return;
+  const pts=DATA.portfolio.equity;
+  const W=host.clientWidth||1000, H=260, padL=52,padR=16,padT=14,padB=26;
+  const ys=pts.map(p=>p.e), min=Math.min(...ys,100000), max=Math.max(...ys);
+  const pad=(max-min)*0.12||1000;
+  const lo=min-pad, hi=max+pad;
+  const X=i=> padL + i/(pts.length-1)*(W-padL-padR);
+  const Y=v=> padT + (1-(v-lo)/(hi-lo))*(H-padT-padB);
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H,role:'img'});
+  const g=el('g',{class:'grid'});
+  const ticks=5;
+  for(let t=0;t<=ticks;t++){const v=lo+(hi-lo)*t/ticks, y=Y(v);
+    g.append(el('line',{x1:padL,y1:y,x2:W-padR,y2:y}));
+    svg.append(el('text',{x:padL-8,y:y+3,'text-anchor':'end',class:'axis'},'$'+(v/1000).toFixed(0)+'k'));}
+  svg.append(g);
+  // buy&hold reference (100000 -> +0.76%)
+  const bh0=Y(100000), bh1=Y(100760);
+  svg.append(el('line',{x1:padL,y1:bh0,x2:W-padR,y2:bh1,stroke:cvar('--muted'),'stroke-width':1.3,'stroke-dasharray':'5 4',opacity:.8}));
+  svg.append(el('text',{x:W-padR,y:bh1-6,'text-anchor':'end',fill:cvar('--muted')},'buy & hold +0.76%'));
+  // area + line
+  let dLine='', dArea=`M ${X(0)} ${Y(pts[0].e)}`;
+  pts.forEach((p,i)=>{const x=X(i),y=Y(p.e);dLine+=(i?' L':'M')+` ${x.toFixed(1)} ${y.toFixed(1)}`;if(i)dArea+=` L ${x.toFixed(1)} ${y.toFixed(1)}`;});
+  dArea+=` L ${X(pts.length-1)} ${Y(lo)} L ${X(0)} ${Y(lo)} Z`;
+  const grad=el('linearGradient',{id:'eqg',x1:0,y1:0,x2:0,y2:1});
+  grad.append(el('stop',{offset:'0%','stop-color':cvar('--accent'),'stop-opacity':0.28}));
+  grad.append(el('stop',{offset:'100%','stop-color':cvar('--accent'),'stop-opacity':0}));
+  svg.append(el('defs',{},grad));
+  svg.append(el('path',{d:dArea,fill:'url(#eqg)'}));
+  svg.append(el('path',{d:dLine,fill:'none',stroke:cvar('--accent'),'stroke-width':2,'stroke-linejoin':'round',class:'eq-line'}));
+  // endpoint dot
+  svg.append(el('circle',{cx:X(pts.length-1),cy:Y(pts[pts.length-1].e),r:3.5,fill:cvar('--accent')}));
+  // x labels (first/mid/last)
+  [0,Math.floor(pts.length/2),pts.length-1].forEach(i=>{
+    svg.append(el('text',{x:X(i),y:H-8,'text-anchor':i===0?'start':(i===pts.length-1?'end':'middle'),class:'axis'},pts[i].t));});
+  host.append(svg);
+}
+
+function drawOptions(){
+  const host=clear('#optChart'); if(!host)return;
+  const rows=DATA.options.hist;
+  const W=host.clientWidth||520, H=250, padL=30,padR=10,padT=10,padB=48;
+  const max=Math.max(...rows.map(r=>r.n)), bw=(W-padL-padR)/rows.length;
+  const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H,role:'img'});
+  rows.forEach((r,i)=>{
+    const h=(r.n/max)*(H-padT-padB), x=padL+i*bw+3, y=H-padB-h;
+    const loss=r.bucket.startsWith('-')&&!r.bucket.startsWith('0');
+    svg.append(el('rect',{x,y,width:bw-6,height:Math.max(h,1),rx:2,
+      fill: loss?cvar('--loss'):cvar('--gain'), opacity: loss?0.82:0.9}));
+    svg.append(el('text',{x:x+(bw-6)/2,y:y-4,'text-anchor':'middle',fill:cvar('--muted'),style:'font-size:9px'},String(r.n)));
+    const cx=x+(bw-6)/2;
+    svg.append(el('text',{x:cx,y:H-padB+14,'text-anchor':'end',fill:cvar('--faint'),
+      style:'font-size:8.5px',transform:`rotate(-40 ${cx} ${H-padB+14})`},r.bucket+'%'));
+  });
+  // zero divider between -25..0 and 0..25
+  svg.append(el('line',{x1:padL+4*bw,y1:padT,x2:padL+4*bw,y2:H-padB,stroke:cvar('--faint'),'stroke-dasharray':'2 3','stroke-width':1}));
+  host.append(svg);
+}
+
+function drawOptTable(){
+  const t=$('#optTbl tbody'); t.innerHTML='';
+  const o=DATA.options;
+  const rows=[['Avg / trade',fmt(o.stock_avg_pct,2)+'%',fmt(o.opt_avg_pct,1)+'%'],
+    ['Win rate',(o.stock_win*100).toFixed(0)+'%',(o.opt_win*100).toFixed(0)+'%'],
+    ['Median',null,fmt(o.opt_median_pct,0)+'%'],
+    ['Profit factor','1.58',o.opt_pf.toFixed(2)],
+    ['Best / worst',null,fmt(o.opt_best_pct,0)+'% / '+o.opt_worst_pct+'%']];
+  rows.forEach(r=>{const tr=el('tr');
+    tr.innerHTML=`<td style="color:var(--muted)">${r[0]}</td>
+      <td>${r[1]??'<span style="color:var(--faint)">—</span>'}</td>
+      <td class="acc">${r[2]}</td>`;t.append(tr);});
+}
+
+/* ---------- theme ---------- */
+const btn=$('#themeBtn');
+function currentDark(){const a=document.documentElement.getAttribute('data-theme');
+  if(a)return a==='dark';return matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',currentDark()?'light':'dark');
+  requestAnimationFrame(renderCharts);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>requestAnimationFrame(renderCharts));
+new ResizeObserver(()=>renderCharts()).observe(document.body);
+renderCharts();
+</script>

@@ -1,0 +1,16 @@
+{
+ "start": "2016-01-04",
+ "end": "2026-07-24",
+ "sessions": 2654,
+ "start_nav": 10000.0,
+ "end_nav": 65706.7,
+ "total_return": 5.57067,
+ "cagr": 0.19532562284067922,
+ "max_drawdown": -0.26970583330407605,
+ "decisions": 552,
+ "fills": 476,
+ "shadow_tranche_return": 5.261456324609684,
+ "tier": "F2",
+ "route": "UCITS",
+ "cost_bps": 5.0
+}

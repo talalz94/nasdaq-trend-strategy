@@ -1,0 +1,97 @@
+{
+ "qqq sim vs real": {
+  "days": 6966,
+  "start": "1999-03-11",
+  "corr": 0.9805,
+  "te_ann": 0.0538,
+  "cagr_real": 0.1037,
+  "cagr_sim": 0.0958
+ },
+ "qld sim vs real": {
+  "days": 5134,
+  "start": "2006-06-22",
+  "corr": 0.9959,
+  "te_ann": 0.0419,
+  "cagr_real": 0.2363,
+  "cagr_sim": 0.2238
+ },
+ "tqqq sim vs real": {
+  "days": 4217,
+  "start": "2010-02-12",
+  "corr": 0.9986,
+  "te_ann": 0.0352,
+  "cagr_real": 0.3917,
+  "cagr_sim": 0.3706
+ },
+ "tlt_calib": {
+  "alpha_ann": 0.00183,
+  "duration": 15.8,
+  "convexity": 134.4
+ },
+ "ief_calib": {
+  "alpha_ann": 0.00305,
+  "duration": 7.09,
+  "convexity": 76.9
+ },
+ "shy_calib": {
+  "alpha_ann": -0.00078,
+  "duration": 1.82,
+  "convexity": 20.7
+ },
+ "tlt syn vs real": {
+  "days": 6115,
+  "start": "2002-07-31",
+  "corr": 0.9362,
+  "te_ann": 0.0501,
+  "cagr_real": 0.0341,
+  "cagr_sim": 0.0354
+ },
+ "ief syn vs real": {
+  "days": 6115,
+  "start": "2002-07-31",
+  "corr": 0.9473,
+  "te_ann": 0.0217,
+  "cagr_real": 0.0343,
+  "cagr_sim": 0.0346
+ },
+ "shy syn vs real": {
+  "days": 6115,
+  "start": "2002-07-31",
+  "corr": 0.7809,
+  "te_ann": 0.0095,
+  "cagr_real": 0.0198,
+  "cagr_sim": 0.0198
+ },
+ "July bond10 vs IEF": {
+  "days": 6115,
+  "start": "2002-07-31",
+  "corr": 0.9473,
+  "te_ann": 0.0221,
+  "cagr_real": 0.0343,
+  "cagr_sim": 0.0278
+ },
+ "July bond10 vs TLT": {
+  "days": 6115,
+  "start": "2002-07-31",
+  "corr": 0.886,
+  "te_ann": 0.088,
+  "cagr_real": 0.0341,
+  "cagr_sim": 0.0278
+ },
+ "GC=F vs GLD": {
+  "days": 5533,
+  "start": "2004-11-19",
+  "corr": 0.8873,
+  "te_ann": 0.0872,
+  "cagr_real": 0.099,
+  "cagr_sim": 0.0993
+ },
+ "gold_monthly_interp_vs_gcf_monthly": {
+  "corr": 0.611,
+  "vol_interp": 0.1292,
+  "vol_gcf": 0.1669
+ },
+ "rows": 10362,
+ "start": "1985-10-02",
+ "end": "2026-11-17"
+}

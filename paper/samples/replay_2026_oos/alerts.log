@@ -1,0 +1,2 @@
+2026-11-19 15:33:01Z [INFO] RISK-ON switch on 2026-07-24 | NDX 28,128 vs EMA-100 28,067; targets {'QLD': 0.425, 'IEF': 0.425, 'GLD': 0.15}
+2026-11-19 15:33:07Z [INFO] RISK-OFF switch on 2026-10-16 | NDX 29,188 vs EMA-100 29,306; targets {'QLD': 0.0, 'IEF': 0.85, 'GLD': 0.15}

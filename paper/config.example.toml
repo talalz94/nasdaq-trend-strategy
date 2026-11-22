@@ -1,0 +1,36 @@
+# Copy this file to paper/config.toml and edit. Every key is optional; missing keys use the defaults.
+# No broker account, API key or password is needed: the paper account is simulated locally and
+# prices come from Yahoo Finance (the same free source scanner.py uses).
+# Every value is checked when the runner starts. A typo, an unknown key or an out-of-range value stops the
+# run with a message in paper/data/runner.log and a desktop alert, so nothing changes behind your back.
+
+[strategy]
+tier = "F2"            # F1 = QQQ (1x), F2 = QLD (2x, reference tier), F3 = TQQQ (3x, US route only)
+route = "US"           # "US" (QQQ/QLD/TQQQ + IEF + GLD) or "UCITS" (LQQ.PA/CNDX.L + CBU0.L + IGLN.L)
+band = 0.02            # skip a sleeve within 2 percentage points of target (risk-on/off switches always trade)
+cash_buffer = 0.005    # keep 0.5% cash for rounding and costs
+
+[account]
+starting_cash = 10000.0
+fractional_shares = false    # true or false, without quotes
+cost_bps = 5.0               # spread/slippage per unit traded; the planning numbers assume 5
+commission_per_order = 0.0
+dividend_withholding = 0.0   # set 0.30 to model 30% US withholding on a non-US account
+
+[schedule]
+signal_minutes_before_close = 20   # 15:40 ET on normal days, 12:40 ET on 1 pm early-close days
+window_minutes = 8                 # the run acts between 15:40 and 15:48 ET; it must end >= 10 min before the close
+settle_minutes_after_close = 45    # fills use the official close, booked 45 min after the bell (min 15)
+ucits_decide_minutes_after_close = 30
+extra_holidays = []                # announced NYSE closures, e.g. ["2025-01-09"] (dates as YYYY-MM-DD)
+extra_early_closes = []
+
+[review]
+# Pre-committed review triggers (see STRATEGY_RULEBOOK.md). An alert fires; nothing is re-tuned.
+drawdown_trigger = { F1 = 0.25, F2 = 0.35, F3 = 0.45 }   # positive fractions: 0.35 = a -35% drawdown
+rolling_12m_flag = 0.25
+
+[alerts]
+desktop_notifications = true   # Windows toast notifications (no account needed)
+webhook_url = ""               # optional, leave empty: your own webhook; it receives JSON {"text": ...} (Slack format)
+healthcheck_url = ""           # optional, leave empty: a dead-man ping URL pinged after each weekly decision

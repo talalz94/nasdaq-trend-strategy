@@ -1,0 +1,36 @@
+# --- never published: secrets, personal settings, the live paper account, local tool settings
+.env
+.env.*
+!.env.example
+paper/data/
+paper/config.toml
+.claude/
+update_2026_11/update_memory.py
+*_backup_*
+*.bak
+
+# --- one-off drafting helpers whose output is RESEARCH_LOG.md itself (stale drafts)
+update_2026_11/research_log_*.md
+update_2026_11/update_research_log.py
+
+# --- your own runs: replays to the default folder, the scanner's weekly log
+paper/samples/replay/
+scanner_log.csv
+
+# --- market data: Yahoo Finance / Alpaca terms do not allow redistribution; rebuild it (README, "Data")
+*.parquet
+data_alpaca/
+data_letf/
+cache/
+report_data*.json
+
+# --- Python and editors
+__pycache__/
+*.pyc
+.pytest_cache/
+.venv/
+venv/
+.idea/
+.vscode/
+Thumbs.db
+desktop.ini

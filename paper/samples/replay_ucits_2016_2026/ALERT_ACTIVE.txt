@@ -1,0 +1,5 @@
+2026-11-19 15:30:18Z [WARN] buy of CBU0.L cut for lack of cash on 2019-08-05 | planned 65, filled 61; the rest of the cash stays idle until the next decision
+2026-11-19 15:30:46Z [WARN] buy of CBU0.L cut for lack of cash on 2020-02-24 | planned 53, filled 48; the rest of the cash stays idle until the next decision
+2026-11-19 15:31:31Z [WARN] buy of LQQ.PA cut for lack of cash on 2021-03-08 | planned 3600, filled 3402; the rest of the cash stays idle until the next decision
+2026-11-19 15:34:41Z [WARN] buy of LQQ.PA cut for lack of cash on 2025-05-12 | planned 4869, filled 4498; the rest of the cash stays idle until the next decision
+2026-11-19 15:35:20Z [WARN] buy of LQQ.PA cut for lack of cash on 2025-11-10 | planned 107, filled 101; the rest of the cash stays idle until the next decision

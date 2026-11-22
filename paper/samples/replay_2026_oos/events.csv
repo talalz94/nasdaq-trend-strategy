@@ -1,0 +1,24 @@
+time_utc,kind,detail
+2026-11-19T15:32:54Z,init,"paper account started with $10,000.00 on 2026-07-24 (F2, US route)"
+2026-11-19T15:33:01Z,decision,decision 2026-07-24: RISK-ON (official close 2026-07-24) -> 3 order(s) for 2026-07-24
+2026-11-19T15:33:01Z,decision,decision 2026-07-31: RISK-ON (official close 2026-07-31) -> 0 order(s) for 2026-07-31
+2026-11-19T15:33:01Z,dividend,IEF ex 2026-08-03: 45.0 x 0.318 = $14.31
+2026-11-19T15:33:01Z,decision,decision 2026-08-07: RISK-ON (official close 2026-08-07) -> 2 order(s) for 2026-08-07
+2026-11-19T15:33:02Z,decision,decision 2026-08-14: RISK-ON (official close 2026-08-14) -> 0 order(s) for 2026-08-14
+2026-11-19T15:33:02Z,decision,decision 2026-08-21: RISK-ON (official close 2026-08-21) -> 0 order(s) for 2026-08-21
+2026-11-19T15:33:03Z,decision,decision 2026-08-28: RISK-ON (official close 2026-08-28) -> 0 order(s) for 2026-08-28
+2026-11-19T15:33:03Z,dividend,IEF ex 2026-09-01: 72.0 x 0.332 = $23.9
+2026-11-19T15:33:03Z,decision,decision 2026-09-04: RISK-ON (official close 2026-09-04) -> 0 order(s) for 2026-09-04
+2026-11-19T15:33:04Z,decision,decision 2026-09-11: RISK-ON (official close 2026-09-11) -> 0 order(s) for 2026-09-11
+2026-11-19T15:33:04Z,decision,decision 2026-09-18: RISK-ON (official close 2026-09-18) -> 0 order(s) for 2026-09-18
+2026-11-19T15:33:05Z,dividend,QLD ex 2026-09-23: 24.0 x 0.027 = $0.65
+2026-11-19T15:33:05Z,decision,decision 2026-09-25: RISK-ON (official close 2026-09-25) -> 0 order(s) for 2026-09-25
+2026-11-19T15:33:05Z,dividend,IEF ex 2026-10-01: 72.0 x 0.307 = $22.1
+2026-11-19T15:33:05Z,decision,decision 2026-10-02: RISK-ON (official close 2026-10-02) -> 2 order(s) for 2026-10-02
+2026-11-19T15:33:06Z,decision,decision 2026-10-09: RISK-ON (official close 2026-10-09) -> 0 order(s) for 2026-10-09
+2026-11-19T15:33:07Z,decision,decision 2026-10-16: RISK-OFF (official close 2026-10-16) -> 3 order(s) for 2026-10-16
+2026-11-19T15:33:08Z,decision,decision 2026-10-23: RISK-OFF (official close 2026-10-23) -> 0 order(s) for 2026-10-23
+2026-11-19T15:33:09Z,decision,decision 2026-10-30: RISK-OFF (official close 2026-10-30) -> 0 order(s) for 2026-10-30
+2026-11-19T15:33:09Z,dividend,IEF ex 2026-11-02: 88.0 x 0.311 = $27.37
+2026-11-19T15:33:10Z,decision,decision 2026-11-06: RISK-OFF (official close 2026-11-06) -> 0 order(s) for 2026-11-06
+2026-11-19T15:33:11Z,decision,decision 2026-11-13: RISK-OFF (official close 2026-11-13) -> 0 order(s) for 2026-11-13

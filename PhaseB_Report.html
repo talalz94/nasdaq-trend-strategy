@@ -1,0 +1,7555 @@
+<title>Phase B — Diagnose &amp; Tune</title>
+<style>
+  :root{--bg:#0c1116;--panel:#131b22;--panel2:#17222b;--border:#25333d;--text:#dfe8ee;--muted:#8496a2;--faint:#5c6d78;
+    --accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1e2a33;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;--maxw:1100px;}
+  @media (prefers-color-scheme:light){:root{--bg:#eceff3;--panel:#fff;--panel2:#f4f7fa;--border:#d7dfe7;--text:#16232d;--muted:#5a6b77;--faint:#8899a4;--accent:#0c99a6;--gain:#12945f;--loss:#d6403c;--gold:#a9791a;--violet:#6b57d6;--grid:#e2e8ee;}}
+  :root[data-theme="dark"]{--bg:#0c1116;--panel:#131b22;--panel2:#17222b;--border:#25333d;--text:#dfe8ee;--muted:#8496a2;--faint:#5c6d78;--accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1e2a33;}
+  :root[data-theme="light"]{--bg:#eceff3;--panel:#fff;--panel2:#f4f7fa;--border:#d7dfe7;--text:#16232d;--muted:#5a6b77;--faint:#8899a4;--accent:#0c99a6;--gain:#12945f;--loss:#d6403c;--gold:#a9791a;--violet:#6b57d6;--grid:#e2e8ee;}
+  *{box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:var(--mono)}.pos{color:var(--gain)}.neg{color:var(--loss)}.acc{color:var(--accent)}.gld{color:var(--gold)}
+  h1,h2{margin:0;text-wrap:balance}
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid var(--border)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:52px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px}.brand .dot{color:var(--accent)}.spacer{flex:1}
+  .tf-pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  header{padding:48px 0 26px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.17em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:var(--mono);font-size:clamp(24px,4.1vw,42px);line-height:1.06;letter-spacing:-.02em}
+  h1 .u{color:var(--muted)}
+  .lede{max-width:68ch;color:var(--muted);font-size:16.5px;margin-top:18px}.lede b{color:var(--text);font-weight:600}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:15px}
+  .kpi .v{font-family:var(--mono);font-size:20px;font-weight:700;line-height:1.1}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-top:8px}.kpi .s{font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:5px}
+  section{padding:38px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}.sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  h2{font-size:22px}.sub{color:var(--muted);max-width:78ch;margin:10px 0 20px;font-size:15px}.sub b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px}
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:8px 11px;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+  thead th{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--panel2)}
+  tbody td{border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+  tbody td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+  tr.win td{background:color-mix(in srgb,var(--gain) 12%,transparent)}tr.win td:first-child{box-shadow:inset 3px 0 0 var(--gain)}
+  tr.bench td{background:color-mix(in srgb,var(--gold) 8%,transparent)}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .card{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:16px 18px}
+  .card.good{border-left:3px solid var(--gain)}.card.bad{border-left:3px solid var(--loss)}
+  .card .t{font-family:var(--mono);font-size:12px;font-weight:600;margin-bottom:9px}.card.good .t{color:var(--gain)}.card.bad .t{color:var(--loss)}
+  .card ul{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:9px}
+  .card li{font-size:13.5px;color:var(--muted);padding-left:18px;position:relative}.card li b{color:var(--text)}
+  .card.good li::before{content:"✓";position:absolute;left:0;color:var(--gain)}.card.bad li::before{content:"✗";position:absolute;left:0;color:var(--loss)}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;background:var(--panel);padding:15px 19px;margin-top:15px}
+  .callout.warn{border-left-color:var(--gold)}.callout.crit{border-left-color:var(--loss)}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .callout.warn .h{color:var(--gold)}.callout.crit .h{color:var(--loss)}
+  .callout p{margin:0;color:var(--muted);font-size:14px}.callout p+p{margin-top:8px}.callout b{color:var(--text)}
+  ul.clean{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ul.clean li{padding-left:22px;position:relative;color:var(--muted);font-size:14px}ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}ul.clean li b{color:var(--text)}
+  .heat{border-collapse:separate;border-spacing:3px}
+  .heat td{text-align:center;font-family:var(--mono);font-size:12px;padding:8px 10px;border-radius:6px;border:none}
+  .heat th{font-family:var(--mono);font-size:10.5px;color:var(--muted);padding:4px 8px;text-align:center}
+  .projgrid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+  .proj{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px;text-align:center}
+  .proj .h{font-family:var(--mono);font-size:11px;color:var(--muted)}.proj .v{font-family:var(--mono);font-size:21px;font-weight:700;color:var(--accent);margin:6px 0}.proj .r{font-family:var(--mono);font-size:10.5px;color:var(--faint)}
+  .spec{background:var(--panel);border:1px solid var(--border);border-left:3px solid var(--gain);border-radius:11px;padding:18px 20px;margin-top:14px}
+  .spec pre{font-family:var(--mono);font-size:12.5px;line-height:1.8;color:var(--muted);margin:0;white-space:pre-wrap}
+  .spec pre b{color:var(--text)}.spec pre .k{color:var(--gain)}
+  footer{padding:28px 0 60px;color:var(--faint);font-size:12.5px}footer .mono{color:var(--muted)}
+  @media (max-width:820px){.kpis,.cols2,.projgrid{grid-template-columns:repeat(2,1fr)}}
+</style>
+
+<div class="topbar"><div class="wrap row">
+  <span class="brand">PHASE<span class="dot">·</span>B</span>
+  <span class="tf-pill">diagnose → tune → validate</span>
+  <span class="spacer"></span>
+  <button class="toggle" id="themeBtn">◐ theme</button>
+</div></div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Phase B · why the hybrid trailed, and the fix</div>
+    <h1>The hybrid was throwing away<br><span class="u">return for no extra safety.</span></h1>
+    <p class="lede">Diagnosis: Strategy B's "de-lever in chop" rule dumped <b>all</b> leverage 43% of the time — and the
+      data says that was never justified. Leverage pays in <b>every</b> chop bucket. Worse, at B's own −43% drawdown,
+      simply holding <b>less leverage all the time</b> earned more. The fix is small and robust: <b>go to half leverage
+      in chop, not zero</b>, and require the yield curve to be <b>confirmed</b> by a broken trend. Result:
+      <b class="pos">+4.3%/yr more return with a shallower drawdown</b> — and it survives walk-forward.</p>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <!-- 1 diagnosis -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">01</span><h2>Diagnosis — where the 10%/yr went</h2></div>
+    <p class="sub">A and B differ in only three states, so the gap decomposes exactly. <b>The chop rule is 80% of it</b>
+      — it costs 8%/yr and is active 43% of the time.</p>
+    <div class="tbl-scroll"><table id="attrib"><thead><tr><th>State</th><th>Days</th><th>% of time</th><th>Cost vs A (annualized)</th></tr></thead><tbody></tbody></table></div>
+    <div class="callout crit">
+      <div class="h">The premise was wrong</div>
+      <p>The chop filter assumes low trend-efficiency means leverage will underperform. It doesn't. Forward 20-day
+        returns by efficiency bucket show <b>TQQQ beats QQQ in every single bucket</b> — including the choppiest
+        (+2.2%). The choppiest bucket even had <i>higher</i> forward returns than the "clean trend" bucket.</p>
+      <p>Episode analysis agrees: the chop rule was a coin flip — <b id="epchop"></b> good calls, and the bad calls
+        (−7.8% avg) were worse than the good ones (+6.0% avg). It wasn't timing anything; it was just de-risking.</p>
+    </div>
+    <div class="panel" style="margin-top:14px">
+      <div class="mono" style="font-size:11px;color:var(--muted);margin-bottom:10px">FORWARD 20-DAY RETURN BY TREND-EFFICIENCY BUCKET (uptrend days)</div>
+      <div id="erChart"></div>
+    </div>
+  </section>
+
+  <!-- 2 the frontier test -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">02</span><h2>The acid test — beat a plain risk dial, or you've added nothing</h2></div>
+    <p class="sub">Any rule that just reduces exposure will cut drawdown. The real question: at the <b>same drawdown</b>,
+      does it earn more than simply holding a smaller leveraged position? Everything below is scored against that
+      benchmark (<b>edge</b> = CAGR above a pure vol-target dial at equal drawdown).</p>
+    <div class="tbl-scroll"><table id="frontier"><thead><tr>
+      <th>Variant</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>2000–09</th><th>Edge vs plain dial</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="cols2" style="margin-top:15px">
+      <div class="card good"><div class="t">GENUINE IMPROVEMENTS</div><ul>
+        <li><b>Half leverage in chop</b> (not zero). +3.6%/yr over the dial at equal risk. The single best change.</li>
+        <li><b>Confirmed curve</b> — require inversion <i>and</i> a broken trend, instead of inversion alone. +1.0%/yr.</li>
+      </ul></div>
+      <div class="card bad"><div class="t">REJECTED (no edge)</div><ul>
+        <li><b>Full de-lever to QQQ</b> — −1.3 to −5.5%/yr. This was the old hybrid's core rule.</li>
+        <li><b>Raw curve inversion</b> — too blunt; one 2023 episode alone cost 82%.</li>
+        <li><b>Boosting leverage in strong trends</b> — literally zero effect (−0.0 to −0.2%). Your "be more aggressive" idea, honestly tested: vol-targeting already captures it.</li>
+        <li><b>Credit-spread overlay</b> — cut return and risk equally, Calmar unchanged at 0.65. Another dial, not alpha.</li>
+      </ul></div>
+    </div>
+  </section>
+
+  <!-- 3 validation -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">03</span><h2>Validation — is it real, or did I fit 50 variants?</h2></div>
+    <p class="sub">Two independent checks. First, <b>walk-forward</b>: choose the best config using only the training half,
+      then score it on the unseen half — in both directions.</p>
+    <div class="tbl-scroll"><table id="wf"><thead><tr>
+      <th>Split</th><th>Picked on train</th><th>Train Calmar</th><th>TEST Calmar</th><th>vs A champion</th><th>vs B old hybrid</th>
+    </tr></thead><tbody></tbody></table></div>
+    <p class="sub" style="margin-top:18px">Second, <b>parameter stability</b>. If the gain were noise, only one cell
+      would look good. Instead there's a broad elevated plateau — and note the <b>right-hand column (100% = no chop
+      filter at all) is uniformly 0.51</b>, while the whole partial-de-lever region sits at 0.56–0.67.</p>
+    <div class="panel"><div id="heat"></div></div>
+    <div class="callout warn">
+      <div class="h">Honest read</div>
+      <p>The partial-de-lever family beat Strategy A out-of-sample in <b>both</b> directions (0.53 vs 0.51; 0.63 vs 0.49)
+        and crushed the old hybrid in one (0.53 vs 0.39) while slightly losing the other (0.63 vs 0.67).
+        <b>Selection cost is ~0.15 Calmar</b> in both splits — so expect a real-world Calmar around <b>0.53–0.63</b>,
+        not the 0.67 measured in-sample. Discount accordingly.</p>
+    </div>
+  </section>
+
+  <!-- 4 result -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">04</span><h2>Strategy B-v2 — the tuned result</h2></div>
+    <p class="sub">It <b>dominates the old hybrid on both axes</b>: more return <i>and</i> a shallower drawdown.
+      Against Strategy A it trades ~6 points of CAGR for 28 points less drawdown.</p>
+    <div class="tbl-scroll"><table id="compare"><thead><tr>
+      <th>Strategy</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>1985–99</th><th>2000–09</th><th>2010–19</th><th>2020–26</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="spec"><pre><b class="k">STRATEGY B-v2 — TUNED DURABLE</b>   (weekly, Friday close)
+
+<span class="k">1.</span> Risk check: NDX &gt; EMA-100, and NOT (curve inverted in last 12m <b>AND</b> trend broken)
+     fail → <b>100% CASH / bonds</b>
+<span class="k">2.</span> scale = min(1, <b>0.20</b> / 20-day realized vol)
+<span class="k">3.</span> Efficiency ratio ≥ 0.25 → <b>TQQQ × scale</b>        (clean trend: full sizing)
+     Efficiency ratio &lt; 0.25 → <b>TQQQ × scale × 0.5</b>  (chop: HALF, not zero)
+     remainder → cash</pre></div>
+    <div class="projgrid" style="margin-top:16px" id="proj"></div>
+    <p class="sub" style="margin-top:12px;font-size:13.5px">$1,000 typical outcome (median of all rolling windows), 10th–90th percentile range beneath.</p>
+    <div class="panel" style="margin-top:6px">
+      <div class="mono" style="font-size:11px;color:var(--muted);margin-bottom:8px">GROWTH OF $1 · LOG SCALE · 1985–2026</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap;font-family:var(--mono);font-size:11.5px;color:var(--muted);margin-bottom:6px">
+        <span><span style="color:var(--gain)">━</span> B-v2 tuned</span>
+        <span><span style="color:var(--gold)">━</span> A champion</span>
+        <span><span style="color:var(--violet)">━</span> B old hybrid</span>
+      </div>
+      <div id="eqChart"></div>
+    </div>
+  </section>
+
+  <section style="border-bottom:none">
+    <div class="sec-head"><span class="sec-idx">05</span><h2>What this means &amp; what's next</h2></div>
+    <ul class="clean">
+      <li><b>Answer to "why isn't the hybrid better?"</b> — because its main rule was a disguised risk dial with negative selectivity. Half-leverage fixes it.</li>
+      <li><b>Answer to "make the last leg more aggressive"</b> — boosting leverage in strong trends does nothing. The aggression that <i>works</i> is <b>refusing to fully de-risk in chop</b>, plus a smarter curve rule. That recovered +4.3%/yr.</li>
+      <li><b>Nothing is settled yet.</b> Selection cost is real (~0.15 Calmar), the pre-2010 leveraged series is simulated, and 1985–2026 was a historic tech bull. This is a research result, not a recommendation.</li>
+      <li><b>Next (Phase C):</b> benchmark against proven alternatives (S&amp;P, Berkshire, gold, 60/40, Bitcoin), then geopolitical/macro regime adaptation, then new indicators.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="mono">Method — 1985–2026 Nasdaq-100 (pre-2010 TQQQ/SQQQ simulated, conservative). Weekly rebalance, weights
+      shifted 1 day (no lookahead), 3 bps per unit turnover. Attribution by mutually-exclusive state + leave-one-out.
+      Frontier scored vs a pure vol-target dial at matched drawdown. Walk-forward both directions + 25-point stability
+      grid + credit overlay. Code: attribution.py, frontier.py, frontier2.py, validate.py.</p>
+    <p style="margin-top:8px;color:var(--faint)">Research only — not investment advice. Leveraged ETFs can lose most of their value.</p>
+  </footer>
+</div>
+
+<script>
+const D = {
+ "attrib": [
+  {
+   "state": "CURVE: A=TQQQ, B=bonds",
+   "days": 707,
+   "pct": 0.06876762960801479,
+   "total": -0.7117101599141031,
+   "ann": -0.017440599524228526
+  },
+  {
+   "state": "CHOP: A=TQQQ, B=QQQ",
+   "days": 4454,
+   "pct": 0.43322633985020914,
+   "total": -3.2582302756593196,
+   "ann": -0.07984358323948786
+  },
+  {
+   "state": "OFFLEG: A=cash, B=bonds",
+   "days": 2815,
+   "pct": 0.27380604999513664,
+   "total": -1.080783424622871,
+   "ann": -0.02648481354199957
+  },
+  {
+   "state": "identical (both TQQQ)",
+   "days": 2305,
+   "pct": 0.22419998054663942,
+   "total": -0.765179445424976,
+   "ann": -0.018750875038005533
+  }
+ ],
+ "loo": [
+  {
+   "name": "B: full hybrid",
+   "cagr": 0.21590070463857547,
+   "maxdd": -0.4315005392731127,
+   "sharpe": 0.8149560649106452,
+   "calmar": 0.5003486322456805,
+   "total": 2913.0280054212426,
+   "cagr0009": 0.08317371001779139,
+   "maxdd0009": -0.3941304323440379
+  },
+  {
+   "name": "  \u2212 curve overlay",
+   "cagr": 0.23525420069570746,
+   "maxdd": -0.4724327559161532,
+   "sharpe": 0.8473259160615126,
+   "calmar": 0.49796335615953796,
+   "total": 5549.8827296052095,
+   "cagr0009": 0.07270383436299244,
+   "maxdd0009": -0.4724327559161535
+  },
+  {
+   "name": "  \u2212 chop de-lever",
+   "cagr": 0.30069225715762204,
+   "maxdd": -0.6073042810822489,
+   "sharpe": 0.8148512019228519,
+   "calmar": 0.49512619377846684,
+   "total": 45623.39329589148,
+   "cagr0009": 0.06608440448775732,
+   "maxdd0009": -0.6051483410056198
+  },
+  {
+   "name": "  \u2212 bonds (use cash)",
+   "cagr": 0.2171227791285799,
+   "maxdd": -0.39643239006946174,
+   "sharpe": 0.8376077950264549,
+   "calmar": 0.5476918248040638,
+   "total": 3034.968819367295,
+   "cagr0009": 0.05271245837169025,
+   "maxdd0009": -0.39643239006946385
+  },
+  {
+   "name": "A: no rules at all",
+   "cagr": 0.31640970746382124,
+   "maxdd": -0.6727768518346078,
+   "sharpe": 0.8303805201028499,
+   "calmar": 0.47030409355048064,
+   "total": 74484.40081677926,
+   "cagr0009": 0.04328535155277269,
+   "maxdd0009": -0.6727768518346073
+  }
+ ],
+ "ep_chop": {
+  "n": 263,
+  "good": 121,
+  "bad": 142
+ },
+ "ep_curve": {
+  "n": 20,
+  "good": 9,
+  "bad": 11
+ },
+ "er_table": [
+  {
+   "er_bucket": "0-.15",
+   "n": 2516,
+   "tqqq_fwd": 0.034969735530963796,
+   "qqq_fwd": 0.013394147681864083,
+   "winrate": 0.5926073131955485,
+   "tqqq_minus_qqq": 0.021575587849099714
+  },
+  {
+   "er_bucket": ".15-.25",
+   "n": 1330,
+   "tqqq_fwd": 0.024061670662199063,
+   "qqq_fwd": 0.009772945943864178,
+   "winrate": 0.5676691729323309,
+   "tqqq_minus_qqq": 0.014288724718334886
+  },
+  {
+   "er_bucket": ".25-.30",
+   "n": 574,
+   "tqqq_fwd": 0.038883597920145875,
+   "qqq_fwd": 0.015095942970491534,
+   "winrate": 0.6114982578397212,
+   "tqqq_minus_qqq": 0.02378765494965434
+  },
+  {
+   "er_bucket": ".30-.40",
+   "n": 857,
+   "tqqq_fwd": 0.02789997877768673,
+   "qqq_fwd": 0.011711775111088072,
+   "winrate": 0.5869311551925321,
+   "tqqq_minus_qqq": 0.016188203666598656
+  },
+  {
+   "er_bucket": ".40-.55",
+   "n": 888,
+   "tqqq_fwd": 0.03286539732161603,
+   "qqq_fwd": 0.013778782568274731,
+   "winrate": 0.6069819819819819,
+   "tqqq_minus_qqq": 0.0190866147533413
+  },
+  {
+   "er_bucket": ".55+",
+   "n": 560,
+   "tqqq_fwd": 0.05026044046930576,
+   "qqq_fwd": 0.01971249354932786,
+   "winrate": 0.6089285714285714,
+   "tqqq_minus_qqq": 0.0305479469199779
+  }
+ ],
+ "A": {
+  "cagr": 0.31640970746382124,
+  "maxdd": -0.6727768518346078,
+  "sharpe": 0.8303805201028499,
+  "calmar": 0.47030409355048064,
+  "total": 74484.40081677926
+ },
+ "B": {
+  "cagr": 0.21590070463857547,
+  "maxdd": -0.4315005392731127,
+  "sharpe": 0.8149560649106452,
+  "calmar": 0.5003486322456805,
+  "total": 2913.0280054212426
+ },
+ "frontier": [
+  {
+   "name": "vol12 (pure dial)",
+   "group": "dial",
+   "cagr": 0.2384,
+   "maxdd": -0.4724,
+   "sharpe": 0.8332,
+   "calmar": 0.5047,
+   "cagr0009": 0.0432,
+   "maxdd0009": -0.4724,
+   "dial_equiv": 0.2384,
+   "edge_vs_dial": 0.0
+  },
+  {
+   "name": "vol15 (pure dial)",
+   "group": "dial",
+   "cagr": 0.2698,
+   "maxdd": -0.5231,
+   "sharpe": 0.8308,
+   "calmar": 0.5158,
+   "cagr0009": 0.0494,
+   "maxdd0009": -0.5231,
+   "dial_equiv": 0.2698,
+   "edge_vs_dial": 0.0
+  },
+  {
+   "name": "vol20 (pure dial)",
+   "group": "dial",
+   "cagr": 0.2997,
+   "maxdd": -0.5829,
+   "sharpe": 0.8285,
+   "calmar": 0.5142,
+   "cagr0009": 0.0486,
+   "maxdd0009": -0.5829,
+   "dial_equiv": 0.2997,
+   "edge_vs_dial": 0.0
+  },
+  {
+   "name": "vol25 (pure dial)",
+   "group": "dial",
+   "cagr": 0.3164,
+   "maxdd": -0.6728,
+   "sharpe": 0.8304,
+   "calmar": 0.4703,
+   "cagr0009": 0.0433,
+   "maxdd0009": -0.6728,
+   "dial_equiv": 0.3164,
+   "edge_vs_dial": 0.0
+  },
+  {
+   "name": "vol30 (pure dial)",
+   "group": "dial",
+   "cagr": 0.3224,
+   "maxdd": -0.7418,
+   "sharpe": 0.8261,
+   "calmar": 0.4347,
+   "cagr0009": 0.0335,
+   "maxdd0009": -0.7418,
+   "dial_equiv": 0.3224,
+   "edge_vs_dial": 0.0
+  },
+  {
+   "name": "vol40 (pure dial)",
+   "group": "dial",
+   "cagr": 0.3209,
+   "maxdd": -0.83,
+   "sharpe": 0.8112,
+   "calmar": 0.3867,
+   "cagr0009": 0.0084,
+   "maxdd0009": -0.83,
+   "dial_equiv": 0.3209,
+   "edge_vs_dial": 0.0
+  },
+  {
+   "name": "vol60 (pure dial)",
+   "group": "dial",
+   "cagr": 0.3113,
+   "maxdd": -0.8904,
+   "sharpe": 0.7912,
+   "calmar": 0.3496,
+   "cagr0009": -0.0217,
+   "maxdd0009": -0.8904,
+   "dial_equiv": 0.3113,
+   "edge_vs_dial": 0.0
+  },
+  {
+   "name": "chop<0.15 -> QQQ",
+   "group": "chop",
+   "cagr": 0.2334,
+   "maxdd": -0.5604,
+   "sharpe": 0.7496,
+   "calmar": 0.4165,
+   "cagr0009": 0.0306,
+   "maxdd0009": -0.5604,
+   "dial_equiv": 0.2885,
+   "edge_vs_dial": -0.0551
+  },
+  {
+   "name": "chop<0.15 -> half TQQQ",
+   "group": "chop",
+   "cagr": 0.2605,
+   "maxdd": -0.5032,
+   "sharpe": 0.7945,
+   "calmar": 0.5176,
+   "cagr0009": 0.048,
+   "maxdd0009": -0.5032,
+   "dial_equiv": 0.2575,
+   "edge_vs_dial": 0.0029
+  },
+  {
+   "name": "chop<0.2 -> QQQ",
+   "group": "chop",
+   "cagr": 0.248,
+   "maxdd": -0.5337,
+   "sharpe": 0.8152,
+   "calmar": 0.4648,
+   "cagr0009": 0.0319,
+   "maxdd0009": -0.5337,
+   "dial_equiv": 0.2751,
+   "edge_vs_dial": -0.0271
+  },
+  {
+   "name": "chop<0.2 -> half TQQQ",
+   "group": "chop",
+   "cagr": 0.2743,
+   "maxdd": -0.47,
+   "sharpe": 0.8518,
+   "calmar": 0.5836,
+   "cagr0009": 0.0577,
+   "maxdd0009": -0.47,
+   "dial_equiv": 0.2384,
+   "edge_vs_dial": 0.0358
+  },
+  {
+   "name": "chop<0.25 -> QQQ",
+   "group": "chop",
+   "cagr": 0.2478,
+   "maxdd": -0.5149,
+   "sharpe": 0.8563,
+   "calmar": 0.4813,
+   "cagr0009": 0.0381,
+   "maxdd0009": -0.5149,
+   "dial_equiv": 0.2647,
+   "edge_vs_dial": -0.0169
+  },
+  {
+   "name": "chop<0.25 -> half TQQQ",
+   "group": "chop",
+   "cagr": 0.2742,
+   "maxdd": -0.43,
+   "sharpe": 0.8848,
+   "calmar": 0.6377,
+   "cagr0009": 0.0627,
+   "maxdd0009": -0.43,
+   "dial_equiv": 0.2384,
+   "edge_vs_dial": 0.0358
+  },
+  {
+   "name": "chop<0.3 -> QQQ",
+   "group": "chop",
+   "cagr": 0.2296,
+   "maxdd": -0.4787,
+   "sharpe": 0.8455,
+   "calmar": 0.4796,
+   "cagr0009": 0.0438,
+   "maxdd0009": -0.4787,
+   "dial_equiv": 0.2423,
+   "edge_vs_dial": -0.0127
+  },
+  {
+   "name": "chop<0.3 -> half TQQQ",
+   "group": "chop",
+   "cagr": 0.2594,
+   "maxdd": -0.4102,
+   "sharpe": 0.8778,
+   "calmar": 0.6323,
+   "cagr0009": 0.066,
+   "maxdd0009": -0.4102,
+   "dial_equiv": 0.2384,
+   "edge_vs_dial": 0.0209
+  },
+  {
+   "name": "curve:raw",
+   "group": "curve",
+   "cagr": 0.3,
+   "maxdd": -0.6072,
+   "sharpe": 0.8142,
+   "calmar": 0.4941,
+   "cagr0009": 0.0645,
+   "maxdd0009": -0.6072,
+   "dial_equiv": 0.3042,
+   "edge_vs_dial": -0.0042
+  },
+  {
+   "name": "curve:raw+chop<0.30",
+   "group": "curve",
+   "cagr": 0.2165,
+   "maxdd": -0.4337,
+   "sharpe": 0.817,
+   "calmar": 0.4991,
+   "cagr0009": 0.0837,
+   "maxdd0009": -0.3941,
+   "dial_equiv": 0.2384,
+   "edge_vs_dial": -0.022
+  },
+  {
+   "name": "curve:confirm",
+   "group": "curve",
+   "cagr": 0.3214,
+   "maxdd": -0.6461,
+   "sharpe": 0.8351,
+   "calmar": 0.4975,
+   "cagr0009": 0.0702,
+   "maxdd0009": -0.6461,
+   "dial_equiv": 0.3115,
+   "edge_vs_dial": 0.01
+  },
+  {
+   "name": "curve:confirm+chop<0.30",
+   "group": "curve",
+   "cagr": 0.2357,
+   "maxdd": -0.4724,
+   "sharpe": 0.8491,
+   "calmar": 0.499,
+   "cagr0009": 0.0732,
+   "maxdd0009": -0.4724,
+   "dial_equiv": 0.2384,
+   "edge_vs_dial": -0.0027
+  },
+  {
+   "name": "curve:steepen",
+   "group": "curve",
+   "cagr": 0.2945,
+   "maxdd": -0.6461,
+   "sharpe": 0.7999,
+   "calmar": 0.4558,
+   "cagr0009": 0.0441,
+   "maxdd0009": -0.6461,
+   "dial_equiv": 0.3115,
+   "edge_vs_dial": -0.017
+  },
+  {
+   "name": "curve:steepen+chop<0.30",
+   "group": "curve",
+   "cagr": 0.2157,
+   "maxdd": -0.4724,
+   "sharpe": 0.8045,
+   "calmar": 0.4565,
+   "cagr0009": 0.0652,
+   "maxdd0009": -0.4724,
+   "dial_equiv": 0.2384,
+   "edge_vs_dial": -0.0228
+  },
+  {
+   "name": "boost x1.2 in strong trend",
+   "group": "boost",
+   "cagr": 0.3158,
+   "maxdd": -0.6705,
+   "sharpe": 0.8284,
+   "calmar": 0.471,
+   "cagr0009": 0.0449,
+   "maxdd0009": -0.6705,
+   "dial_equiv": 0.316,
+   "edge_vs_dial": -0.0002
+  },
+  {
+   "name": "boost x1.2 + curve:confirm",
+   "group": "boost",
+   "cagr": 0.3208,
+   "maxdd": -0.6448,
+   "sharpe": 0.8332,
+   "calmar": 0.4975,
+   "cagr0009": 0.0716,
+   "maxdd0009": -0.6448,
+   "dial_equiv": 0.3112,
+   "edge_vs_dial": 0.0096
+  },
+  {
+   "name": "boost x1.5 in strong trend",
+   "group": "boost",
+   "cagr": 0.3148,
+   "maxdd": -0.675,
+   "sharpe": 0.8262,
+   "calmar": 0.4664,
+   "cagr0009": 0.0446,
+   "maxdd0009": -0.675,
+   "dial_equiv": 0.3166,
+   "edge_vs_dial": -0.0018
+  },
+  {
+   "name": "boost x1.5 + curve:confirm",
+   "group": "boost",
+   "cagr": 0.3197,
+   "maxdd": -0.6515,
+   "sharpe": 0.8309,
+   "calmar": 0.4908,
+   "cagr0009": 0.071,
+   "maxdd0009": -0.6515,
+   "dial_equiv": 0.3125,
+   "edge_vs_dial": 0.0073
+  },
+  {
+   "name": "boost x2.0 in strong trend",
+   "group": "boost",
+   "cagr": 0.3148,
+   "maxdd": -0.6779,
+   "sharpe": 0.8259,
+   "calmar": 0.4644,
+   "cagr0009": 0.0446,
+   "maxdd0009": -0.6779,
+   "dial_equiv": 0.3169,
+   "edge_vs_dial": -0.002
+  },
+  {
+   "name": "boost x2.0 + curve:confirm",
+   "group": "boost",
+   "cagr": 0.3196,
+   "maxdd": -0.6561,
+   "sharpe": 0.8304,
+   "calmar": 0.4871,
+   "cagr0009": 0.0707,
+   "maxdd0009": -0.6561,
+   "dial_equiv": 0.3133,
+   "edge_vs_dial": 0.0063
+  },
+  {
+   "name": "A: champion (vol25)",
+   "group": "incumbent",
+   "cagr": 0.3164,
+   "maxdd": -0.6728,
+   "sharpe": 0.8304,
+   "calmar": 0.4703,
+   "cagr0009": 0.0433,
+   "maxdd0009": -0.6728,
+   "dial_equiv": 0.3164,
+   "edge_vs_dial": 0.0
+  },
+  {
+   "name": "B: hybrid (curve raw+chop+bond)",
+   "group": "incumbent",
+   "cagr": 0.2165,
+   "maxdd": -0.4337,
+   "sharpe": 0.817,
+   "calmar": 0.4991,
+   "cagr0009": 0.0837,
+   "maxdd0009": -0.3941,
+   "dial_equiv": 0.2384,
+   "edge_vs_dial": -0.022
+  }
+ ],
+ "tuned": [
+  {
+   "name": "vol12 dial",
+   "group": "dial",
+   "cagr": 0.2384,
+   "maxdd": -0.4724,
+   "sharpe": 0.8332,
+   "calmar": 0.5047,
+   "cagr0009": 0.0432,
+   "maxdd0009": -0.4724,
+   "dial_equiv": 0.2384,
+   "edge": 0.0
+  },
+  {
+   "name": "vol15 dial",
+   "group": "dial",
+   "cagr": 0.2698,
+   "maxdd": -0.5231,
+   "sharpe": 0.8308,
+   "calmar": 0.5158,
+   "cagr0009": 0.0494,
+   "maxdd0009": -0.5231,
+   "dial_equiv": 0.2698,
+   "edge": 0.0
+  },
+  {
+   "name": "vol20 dial",
+   "group": "dial",
+   "cagr": 0.2997,
+   "maxdd": -0.5829,
+   "sharpe": 0.8285,
+   "calmar": 0.5142,
+   "cagr0009": 0.0486,
+   "maxdd0009": -0.5829,
+   "dial_equiv": 0.2997,
+   "edge": 0.0
+  },
+  {
+   "name": "vol25 dial",
+   "group": "dial",
+   "cagr": 0.3164,
+   "maxdd": -0.6728,
+   "sharpe": 0.8304,
+   "calmar": 0.4703,
+   "cagr0009": 0.0433,
+   "maxdd0009": -0.6728,
+   "dial_equiv": 0.3164,
+   "edge": 0.0
+  },
+  {
+   "name": "vol30 dial",
+   "group": "dial",
+   "cagr": 0.3224,
+   "maxdd": -0.7418,
+   "sharpe": 0.8261,
+   "calmar": 0.4347,
+   "cagr0009": 0.0335,
+   "maxdd0009": -0.7418,
+   "dial_equiv": 0.3224,
+   "edge": 0.0
+  },
+  {
+   "name": "vol40 dial",
+   "group": "dial",
+   "cagr": 0.3209,
+   "maxdd": -0.83,
+   "sharpe": 0.8112,
+   "calmar": 0.3867,
+   "cagr0009": 0.0084,
+   "maxdd0009": -0.83,
+   "dial_equiv": 0.3209,
+   "edge": 0.0
+  },
+  {
+   "name": "chop<0.2->35%TQQQ",
+   "group": "partial",
+   "cagr": 0.2553,
+   "maxdd": -0.4353,
+   "sharpe": 0.8358,
+   "calmar": 0.5863,
+   "cagr0009": 0.0568,
+   "maxdd0009": -0.4138,
+   "dial_equiv": 0.2384,
+   "edge": 0.0168
+  },
+  {
+   "name": "chop<0.2->35% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.2553,
+   "maxdd": -0.4353,
+   "sharpe": 0.8358,
+   "calmar": 0.5863,
+   "cagr0009": 0.0568,
+   "maxdd0009": -0.4138,
+   "dial_equiv": 0.2384,
+   "edge": 0.0168
+  },
+  {
+   "name": "chop<0.2->35% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2616,
+   "maxdd": -0.4594,
+   "sharpe": 0.8415,
+   "calmar": 0.5695,
+   "cagr0009": 0.0673,
+   "maxdd0009": -0.4004,
+   "dial_equiv": 0.2384,
+   "edge": 0.0232
+  },
+  {
+   "name": "chop<0.2->50%TQQQ",
+   "group": "partial",
+   "cagr": 0.2743,
+   "maxdd": -0.47,
+   "sharpe": 0.8518,
+   "calmar": 0.5836,
+   "cagr0009": 0.0577,
+   "maxdd0009": -0.47,
+   "dial_equiv": 0.2384,
+   "edge": 0.0358
+  },
+  {
+   "name": "chop<0.2->50% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.2743,
+   "maxdd": -0.47,
+   "sharpe": 0.8518,
+   "calmar": 0.5836,
+   "cagr0009": 0.0577,
+   "maxdd0009": -0.47,
+   "dial_equiv": 0.2384,
+   "edge": 0.0358
+  },
+  {
+   "name": "chop<0.2->50% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2808,
+   "maxdd": -0.4705,
+   "sharpe": 0.8592,
+   "calmar": 0.5968,
+   "cagr0009": 0.0724,
+   "maxdd0009": -0.4579,
+   "dial_equiv": 0.2384,
+   "edge": 0.0423
+  },
+  {
+   "name": "chop<0.2->65%TQQQ",
+   "group": "partial",
+   "cagr": 0.2904,
+   "maxdd": -0.5229,
+   "sharpe": 0.8544,
+   "calmar": 0.5554,
+   "cagr0009": 0.0562,
+   "maxdd0009": -0.5229,
+   "dial_equiv": 0.2697,
+   "edge": 0.0207
+  },
+  {
+   "name": "chop<0.2->65% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.2904,
+   "maxdd": -0.5229,
+   "sharpe": 0.8544,
+   "calmar": 0.5554,
+   "cagr0009": 0.0562,
+   "maxdd0009": -0.5229,
+   "dial_equiv": 0.2697,
+   "edge": 0.0207
+  },
+  {
+   "name": "chop<0.2->65% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2968,
+   "maxdd": -0.512,
+   "sharpe": 0.8621,
+   "calmar": 0.5797,
+   "cagr0009": 0.0749,
+   "maxdd0009": -0.512,
+   "dial_equiv": 0.2629,
+   "edge": 0.0339
+  },
+  {
+   "name": "chop<0.25->35%TQQQ",
+   "group": "partial",
+   "cagr": 0.2539,
+   "maxdd": -0.4413,
+   "sharpe": 0.8775,
+   "calmar": 0.5753,
+   "cagr0009": 0.0622,
+   "maxdd0009": -0.3518,
+   "dial_equiv": 0.2384,
+   "edge": 0.0154
+  },
+  {
+   "name": "chop<0.25->35% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.2539,
+   "maxdd": -0.4413,
+   "sharpe": 0.8775,
+   "calmar": 0.5753,
+   "cagr0009": 0.0622,
+   "maxdd0009": -0.3518,
+   "dial_equiv": 0.2384,
+   "edge": 0.0154
+  },
+  {
+   "name": "chop<0.25->35% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2596,
+   "maxdd": -0.4824,
+   "sharpe": 0.8793,
+   "calmar": 0.5382,
+   "cagr0009": 0.0738,
+   "maxdd0009": -0.3321,
+   "dial_equiv": 0.2446,
+   "edge": 0.015
+  },
+  {
+   "name": "chop<0.25->50%TQQQ",
+   "group": "partial",
+   "cagr": 0.2742,
+   "maxdd": -0.43,
+   "sharpe": 0.8848,
+   "calmar": 0.6377,
+   "cagr0009": 0.0627,
+   "maxdd0009": -0.43,
+   "dial_equiv": 0.2384,
+   "edge": 0.0358
+  },
+  {
+   "name": "chop<0.25->50% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.2742,
+   "maxdd": -0.43,
+   "sharpe": 0.8848,
+   "calmar": 0.6377,
+   "cagr0009": 0.0627,
+   "maxdd0009": -0.43,
+   "dial_equiv": 0.2384,
+   "edge": 0.0358
+  },
+  {
+   "name": "chop<0.25->50% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2803,
+   "maxdd": -0.4896,
+   "sharpe": 0.8904,
+   "calmar": 0.5725,
+   "cagr0009": 0.0784,
+   "maxdd0009": -0.3982,
+   "dial_equiv": 0.2491,
+   "edge": 0.0312
+  },
+  {
+   "name": "chop<0.25->65%TQQQ",
+   "group": "partial",
+   "cagr": 0.2911,
+   "maxdd": -0.5052,
+   "sharpe": 0.8765,
+   "calmar": 0.5763,
+   "cagr0009": 0.0603,
+   "maxdd0009": -0.5052,
+   "dial_equiv": 0.2587,
+   "edge": 0.0324
+  },
+  {
+   "name": "chop<0.25->65% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.2911,
+   "maxdd": -0.5052,
+   "sharpe": 0.8765,
+   "calmar": 0.5763,
+   "cagr0009": 0.0603,
+   "maxdd0009": -0.5052,
+   "dial_equiv": 0.2587,
+   "edge": 0.0324
+  },
+  {
+   "name": "chop<0.25->65% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2973,
+   "maxdd": -0.4976,
+   "sharpe": 0.8834,
+   "calmar": 0.5974,
+   "cagr0009": 0.0798,
+   "maxdd0009": -0.4748,
+   "dial_equiv": 0.254,
+   "edge": 0.0433
+  },
+  {
+   "name": "chop<0.3->35%TQQQ",
+   "group": "partial",
+   "cagr": 0.234,
+   "maxdd": -0.3611,
+   "sharpe": 0.8655,
+   "calmar": 0.648,
+   "cagr0009": 0.0656,
+   "maxdd0009": -0.3321,
+   "dial_equiv": 0.2384,
+   "edge": -0.0044
+  },
+  {
+   "name": "chop<0.3->35% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.234,
+   "maxdd": -0.3611,
+   "sharpe": 0.8655,
+   "calmar": 0.648,
+   "cagr0009": 0.0656,
+   "maxdd0009": -0.3321,
+   "dial_equiv": 0.2384,
+   "edge": -0.0044
+  },
+  {
+   "name": "chop<0.3->35% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2381,
+   "maxdd": -0.4271,
+   "sharpe": 0.8614,
+   "calmar": 0.5575,
+   "cagr0009": 0.0756,
+   "maxdd0009": -0.3321,
+   "dial_equiv": 0.2384,
+   "edge": -0.0004
+  },
+  {
+   "name": "chop<0.3->50%TQQQ",
+   "group": "partial",
+   "cagr": 0.2594,
+   "maxdd": -0.4102,
+   "sharpe": 0.8778,
+   "calmar": 0.6323,
+   "cagr0009": 0.066,
+   "maxdd0009": -0.4102,
+   "dial_equiv": 0.2384,
+   "edge": 0.0209
+  },
+  {
+   "name": "chop<0.3->50% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.2594,
+   "maxdd": -0.4102,
+   "sharpe": 0.8778,
+   "calmar": 0.6323,
+   "cagr0009": 0.066,
+   "maxdd0009": -0.4102,
+   "dial_equiv": 0.2384,
+   "edge": 0.0209
+  },
+  {
+   "name": "chop<0.3->50% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2642,
+   "maxdd": -0.4476,
+   "sharpe": 0.88,
+   "calmar": 0.5903,
+   "cagr0009": 0.0806,
+   "maxdd0009": -0.3906,
+   "dial_equiv": 0.2384,
+   "edge": 0.0258
+  },
+  {
+   "name": "chop<0.3->65%TQQQ",
+   "group": "partial",
+   "cagr": 0.2811,
+   "maxdd": -0.4989,
+   "sharpe": 0.8717,
+   "calmar": 0.5634,
+   "cagr0009": 0.0631,
+   "maxdd0009": -0.4989,
+   "dial_equiv": 0.2549,
+   "edge": 0.0263
+  },
+  {
+   "name": "chop<0.3->65% +curve:confirm",
+   "group": "combo",
+   "cagr": 0.2811,
+   "maxdd": -0.4989,
+   "sharpe": 0.8717,
+   "calmar": 0.5634,
+   "cagr0009": 0.0631,
+   "maxdd0009": -0.4989,
+   "dial_equiv": 0.2549,
+   "edge": 0.0263
+  },
+  {
+   "name": "chop<0.3->65% +confirm +bond",
+   "group": "combo",
+   "cagr": 0.2864,
+   "maxdd": -0.4687,
+   "sharpe": 0.8769,
+   "calmar": 0.6111,
+   "cagr0009": 0.0818,
+   "maxdd0009": -0.4632,
+   "dial_equiv": 0.2384,
+   "edge": 0.048
+  },
+  {
+   "name": "vol20 chop<0.25->50% +confirm",
+   "group": "voltune",
+   "cagr": 0.2594,
+   "maxdd": -0.3896,
+   "sharpe": 0.8849,
+   "calmar": 0.6659,
+   "cagr0009": 0.0617,
+   "maxdd0009": -0.3574,
+   "dial_equiv": 0.2384,
+   "edge": 0.021
+  },
+  {
+   "name": "vol25 chop<0.25->50% +confirm",
+   "group": "voltune",
+   "cagr": 0.2742,
+   "maxdd": -0.43,
+   "sharpe": 0.8848,
+   "calmar": 0.6377,
+   "cagr0009": 0.0627,
+   "maxdd0009": -0.43,
+   "dial_equiv": 0.2384,
+   "edge": 0.0358
+  },
+  {
+   "name": "vol30 chop<0.25->50% +confirm",
+   "group": "voltune",
+   "cagr": 0.2811,
+   "maxdd": -0.4917,
+   "sharpe": 0.8821,
+   "calmar": 0.5716,
+   "cagr0009": 0.0618,
+   "maxdd0009": -0.4917,
+   "dial_equiv": 0.2504,
+   "edge": 0.0307
+  },
+  {
+   "name": "vol35 chop<0.25->50% +confirm",
+   "group": "voltune",
+   "cagr": 0.283,
+   "maxdd": -0.5497,
+   "sharpe": 0.8761,
+   "calmar": 0.5149,
+   "cagr0009": 0.0576,
+   "maxdd0009": -0.5497,
+   "dial_equiv": 0.2831,
+   "edge": -0.0001
+  },
+  {
+   "name": "A: champion",
+   "group": "incumbent",
+   "cagr": 0.3164,
+   "maxdd": -0.6728,
+   "sharpe": 0.8304,
+   "calmar": 0.4703,
+   "cagr0009": 0.0433,
+   "maxdd0009": -0.6728,
+   "dial_equiv": 0.3164,
+   "edge": 0.0
+  },
+  {
+   "name": "B: hybrid",
+   "group": "incumbent",
+   "cagr": 0.2165,
+   "maxdd": -0.4337,
+   "sharpe": 0.817,
+   "calmar": 0.4991,
+   "cagr0009": 0.0837,
+   "maxdd0009": -0.3941,
+   "dial_equiv": 0.2384,
+   "edge": -0.022
+  }
+ ],
+ "best": {
+  "name": "vol20 chop<0.25->50% +confirm",
+  "group": "voltune",
+  "cagr": 0.2594,
+  "maxdd": -0.3896,
+  "sharpe": 0.8849,
+  "calmar": 0.6659,
+  "cagr0009": 0.0617,
+  "maxdd0009": -0.3574,
+  "dial_equiv": 0.2384,
+  "edge": 0.021
+ },
+ "best_cfg": {
+  "voltgt": "0.2",
+  "chop_thr": "0.25",
+  "chop_pos": "0.5",
+  "curve_mode": "confirm"
+ },
+ "sub_best": {
+  "1985-99": {
+   "cagr": 0.4143,
+   "maxdd": -0.3896,
+   "sharpe": 1.1429,
+   "calmar": 1.0634
+  },
+  "2000-09": {
+   "cagr": 0.0617,
+   "maxdd": -0.3574,
+   "sharpe": 0.3524,
+   "calmar": 0.1725
+  },
+  "2010-19": {
+   "cagr": 0.2288,
+   "maxdd": -0.3818,
+   "sharpe": 0.9184,
+   "calmar": 0.5991
+  },
+  "2020-26": {
+   "cagr": 0.3198,
+   "maxdd": -0.3484,
+   "sharpe": 0.9889,
+   "calmar": 0.9179
+  }
+ },
+ "sub_A": {
+  "1985-99": {
+   "cagr": 0.5374,
+   "maxdd": -0.471,
+   "sharpe": 1.1013,
+   "calmar": 1.141
+  },
+  "2000-09": {
+   "cagr": 0.0433,
+   "maxdd": -0.6728,
+   "sharpe": 0.3186,
+   "calmar": 0.0643
+  },
+  "2010-19": {
+   "cagr": 0.2598,
+   "maxdd": -0.5925,
+   "sharpe": 0.7996,
+   "calmar": 0.4385
+  },
+  "2020-26": {
+   "cagr": 0.4335,
+   "maxdd": -0.4408,
+   "sharpe": 0.9896,
+   "calmar": 0.9833
+  }
+ },
+ "sub_B": {
+  "1985-99": {
+   "cagr": 0.3897,
+   "maxdd": -0.3429,
+   "sharpe": 1.1318,
+   "calmar": 1.1365
+  },
+  "2000-09": {
+   "cagr": 0.0837,
+   "maxdd": -0.3941,
+   "sharpe": 0.4316,
+   "calmar": 0.2123
+  },
+  "2010-19": {
+   "cagr": 0.1555,
+   "maxdd": -0.3687,
+   "sharpe": 0.7317,
+   "calmar": 0.4217
+  },
+  "2020-26": {
+   "cagr": 0.1758,
+   "maxdd": -0.4337,
+   "sharpe": 0.7182,
+   "calmar": 0.4054
+  }
+ },
+ "proj": {
+  "1 yr": {
+   "typ": 1225,
+   "lo": 933,
+   "hi": 1728
+  },
+  "3 yr": {
+   "typ": 1924,
+   "lo": 1179,
+   "hi": 2963
+  },
+  "5 yr": {
+   "typ": 3079,
+   "lo": 1440,
+   "hi": 5251
+  },
+  "10 yr": {
+   "typ": 9236,
+   "lo": 3154,
+   "hi": 15503
+  }
+ },
+ "eq_best": [
+  {
+   "t": "1985-10",
+   "e": 1.0585
+  },
+  {
+   "t": "1985-11",
+   "e": 1.3424
+  },
+  {
+   "t": "1985-12",
+   "e": 1.5254
+  },
+  {
+   "t": "1986-01",
+   "e": 1.4975
+  },
+  {
+   "t": "1986-02",
+   "e": 1.6613
+  },
+  {
+   "t": "1986-03",
+   "e": 1.9518
+  },
+  {
+   "t": "1986-04",
+   "e": 2.1579
+  },
+  {
+   "t": "1986-05",
+   "e": 2.3839
+  },
+  {
+   "t": "1986-06",
+   "e": 2.2648
+  },
+  {
+   "t": "1986-07",
+   "e": 1.8643
+  },
+  {
+   "t": "1986-08",
+   "e": 1.8832
+  },
+  {
+   "t": "1986-09",
+   "e": 1.8073
+  },
+  {
+   "t": "1986-10",
+   "e": 1.8158
+  },
+  {
+   "t": "1986-11",
+   "e": 1.7608
+  },
+  {
+   "t": "1986-12",
+   "e": 1.7093
+  },
+  {
+   "t": "1987-01",
+   "e": 2.0173
+  },
+  {
+   "t": "1987-02",
+   "e": 2.5792
+  },
+  {
+   "t": "1987-03",
+   "e": 2.5408
+  },
+  {
+   "t": "1987-04",
+   "e": 2.599
+  },
+  {
+   "t": "1987-05",
+   "e": 2.6693
+  },
+  {
+   "t": "1987-06",
+   "e": 2.6432
+  },
+  {
+   "t": "1987-07",
+   "e": 2.7842
+  },
+  {
+   "t": "1987-08",
+   "e": 3.3317
+  },
+  {
+   "t": "1987-09",
+   "e": 3.0881
+  },
+  {
+   "t": "1987-10",
+   "e": 2.5995
+  },
+  {
+   "t": "1987-11",
+   "e": 2.6112
+  },
+  {
+   "t": "1987-12",
+   "e": 2.6244
+  },
+  {
+   "t": "1988-01",
+   "e": 2.6366
+  },
+  {
+   "t": "1988-02",
+   "e": 2.9817
+  },
+  {
+   "t": "1988-03",
+   "e": 2.9564
+  },
+  {
+   "t": "1988-04",
+   "e": 3.0099
+  },
+  {
+   "t": "1988-05",
+   "e": 2.852
+  },
+  {
+   "t": "1988-06",
+   "e": 3.2071
+  },
+  {
+   "t": "1988-07",
+   "e": 2.9684
+  },
+  {
+   "t": "1988-08",
+   "e": 2.6012
+  },
+  {
+   "t": "1988-09",
+   "e": 2.6985
+  },
+  {
+   "t": "1988-10",
+   "e": 2.4401
+  },
+  {
+   "t": "1988-11",
+   "e": 2.456
+  },
+  {
+   "t": "1988-12",
+   "e": 2.5935
+  },
+  {
+   "t": "1989-01",
+   "e": 2.9543
+  },
+  {
+   "t": "1989-02",
+   "e": 2.745
+  },
+  {
+   "t": "1989-03",
+   "e": 2.8479
+  },
+  {
+   "t": "1989-04",
+   "e": 3.2981
+  },
+  {
+   "t": "1989-05",
+   "e": 3.9704
+  },
+  {
+   "t": "1989-06",
+   "e": 3.5964
+  },
+  {
+   "t": "1989-07",
+   "e": 4.053
+  },
+  {
+   "t": "1989-08",
+   "e": 4.2791
+  },
+  {
+   "t": "1989-09",
+   "e": 4.396
+  },
+  {
+   "t": "1989-10",
+   "e": 4.1584
+  },
+  {
+   "t": "1989-11",
+   "e": 4.2669
+  },
+  {
+   "t": "1989-12",
+   "e": 3.9288
+  },
+  {
+   "t": "1990-01",
+   "e": 3.5438
+  },
+  {
+   "t": "1990-02",
+   "e": 3.5646
+  },
+  {
+   "t": "1990-03",
+   "e": 3.4968
+  },
+  {
+   "t": "1990-04",
+   "e": 3.5163
+  },
+  {
+   "t": "1990-05",
+   "e": 4.2788
+  },
+  {
+   "t": "1990-06",
+   "e": 4.2653
+  },
+  {
+   "t": "1990-07",
+   "e": 3.9114
+  },
+  {
+   "t": "1990-08",
+   "e": 3.9381
+  },
+  {
+   "t": "1990-09",
+   "e": 3.96
+  },
+  {
+   "t": "1990-10",
+   "e": 3.9859
+  },
+  {
+   "t": "1990-11",
+   "e": 4.0094
+  },
+  {
+   "t": "1990-12",
+   "e": 4.1934
+  },
+  {
+   "t": "1991-01",
+   "e": 5.507
+  },
+  {
+   "t": "1991-02",
+   "e": 6.5814
+  },
+  {
+   "t": "1991-03",
+   "e": 7.205
+  },
+  {
+   "t": "1991-04",
+   "e": 6.8021
+  },
+  {
+   "t": "1991-05",
+   "e": 7.73
+  },
+  {
+   "t": "1991-06",
+   "e": 6.3716
+  },
+  {
+   "t": "1991-07",
+   "e": 6.5506
+  },
+  {
+   "t": "1991-08",
+   "e": 7.3835
+  },
+  {
+   "t": "1991-09",
+   "e": 7.338
+  },
+  {
+   "t": "1991-10",
+   "e": 7.5
+  },
+  {
+   "t": "1991-11",
+   "e": 7.1807
+  },
+  {
+   "t": "1991-12",
+   "e": 9.4399
+  },
+  {
+   "t": "1992-01",
+   "e": 10.0551
+  },
+  {
+   "t": "1992-02",
+   "e": 10.3203
+  },
+  {
+   "t": "1992-03",
+   "e": 9.3937
+  },
+  {
+   "t": "1992-04",
+   "e": 9.4231
+  },
+  {
+   "t": "1992-05",
+   "e": 9.4503
+  },
+  {
+   "t": "1992-06",
+   "e": 9.4805
+  },
+  {
+   "t": "1992-07",
+   "e": 9.5071
+  },
+  {
+   "t": "1992-08",
+   "e": 9.1693
+  },
+  {
+   "t": "1992-09",
+   "e": 9.1633
+  },
+  {
+   "t": "1992-10",
+   "e": 9.4466
+  },
+  {
+   "t": "1992-11",
+   "e": 11.2942
+  },
+  {
+   "t": "1992-12",
+   "e": 11.6684
+  },
+  {
+   "t": "1993-01",
+   "e": 11.6873
+  },
+  {
+   "t": "1993-02",
+   "e": 9.9687
+  },
+  {
+   "t": "1993-03",
+   "e": 10.4013
+  },
+  {
+   "t": "1993-04",
+   "e": 9.63
+  },
+  {
+   "t": "1993-05",
+   "e": 10.2588
+  },
+  {
+   "t": "1993-06",
+   "e": 9.9085
+  },
+  {
+   "t": "1993-07",
+   "e": 9.3002
+  },
+  {
+   "t": "1993-08",
+   "e": 9.6975
+  },
+  {
+   "t": "1993-09",
+   "e": 10.2711
+  },
+  {
+   "t": "1993-10",
+   "e": 10.38
+  },
+  {
+   "t": "1993-11",
+   "e": 10.1805
+  },
+  {
+   "t": "1993-12",
+   "e": 9.9722
+  },
+  {
+   "t": "1994-01",
+   "e": 10.8536
+  },
+  {
+   "t": "1994-02",
+   "e": 10.0782
+  },
+  {
+   "t": "1994-03",
+   "e": 9.6127
+  },
+  {
+   "t": "1994-04",
+   "e": 9.6394
+  },
+  {
+   "t": "1994-05",
+   "e": 9.6727
+  },
+  {
+   "t": "1994-06",
+   "e": 9.7076
+  },
+  {
+   "t": "1994-07",
+   "e": 9.741
+  },
+  {
+   "t": "1994-08",
+   "e": 11.0828
+  },
+  {
+   "t": "1994-09",
+   "e": 10.4602
+  },
+  {
+   "t": "1994-10",
+   "e": 11.2393
+  },
+  {
+   "t": "1994-11",
+   "e": 10.4884
+  },
+  {
+   "t": "1994-12",
+   "e": 9.9765
+  },
+  {
+   "t": "1995-01",
+   "e": 9.9323
+  },
+  {
+   "t": "1995-02",
+   "e": 10.9108
+  },
+  {
+   "t": "1995-03",
+   "e": 11.3845
+  },
+  {
+   "t": "1995-04",
+   "e": 12.2104
+  },
+  {
+   "t": "1995-05",
+   "e": 13.4463
+  },
+  {
+   "t": "1995-06",
+   "e": 16.4972
+  },
+  {
+   "t": "1995-07",
+   "e": 17.8917
+  },
+  {
+   "t": "1995-08",
+   "e": 17.0646
+  },
+  {
+   "t": "1995-09",
+   "e": 16.8434
+  },
+  {
+   "t": "1995-10",
+   "e": 17.1589
+  },
+  {
+   "t": "1995-11",
+   "e": 15.8256
+  },
+  {
+   "t": "1995-12",
+   "e": 14.672
+  },
+  {
+   "t": "1996-01",
+   "e": 14.7679
+  },
+  {
+   "t": "1996-02",
+   "e": 15.3638
+  },
+  {
+   "t": "1996-03",
+   "e": 15.0395
+  },
+  {
+   "t": "1996-04",
+   "e": 17.1853
+  },
+  {
+   "t": "1996-05",
+   "e": 18.8252
+  },
+  {
+   "t": "1996-06",
+   "e": 18.0537
+  },
+  {
+   "t": "1996-07",
+   "e": 16.3984
+  },
+  {
+   "t": "1996-08",
+   "e": 15.634
+  },
+  {
+   "t": "1996-09",
+   "e": 17.8805
+  },
+  {
+   "t": "1996-10",
+   "e": 18.8654
+  },
+  {
+   "t": "1996-11",
+   "e": 23.2683
+  },
+  {
+   "t": "1996-12",
+   "e": 22.4071
+  },
+  {
+   "t": "1997-01",
+   "e": 25.668
+  },
+  {
+   "t": "1997-02",
+   "e": 22.2177
+  },
+  {
+   "t": "1997-03",
+   "e": 19.6747
+  },
+  {
+   "t": "1997-04",
+   "e": 19.7633
+  },
+  {
+   "t": "1997-05",
+   "e": 21.8177
+  },
+  {
+   "t": "1997-06",
+   "e": 21.2593
+  },
+  {
+   "t": "1997-07",
+   "e": 28.8435
+  },
+  {
+   "t": "1997-08",
+   "e": 26.8921
+  },
+  {
+   "t": "1997-09",
+   "e": 27.5187
+  },
+  {
+   "t": "1997-10",
+   "e": 25.9402
+  },
+  {
+   "t": "1997-11",
+   "e": 25.9296
+  },
+  {
+   "t": "1997-12",
+   "e": 23.6436
+  },
+  {
+   "t": "1998-01",
+   "e": 23.7382
+  },
+  {
+   "t": "1998-02",
+   "e": 31.3418
+  },
+  {
+   "t": "1998-03",
+   "e": 30.0521
+  },
+  {
+   "t": "1998-04",
+   "e": 30.5209
+  },
+  {
+   "t": "1998-05",
+   "e": 28.5536
+  },
+  {
+   "t": "1998-06",
+   "e": 35.1609
+  },
+  {
+   "t": "1998-07",
+   "e": 35.9731
+  },
+  {
+   "t": "1998-08",
+   "e": 34.2
+  },
+  {
+   "t": "1998-09",
+   "e": 35.0567
+  },
+  {
+   "t": "1998-10",
+   "e": 35.8487
+  },
+  {
+   "t": "1998-11",
+   "e": 43.0341
+  },
+  {
+   "t": "1998-12",
+   "e": 58.8566
+  },
+  {
+   "t": "1999-01",
+   "e": 74.7669
+  },
+  {
+   "t": "1999-02",
+   "e": 64.829
+  },
+  {
+   "t": "1999-03",
+   "e": 69.9186
+  },
+  {
+   "t": "1999-04",
+   "e": 66.7949
+  },
+  {
+   "t": "1999-05",
+   "e": 65.6569
+  },
+  {
+   "t": "1999-06",
+   "e": 70.8099
+  },
+  {
+   "t": "1999-07",
+   "e": 64.0042
+  },
+  {
+   "t": "1999-08",
+   "e": 67.3196
+  },
+  {
+   "t": "1999-09",
+   "e": 64.2454
+  },
+  {
+   "t": "1999-10",
+   "e": 70.1941
+  },
+  {
+   "t": "1999-11",
+   "e": 87.164
+  },
+  {
+   "t": "1999-12",
+   "e": 139.4491
+  },
+  {
+   "t": "2000-01",
+   "e": 121.3734
+  },
+  {
+   "t": "2000-02",
+   "e": 138.8466
+  },
+  {
+   "t": "2000-03",
+   "e": 144.8408
+  },
+  {
+   "t": "2000-04",
+   "e": 123.2782
+  },
+  {
+   "t": "2000-05",
+   "e": 122.9223
+  },
+  {
+   "t": "2000-06",
+   "e": 124.9094
+  },
+  {
+   "t": "2000-07",
+   "e": 118.4165
+  },
+  {
+   "t": "2000-08",
+   "e": 131.0399
+  },
+  {
+   "t": "2000-09",
+   "e": 103.2258
+  },
+  {
+   "t": "2000-10",
+   "e": 103.7759
+  },
+  {
+   "t": "2000-11",
+   "e": 104.3095
+  },
+  {
+   "t": "2000-12",
+   "e": 104.7854
+  },
+  {
+   "t": "2001-01",
+   "e": 105.2346
+  },
+  {
+   "t": "2001-02",
+   "e": 105.6217
+  },
+  {
+   "t": "2001-03",
+   "e": 106.0294
+  },
+  {
+   "t": "2001-04",
+   "e": 106.3546
+  },
+  {
+   "t": "2001-05",
+   "e": 106.6898
+  },
+  {
+   "t": "2001-06",
+   "e": 106.9986
+  },
+  {
+   "t": "2001-07",
+   "e": 107.3109
+  },
+  {
+   "t": "2001-08",
+   "e": 107.6394
+  },
+  {
+   "t": "2001-09",
+   "e": 107.8097
+  },
+  {
+   "t": "2001-10",
+   "e": 108.0217
+  },
+  {
+   "t": "2001-11",
+   "e": 108.4089
+  },
+  {
+   "t": "2001-12",
+   "e": 108.675
+  },
+  {
+   "t": "2002-01",
+   "e": 106.0759
+  },
+  {
+   "t": "2002-02",
+   "e": 106.2129
+  },
+  {
+   "t": "2002-03",
+   "e": 103.3382
+  },
+  {
+   "t": "2002-04",
+   "e": 103.492
+  },
+  {
+   "t": "2002-05",
+   "e": 103.6475
+  },
+  {
+   "t": "2002-06",
+   "e": 103.7867
+  },
+  {
+   "t": "2002-07",
+   "e": 103.9386
+  },
+  {
+   "t": "2002-08",
+   "e": 104.0845
+  },
+  {
+   "t": "2002-09",
+   "e": 104.2184
+  },
+  {
+   "t": "2002-10",
+   "e": 103.524
+  },
+  {
+   "t": "2002-11",
+   "e": 117.6713
+  },
+  {
+   "t": "2002-12",
+   "e": 105.9117
+  },
+  {
+   "t": "2003-01",
+   "e": 104.6017
+  },
+  {
+   "t": "2003-02",
+   "e": 103.9592
+  },
+  {
+   "t": "2003-03",
+   "e": 98.8861
+  },
+  {
+   "t": "2003-04",
+   "e": 107.2847
+  },
+  {
+   "t": "2003-05",
+   "e": 115.7147
+  },
+  {
+   "t": "2003-06",
+   "e": 113.7319
+  },
+  {
+   "t": "2003-07",
+   "e": 122.8102
+  },
+  {
+   "t": "2003-08",
+   "e": 141.2746
+  },
+  {
+   "t": "2003-09",
+   "e": 128.4135
+  },
+  {
+   "t": "2003-10",
+   "e": 141.5196
+  },
+  {
+   "t": "2003-11",
+   "e": 142.2362
+  },
+  {
+   "t": "2003-12",
+   "e": 148.1622
+  },
+  {
+   "t": "2004-01",
+   "e": 146.8095
+  },
+  {
+   "t": "2004-02",
+   "e": 143.224
+  },
+  {
+   "t": "2004-03",
+   "e": 137.4527
+  },
+  {
+   "t": "2004-04",
+   "e": 126.6409
+  },
+  {
+   "t": "2004-05",
+   "e": 126.7068
+  },
+  {
+   "t": "2004-06",
+   "e": 135.5383
+  },
+  {
+   "t": "2004-07",
+   "e": 125.367
+  },
+  {
+   "t": "2004-08",
+   "e": 125.5274
+  },
+  {
+   "t": "2004-09",
+   "e": 121.2364
+  },
+  {
+   "t": "2004-10",
+   "e": 125.1695
+  },
+  {
+   "t": "2004-11",
+   "e": 141.1233
+  },
+  {
+   "t": "2004-12",
+   "e": 150.3028
+  },
+  {
+   "t": "2005-01",
+   "e": 134.0853
+  },
+  {
+   "t": "2005-02",
+   "e": 129.3851
+  },
+  {
+   "t": "2005-03",
+   "e": 130.7822
+  },
+  {
+   "t": "2005-04",
+   "e": 131.0841
+  },
+  {
+   "t": "2005-05",
+   "e": 134.7243
+  },
+  {
+   "t": "2005-06",
+   "e": 127.8084
+  },
+  {
+   "t": "2005-07",
+   "e": 137.0442
+  },
+  {
+   "t": "2005-08",
+   "e": 131.5215
+  },
+  {
+   "t": "2005-09",
+   "e": 133.7278
+  },
+  {
+   "t": "2005-10",
+   "e": 126.9744
+  },
+  {
+   "t": "2005-11",
+   "e": 133.7293
+  },
+  {
+   "t": "2005-12",
+   "e": 132.0493
+  },
+  {
+   "t": "2006-01",
+   "e": 150.6202
+  },
+  {
+   "t": "2006-02",
+   "e": 146.0017
+  },
+  {
+   "t": "2006-03",
+   "e": 145.088
+  },
+  {
+   "t": "2006-04",
+   "e": 141.8627
+  },
+  {
+   "t": "2006-05",
+   "e": 133.8794
+  },
+  {
+   "t": "2006-06",
+   "e": 134.439
+  },
+  {
+   "t": "2006-07",
+   "e": 134.9658
+  },
+  {
+   "t": "2006-08",
+   "e": 130.152
+  },
+  {
+   "t": "2006-09",
+   "e": 144.7293
+  },
+  {
+   "t": "2006-10",
+   "e": 163.8576
+  },
+  {
+   "t": "2006-11",
+   "e": 165.1514
+  },
+  {
+   "t": "2006-12",
+   "e": 159.6551
+  },
+  {
+   "t": "2007-01",
+   "e": 157.1253
+  },
+  {
+   "t": "2007-02",
+   "e": 142.1005
+  },
+  {
+   "t": "2007-03",
+   "e": 131.4068
+  },
+  {
+   "t": "2007-04",
+   "e": 147.0555
+  },
+  {
+   "t": "2007-05",
+   "e": 156.3792
+  },
+  {
+   "t": "2007-06",
+   "e": 156.6568
+  },
+  {
+   "t": "2007-07",
+   "e": 150.8009
+  },
+  {
+   "t": "2007-08",
+   "e": 148.0448
+  },
+  {
+   "t": "2007-09",
+   "e": 167.4789
+  },
+  {
+   "t": "2007-10",
+   "e": 188.2176
+  },
+  {
+   "t": "2007-11",
+   "e": 162.1054
+  },
+  {
+   "t": "2007-12",
+   "e": 161.5486
+  },
+  {
+   "t": "2008-01",
+   "e": 148.1297
+  },
+  {
+   "t": "2008-02",
+   "e": 148.377
+  },
+  {
+   "t": "2008-03",
+   "e": 148.5215
+  },
+  {
+   "t": "2008-04",
+   "e": 151.1239
+  },
+  {
+   "t": "2008-05",
+   "e": 163.8945
+  },
+  {
+   "t": "2008-06",
+   "e": 151.7906
+  },
+  {
+   "t": "2008-07",
+   "e": 152.0036
+  },
+  {
+   "t": "2008-08",
+   "e": 143.5012
+  },
+  {
+   "t": "2008-09",
+   "e": 143.5914
+  },
+  {
+   "t": "2008-10",
+   "e": 143.6715
+  },
+  {
+   "t": "2008-11",
+   "e": 143.6895
+  },
+  {
+   "t": "2008-12",
+   "e": 143.6919
+  },
+  {
+   "t": "2009-01",
+   "e": 143.7049
+  },
+  {
+   "t": "2009-02",
+   "e": 143.7355
+  },
+  {
+   "t": "2009-03",
+   "e": 142.6969
+  },
+  {
+   "t": "2009-04",
+   "e": 159.7688
+  },
+  {
+   "t": "2009-05",
+   "e": 165.407
+  },
+  {
+   "t": "2009-06",
+   "e": 167.3758
+  },
+  {
+   "t": "2009-07",
+   "e": 205.1981
+  },
+  {
+   "t": "2009-08",
+   "e": 214.3
+  },
+  {
+   "t": "2009-09",
+   "e": 226.3056
+  },
+  {
+   "t": "2009-10",
+   "e": 215.7544
+  },
+  {
+   "t": "2009-11",
+   "e": 235.2868
+  },
+  {
+   "t": "2009-12",
+   "e": 253.5599
+  },
+  {
+   "t": "2010-01",
+   "e": 223.663
+  },
+  {
+   "t": "2010-02",
+   "e": 237.6527
+  },
+  {
+   "t": "2010-03",
+   "e": 280.5897
+  },
+  {
+   "t": "2010-04",
+   "e": 297.6911
+  },
+  {
+   "t": "2010-05",
+   "e": 251.6891
+  },
+  {
+   "t": "2010-06",
+   "e": 241.2877
+  },
+  {
+   "t": "2010-07",
+   "e": 239.7602
+  },
+  {
+   "t": "2010-08",
+   "e": 221.1638
+  },
+  {
+   "t": "2010-09",
+   "e": 251.3732
+  },
+  {
+   "t": "2010-10",
+   "e": 300.521
+  },
+  {
+   "t": "2010-11",
+   "e": 300.9717
+  },
+  {
+   "t": "2010-12",
+   "e": 322.2836
+  },
+  {
+   "t": "2011-01",
+   "e": 345.8159
+  },
+  {
+   "t": "2011-02",
+   "e": 350.415
+  },
+  {
+   "t": "2011-03",
+   "e": 325.6423
+  },
+  {
+   "t": "2011-04",
+   "e": 361.4398
+  },
+  {
+   "t": "2011-05",
+   "e": 348.2312
+  },
+  {
+   "t": "2011-06",
+   "e": 330.3175
+  },
+  {
+   "t": "2011-07",
+   "e": 320.4016
+  },
+  {
+   "t": "2011-08",
+   "e": 285.6692
+  },
+  {
+   "t": "2011-09",
+   "e": 259.5533
+  },
+  {
+   "t": "2011-10",
+   "e": 253.62
+  },
+  {
+   "t": "2011-11",
+   "e": 240.3453
+  },
+  {
+   "t": "2011-12",
+   "e": 231.3204
+  },
+  {
+   "t": "2012-01",
+   "e": 276.2741
+  },
+  {
+   "t": "2012-02",
+   "e": 331.9134
+  },
+  {
+   "t": "2012-03",
+   "e": 383.2281
+  },
+  {
+   "t": "2012-04",
+   "e": 363.3875
+  },
+  {
+   "t": "2012-05",
+   "e": 315.5717
+  },
+  {
+   "t": "2012-06",
+   "e": 323.6544
+  },
+  {
+   "t": "2012-07",
+   "e": 327.2525
+  },
+  {
+   "t": "2012-08",
+   "e": 362.6894
+  },
+  {
+   "t": "2012-09",
+   "e": 370.4477
+  },
+  {
+   "t": "2012-10",
+   "e": 337.2101
+  },
+  {
+   "t": "2012-11",
+   "e": 337.2345
+  },
+  {
+   "t": "2012-12",
+   "e": 337.25
+  },
+  {
+   "t": "2013-01",
+   "e": 337.9051
+  },
+  {
+   "t": "2013-02",
+   "e": 344.8879
+  },
+  {
+   "t": "2013-03",
+   "e": 359.895
+  },
+  {
+   "t": "2013-04",
+   "e": 373.2139
+  },
+  {
+   "t": "2013-05",
+   "e": 391.4644
+  },
+  {
+   "t": "2013-06",
+   "e": 376.883
+  },
+  {
+   "t": "2013-07",
+   "e": 416.9102
+  },
+  {
+   "t": "2013-08",
+   "e": 419.4724
+  },
+  {
+   "t": "2013-09",
+   "e": 458.601
+  },
+  {
+   "t": "2013-10",
+   "e": 498.4142
+  },
+  {
+   "t": "2013-11",
+   "e": 533.7481
+  },
+  {
+   "t": "2013-12",
+   "e": 562.0537
+  },
+  {
+   "t": "2014-01",
+   "e": 536.4587
+  },
+  {
+   "t": "2014-02",
+   "e": 577.244
+  },
+  {
+   "t": "2014-03",
+   "e": 537.409
+  },
+  {
+   "t": "2014-04",
+   "e": 525.7257
+  },
+  {
+   "t": "2014-05",
+   "e": 572.5698
+  },
+  {
+   "t": "2014-06",
+   "e": 626.7219
+  },
+  {
+   "t": "2014-07",
+   "e": 645.8303
+  },
+  {
+   "t": "2014-08",
+   "e": 690.153
+  },
+  {
+   "t": "2014-09",
+   "e": 684.1034
+  },
+  {
+   "t": "2014-10",
+   "e": 662.4273
+  },
+  {
+   "t": "2014-11",
+   "e": 754.6147
+  },
+  {
+   "t": "2014-12",
+   "e": 691.2423
+  },
+  {
+   "t": "2015-01",
+   "e": 668.8623
+  },
+  {
+   "t": "2015-02",
+   "e": 756.6599
+  },
+  {
+   "t": "2015-03",
+   "e": 697.0262
+  },
+  {
+   "t": "2015-04",
+   "e": 687.1605
+  },
+  {
+   "t": "2015-05",
+   "e": 718.3071
+  },
+  {
+   "t": "2015-06",
+   "e": 691.4252
+  },
+  {
+   "t": "2015-07",
+   "e": 737.5664
+  },
+  {
+   "t": "2015-08",
+   "e": 646.4111
+  },
+  {
+   "t": "2015-09",
+   "e": 646.4217
+  },
+  {
+   "t": "2015-10",
+   "e": 713.6183
+  },
+  {
+   "t": "2015-11",
+   "e": 684.7295
+  },
+  {
+   "t": "2015-12",
+   "e": 650.3283
+  },
+  {
+   "t": "2016-01",
+   "e": 650.4456
+  },
+  {
+   "t": "2016-02",
+   "e": 650.598
+  },
+  {
+   "t": "2016-03",
+   "e": 705.379
+  },
+  {
+   "t": "2016-04",
+   "e": 667.6717
+  },
+  {
+   "t": "2016-05",
+   "e": 671.19
+  },
+  {
+   "t": "2016-06",
+   "e": 625.9731
+  },
+  {
+   "t": "2016-07",
+   "e": 682.4885
+  },
+  {
+   "t": "2016-08",
+   "e": 705.6342
+  },
+  {
+   "t": "2016-09",
+   "e": 757.284
+  },
+  {
+   "t": "2016-10",
+   "e": 726.3348
+  },
+  {
+   "t": "2016-11",
+   "e": 711.7347
+  },
+  {
+   "t": "2016-12",
+   "e": 687.6004
+  },
+  {
+   "t": "2017-01",
+   "e": 795.7252
+  },
+  {
+   "t": "2017-02",
+   "e": 902.2687
+  },
+  {
+   "t": "2017-03",
+   "e": 934.3053
+  },
+  {
+   "t": "2017-04",
+   "e": 1009.1854
+  },
+  {
+   "t": "2017-05",
+   "e": 1124.5751
+  },
+  {
+   "t": "2017-06",
+   "e": 1064.8342
+  },
+  {
+   "t": "2017-07",
+   "e": 1124.0553
+  },
+  {
+   "t": "2017-08",
+   "e": 1137.7381
+  },
+  {
+   "t": "2017-09",
+   "e": 1116.0972
+  },
+  {
+   "t": "2017-10",
+   "e": 1241.9387
+  },
+  {
+   "t": "2017-11",
+   "e": 1310.2715
+  },
+  {
+   "t": "2017-12",
+   "e": 1310.2001
+  },
+  {
+   "t": "2018-01",
+   "e": 1580.604
+  },
+  {
+   "t": "2018-02",
+   "e": 1436.1578
+  },
+  {
+   "t": "2018-03",
+   "e": 1277.4182
+  },
+  {
+   "t": "2018-04",
+   "e": 1271.9978
+  },
+  {
+   "t": "2018-05",
+   "e": 1402.6724
+  },
+  {
+   "t": "2018-06",
+   "e": 1433.2908
+  },
+  {
+   "t": "2018-07",
+   "e": 1490.4231
+  },
+  {
+   "t": "2018-08",
+   "e": 1672.8272
+  },
+  {
+   "t": "2018-09",
+   "e": 1587.9688
+  },
+  {
+   "t": "2018-10",
+   "e": 1442.0066
+  },
+  {
+   "t": "2018-11",
+   "e": 1444.7871
+  },
+  {
+   "t": "2018-12",
+   "e": 1447.3412
+  },
+  {
+   "t": "2019-01",
+   "e": 1450.1874
+  },
+  {
+   "t": "2019-02",
+   "e": 1545.5835
+  },
+  {
+   "t": "2019-03",
+   "e": 1618.2716
+  },
+  {
+   "t": "2019-04",
+   "e": 1813.2577
+  },
+  {
+   "t": "2019-05",
+   "e": 1582.1149
+  },
+  {
+   "t": "2019-06",
+   "e": 1636.311
+  },
+  {
+   "t": "2019-07",
+   "e": 1683.1916
+  },
+  {
+   "t": "2019-08",
+   "e": 1523.5915
+  },
+  {
+   "t": "2019-09",
+   "e": 1502.6072
+  },
+  {
+   "t": "2019-10",
+   "e": 1614.174
+  },
+  {
+   "t": "2019-11",
+   "e": 1811.0239
+  },
+  {
+   "t": "2019-12",
+   "e": 1984.4014
+  },
+  {
+   "t": "2020-01",
+   "e": 2146.9597
+  },
+  {
+   "t": "2020-02",
+   "e": 1969.5855
+  },
+  {
+   "t": "2020-03",
+   "e": 1969.443
+  },
+  {
+   "t": "2020-04",
+   "e": 1988.702
+  },
+  {
+   "t": "2020-05",
+   "e": 2215.1429
+  },
+  {
+   "t": "2020-06",
+   "e": 2436.0421
+  },
+  {
+   "t": "2020-07",
+   "e": 2483.488
+  },
+  {
+   "t": "2020-08",
+   "e": 3051.5694
+  },
+  {
+   "t": "2020-09",
+   "e": 2599.0294
+  },
+  {
+   "t": "2020-10",
+   "e": 2443.0569
+  },
+  {
+   "t": "2020-11",
+   "e": 2731.4357
+  },
+  {
+   "t": "2020-12",
+   "e": 3159.3632
+  },
+  {
+   "t": "2021-01",
+   "e": 2954.3964
+  },
+  {
+   "t": "2021-02",
+   "e": 2842.9968
+  },
+  {
+   "t": "2021-03",
+   "e": 2934.6833
+  },
+  {
+   "t": "2021-04",
+   "e": 3098.4075
+  },
+  {
+   "t": "2021-05",
+   "e": 3034.3095
+  },
+  {
+   "t": "2021-06",
+   "e": 3508.7918
+  },
+  {
+   "t": "2021-07",
+   "e": 3802.0976
+  },
+  {
+   "t": "2021-08",
+   "e": 4072.884
+  },
+  {
+   "t": "2021-09",
+   "e": 3664.122
+  },
+  {
+   "t": "2021-10",
+   "e": 4101.9146
+  },
+  {
+   "t": "2021-11",
+   "e": 4287.4252
+  },
+  {
+   "t": "2021-12",
+   "e": 4320.6481
+  },
+  {
+   "t": "2022-01",
+   "e": 4077.3624
+  },
+  {
+   "t": "2022-02",
+   "e": 4078.2678
+  },
+  {
+   "t": "2022-03",
+   "e": 4079.8183
+  },
+  {
+   "t": "2022-04",
+   "e": 3952.1407
+  },
+  {
+   "t": "2022-05",
+   "e": 3955.2287
+  },
+  {
+   "t": "2022-06",
+   "e": 3959.9857
+  },
+  {
+   "t": "2022-07",
+   "e": 3966.8004
+  },
+  {
+   "t": "2022-08",
+   "e": 3697.1329
+  },
+  {
+   "t": "2022-09",
+   "e": 3706.6174
+  },
+  {
+   "t": "2022-10",
+   "e": 3717.8978
+  },
+  {
+   "t": "2022-11",
+   "e": 3730.655
+  },
+  {
+   "t": "2022-12",
+   "e": 3511.5809
+  },
+  {
+   "t": "2023-01",
+   "e": 3661.8206
+  },
+  {
+   "t": "2023-02",
+   "e": 3745.4562
+  },
+  {
+   "t": "2023-03",
+   "e": 4083.6654
+  },
+  {
+   "t": "2023-04",
+   "e": 4036.9152
+  },
+  {
+   "t": "2023-05",
+   "e": 4696.7191
+  },
+  {
+   "t": "2023-06",
+   "e": 5558.9791
+  },
+  {
+   "t": "2023-07",
+   "e": 6071.6032
+  },
+  {
+   "t": "2023-08",
+   "e": 6054.2925
+  },
+  {
+   "t": "2023-09",
+   "e": 5566.473
+  },
+  {
+   "t": "2023-10",
+   "e": 5591.3801
+  },
+  {
+   "t": "2023-11",
+   "e": 6097.941
+  },
+  {
+   "t": "2023-12",
+   "e": 7078.2516
+  },
+  {
+   "t": "2024-01",
+   "e": 6891.2278
+  },
+  {
+   "t": "2024-02",
+   "e": 7404.6043
+  },
+  {
+   "t": "2024-03",
+   "e": 7321.5108
+  },
+  {
+   "t": "2024-04",
+   "e": 6443.2104
+  },
+  {
+   "t": "2024-05",
+   "e": 7004.6311
+  },
+  {
+   "t": "2024-06",
+   "e": 8300.9656
+  },
+  {
+   "t": "2024-07",
+   "e": 7843.0741
+  },
+  {
+   "t": "2024-08",
+   "e": 7362.1461
+  },
+  {
+   "t": "2024-09",
+   "e": 6530.4183
+  },
+  {
+   "t": "2024-10",
+   "e": 6525.8672
+  },
+  {
+   "t": "2024-11",
+   "e": 7027.7684
+  },
+  {
+   "t": "2024-12",
+   "e": 7083.3794
+  },
+  {
+   "t": "2025-01",
+   "e": 7241.4565
+  },
+  {
+   "t": "2025-02",
+   "e": 6673.0034
+  },
+  {
+   "t": "2025-03",
+   "e": 6694.337
+  },
+  {
+   "t": "2025-04",
+   "e": 6717.7825
+  },
+  {
+   "t": "2025-05",
+   "e": 7813.332
+  },
+  {
+   "t": "2025-06",
+   "e": 8782.8089
+  },
+  {
+   "t": "2025-07",
+   "e": 9334.1164
+  },
+  {
+   "t": "2025-08",
+   "e": 9179.1245
+  },
+  {
+   "t": "2025-09",
+   "e": 9916.7875
+  },
+  {
+   "t": "2025-10",
+   "e": 10235.7711
+  },
+  {
+   "t": "2025-11",
+   "e": 9931.9276
+  },
+  {
+   "t": "2025-12",
+   "e": 9953.4723
+  },
+  {
+   "t": "2026-01",
+   "e": 10108.9109
+  },
+  {
+   "t": "2026-02",
+   "e": 9560.8498
+  },
+  {
+   "t": "2026-03",
+   "e": 9397.2909
+  },
+  {
+   "t": "2026-04",
+   "e": 10883.4226
+  },
+  {
+   "t": "2026-05",
+   "e": 14476.0546
+  },
+  {
+   "t": "2026-06",
+   "e": 13050.257
+  },
+  {
+   "t": "2026-07",
+   "e": 12243.4211
+  }
+ ],
+ "eq_A": [
+  {
+   "t": "1985-10",
+   "e": 1.1124
+  },
+  {
+   "t": "1985-11",
+   "e": 1.425
+  },
+  {
+   "t": "1985-12",
+   "e": 1.6192
+  },
+  {
+   "t": "1986-01",
+   "e": 1.6115
+  },
+  {
+   "t": "1986-02",
+   "e": 1.8746
+  },
+  {
+   "t": "1986-03",
+   "e": 2.2024
+  },
+  {
+   "t": "1986-04",
+   "e": 2.4349
+  },
+  {
+   "t": "1986-05",
+   "e": 2.8065
+  },
+  {
+   "t": "1986-06",
+   "e": 2.7371
+  },
+  {
+   "t": "1986-07",
+   "e": 2.0164
+  },
+  {
+   "t": "1986-08",
+   "e": 2.0472
+  },
+  {
+   "t": "1986-09",
+   "e": 1.9653
+  },
+  {
+   "t": "1986-10",
+   "e": 1.9746
+  },
+  {
+   "t": "1986-11",
+   "e": 1.9148
+  },
+  {
+   "t": "1986-12",
+   "e": 1.7933
+  },
+  {
+   "t": "1987-01",
+   "e": 2.1157
+  },
+  {
+   "t": "1987-02",
+   "e": 2.7424
+  },
+  {
+   "t": "1987-03",
+   "e": 2.8435
+  },
+  {
+   "t": "1987-04",
+   "e": 2.7331
+  },
+  {
+   "t": "1987-05",
+   "e": 2.8668
+  },
+  {
+   "t": "1987-06",
+   "e": 2.8504
+  },
+  {
+   "t": "1987-07",
+   "e": 3.1382
+  },
+  {
+   "t": "1987-08",
+   "e": 3.7565
+  },
+  {
+   "t": "1987-09",
+   "e": 3.4749
+  },
+  {
+   "t": "1987-10",
+   "e": 2.4092
+  },
+  {
+   "t": "1987-11",
+   "e": 2.4201
+  },
+  {
+   "t": "1987-12",
+   "e": 2.4323
+  },
+  {
+   "t": "1988-01",
+   "e": 2.4435
+  },
+  {
+   "t": "1988-02",
+   "e": 2.838
+  },
+  {
+   "t": "1988-03",
+   "e": 2.8189
+  },
+  {
+   "t": "1988-04",
+   "e": 2.8956
+  },
+  {
+   "t": "1988-05",
+   "e": 2.5769
+  },
+  {
+   "t": "1988-06",
+   "e": 3.0427
+  },
+  {
+   "t": "1988-07",
+   "e": 2.6367
+  },
+  {
+   "t": "1988-08",
+   "e": 2.3112
+  },
+  {
+   "t": "1988-09",
+   "e": 2.4087
+  },
+  {
+   "t": "1988-10",
+   "e": 2.0828
+  },
+  {
+   "t": "1988-11",
+   "e": 2.0963
+  },
+  {
+   "t": "1988-12",
+   "e": 2.2137
+  },
+  {
+   "t": "1989-01",
+   "e": 2.5216
+  },
+  {
+   "t": "1989-02",
+   "e": 2.3733
+  },
+  {
+   "t": "1989-03",
+   "e": 2.4031
+  },
+  {
+   "t": "1989-04",
+   "e": 2.9638
+  },
+  {
+   "t": "1989-05",
+   "e": 3.5679
+  },
+  {
+   "t": "1989-06",
+   "e": 3.0244
+  },
+  {
+   "t": "1989-07",
+   "e": 3.418
+  },
+  {
+   "t": "1989-08",
+   "e": 3.731
+  },
+  {
+   "t": "1989-09",
+   "e": 3.8998
+  },
+  {
+   "t": "1989-10",
+   "e": 3.6116
+  },
+  {
+   "t": "1989-11",
+   "e": 3.6382
+  },
+  {
+   "t": "1989-12",
+   "e": 3.1358
+  },
+  {
+   "t": "1990-01",
+   "e": 2.5242
+  },
+  {
+   "t": "1990-02",
+   "e": 2.539
+  },
+  {
+   "t": "1990-03",
+   "e": 2.4825
+  },
+  {
+   "t": "1990-04",
+   "e": 2.4964
+  },
+  {
+   "t": "1990-05",
+   "e": 3.3597
+  },
+  {
+   "t": "1990-06",
+   "e": 3.397
+  },
+  {
+   "t": "1990-07",
+   "e": 2.8258
+  },
+  {
+   "t": "1990-08",
+   "e": 2.8451
+  },
+  {
+   "t": "1990-09",
+   "e": 2.8609
+  },
+  {
+   "t": "1990-10",
+   "e": 2.8796
+  },
+  {
+   "t": "1990-11",
+   "e": 2.8966
+  },
+  {
+   "t": "1990-12",
+   "e": 3.2155
+  },
+  {
+   "t": "1991-01",
+   "e": 4.8659
+  },
+  {
+   "t": "1991-02",
+   "e": 5.9569
+  },
+  {
+   "t": "1991-03",
+   "e": 6.9048
+  },
+  {
+   "t": "1991-04",
+   "e": 6.6562
+  },
+  {
+   "t": "1991-05",
+   "e": 7.7479
+  },
+  {
+   "t": "1991-06",
+   "e": 5.7497
+  },
+  {
+   "t": "1991-07",
+   "e": 5.9965
+  },
+  {
+   "t": "1991-08",
+   "e": 6.9172
+  },
+  {
+   "t": "1991-09",
+   "e": 6.82
+  },
+  {
+   "t": "1991-10",
+   "e": 7.0427
+  },
+  {
+   "t": "1991-11",
+   "e": 6.3543
+  },
+  {
+   "t": "1991-12",
+   "e": 9.7682
+  },
+  {
+   "t": "1992-01",
+   "e": 10.2933
+  },
+  {
+   "t": "1992-02",
+   "e": 10.8112
+  },
+  {
+   "t": "1992-03",
+   "e": 8.7729
+  },
+  {
+   "t": "1992-04",
+   "e": 8.8003
+  },
+  {
+   "t": "1992-05",
+   "e": 8.8257
+  },
+  {
+   "t": "1992-06",
+   "e": 8.854
+  },
+  {
+   "t": "1992-07",
+   "e": 8.8788
+  },
+  {
+   "t": "1992-08",
+   "e": 8.231
+  },
+  {
+   "t": "1992-09",
+   "e": 8.6824
+  },
+  {
+   "t": "1992-10",
+   "e": 8.9124
+  },
+  {
+   "t": "1992-11",
+   "e": 10.6555
+  },
+  {
+   "t": "1992-12",
+   "e": 11.3988
+  },
+  {
+   "t": "1993-01",
+   "e": 12.2632
+  },
+  {
+   "t": "1993-02",
+   "e": 10.0278
+  },
+  {
+   "t": "1993-03",
+   "e": 10.5311
+  },
+  {
+   "t": "1993-04",
+   "e": 8.9697
+  },
+  {
+   "t": "1993-05",
+   "e": 10.0522
+  },
+  {
+   "t": "1993-06",
+   "e": 9.7825
+  },
+  {
+   "t": "1993-07",
+   "e": 8.5743
+  },
+  {
+   "t": "1993-08",
+   "e": 9.1802
+  },
+  {
+   "t": "1993-09",
+   "e": 9.8365
+  },
+  {
+   "t": "1993-10",
+   "e": 10.3864
+  },
+  {
+   "t": "1993-11",
+   "e": 9.8867
+  },
+  {
+   "t": "1993-12",
+   "e": 10.6854
+  },
+  {
+   "t": "1994-01",
+   "e": 11.9009
+  },
+  {
+   "t": "1994-02",
+   "e": 11.6101
+  },
+  {
+   "t": "1994-03",
+   "e": 10.5038
+  },
+  {
+   "t": "1994-04",
+   "e": 10.533
+  },
+  {
+   "t": "1994-05",
+   "e": 10.5694
+  },
+  {
+   "t": "1994-06",
+   "e": 10.6075
+  },
+  {
+   "t": "1994-07",
+   "e": 10.644
+  },
+  {
+   "t": "1994-08",
+   "e": 12.4269
+  },
+  {
+   "t": "1994-09",
+   "e": 11.8765
+  },
+  {
+   "t": "1994-10",
+   "e": 13.4821
+  },
+  {
+   "t": "1994-11",
+   "e": 12.481
+  },
+  {
+   "t": "1994-12",
+   "e": 11.1979
+  },
+  {
+   "t": "1995-01",
+   "e": 11.1194
+  },
+  {
+   "t": "1995-02",
+   "e": 13.3266
+  },
+  {
+   "t": "1995-03",
+   "e": 14.4951
+  },
+  {
+   "t": "1995-04",
+   "e": 16.5607
+  },
+  {
+   "t": "1995-05",
+   "e": 18.2425
+  },
+  {
+   "t": "1995-06",
+   "e": 23.9839
+  },
+  {
+   "t": "1995-07",
+   "e": 26.9034
+  },
+  {
+   "t": "1995-08",
+   "e": 26.8274
+  },
+  {
+   "t": "1995-09",
+   "e": 27.378
+  },
+  {
+   "t": "1995-10",
+   "e": 28.0255
+  },
+  {
+   "t": "1995-11",
+   "e": 26.4301
+  },
+  {
+   "t": "1995-12",
+   "e": 21.5793
+  },
+  {
+   "t": "1996-01",
+   "e": 21.7378
+  },
+  {
+   "t": "1996-02",
+   "e": 24.1095
+  },
+  {
+   "t": "1996-03",
+   "e": 22.1356
+  },
+  {
+   "t": "1996-04",
+   "e": 28.5309
+  },
+  {
+   "t": "1996-05",
+   "e": 31.4255
+  },
+  {
+   "t": "1996-06",
+   "e": 28.9616
+  },
+  {
+   "t": "1996-07",
+   "e": 23.6625
+  },
+  {
+   "t": "1996-08",
+   "e": 22.7472
+  },
+  {
+   "t": "1996-09",
+   "e": 30.6434
+  },
+  {
+   "t": "1996-10",
+   "e": 31.8416
+  },
+  {
+   "t": "1996-11",
+   "e": 42.74
+  },
+  {
+   "t": "1996-12",
+   "e": 39.8912
+  },
+  {
+   "t": "1997-01",
+   "e": 54.5081
+  },
+  {
+   "t": "1997-02",
+   "e": 42.0891
+  },
+  {
+   "t": "1997-03",
+   "e": 36.4563
+  },
+  {
+   "t": "1997-04",
+   "e": 36.6204
+  },
+  {
+   "t": "1997-05",
+   "e": 41.2599
+  },
+  {
+   "t": "1997-06",
+   "e": 40.3824
+  },
+  {
+   "t": "1997-07",
+   "e": 60.8668
+  },
+  {
+   "t": "1997-08",
+   "e": 54.5357
+  },
+  {
+   "t": "1997-09",
+   "e": 56.9201
+  },
+  {
+   "t": "1997-10",
+   "e": 50.1207
+  },
+  {
+   "t": "1997-11",
+   "e": 49.7494
+  },
+  {
+   "t": "1997-12",
+   "e": 38.9871
+  },
+  {
+   "t": "1998-01",
+   "e": 39.1431
+  },
+  {
+   "t": "1998-02",
+   "e": 53.2221
+  },
+  {
+   "t": "1998-03",
+   "e": 54.4398
+  },
+  {
+   "t": "1998-04",
+   "e": 56.8857
+  },
+  {
+   "t": "1998-05",
+   "e": 48.7333
+  },
+  {
+   "t": "1998-06",
+   "e": 66.6908
+  },
+  {
+   "t": "1998-07",
+   "e": 70.2867
+  },
+  {
+   "t": "1998-08",
+   "e": 56.0757
+  },
+  {
+   "t": "1998-09",
+   "e": 59.1468
+  },
+  {
+   "t": "1998-10",
+   "e": 62.003
+  },
+  {
+   "t": "1998-11",
+   "e": 78.8557
+  },
+  {
+   "t": "1998-12",
+   "e": 112.6999
+  },
+  {
+   "t": "1999-01",
+   "e": 151.0443
+  },
+  {
+   "t": "1999-02",
+   "e": 121.0549
+  },
+  {
+   "t": "1999-03",
+   "e": 143.3794
+  },
+  {
+   "t": "1999-04",
+   "e": 146.8557
+  },
+  {
+   "t": "1999-05",
+   "e": 138.537
+  },
+  {
+   "t": "1999-06",
+   "e": 163.7362
+  },
+  {
+   "t": "1999-07",
+   "e": 146.3394
+  },
+  {
+   "t": "1999-08",
+   "e": 163.1494
+  },
+  {
+   "t": "1999-09",
+   "e": 161.8838
+  },
+  {
+   "t": "1999-10",
+   "e": 197.7141
+  },
+  {
+   "t": "1999-11",
+   "e": 257.744
+  },
+  {
+   "t": "1999-12",
+   "e": 457.9989
+  },
+  {
+   "t": "2000-01",
+   "e": 384.9217
+  },
+  {
+   "t": "2000-02",
+   "e": 496.6663
+  },
+  {
+   "t": "2000-03",
+   "e": 512.4778
+  },
+  {
+   "t": "2000-04",
+   "e": 334.3704
+  },
+  {
+   "t": "2000-05",
+   "e": 329.1198
+  },
+  {
+   "t": "2000-06",
+   "e": 330.4012
+  },
+  {
+   "t": "2000-07",
+   "e": 282.6609
+  },
+  {
+   "t": "2000-08",
+   "e": 329.3276
+  },
+  {
+   "t": "2000-09",
+   "e": 240.9261
+  },
+  {
+   "t": "2000-10",
+   "e": 242.21
+  },
+  {
+   "t": "2000-11",
+   "e": 243.4556
+  },
+  {
+   "t": "2000-12",
+   "e": 244.5662
+  },
+  {
+   "t": "2001-01",
+   "e": 245.6147
+  },
+  {
+   "t": "2001-02",
+   "e": 246.518
+  },
+  {
+   "t": "2001-03",
+   "e": 247.4697
+  },
+  {
+   "t": "2001-04",
+   "e": 248.2287
+  },
+  {
+   "t": "2001-05",
+   "e": 249.0111
+  },
+  {
+   "t": "2001-06",
+   "e": 249.7318
+  },
+  {
+   "t": "2001-07",
+   "e": 250.4606
+  },
+  {
+   "t": "2001-08",
+   "e": 251.2275
+  },
+  {
+   "t": "2001-09",
+   "e": 251.6247
+  },
+  {
+   "t": "2001-10",
+   "e": 252.1198
+  },
+  {
+   "t": "2001-11",
+   "e": 255.0239
+  },
+  {
+   "t": "2001-12",
+   "e": 249.0169
+  },
+  {
+   "t": "2002-01",
+   "e": 231.9401
+  },
+  {
+   "t": "2002-02",
+   "e": 232.2395
+  },
+  {
+   "t": "2002-03",
+   "e": 216.1279
+  },
+  {
+   "t": "2002-04",
+   "e": 216.4496
+  },
+  {
+   "t": "2002-05",
+   "e": 216.7748
+  },
+  {
+   "t": "2002-06",
+   "e": 217.066
+  },
+  {
+   "t": "2002-07",
+   "e": 217.3837
+  },
+  {
+   "t": "2002-08",
+   "e": 217.689
+  },
+  {
+   "t": "2002-09",
+   "e": 217.969
+  },
+  {
+   "t": "2002-10",
+   "e": 216.0116
+  },
+  {
+   "t": "2002-11",
+   "e": 263.939
+  },
+  {
+   "t": "2002-12",
+   "e": 218.6679
+  },
+  {
+   "t": "2003-01",
+   "e": 210.0639
+  },
+  {
+   "t": "2003-02",
+   "e": 205.8143
+  },
+  {
+   "t": "2003-03",
+   "e": 199.327
+  },
+  {
+   "t": "2003-04",
+   "e": 242.0981
+  },
+  {
+   "t": "2003-05",
+   "e": 300.0579
+  },
+  {
+   "t": "2003-06",
+   "e": 297.686
+  },
+  {
+   "t": "2003-07",
+   "e": 352.4291
+  },
+  {
+   "t": "2003-08",
+   "e": 404.395
+  },
+  {
+   "t": "2003-09",
+   "e": 364.0494
+  },
+  {
+   "t": "2003-10",
+   "e": 455.6177
+  },
+  {
+   "t": "2003-11",
+   "e": 457.0466
+  },
+  {
+   "t": "2003-12",
+   "e": 494.5299
+  },
+  {
+   "t": "2004-01",
+   "e": 515.503
+  },
+  {
+   "t": "2004-02",
+   "e": 488.4111
+  },
+  {
+   "t": "2004-03",
+   "e": 447.7584
+  },
+  {
+   "t": "2004-04",
+   "e": 367.3538
+  },
+  {
+   "t": "2004-05",
+   "e": 367.4274
+  },
+  {
+   "t": "2004-06",
+   "e": 402.3475
+  },
+  {
+   "t": "2004-07",
+   "e": 342.8599
+  },
+  {
+   "t": "2004-08",
+   "e": 343.2984
+  },
+  {
+   "t": "2004-09",
+   "e": 331.5633
+  },
+  {
+   "t": "2004-10",
+   "e": 350.936
+  },
+  {
+   "t": "2004-11",
+   "e": 410.8281
+  },
+  {
+   "t": "2004-12",
+   "e": 446.911
+  },
+  {
+   "t": "2005-01",
+   "e": 353.509
+  },
+  {
+   "t": "2005-02",
+   "e": 327.8038
+  },
+  {
+   "t": "2005-03",
+   "e": 333.9571
+  },
+  {
+   "t": "2005-04",
+   "e": 334.728
+  },
+  {
+   "t": "2005-05",
+   "e": 344.0234
+  },
+  {
+   "t": "2005-06",
+   "e": 313.8304
+  },
+  {
+   "t": "2005-07",
+   "e": 357.7988
+  },
+  {
+   "t": "2005-08",
+   "e": 338.6925
+  },
+  {
+   "t": "2005-09",
+   "e": 348.4266
+  },
+  {
+   "t": "2005-10",
+   "e": 312.2785
+  },
+  {
+   "t": "2005-11",
+   "e": 336.042
+  },
+  {
+   "t": "2005-12",
+   "e": 316.4877
+  },
+  {
+   "t": "2006-01",
+   "e": 350.5755
+  },
+  {
+   "t": "2006-02",
+   "e": 322.2908
+  },
+  {
+   "t": "2006-03",
+   "e": 316.2853
+  },
+  {
+   "t": "2006-04",
+   "e": 311.1981
+  },
+  {
+   "t": "2006-05",
+   "e": 275.3882
+  },
+  {
+   "t": "2006-06",
+   "e": 276.5393
+  },
+  {
+   "t": "2006-07",
+   "e": 277.623
+  },
+  {
+   "t": "2006-08",
+   "e": 267.721
+  },
+  {
+   "t": "2006-09",
+   "e": 297.7063
+  },
+  {
+   "t": "2006-10",
+   "e": 337.0531
+  },
+  {
+   "t": "2006-11",
+   "e": 367.5185
+  },
+  {
+   "t": "2006-12",
+   "e": 342.8768
+  },
+  {
+   "t": "2007-01",
+   "e": 359.022
+  },
+  {
+   "t": "2007-02",
+   "e": 335.4354
+  },
+  {
+   "t": "2007-03",
+   "e": 303.3922
+  },
+  {
+   "t": "2007-04",
+   "e": 351.1317
+  },
+  {
+   "t": "2007-05",
+   "e": 381.2969
+  },
+  {
+   "t": "2007-06",
+   "e": 380.0297
+  },
+  {
+   "t": "2007-07",
+   "e": 373.0691
+  },
+  {
+   "t": "2007-08",
+   "e": 355.228
+  },
+  {
+   "t": "2007-09",
+   "e": 407.7546
+  },
+  {
+   "t": "2007-10",
+   "e": 491.4208
+  },
+  {
+   "t": "2007-11",
+   "e": 354.8817
+  },
+  {
+   "t": "2007-12",
+   "e": 348.6778
+  },
+  {
+   "t": "2008-01",
+   "e": 289.2755
+  },
+  {
+   "t": "2008-02",
+   "e": 289.7585
+  },
+  {
+   "t": "2008-03",
+   "e": 290.0407
+  },
+  {
+   "t": "2008-04",
+   "e": 296.1851
+  },
+  {
+   "t": "2008-05",
+   "e": 346.3506
+  },
+  {
+   "t": "2008-06",
+   "e": 291.2621
+  },
+  {
+   "t": "2008-07",
+   "e": 291.6709
+  },
+  {
+   "t": "2008-08",
+   "e": 265.3358
+  },
+  {
+   "t": "2008-09",
+   "e": 265.411
+  },
+  {
+   "t": "2008-10",
+   "e": 265.559
+  },
+  {
+   "t": "2008-11",
+   "e": 265.5924
+  },
+  {
+   "t": "2008-12",
+   "e": 265.5967
+  },
+  {
+   "t": "2009-01",
+   "e": 265.6208
+  },
+  {
+   "t": "2009-02",
+   "e": 265.6774
+  },
+  {
+   "t": "2009-03",
+   "e": 260.6776
+  },
+  {
+   "t": "2009-04",
+   "e": 320.1379
+  },
+  {
+   "t": "2009-05",
+   "e": 343.7129
+  },
+  {
+   "t": "2009-06",
+   "e": 368.8848
+  },
+  {
+   "t": "2009-07",
+   "e": 465.9253
+  },
+  {
+   "t": "2009-08",
+   "e": 480.8852
+  },
+  {
+   "t": "2009-09",
+   "e": 565.3985
+  },
+  {
+   "t": "2009-10",
+   "e": 509.6403
+  },
+  {
+   "t": "2009-11",
+   "e": 602.8427
+  },
+  {
+   "t": "2009-12",
+   "e": 699.4708
+  },
+  {
+   "t": "2010-01",
+   "e": 566.9775
+  },
+  {
+   "t": "2010-02",
+   "e": 606.4006
+  },
+  {
+   "t": "2010-03",
+   "e": 755.4723
+  },
+  {
+   "t": "2010-04",
+   "e": 801.517
+  },
+  {
+   "t": "2010-05",
+   "e": 554.7939
+  },
+  {
+   "t": "2010-06",
+   "e": 498.661
+  },
+  {
+   "t": "2010-07",
+   "e": 490.5049
+  },
+  {
+   "t": "2010-08",
+   "e": 453.071
+  },
+  {
+   "t": "2010-09",
+   "e": 550.1427
+  },
+  {
+   "t": "2010-10",
+   "e": 657.705
+  },
+  {
+   "t": "2010-11",
+   "e": 648.2942
+  },
+  {
+   "t": "2010-12",
+   "e": 744.3293
+  },
+  {
+   "t": "2011-01",
+   "e": 803.9253
+  },
+  {
+   "t": "2011-02",
+   "e": 877.4104
+  },
+  {
+   "t": "2011-03",
+   "e": 753.7945
+  },
+  {
+   "t": "2011-04",
+   "e": 818.4488
+  },
+  {
+   "t": "2011-05",
+   "e": 783.1994
+  },
+  {
+   "t": "2011-06",
+   "e": 703.5229
+  },
+  {
+   "t": "2011-07",
+   "e": 701.7185
+  },
+  {
+   "t": "2011-08",
+   "e": 554.132
+  },
+  {
+   "t": "2011-09",
+   "e": 490.9875
+  },
+  {
+   "t": "2011-10",
+   "e": 482.9249
+  },
+  {
+   "t": "2011-11",
+   "e": 423.7262
+  },
+  {
+   "t": "2011-12",
+   "e": 383.9315
+  },
+  {
+   "t": "2012-01",
+   "e": 487.0353
+  },
+  {
+   "t": "2012-02",
+   "e": 585.1201
+  },
+  {
+   "t": "2012-03",
+   "e": 675.5811
+  },
+  {
+   "t": "2012-04",
+   "e": 646.5001
+  },
+  {
+   "t": "2012-05",
+   "e": 485.7944
+  },
+  {
+   "t": "2012-06",
+   "e": 508.8316
+  },
+  {
+   "t": "2012-07",
+   "e": 520.4331
+  },
+  {
+   "t": "2012-08",
+   "e": 604.1876
+  },
+  {
+   "t": "2012-09",
+   "e": 617.1118
+  },
+  {
+   "t": "2012-10",
+   "e": 538.1362
+  },
+  {
+   "t": "2012-11",
+   "e": 538.1751
+  },
+  {
+   "t": "2012-12",
+   "e": 538.1998
+  },
+  {
+   "t": "2013-01",
+   "e": 542.7503
+  },
+  {
+   "t": "2013-02",
+   "e": 545.9638
+  },
+  {
+   "t": "2013-03",
+   "e": 593.6847
+  },
+  {
+   "t": "2013-04",
+   "e": 634.881
+  },
+  {
+   "t": "2013-05",
+   "e": 702.8582
+  },
+  {
+   "t": "2013-06",
+   "e": 646.4694
+  },
+  {
+   "t": "2013-07",
+   "e": 776.6789
+  },
+  {
+   "t": "2013-08",
+   "e": 763.5318
+  },
+  {
+   "t": "2013-09",
+   "e": 877.38
+  },
+  {
+   "t": "2013-10",
+   "e": 1006.3227
+  },
+  {
+   "t": "2013-11",
+   "e": 1110.3343
+  },
+  {
+   "t": "2013-12",
+   "e": 1208.6984
+  },
+  {
+   "t": "2014-01",
+   "e": 1131.8578
+  },
+  {
+   "t": "2014-02",
+   "e": 1306.1846
+  },
+  {
+   "t": "2014-03",
+   "e": 1196.9135
+  },
+  {
+   "t": "2014-04",
+   "e": 1142.485
+  },
+  {
+   "t": "2014-05",
+   "e": 1290.8656
+  },
+  {
+   "t": "2014-06",
+   "e": 1412.9522
+  },
+  {
+   "t": "2014-07",
+   "e": 1456.0322
+  },
+  {
+   "t": "2014-08",
+   "e": 1681.2579
+  },
+  {
+   "t": "2014-09",
+   "e": 1634.5879
+  },
+  {
+   "t": "2014-10",
+   "e": 1536.6026
+  },
+  {
+   "t": "2014-11",
+   "e": 1756.26
+  },
+  {
+   "t": "2014-12",
+   "e": 1624.3736
+  },
+  {
+   "t": "2015-01",
+   "e": 1511.5264
+  },
+  {
+   "t": "2015-02",
+   "e": 1855.2363
+  },
+  {
+   "t": "2015-03",
+   "e": 1716.8903
+  },
+  {
+   "t": "2015-04",
+   "e": 1805.41
+  },
+  {
+   "t": "2015-05",
+   "e": 1920.1027
+  },
+  {
+   "t": "2015-06",
+   "e": 1773.2362
+  },
+  {
+   "t": "2015-07",
+   "e": 2009.9566
+  },
+  {
+   "t": "2015-08",
+   "e": 1531.4424
+  },
+  {
+   "t": "2015-09",
+   "e": 1531.4676
+  },
+  {
+   "t": "2015-10",
+   "e": 1835.3524
+  },
+  {
+   "t": "2015-11",
+   "e": 1859.4357
+  },
+  {
+   "t": "2015-12",
+   "e": 1667.0972
+  },
+  {
+   "t": "2016-01",
+   "e": 1667.3979
+  },
+  {
+   "t": "2016-02",
+   "e": 1667.7886
+  },
+  {
+   "t": "2016-03",
+   "e": 1808.8097
+  },
+  {
+   "t": "2016-04",
+   "e": 1635.8784
+  },
+  {
+   "t": "2016-05",
+   "e": 1644.0053
+  },
+  {
+   "t": "2016-06",
+   "e": 1485.9276
+  },
+  {
+   "t": "2016-07",
+   "e": 1794.8473
+  },
+  {
+   "t": "2016-08",
+   "e": 1848.5352
+  },
+  {
+   "t": "2016-09",
+   "e": 1955.7607
+  },
+  {
+   "t": "2016-10",
+   "e": 1865.5706
+  },
+  {
+   "t": "2016-11",
+   "e": 1786.7886
+  },
+  {
+   "t": "2016-12",
+   "e": 1663.9969
+  },
+  {
+   "t": "2017-01",
+   "e": 1926.2236
+  },
+  {
+   "t": "2017-02",
+   "e": 2184.135
+  },
+  {
+   "t": "2017-03",
+   "e": 2307.3357
+  },
+  {
+   "t": "2017-04",
+   "e": 2493.5755
+  },
+  {
+   "t": "2017-05",
+   "e": 2778.6896
+  },
+  {
+   "t": "2017-06",
+   "e": 2554.5225
+  },
+  {
+   "t": "2017-07",
+   "e": 2875.4719
+  },
+  {
+   "t": "2017-08",
+   "e": 3020.3838
+  },
+  {
+   "t": "2017-09",
+   "e": 2988.4723
+  },
+  {
+   "t": "2017-10",
+   "e": 3399.1418
+  },
+  {
+   "t": "2017-11",
+   "e": 3586.1661
+  },
+  {
+   "t": "2017-12",
+   "e": 3628.541
+  },
+  {
+   "t": "2018-01",
+   "e": 4633.7663
+  },
+  {
+   "t": "2018-02",
+   "e": 4274.4274
+  },
+  {
+   "t": "2018-03",
+   "e": 3546.992
+  },
+  {
+   "t": "2018-04",
+   "e": 3494.9309
+  },
+  {
+   "t": "2018-05",
+   "e": 4089.0036
+  },
+  {
+   "t": "2018-06",
+   "e": 4178.261
+  },
+  {
+   "t": "2018-07",
+   "e": 4494.3187
+  },
+  {
+   "t": "2018-08",
+   "e": 5289.5859
+  },
+  {
+   "t": "2018-09",
+   "e": 5204.7187
+  },
+  {
+   "t": "2018-10",
+   "e": 4247.9875
+  },
+  {
+   "t": "2018-11",
+   "e": 4256.1785
+  },
+  {
+   "t": "2018-12",
+   "e": 4263.7026
+  },
+  {
+   "t": "2019-01",
+   "e": 4272.0871
+  },
+  {
+   "t": "2019-02",
+   "e": 4696.0002
+  },
+  {
+   "t": "2019-03",
+   "e": 5214.9256
+  },
+  {
+   "t": "2019-04",
+   "e": 6082.8524
+  },
+  {
+   "t": "2019-05",
+   "e": 4974.4545
+  },
+  {
+   "t": "2019-06",
+   "e": 5469.6859
+  },
+  {
+   "t": "2019-07",
+   "e": 5808.8299
+  },
+  {
+   "t": "2019-08",
+   "e": 4939.1415
+  },
+  {
+   "t": "2019-09",
+   "e": 5000.1682
+  },
+  {
+   "t": "2019-10",
+   "e": 5621.6398
+  },
+  {
+   "t": "2019-11",
+   "e": 6307.2039
+  },
+  {
+   "t": "2019-12",
+   "e": 7024.5177
+  },
+  {
+   "t": "2020-01",
+   "e": 7599.9526
+  },
+  {
+   "t": "2020-02",
+   "e": 6249.4267
+  },
+  {
+   "t": "2020-03",
+   "e": 6247.0995
+  },
+  {
+   "t": "2020-04",
+   "e": 6441.4857
+  },
+  {
+   "t": "2020-05",
+   "e": 7436.1904
+  },
+  {
+   "t": "2020-06",
+   "e": 8740.4139
+  },
+  {
+   "t": "2020-07",
+   "e": 10599.3876
+  },
+  {
+   "t": "2020-08",
+   "e": 14326.6643
+  },
+  {
+   "t": "2020-09",
+   "e": 11510.1564
+  },
+  {
+   "t": "2020-10",
+   "e": 10195.3328
+  },
+  {
+   "t": "2020-11",
+   "e": 13293.2801
+  },
+  {
+   "t": "2020-12",
+   "e": 15248.2044
+  },
+  {
+   "t": "2021-01",
+   "e": 15176.0763
+  },
+  {
+   "t": "2021-02",
+   "e": 14966.3909
+  },
+  {
+   "t": "2021-03",
+   "e": 15213.8322
+  },
+  {
+   "t": "2021-04",
+   "e": 17340.5918
+  },
+  {
+   "t": "2021-05",
+   "e": 16523.9749
+  },
+  {
+   "t": "2021-06",
+   "e": 19730.8439
+  },
+  {
+   "t": "2021-07",
+   "e": 21380.1778
+  },
+  {
+   "t": "2021-08",
+   "e": 24078.0713
+  },
+  {
+   "t": "2021-09",
+   "e": 20064.2518
+  },
+  {
+   "t": "2021-10",
+   "e": 24991.3242
+  },
+  {
+   "t": "2021-11",
+   "e": 26333.0179
+  },
+  {
+   "t": "2021-12",
+   "e": 26736.5971
+  },
+  {
+   "t": "2022-01",
+   "e": 23146.2837
+  },
+  {
+   "t": "2022-02",
+   "e": 23151.4233
+  },
+  {
+   "t": "2022-03",
+   "e": 23160.2252
+  },
+  {
+   "t": "2022-04",
+   "e": 21318.8731
+  },
+  {
+   "t": "2022-05",
+   "e": 21335.5308
+  },
+  {
+   "t": "2022-06",
+   "e": 21361.1913
+  },
+  {
+   "t": "2022-07",
+   "e": 21397.9515
+  },
+  {
+   "t": "2022-08",
+   "e": 19500.094
+  },
+  {
+   "t": "2022-09",
+   "e": 19550.1193
+  },
+  {
+   "t": "2022-10",
+   "e": 19609.616
+  },
+  {
+   "t": "2022-11",
+   "e": 19676.9026
+  },
+  {
+   "t": "2022-12",
+   "e": 18219.4709
+  },
+  {
+   "t": "2023-01",
+   "e": 20507.0694
+  },
+  {
+   "t": "2023-02",
+   "e": 19902.1322
+  },
+  {
+   "t": "2023-03",
+   "e": 21619.886
+  },
+  {
+   "t": "2023-04",
+   "e": 21612.2361
+  },
+  {
+   "t": "2023-05",
+   "e": 26584.9613
+  },
+  {
+   "t": "2023-06",
+   "e": 31465.6339
+  },
+  {
+   "t": "2023-07",
+   "e": 34773.3669
+  },
+  {
+   "t": "2023-08",
+   "e": 32570.765
+  },
+  {
+   "t": "2023-09",
+   "e": 27433.0236
+  },
+  {
+   "t": "2023-10",
+   "e": 26277.6443
+  },
+  {
+   "t": "2023-11",
+   "e": 30676.9528
+  },
+  {
+   "t": "2023-12",
+   "e": 35608.6082
+  },
+  {
+   "t": "2024-01",
+   "e": 36971.1476
+  },
+  {
+   "t": "2024-02",
+   "e": 42393.2035
+  },
+  {
+   "t": "2024-03",
+   "e": 43392.0157
+  },
+  {
+   "t": "2024-04",
+   "e": 33269.5382
+  },
+  {
+   "t": "2024-05",
+   "e": 39445.2839
+  },
+  {
+   "t": "2024-06",
+   "e": 46745.352
+  },
+  {
+   "t": "2024-07",
+   "e": 43237.2418
+  },
+  {
+   "t": "2024-08",
+   "e": 37170.6725
+  },
+  {
+   "t": "2024-09",
+   "e": 33327.721
+  },
+  {
+   "t": "2024-10",
+   "e": 31930.0569
+  },
+  {
+   "t": "2024-11",
+   "e": 36729.9104
+  },
+  {
+   "t": "2024-12",
+   "e": 36501.3863
+  },
+  {
+   "t": "2025-01",
+   "e": 38157.3968
+  },
+  {
+   "t": "2025-02",
+   "e": 34559.3877
+  },
+  {
+   "t": "2025-03",
+   "e": 34659.4716
+  },
+  {
+   "t": "2025-04",
+   "e": 34780.8593
+  },
+  {
+   "t": "2025-05",
+   "e": 41165.8685
+  },
+  {
+   "t": "2025-06",
+   "e": 48947.5865
+  },
+  {
+   "t": "2025-07",
+   "e": 52020.0851
+  },
+  {
+   "t": "2025-08",
+   "e": 52698.2727
+  },
+  {
+   "t": "2025-09",
+   "e": 61036.3708
+  },
+  {
+   "t": "2025-10",
+   "e": 68899.0854
+  },
+  {
+   "t": "2025-11",
+   "e": 64389.2421
+  },
+  {
+   "t": "2025-12",
+   "e": 62338.0326
+  },
+  {
+   "t": "2026-01",
+   "e": 63851.5511
+  },
+  {
+   "t": "2026-02",
+   "e": 56657.4879
+  },
+  {
+   "t": "2026-03",
+   "e": 54491.9016
+  },
+  {
+   "t": "2026-04",
+   "e": 70446.7261
+  },
+  {
+   "t": "2026-05",
+   "e": 93751.5764
+  },
+  {
+   "t": "2026-06",
+   "e": 88250.835
+  },
+  {
+   "t": "2026-07",
+   "e": 74485.4008
+  }
+ ],
+ "eq_B": [
+  {
+   "t": "1985-10",
+   "e": 1.0403
+  },
+  {
+   "t": "1985-11",
+   "e": 1.3147
+  },
+  {
+   "t": "1985-12",
+   "e": 1.4938
+  },
+  {
+   "t": "1986-01",
+   "e": 1.4583
+  },
+  {
+   "t": "1986-02",
+   "e": 1.592
+  },
+  {
+   "t": "1986-03",
+   "e": 1.8705
+  },
+  {
+   "t": "1986-04",
+   "e": 2.0679
+  },
+  {
+   "t": "1986-05",
+   "e": 2.1766
+  },
+  {
+   "t": "1986-06",
+   "e": 2.0491
+  },
+  {
+   "t": "1986-07",
+   "e": 1.8644
+  },
+  {
+   "t": "1986-08",
+   "e": 1.8792
+  },
+  {
+   "t": "1986-09",
+   "e": 1.8029
+  },
+  {
+   "t": "1986-10",
+   "e": 1.8114
+  },
+  {
+   "t": "1986-11",
+   "e": 1.7566
+  },
+  {
+   "t": "1986-12",
+   "e": 1.7238
+  },
+  {
+   "t": "1987-01",
+   "e": 2.0337
+  },
+  {
+   "t": "1987-02",
+   "e": 2.5264
+  },
+  {
+   "t": "1987-03",
+   "e": 2.5316
+  },
+  {
+   "t": "1987-04",
+   "e": 2.5147
+  },
+  {
+   "t": "1987-05",
+   "e": 2.5679
+  },
+  {
+   "t": "1987-06",
+   "e": 2.5377
+  },
+  {
+   "t": "1987-07",
+   "e": 2.6325
+  },
+  {
+   "t": "1987-08",
+   "e": 2.9376
+  },
+  {
+   "t": "1987-09",
+   "e": 2.7211
+  },
+  {
+   "t": "1987-10",
+   "e": 2.4304
+  },
+  {
+   "t": "1987-11",
+   "e": 2.4414
+  },
+  {
+   "t": "1987-12",
+   "e": 2.4537
+  },
+  {
+   "t": "1988-01",
+   "e": 2.4651
+  },
+  {
+   "t": "1988-02",
+   "e": 2.7614
+  },
+  {
+   "t": "1988-03",
+   "e": 2.7356
+  },
+  {
+   "t": "1988-04",
+   "e": 2.7772
+  },
+  {
+   "t": "1988-05",
+   "e": 2.6841
+  },
+  {
+   "t": "1988-06",
+   "e": 2.9672
+  },
+  {
+   "t": "1988-07",
+   "e": 2.8052
+  },
+  {
+   "t": "1988-08",
+   "e": 2.4574
+  },
+  {
+   "t": "1988-09",
+   "e": 2.5439
+  },
+  {
+   "t": "1988-10",
+   "e": 2.3328
+  },
+  {
+   "t": "1988-11",
+   "e": 2.3479
+  },
+  {
+   "t": "1988-12",
+   "e": 2.4794
+  },
+  {
+   "t": "1989-01",
+   "e": 2.698
+  },
+  {
+   "t": "1989-02",
+   "e": 2.5239
+  },
+  {
+   "t": "1989-03",
+   "e": 2.552
+  },
+  {
+   "t": "1989-04",
+   "e": 2.7836
+  },
+  {
+   "t": "1989-05",
+   "e": 3.351
+  },
+  {
+   "t": "1989-06",
+   "e": 3.3892
+  },
+  {
+   "t": "1989-07",
+   "e": 3.7737
+  },
+  {
+   "t": "1989-08",
+   "e": 3.9091
+  },
+  {
+   "t": "1989-09",
+   "e": 3.9386
+  },
+  {
+   "t": "1989-10",
+   "e": 3.5188
+  },
+  {
+   "t": "1989-11",
+   "e": 3.6369
+  },
+  {
+   "t": "1989-12",
+   "e": 3.477
+  },
+  {
+   "t": "1990-01",
+   "e": 3.2522
+  },
+  {
+   "t": "1990-02",
+   "e": 3.2712
+  },
+  {
+   "t": "1990-03",
+   "e": 3.2089
+  },
+  {
+   "t": "1990-04",
+   "e": 3.2269
+  },
+  {
+   "t": "1990-05",
+   "e": 3.7934
+  },
+  {
+   "t": "1990-06",
+   "e": 3.7622
+  },
+  {
+   "t": "1990-07",
+   "e": 3.5593
+  },
+  {
+   "t": "1990-08",
+   "e": 3.5836
+  },
+  {
+   "t": "1990-09",
+   "e": 3.6035
+  },
+  {
+   "t": "1990-10",
+   "e": 3.6272
+  },
+  {
+   "t": "1990-11",
+   "e": 3.6486
+  },
+  {
+   "t": "1990-12",
+   "e": 3.8023
+  },
+  {
+   "t": "1991-01",
+   "e": 4.6569
+  },
+  {
+   "t": "1991-02",
+   "e": 5.7009
+  },
+  {
+   "t": "1991-03",
+   "e": 6.1596
+  },
+  {
+   "t": "1991-04",
+   "e": 5.7336
+  },
+  {
+   "t": "1991-05",
+   "e": 6.4619
+  },
+  {
+   "t": "1991-06",
+   "e": 5.8864
+  },
+  {
+   "t": "1991-07",
+   "e": 5.9943
+  },
+  {
+   "t": "1991-08",
+   "e": 6.4308
+  },
+  {
+   "t": "1991-09",
+   "e": 6.4288
+  },
+  {
+   "t": "1991-10",
+   "e": 6.5387
+  },
+  {
+   "t": "1991-11",
+   "e": 6.3652
+  },
+  {
+   "t": "1991-12",
+   "e": 8.0302
+  },
+  {
+   "t": "1992-01",
+   "e": 8.4619
+  },
+  {
+   "t": "1992-02",
+   "e": 8.6446
+  },
+  {
+   "t": "1992-03",
+   "e": 8.0997
+  },
+  {
+   "t": "1992-04",
+   "e": 8.1251
+  },
+  {
+   "t": "1992-05",
+   "e": 8.1485
+  },
+  {
+   "t": "1992-06",
+   "e": 8.1746
+  },
+  {
+   "t": "1992-07",
+   "e": 8.1975
+  },
+  {
+   "t": "1992-08",
+   "e": 8.0036
+  },
+  {
+   "t": "1992-09",
+   "e": 7.8472
+  },
+  {
+   "t": "1992-10",
+   "e": 7.9334
+  },
+  {
+   "t": "1992-11",
+   "e": 9.3885
+  },
+  {
+   "t": "1992-12",
+   "e": 9.2001
+  },
+  {
+   "t": "1993-01",
+   "e": 8.9896
+  },
+  {
+   "t": "1993-02",
+   "e": 7.7696
+  },
+  {
+   "t": "1993-03",
+   "e": 7.9174
+  },
+  {
+   "t": "1993-04",
+   "e": 7.5273
+  },
+  {
+   "t": "1993-05",
+   "e": 7.8741
+  },
+  {
+   "t": "1993-06",
+   "e": 7.8335
+  },
+  {
+   "t": "1993-07",
+   "e": 7.5153
+  },
+  {
+   "t": "1993-08",
+   "e": 7.5072
+  },
+  {
+   "t": "1993-09",
+   "e": 7.7087
+  },
+  {
+   "t": "1993-10",
+   "e": 7.6729
+  },
+  {
+   "t": "1993-11",
+   "e": 7.5887
+  },
+  {
+   "t": "1993-12",
+   "e": 7.2182
+  },
+  {
+   "t": "1994-01",
+   "e": 7.794
+  },
+  {
+   "t": "1994-02",
+   "e": 7.1152
+  },
+  {
+   "t": "1994-03",
+   "e": 6.9014
+  },
+  {
+   "t": "1994-04",
+   "e": 6.9205
+  },
+  {
+   "t": "1994-05",
+   "e": 6.9444
+  },
+  {
+   "t": "1994-06",
+   "e": 6.9695
+  },
+  {
+   "t": "1994-07",
+   "e": 6.9935
+  },
+  {
+   "t": "1994-08",
+   "e": 7.8827
+  },
+  {
+   "t": "1994-09",
+   "e": 7.9862
+  },
+  {
+   "t": "1994-10",
+   "e": 8.3742
+  },
+  {
+   "t": "1994-11",
+   "e": 8.2059
+  },
+  {
+   "t": "1994-12",
+   "e": 7.9464
+  },
+  {
+   "t": "1995-01",
+   "e": 7.9115
+  },
+  {
+   "t": "1995-02",
+   "e": 8.3398
+  },
+  {
+   "t": "1995-03",
+   "e": 8.5773
+  },
+  {
+   "t": "1995-04",
+   "e": 9.0004
+  },
+  {
+   "t": "1995-05",
+   "e": 9.9083
+  },
+  {
+   "t": "1995-06",
+   "e": 11.871
+  },
+  {
+   "t": "1995-07",
+   "e": 12.6516
+  },
+  {
+   "t": "1995-08",
+   "e": 12.0751
+  },
+  {
+   "t": "1995-09",
+   "e": 12.2471
+  },
+  {
+   "t": "1995-10",
+   "e": 12.5317
+  },
+  {
+   "t": "1995-11",
+   "e": 12.0454
+  },
+  {
+   "t": "1995-12",
+   "e": 11.2494
+  },
+  {
+   "t": "1996-01",
+   "e": 11.3348
+  },
+  {
+   "t": "1996-02",
+   "e": 11.7983
+  },
+  {
+   "t": "1996-03",
+   "e": 10.8459
+  },
+  {
+   "t": "1996-04",
+   "e": 11.8443
+  },
+  {
+   "t": "1996-05",
+   "e": 12.9457
+  },
+  {
+   "t": "1996-06",
+   "e": 12.5659
+  },
+  {
+   "t": "1996-07",
+   "e": 11.8056
+  },
+  {
+   "t": "1996-08",
+   "e": 11.7259
+  },
+  {
+   "t": "1996-09",
+   "e": 12.7691
+  },
+  {
+   "t": "1996-10",
+   "e": 13.5405
+  },
+  {
+   "t": "1996-11",
+   "e": 15.5537
+  },
+  {
+   "t": "1996-12",
+   "e": 15.0104
+  },
+  {
+   "t": "1997-01",
+   "e": 16.8385
+  },
+  {
+   "t": "1997-02",
+   "e": 14.7035
+  },
+  {
+   "t": "1997-03",
+   "e": 13.1227
+  },
+  {
+   "t": "1997-04",
+   "e": 13.1817
+  },
+  {
+   "t": "1997-05",
+   "e": 14.8517
+  },
+  {
+   "t": "1997-06",
+   "e": 14.3426
+  },
+  {
+   "t": "1997-07",
+   "e": 19.3143
+  },
+  {
+   "t": "1997-08",
+   "e": 17.5906
+  },
+  {
+   "t": "1997-09",
+   "e": 17.9661
+  },
+  {
+   "t": "1997-10",
+   "e": 17.3185
+  },
+  {
+   "t": "1997-11",
+   "e": 17.2604
+  },
+  {
+   "t": "1997-12",
+   "e": 15.8063
+  },
+  {
+   "t": "1998-01",
+   "e": 15.8696
+  },
+  {
+   "t": "1998-02",
+   "e": 21.5776
+  },
+  {
+   "t": "1998-03",
+   "e": 20.6478
+  },
+  {
+   "t": "1998-04",
+   "e": 20.8352
+  },
+  {
+   "t": "1998-05",
+   "e": 19.8964
+  },
+  {
+   "t": "1998-06",
+   "e": 22.7625
+  },
+  {
+   "t": "1998-07",
+   "e": 23.9898
+  },
+  {
+   "t": "1998-08",
+   "e": 23.0337
+  },
+  {
+   "t": "1998-09",
+   "e": 24.04
+  },
+  {
+   "t": "1998-10",
+   "e": 24.6917
+  },
+  {
+   "t": "1998-11",
+   "e": 30.682
+  },
+  {
+   "t": "1998-12",
+   "e": 41.7903
+  },
+  {
+   "t": "1999-01",
+   "e": 52.5861
+  },
+  {
+   "t": "1999-02",
+   "e": 43.6267
+  },
+  {
+   "t": "1999-03",
+   "e": 47.4616
+  },
+  {
+   "t": "1999-04",
+   "e": 48.5923
+  },
+  {
+   "t": "1999-05",
+   "e": 47.0659
+  },
+  {
+   "t": "1999-06",
+   "e": 52.1258
+  },
+  {
+   "t": "1999-07",
+   "e": 46.2168
+  },
+  {
+   "t": "1999-08",
+   "e": 48.7432
+  },
+  {
+   "t": "1999-09",
+   "e": 45.259
+  },
+  {
+   "t": "1999-10",
+   "e": 49.4419
+  },
+  {
+   "t": "1999-11",
+   "e": 61.1137
+  },
+  {
+   "t": "1999-12",
+   "e": 108.5962
+  },
+  {
+   "t": "2000-01",
+   "e": 90.061
+  },
+  {
+   "t": "2000-02",
+   "e": 108.2526
+  },
+  {
+   "t": "2000-03",
+   "e": 112.8597
+  },
+  {
+   "t": "2000-04",
+   "e": 82.9577
+  },
+  {
+   "t": "2000-05",
+   "e": 80.2752
+  },
+  {
+   "t": "2000-06",
+   "e": 80.1022
+  },
+  {
+   "t": "2000-07",
+   "e": 74.4494
+  },
+  {
+   "t": "2000-08",
+   "e": 74.8636
+  },
+  {
+   "t": "2000-09",
+   "e": 75.2198
+  },
+  {
+   "t": "2000-10",
+   "e": 75.6207
+  },
+  {
+   "t": "2000-11",
+   "e": 76.0095
+  },
+  {
+   "t": "2000-12",
+   "e": 76.3563
+  },
+  {
+   "t": "2001-01",
+   "e": 76.6837
+  },
+  {
+   "t": "2001-02",
+   "e": 76.9657
+  },
+  {
+   "t": "2001-03",
+   "e": 77.2628
+  },
+  {
+   "t": "2001-04",
+   "e": 77.4998
+  },
+  {
+   "t": "2001-05",
+   "e": 77.744
+  },
+  {
+   "t": "2001-06",
+   "e": 77.9691
+  },
+  {
+   "t": "2001-07",
+   "e": 78.1966
+  },
+  {
+   "t": "2001-08",
+   "e": 78.436
+  },
+  {
+   "t": "2001-09",
+   "e": 78.5601
+  },
+  {
+   "t": "2001-10",
+   "e": 78.7146
+  },
+  {
+   "t": "2001-11",
+   "e": 78.7764
+  },
+  {
+   "t": "2001-12",
+   "e": 81.1587
+  },
+  {
+   "t": "2002-01",
+   "e": 80.4859
+  },
+  {
+   "t": "2002-02",
+   "e": 80.5898
+  },
+  {
+   "t": "2002-03",
+   "e": 77.5775
+  },
+  {
+   "t": "2002-04",
+   "e": 77.6929
+  },
+  {
+   "t": "2002-05",
+   "e": 77.8097
+  },
+  {
+   "t": "2002-06",
+   "e": 77.9142
+  },
+  {
+   "t": "2002-07",
+   "e": 78.0282
+  },
+  {
+   "t": "2002-08",
+   "e": 82.33
+  },
+  {
+   "t": "2002-09",
+   "e": 85.8366
+  },
+  {
+   "t": "2002-10",
+   "e": 80.8355
+  },
+  {
+   "t": "2002-11",
+   "e": 91.1877
+  },
+  {
+   "t": "2002-12",
+   "e": 84.6858
+  },
+  {
+   "t": "2003-01",
+   "e": 82.439
+  },
+  {
+   "t": "2003-02",
+   "e": 82.8702
+  },
+  {
+   "t": "2003-03",
+   "e": 81.1066
+  },
+  {
+   "t": "2003-04",
+   "e": 88.1733
+  },
+  {
+   "t": "2003-05",
+   "e": 97.1485
+  },
+  {
+   "t": "2003-06",
+   "e": 94.7577
+  },
+  {
+   "t": "2003-07",
+   "e": 100.6109
+  },
+  {
+   "t": "2003-08",
+   "e": 105.6414
+  },
+  {
+   "t": "2003-09",
+   "e": 109.5317
+  },
+  {
+   "t": "2003-10",
+   "e": 118.8565
+  },
+  {
+   "t": "2003-11",
+   "e": 119.5322
+  },
+  {
+   "t": "2003-12",
+   "e": 123.2291
+  },
+  {
+   "t": "2004-01",
+   "e": 119.8894
+  },
+  {
+   "t": "2004-02",
+   "e": 118.2011
+  },
+  {
+   "t": "2004-03",
+   "e": 113.7787
+  },
+  {
+   "t": "2004-04",
+   "e": 103.5926
+  },
+  {
+   "t": "2004-05",
+   "e": 103.2634
+  },
+  {
+   "t": "2004-06",
+   "e": 106.5614
+  },
+  {
+   "t": "2004-07",
+   "e": 101.1331
+  },
+  {
+   "t": "2004-08",
+   "e": 105.346
+  },
+  {
+   "t": "2004-09",
+   "e": 99.9643
+  },
+  {
+   "t": "2004-10",
+   "e": 101.6085
+  },
+  {
+   "t": "2004-11",
+   "e": 113.4189
+  },
+  {
+   "t": "2004-12",
+   "e": 121.3604
+  },
+  {
+   "t": "2005-01",
+   "e": 113.4338
+  },
+  {
+   "t": "2005-02",
+   "e": 112.5696
+  },
+  {
+   "t": "2005-03",
+   "e": 111.9305
+  },
+  {
+   "t": "2005-04",
+   "e": 116.257
+  },
+  {
+   "t": "2005-05",
+   "e": 121.0089
+  },
+  {
+   "t": "2005-06",
+   "e": 116.6528
+  },
+  {
+   "t": "2005-07",
+   "e": 120.1443
+  },
+  {
+   "t": "2005-08",
+   "e": 115.8429
+  },
+  {
+   "t": "2005-09",
+   "e": 117.2694
+  },
+  {
+   "t": "2005-10",
+   "e": 112.7673
+  },
+  {
+   "t": "2005-11",
+   "e": 116.1275
+  },
+  {
+   "t": "2005-12",
+   "e": 116.3297
+  },
+  {
+   "t": "2006-01",
+   "e": 133.5862
+  },
+  {
+   "t": "2006-02",
+   "e": 132.0537
+  },
+  {
+   "t": "2006-03",
+   "e": 132.52
+  },
+  {
+   "t": "2006-04",
+   "e": 129.145
+  },
+  {
+   "t": "2006-05",
+   "e": 125.4779
+  },
+  {
+   "t": "2006-06",
+   "e": 126.9565
+  },
+  {
+   "t": "2006-07",
+   "e": 129.7028
+  },
+  {
+   "t": "2006-08",
+   "e": 133.6667
+  },
+  {
+   "t": "2006-09",
+   "e": 136.2264
+  },
+  {
+   "t": "2006-10",
+   "e": 137.3798
+  },
+  {
+   "t": "2006-11",
+   "e": 140.5507
+  },
+  {
+   "t": "2006-12",
+   "e": 136.7619
+  },
+  {
+   "t": "2007-01",
+   "e": 135.4009
+  },
+  {
+   "t": "2007-02",
+   "e": 139.9897
+  },
+  {
+   "t": "2007-03",
+   "e": 137.6094
+  },
+  {
+   "t": "2007-04",
+   "e": 138.8548
+  },
+  {
+   "t": "2007-05",
+   "e": 138.4686
+  },
+  {
+   "t": "2007-06",
+   "e": 139.1322
+  },
+  {
+   "t": "2007-07",
+   "e": 133.1324
+  },
+  {
+   "t": "2007-08",
+   "e": 132.9642
+  },
+  {
+   "t": "2007-09",
+   "e": 146.1425
+  },
+  {
+   "t": "2007-10",
+   "e": 160.2219
+  },
+  {
+   "t": "2007-11",
+   "e": 146.7583
+  },
+  {
+   "t": "2007-12",
+   "e": 146.5649
+  },
+  {
+   "t": "2008-01",
+   "e": 139.4699
+  },
+  {
+   "t": "2008-02",
+   "e": 138.8349
+  },
+  {
+   "t": "2008-03",
+   "e": 141.8044
+  },
+  {
+   "t": "2008-04",
+   "e": 140.4865
+  },
+  {
+   "t": "2008-05",
+   "e": 156.2028
+  },
+  {
+   "t": "2008-06",
+   "e": 152.3005
+  },
+  {
+   "t": "2008-07",
+   "e": 151.741
+  },
+  {
+   "t": "2008-08",
+   "e": 144.4953
+  },
+  {
+   "t": "2008-09",
+   "e": 146.5408
+  },
+  {
+   "t": "2008-10",
+   "e": 143.8142
+  },
+  {
+   "t": "2008-11",
+   "e": 164.439
+  },
+  {
+   "t": "2008-12",
+   "e": 186.8888
+  },
+  {
+   "t": "2009-01",
+   "e": 162.461
+  },
+  {
+   "t": "2009-02",
+   "e": 159.9723
+  },
+  {
+   "t": "2009-03",
+   "e": 161.8655
+  },
+  {
+   "t": "2009-04",
+   "e": 187.265
+  },
+  {
+   "t": "2009-05",
+   "e": 193.2741
+  },
+  {
+   "t": "2009-06",
+   "e": 193.8749
+  },
+  {
+   "t": "2009-07",
+   "e": 209.5533
+  },
+  {
+   "t": "2009-08",
+   "e": 219.9495
+  },
+  {
+   "t": "2009-09",
+   "e": 223.4854
+  },
+  {
+   "t": "2009-10",
+   "e": 216.6618
+  },
+  {
+   "t": "2009-11",
+   "e": 230.4147
+  },
+  {
+   "t": "2009-12",
+   "e": 242.4027
+  },
+  {
+   "t": "2010-01",
+   "e": 219.4578
+  },
+  {
+   "t": "2010-02",
+   "e": 219.8289
+  },
+  {
+   "t": "2010-03",
+   "e": 254.9678
+  },
+  {
+   "t": "2010-04",
+   "e": 270.5076
+  },
+  {
+   "t": "2010-05",
+   "e": 231.4146
+  },
+  {
+   "t": "2010-06",
+   "e": 232.7596
+  },
+  {
+   "t": "2010-07",
+   "e": 227.5727
+  },
+  {
+   "t": "2010-08",
+   "e": 244.8065
+  },
+  {
+   "t": "2010-09",
+   "e": 260.8668
+  },
+  {
+   "t": "2010-10",
+   "e": 304.9657
+  },
+  {
+   "t": "2010-11",
+   "e": 306.6501
+  },
+  {
+   "t": "2010-12",
+   "e": 320.6616
+  },
+  {
+   "t": "2011-01",
+   "e": 326.4921
+  },
+  {
+   "t": "2011-02",
+   "e": 322.3848
+  },
+  {
+   "t": "2011-03",
+   "e": 302.8357
+  },
+  {
+   "t": "2011-04",
+   "e": 338.7946
+  },
+  {
+   "t": "2011-05",
+   "e": 334.4647
+  },
+  {
+   "t": "2011-06",
+   "e": 315.2782
+  },
+  {
+   "t": "2011-07",
+   "e": 302.3346
+  },
+  {
+   "t": "2011-08",
+   "e": 293.1666
+  },
+  {
+   "t": "2011-09",
+   "e": 275.5973
+  },
+  {
+   "t": "2011-10",
+   "e": 252.7395
+  },
+  {
+   "t": "2011-11",
+   "e": 236.5845
+  },
+  {
+   "t": "2011-12",
+   "e": 223.0764
+  },
+  {
+   "t": "2012-01",
+   "e": 261.1563
+  },
+  {
+   "t": "2012-02",
+   "e": 313.7511
+  },
+  {
+   "t": "2012-03",
+   "e": 344.709
+  },
+  {
+   "t": "2012-04",
+   "e": 325.5683
+  },
+  {
+   "t": "2012-05",
+   "e": 304.4869
+  },
+  {
+   "t": "2012-06",
+   "e": 307.6775
+  },
+  {
+   "t": "2012-07",
+   "e": 310.7467
+  },
+  {
+   "t": "2012-08",
+   "e": 339.112
+  },
+  {
+   "t": "2012-09",
+   "e": 344.0094
+  },
+  {
+   "t": "2012-10",
+   "e": 321.7113
+  },
+  {
+   "t": "2012-11",
+   "e": 325.4406
+  },
+  {
+   "t": "2012-12",
+   "e": 317.3446
+  },
+  {
+   "t": "2013-01",
+   "e": 310.9945
+  },
+  {
+   "t": "2013-02",
+   "e": 312.0643
+  },
+  {
+   "t": "2013-03",
+   "e": 321.5036
+  },
+  {
+   "t": "2013-04",
+   "e": 329.6612
+  },
+  {
+   "t": "2013-05",
+   "e": 339.4989
+  },
+  {
+   "t": "2013-06",
+   "e": 331.1685
+  },
+  {
+   "t": "2013-07",
+   "e": 362.2885
+  },
+  {
+   "t": "2013-08",
+   "e": 367.1882
+  },
+  {
+   "t": "2013-09",
+   "e": 394.7648
+  },
+  {
+   "t": "2013-10",
+   "e": 415.2308
+  },
+  {
+   "t": "2013-11",
+   "e": 440.3924
+  },
+  {
+   "t": "2013-12",
+   "e": 458.4892
+  },
+  {
+   "t": "2014-01",
+   "e": 435.8895
+  },
+  {
+   "t": "2014-02",
+   "e": 458.3487
+  },
+  {
+   "t": "2014-03",
+   "e": 428.9069
+  },
+  {
+   "t": "2014-04",
+   "e": 432.574
+  },
+  {
+   "t": "2014-05",
+   "e": 472.9183
+  },
+  {
+   "t": "2014-06",
+   "e": 517.6457
+  },
+  {
+   "t": "2014-07",
+   "e": 553.1204
+  },
+  {
+   "t": "2014-08",
+   "e": 580.8286
+  },
+  {
+   "t": "2014-09",
+   "e": 578.9602
+  },
+  {
+   "t": "2014-10",
+   "e": 566.8259
+  },
+  {
+   "t": "2014-11",
+   "e": 645.1773
+  },
+  {
+   "t": "2014-12",
+   "e": 588.8358
+  },
+  {
+   "t": "2015-01",
+   "e": 576.5743
+  },
+  {
+   "t": "2015-02",
+   "e": 634.3937
+  },
+  {
+   "t": "2015-03",
+   "e": 582.6153
+  },
+  {
+   "t": "2015-04",
+   "e": 562.4494
+  },
+  {
+   "t": "2015-05",
+   "e": 590.2095
+  },
+  {
+   "t": "2015-06",
+   "e": 575.5481
+  },
+  {
+   "t": "2015-07",
+   "e": 601.7803
+  },
+  {
+   "t": "2015-08",
+   "e": 528.4407
+  },
+  {
+   "t": "2015-09",
+   "e": 538.8342
+  },
+  {
+   "t": "2015-10",
+   "e": 573.6102
+  },
+  {
+   "t": "2015-11",
+   "e": 540.3777
+  },
+  {
+   "t": "2015-12",
+   "e": 511.6461
+  },
+  {
+   "t": "2016-01",
+   "e": 540.1604
+  },
+  {
+   "t": "2016-02",
+   "e": 556.8297
+  },
+  {
+   "t": "2016-03",
+   "e": 588.2749
+  },
+  {
+   "t": "2016-04",
+   "e": 582.9015
+  },
+  {
+   "t": "2016-05",
+   "e": 586.6073
+  },
+  {
+   "t": "2016-06",
+   "e": 568.6377
+  },
+  {
+   "t": "2016-07",
+   "e": 614.3024
+  },
+  {
+   "t": "2016-08",
+   "e": 635.7362
+  },
+  {
+   "t": "2016-09",
+   "e": 685.4709
+  },
+  {
+   "t": "2016-10",
+   "e": 658.1634
+  },
+  {
+   "t": "2016-11",
+   "e": 600.2636
+  },
+  {
+   "t": "2016-12",
+   "e": 576.7412
+  },
+  {
+   "t": "2017-01",
+   "e": 606.1648
+  },
+  {
+   "t": "2017-02",
+   "e": 687.3271
+  },
+  {
+   "t": "2017-03",
+   "e": 706.7886
+  },
+  {
+   "t": "2017-04",
+   "e": 726.0628
+  },
+  {
+   "t": "2017-05",
+   "e": 808.6069
+  },
+  {
+   "t": "2017-06",
+   "e": 774.5735
+  },
+  {
+   "t": "2017-07",
+   "e": 798.4405
+  },
+  {
+   "t": "2017-08",
+   "e": 798.8105
+  },
+  {
+   "t": "2017-09",
+   "e": 780.7815
+  },
+  {
+   "t": "2017-10",
+   "e": 858.382
+  },
+  {
+   "t": "2017-11",
+   "e": 905.611
+  },
+  {
+   "t": "2017-12",
+   "e": 902.2044
+  },
+  {
+   "t": "2018-01",
+   "e": 1067.4878
+  },
+  {
+   "t": "2018-02",
+   "e": 992.0351
+  },
+  {
+   "t": "2018-03",
+   "e": 930.9716
+  },
+  {
+   "t": "2018-04",
+   "e": 922.2927
+  },
+  {
+   "t": "2018-05",
+   "e": 977.9661
+  },
+  {
+   "t": "2018-06",
+   "e": 970.6837
+  },
+  {
+   "t": "2018-07",
+   "e": 997.2333
+  },
+  {
+   "t": "2018-08",
+   "e": 1054.8803
+  },
+  {
+   "t": "2018-09",
+   "e": 989.4783
+  },
+  {
+   "t": "2018-10",
+   "e": 920.6204
+  },
+  {
+   "t": "2018-11",
+   "e": 937.0736
+  },
+  {
+   "t": "2018-12",
+   "e": 991.9253
+  },
+  {
+   "t": "2019-01",
+   "e": 995.6803
+  },
+  {
+   "t": "2019-02",
+   "e": 1036.0661
+  },
+  {
+   "t": "2019-03",
+   "e": 1052.5799
+  },
+  {
+   "t": "2019-04",
+   "e": 1164.0081
+  },
+  {
+   "t": "2019-05",
+   "e": 1068.5795
+  },
+  {
+   "t": "2019-06",
+   "e": 1040.274
+  },
+  {
+   "t": "2019-07",
+   "e": 936.704
+  },
+  {
+   "t": "2019-08",
+   "e": 950.2711
+  },
+  {
+   "t": "2019-09",
+   "e": 880.8319
+  },
+  {
+   "t": "2019-10",
+   "e": 892.613
+  },
+  {
+   "t": "2019-11",
+   "e": 983.2892
+  },
+  {
+   "t": "2019-12",
+   "e": 1026.3737
+  },
+  {
+   "t": "2020-01",
+   "e": 1110.4522
+  },
+  {
+   "t": "2020-02",
+   "e": 1175.9653
+  },
+  {
+   "t": "2020-03",
+   "e": 1250.9533
+  },
+  {
+   "t": "2020-04",
+   "e": 1306.4065
+  },
+  {
+   "t": "2020-05",
+   "e": 1427.3263
+  },
+  {
+   "t": "2020-06",
+   "e": 1402.957
+  },
+  {
+   "t": "2020-07",
+   "e": 1448.8241
+  },
+  {
+   "t": "2020-08",
+   "e": 1753.3232
+  },
+  {
+   "t": "2020-09",
+   "e": 1506.9454
+  },
+  {
+   "t": "2020-10",
+   "e": 1461.0603
+  },
+  {
+   "t": "2020-11",
+   "e": 1628.6214
+  },
+  {
+   "t": "2020-12",
+   "e": 1912.6622
+  },
+  {
+   "t": "2021-01",
+   "e": 1881.0985
+  },
+  {
+   "t": "2021-02",
+   "e": 1815.4508
+  },
+  {
+   "t": "2021-03",
+   "e": 1846.6177
+  },
+  {
+   "t": "2021-04",
+   "e": 1904.3817
+  },
+  {
+   "t": "2021-05",
+   "e": 1880.3709
+  },
+  {
+   "t": "2021-06",
+   "e": 2153.9143
+  },
+  {
+   "t": "2021-07",
+   "e": 2333.9635
+  },
+  {
+   "t": "2021-08",
+   "e": 2477.3033
+  },
+  {
+   "t": "2021-09",
+   "e": 2293.8515
+  },
+  {
+   "t": "2021-10",
+   "e": 2476.8931
+  },
+  {
+   "t": "2021-11",
+   "e": 2581.7091
+  },
+  {
+   "t": "2021-12",
+   "e": 2611.459
+  },
+  {
+   "t": "2022-01",
+   "e": 2494.159
+  },
+  {
+   "t": "2022-02",
+   "e": 2453.4293
+  },
+  {
+   "t": "2022-03",
+   "e": 2319.8546
+  },
+  {
+   "t": "2022-04",
+   "e": 2142.5614
+  },
+  {
+   "t": "2022-05",
+   "e": 2094.2828
+  },
+  {
+   "t": "2022-06",
+   "e": 2067.5903
+  },
+  {
+   "t": "2022-07",
+   "e": 2117.853
+  },
+  {
+   "t": "2022-08",
+   "e": 2086.6113
+  },
+  {
+   "t": "2022-09",
+   "e": 1914.7765
+  },
+  {
+   "t": "2022-10",
+   "e": 1800.5713
+  },
+  {
+   "t": "2022-11",
+   "e": 1929.3308
+  },
+  {
+   "t": "2022-12",
+   "e": 1878.782
+  },
+  {
+   "t": "2023-01",
+   "e": 2022.3889
+  },
+  {
+   "t": "2023-02",
+   "e": 1924.2916
+  },
+  {
+   "t": "2023-03",
+   "e": 2017.4152
+  },
+  {
+   "t": "2023-04",
+   "e": 2024.2416
+  },
+  {
+   "t": "2023-05",
+   "e": 1963.2043
+  },
+  {
+   "t": "2023-06",
+   "e": 1967.4665
+  },
+  {
+   "t": "2023-07",
+   "e": 1917.4093
+  },
+  {
+   "t": "2023-08",
+   "e": 1857.1625
+  },
+  {
+   "t": "2023-09",
+   "e": 1709.4974
+  },
+  {
+   "t": "2023-10",
+   "e": 1616.1044
+  },
+  {
+   "t": "2023-11",
+   "e": 1776.484
+  },
+  {
+   "t": "2023-12",
+   "e": 1930.7854
+  },
+  {
+   "t": "2024-01",
+   "e": 1887.4368
+  },
+  {
+   "t": "2024-02",
+   "e": 1844.9277
+  },
+  {
+   "t": "2024-03",
+   "e": 1859.3711
+  },
+  {
+   "t": "2024-04",
+   "e": 1739.3404
+  },
+  {
+   "t": "2024-05",
+   "e": 1789.5545
+  },
+  {
+   "t": "2024-06",
+   "e": 1822.0734
+  },
+  {
+   "t": "2024-07",
+   "e": 1888.2134
+  },
+  {
+   "t": "2024-08",
+   "e": 1928.0779
+  },
+  {
+   "t": "2024-09",
+   "e": 1966.6292
+  },
+  {
+   "t": "2024-10",
+   "e": 1859.3514
+  },
+  {
+   "t": "2024-11",
+   "e": 1922.6136
+  },
+  {
+   "t": "2024-12",
+   "e": 1785.3459
+  },
+  {
+   "t": "2025-01",
+   "e": 1823.9702
+  },
+  {
+   "t": "2025-02",
+   "e": 1774.6598
+  },
+  {
+   "t": "2025-03",
+   "e": 1752.2334
+  },
+  {
+   "t": "2025-04",
+   "e": 1728.3947
+  },
+  {
+   "t": "2025-05",
+   "e": 2013.3351
+  },
+  {
+   "t": "2025-06",
+   "e": 2220.8754
+  },
+  {
+   "t": "2025-07",
+   "e": 2360.2824
+  },
+  {
+   "t": "2025-08",
+   "e": 2296.8821
+  },
+  {
+   "t": "2025-09",
+   "e": 2424.1857
+  },
+  {
+   "t": "2025-10",
+   "e": 2427.1149
+  },
+  {
+   "t": "2025-11",
+   "e": 2389.2269
+  },
+  {
+   "t": "2025-12",
+   "e": 2423.4784
+  },
+  {
+   "t": "2026-01",
+   "e": 2455.3593
+  },
+  {
+   "t": "2026-02",
+   "e": 2359.6164
+  },
+  {
+   "t": "2026-03",
+   "e": 2282.3341
+  },
+  {
+   "t": "2026-04",
+   "e": 2629.4443
+  },
+  {
+   "t": "2026-05",
+   "e": 3499.3045
+  },
+  {
+   "t": "2026-06",
+   "e": 3158.9669
+  },
+  {
+   "t": "2026-07",
+   "e": 2968.3307
+  }
+ ],
+ "wf": [
+  {
+   "split": "early->late",
+   "pick": "vol20 chop<0.3->50% +bond",
+   "train": {
+    "cagr": 0.2623936450048723,
+    "maxdd": -0.33871432290749137,
+    "sharpe": 0.8790903138739525,
+    "calmar": 0.7746753746712283
+   },
+   "test": {
+    "cagr": 0.23504592722180906,
+    "maxdd": -0.444240595215072,
+    "sharpe": 0.8692561290187103,
+    "calmar": 0.529096011831191
+   },
+   "oracle": "vol20 chop<0.25->35%",
+   "oracle_calmar": 0.678827373299614,
+   "base": {
+    "A champion": {
+     "cagr": 0.30435193746434397,
+     "maxdd": -0.5924848132465405,
+     "sharpe": 0.8419040796287038,
+     "calmar": 0.5136873227123533
+    },
+    "B old hybrid": {
+     "cagr": 0.17070729712931976,
+     "maxdd": -0.43369054982536515,
+     "sharpe": 0.7502041940273693,
+     "calmar": 0.39361544123582753
+    }
+   }
+  },
+  {
+   "split": "late->early",
+   "pick": "vol20 chop<0.25->35%",
+   "train": {
+    "cagr": 0.22706030388245813,
+    "maxdd": -0.33448902152954363,
+    "sharpe": 0.892469758757268,
+    "calmar": 0.678827373299614
+   },
+   "test": {
+    "cagr": 0.2551019120054461,
+    "maxdd": -0.4072648616018908,
+    "sharpe": 0.8718668966145754,
+    "calmar": 0.6263783990645702
+   },
+   "oracle": "vol20 chop<0.3->50% +bond",
+   "oracle_calmar": 0.7746753746712283,
+   "base": {
+    "A champion": {
+     "cagr": 0.32896341922207917,
+     "maxdd": -0.6727768518346078,
+     "sharpe": 0.8244702171426727,
+     "calmar": 0.4889636412504721
+    },
+    "B old hybrid": {
+     "cagr": 0.2648566893661195,
+     "maxdd": -0.39413043234403766,
+     "sharpe": 0.8810549003238219,
+     "calmar": 0.6720026357541589
+    }
+   }
+  }
+ ],
+ "stability": [
+  {
+   "thr": 0.15,
+   "pos": 0.35,
+   "calmar": 0.5310253933198134,
+   "cagr": 0.2256124650430229,
+   "maxdd": -0.42486191410275254
+  },
+  {
+   "thr": 0.15,
+   "pos": 0.5,
+   "calmar": 0.5742551455887394,
+   "cagr": 0.24569347427983734,
+   "maxdd": -0.4278472316133046
+  },
+  {
+   "thr": 0.15,
+   "pos": 0.65,
+   "calmar": 0.5649234882116881,
+   "cagr": 0.2640818242374494,
+   "maxdd": -0.4674647624821233
+  },
+  {
+   "thr": 0.15,
+   "pos": 0.8,
+   "calmar": 0.54235340943391,
+   "cagr": 0.280681766397362,
+   "maxdd": -0.5175255866655804
+  },
+  {
+   "thr": 0.15,
+   "pos": 1.0,
+   "calmar": 0.5141913169602429,
+   "cagr": 0.29973560510241826,
+   "maxdd": -0.5829262284598122
+  },
+  {
+   "thr": 0.2,
+   "pos": 0.35,
+   "calmar": 0.5995402333240665,
+   "cagr": 0.24094217173410581,
+   "maxdd": -0.40187823659178945
+  },
+  {
+   "thr": 0.2,
+   "pos": 0.5,
+   "calmar": 0.6132493199928954,
+   "cagr": 0.25861184016567407,
+   "maxdd": -0.4217075041659567
+  },
+  {
+   "thr": 0.2,
+   "pos": 0.65,
+   "calmar": 0.588538882222939,
+   "cagr": 0.27391370347894184,
+   "maxdd": -0.4654130963180494
+  },
+  {
+   "thr": 0.2,
+   "pos": 0.8,
+   "calmar": 0.565918419561349,
+   "cagr": 0.286741494741404,
+   "maxdd": -0.5066834455815401
+  },
+  {
+   "thr": 0.2,
+   "pos": 1.0,
+   "calmar": 0.5141913169602429,
+   "cagr": 0.29973560510241826,
+   "maxdd": -0.5829262284598122
+  },
+  {
+   "thr": 0.25,
+   "pos": 0.35,
+   "calmar": 0.5913196495880901,
+   "cagr": 0.2408237152519721,
+   "maxdd": -0.4072648616018908
+  },
+  {
+   "thr": 0.25,
+   "pos": 0.5,
+   "calmar": 0.6659234302292221,
+   "cagr": 0.2594324349350401,
+   "maxdd": -0.3895829808026714
+  },
+  {
+   "thr": 0.25,
+   "pos": 0.65,
+   "calmar": 0.6260361104756901,
+   "cagr": 0.27514513014076303,
+   "maxdd": -0.4395036093552104
+  },
+  {
+   "thr": 0.25,
+   "pos": 0.8,
+   "calmar": 0.5808326778995705,
+   "cagr": 0.2878284351700857,
+   "maxdd": -0.4955444934863892
+  },
+  {
+   "thr": 0.25,
+   "pos": 1.0,
+   "calmar": 0.5141913169602429,
+   "cagr": 0.29973560510241826,
+   "maxdd": -0.5829262284598122
+  },
+  {
+   "thr": 0.3,
+   "pos": 0.35,
+   "calmar": 0.6478729725174664,
+   "cagr": 0.2207196431927574,
+   "maxdd": -0.3406835175344606
+  },
+  {
+   "thr": 0.3,
+   "pos": 0.5,
+   "calmar": 0.6575019513188417,
+   "cagr": 0.24429597264630476,
+   "maxdd": -0.3715517074227489
+  },
+  {
+   "thr": 0.3,
+   "pos": 0.65,
+   "calmar": 0.6116099691771013,
+   "cagr": 0.2648124373550518,
+   "maxdd": -0.4329759989219063
+  },
+  {
+   "thr": 0.3,
+   "pos": 0.8,
+   "calmar": 0.5721426070984301,
+   "cagr": 0.2820864361802289,
+   "maxdd": -0.4930351850752821
+  },
+  {
+   "thr": 0.3,
+   "pos": 1.0,
+   "calmar": 0.5141913169602429,
+   "cagr": 0.29973560510241826,
+   "maxdd": -0.5829262284598122
+  },
+  {
+   "thr": 0.35,
+   "pos": 0.35,
+   "calmar": 0.5983985699348345,
+   "cagr": 0.1976062208818723,
+   "maxdd": -0.3302250887788578
+  },
+  {
+   "thr": 0.35,
+   "pos": 0.5,
+   "calmar": 0.5989312133465269,
+   "cagr": 0.22668820412721002,
+   "maxdd": -0.3784878781998857
+  },
+  {
+   "thr": 0.35,
+   "pos": 0.65,
+   "calmar": 0.5779209915727915,
+   "cagr": 0.25265135751561907,
+   "maxdd": -0.43717283365678994
+  },
+  {
+   "thr": 0.35,
+   "pos": 0.8,
+   "calmar": 0.5582835655553,
+   "cagr": 0.27525344106804583,
+   "maxdd": -0.4930351850752823
+  },
+  {
+   "thr": 0.35,
+   "pos": 1.0,
+   "calmar": 0.5141913169602429,
+   "cagr": 0.29973560510241826,
+   "maxdd": -0.5829262284598122
+  }
+ ]
+};
+const SVGTAGS=['svg','g','rect','line','text','path','circle'];
+const el=(t,a={},...c)=>{const n=SVGTAGS.includes(t)?document.createElementNS('http://www.w3.org/2000/svg',t):document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const $=s=>document.querySelector(s);
+const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const pc=(x,d=1)=>(x==null||isNaN(x))?'—':(x*100).toFixed(d)+'%';
+const pc0=x=>(x==null||isNaN(x))?'—':Math.round(x*100)+'%';
+const money=v=>'$'+Math.round(v).toLocaleString();
+
+const best=D.best;
+const KPI=[
+ {v:'8.0%/yr',l:'Cost of the old chop rule',s:'80% of the A→B gap'},
+ {v:'+4.3%/yr',l:'Recovered by B-v2',s:'and a shallower drawdown'},
+ {v:'0.67 → ~0.58',l:'Calmar, in-sample → honest',s:'after ~0.15 selection cost'},
+ {v:'0 of 3',l:'"More aggressive" ideas that worked',s:'boost/credit/raw-curve all failed'},
+];
+$('#kpis').append(...KPI.map(k=>{const d=el('div',{class:'kpi'});d.innerHTML=`<div class="v acc">${k.v}</div><div class="l">${k.l}</div><div class="s">${k.s}</div>`;return d;}));
+$('#epchop').textContent = D.ep_chop.good+' of '+D.ep_chop.n+' ('+Math.round(D.ep_chop.good/D.ep_chop.n*100)+'%)';
+
+function attrib(){
+ const tb=$('#attrib tbody');tb.innerHTML='';
+ D.attrib.forEach(r=>{const tr=el('tr',r.state.startsWith('CHOP')?{class:'bench'}:{});
+  tr.innerHTML=`<td>${r.state}</td><td>${r.days.toLocaleString()}</td><td>${Math.round(r.pct*100)}%</td>
+   <td class="${r.ann<0?'neg':'pos'}"><b>${pc(r.ann)}</b></td>`;tb.append(tr);});
+}
+
+function erChart(){
+ const host=$('#erChart');host.innerHTML='';const rows=D.er_table;
+ const W=host.clientWidth||900,H=200,padL=44,padR=14,padT=14,padB=44,gw=(W-padL-padR)/rows.length;
+ const mx=Math.max(...rows.map(r=>Math.max(r.tqqq_fwd,r.qqq_fwd)))*1.15;
+ const Y=v=>padT+(1-v/mx)*(H-padT-padB);
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ svg.append(el('line',{x1:padL,y1:Y(0),x2:W-padR,y2:Y(0),stroke:cvar('--grid')}));
+ rows.forEach((r,i)=>{const cx=padL+i*gw+gw/2,bw=Math.min(30,gw/2.8);
+  [[r.tqqq_fwd,cvar('--gold'),-1],[r.qqq_fwd,cvar('--violet'),1]].forEach(([v,col,side])=>{
+   const x=cx+(side<0?-bw-1:1),y=Y(v);
+   svg.append(el('rect',{x,y,width:bw,height:Math.max(H-padB-y,1),rx:3,fill:col,opacity:.9}));
+   svg.append(el('text',{x:x+bw/2,y:y-4,'text-anchor':'middle',fill:col,style:'font-size:9.5px','font-family':'var(--mono)'},v.toFixed(1)+'%'));});
+  const choppy=i<3;
+  svg.append(el('text',{x:cx,y:H-padB+15,'text-anchor':'middle',fill:choppy?cvar('--loss'):cvar('--text'),style:'font-size:10px','font-family':'var(--mono)'},r.er_bucket));
+  svg.append(el('text',{x:cx,y:H-padB+28,'text-anchor':'middle',fill:cvar('--faint'),style:'font-size:9px','font-family':'var(--mono)'},choppy?'"choppy"':'"clean"'));});
+ svg.append(el('rect',{x:padL,y:H-14,width:9,height:9,fill:cvar('--gold')}));
+ svg.append(el('text',{x:padL+13,y:H-6,fill:cvar('--muted'),style:'font-size:10px','font-family':'var(--mono)'},'TQQQ fwd 20d'));
+ svg.append(el('rect',{x:padL+110,y:H-14,width:9,height:9,fill:cvar('--violet')}));
+ svg.append(el('text',{x:padL+123,y:H-6,fill:cvar('--muted'),style:'font-size:10px','font-family':'var(--mono)'},'QQQ fwd 20d — TQQQ wins in every bucket'));
+ host.append(svg);
+}
+
+function frontier(){
+ const tb=$('#frontier tbody');tb.innerHTML='';
+ const rows=[...D.frontier].sort((a,b)=>b.edge_vs_dial-a.edge_vs_dial);
+ const show=rows.filter(r=>Math.abs(r.edge_vs_dial)>0.001||r.group==='incumbent'||r.name.includes('dial')).slice(0,16);
+ show.forEach(r=>{
+  const cls=r.edge_vs_dial>0.02?'win':(r.group==='incumbent'?'bench':'');
+  const tr=el('tr',cls?{class:cls}:{});
+  tr.innerHTML=`<td>${r.name}</td><td>${pc(r.cagr)}</td><td class="neg">${pc0(r.maxdd)}</td>
+   <td>${r.calmar.toFixed(2)}</td><td>${pc(r.cagr0009)}</td>
+   <td class="${r.edge_vs_dial>0?'pos':'neg'}"><b>${(r.edge_vs_dial>0?'+':'')+(r.edge_vs_dial*100).toFixed(1)}%</b></td>`;tb.append(tr);});
+}
+
+function wf(){
+ const tb=$('#wf tbody');tb.innerHTML='';
+ D.wf.forEach(w=>{const tr=el('tr');
+  const a=w.base['A champion'].calmar,b=w.base['B old hybrid'].calmar,t=w.test.calmar;
+  tr.innerHTML=`<td>${w.split}</td><td class="mono" style="font-size:11.5px">${w.pick}</td>
+   <td>${w.train.calmar.toFixed(2)}</td><td class="acc"><b>${t.toFixed(2)}</b></td>
+   <td class="${t>a?'pos':'neg'}">${t>a?'beat':'lost'} (${a.toFixed(2)})</td>
+   <td class="${t>b?'pos':'neg'}">${t>b?'beat':'lost'} (${b.toFixed(2)})</td>`;tb.append(tr);});
+}
+
+function heat(){
+ const host=$('#heat');host.innerHTML='';
+ const thrs=[...new Set(D.stability.map(s=>s.thr))].sort((a,b)=>a-b);
+ const poss=[...new Set(D.stability.map(s=>s.pos))].sort((a,b)=>a-b);
+ const vals=D.stability.map(s=>s.calmar);const lo=Math.min(...vals),hi=Math.max(...vals);
+ const t=el('table',{class:'heat'});
+ const hr=el('tr');hr.append(el('th',{},'chop thr \\ position'));
+ poss.forEach(p=>hr.append(el('th',{},p===1?'100% (no filter)':Math.round(p*100)+'%')));t.append(hr);
+ thrs.forEach(th=>{const tr=el('tr');tr.append(el('th',{},'< '+th));
+  poss.forEach(p=>{const s=D.stability.find(x=>x.thr===th&&x.pos===p);
+   const f=(s.calmar-lo)/(hi-lo||1);
+   const td=el('td',{style:`background:color-mix(in srgb, var(--gain) ${Math.round(f*55)}%, var(--panel2)); color:${f>0.6?'var(--text)':'var(--muted)'}`},s.calmar.toFixed(2));
+   tr.append(td);});t.append(tr);});
+ host.append(t);
+ const cap=el('div',{style:'font-family:var(--mono);font-size:10.5px;color:var(--faint);margin-top:8px'},
+   'Calmar across the parameter grid — broad green plateau = robust, not a lucky cell.');
+ host.append(cap);
+}
+
+function compare(){
+ const tb=$('#compare tbody');tb.innerHTML='';
+ const eras=['1985-99','2000-09','2010-19','2020-26'];
+ const defs=[['B-v2 tuned',D.sub_best,best.cagr,best.maxdd,best.calmar,'win'],
+             ['A champion (growth)',D.sub_A,D.A.cagr,D.A.maxdd,D.A.calmar,'bench'],
+             ['B old hybrid',D.sub_B,D.B.cagr,D.B.maxdd,D.B.calmar,'']];
+ defs.forEach(([nm,sub,cagr,dd,cal,cls])=>{const tr=el('tr',cls?{class:cls}:{});
+  tr.innerHTML=`<td>${nm}</td><td>${pc(cagr)}</td><td class="neg">${pc0(dd)}</td><td class="acc">${cal.toFixed(2)}</td>`+
+   eras.map(e=>`<td class="${sub[e].cagr>=0?'':'neg'}">${pc(sub[e].cagr,0)}</td>`).join('');tb.append(tr);});
+}
+
+function proj(){
+ const host=$('#proj');host.innerHTML='';
+ Object.entries(D.proj).forEach(([hn,p])=>{const d=el('div',{class:'proj'});
+  d.innerHTML=`<div class="h">after ${hn}</div><div class="v">${money(p.typ)}</div><div class="r">${money(p.lo)} – ${money(p.hi)}</div>`;host.append(d);});
+}
+
+function eqChart(){
+ const host=$('#eqChart');host.innerHTML='';
+ const ser=[['eq_B',cvar('--violet'),1.5],['eq_A',cvar('--gold'),1.7],['eq_best',cvar('--gain'),2.2]];
+ const all=ser.flatMap(s=>D[s[0]].map(p=>+p.e)).filter(v=>v>0);
+ const lo=Math.log10(Math.min(...all)*0.9),hi=Math.log10(Math.max(...all)*1.2);
+ const n=D.eq_best.length,W=host.clientWidth||1000,H=300,padL=48,padR=14,padT=12,padB=24;
+ const X=i=>padL+i/(n-1)*(W-padL-padR),Y=v=>padT+(hi-Math.log10(Math.max(v,0.02)))/(hi-lo)*(H-padT-padB);
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ [1,10,100,1000,10000].forEach(v=>{const l=Math.log10(v);if(l>=lo&&l<=hi){const y=Y(v);
+  svg.append(el('line',{x1:padL,y1:y,x2:W-padR,y2:y,stroke:cvar('--grid')}));
+  svg.append(el('text',{x:padL-8,y:y+3,'text-anchor':'end',fill:cvar('--faint'),style:'font-size:10px','font-family':'var(--mono)'},v+'×'));}});
+ D.eq_best.forEach((p,i)=>{if((p.t.slice(0,4)%10===0&&p.t.endsWith('-12'))||i===0||i===n-1){
+  svg.append(el('text',{x:X(i),y:H-6,'text-anchor':'middle',fill:cvar('--faint'),style:'font-size:10px','font-family':'var(--mono)'},p.t.slice(0,4)));}});
+ ser.forEach(([k,col,w])=>{let d='';D[k].forEach((p,i)=>{d+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(+p.e).toFixed(1)+' ';});
+  svg.append(el('path',{d,fill:'none',stroke:col,'stroke-width':w,'stroke-linejoin':'round'}));
+  svg.append(el('circle',{cx:X(D[k].length-1),cy:Y(+D[k][D[k].length-1].e),r:3,fill:col}));});
+ host.append(svg);
+}
+
+function renderAll(){attrib();erChart();frontier();wf();heat();compare();proj();eqChart();}
+const btn=$('#themeBtn');
+function curDark(){const a=document.documentElement.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',curDark()?'light':'dark');requestAnimationFrame(renderAll);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>requestAnimationFrame(renderAll));
+new ResizeObserver(()=>renderAll()).observe(document.body);
+renderAll();
+</script>

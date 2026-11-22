@@ -1,0 +1,16 @@
+{
+ "start": "2016-01-04",
+ "end": "2026-07-24",
+ "sessions": 2654,
+ "start_nav": 10000.0,
+ "end_nav": 80999.18,
+ "total_return": 7.099917999999999,
+ "cagr": 0.2192653220773899,
+ "max_drawdown": -0.24268612371688003,
+ "decisions": 552,
+ "fills": 455,
+ "shadow_tranche_return": 5.526103183563262,
+ "tier": "F2",
+ "route": "US",
+ "cost_bps": 5.0
+}

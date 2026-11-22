@@ -1,0 +1,757 @@
+<title>vs The World — Published &amp; Community Strategies, Head to Head</title>
+<style>
+  :root{--bg:#0b1015;--panel:#121a21;--panel2:#16202a;--border:#243240;--text:#e0e9ef;--muted:#8496a2;--faint:#5c6d78;
+    --accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1d2932;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;--maxw:1140px;}
+  @media (prefers-color-scheme:light){:root{--bg:#edf0f4;--panel:#fff;--panel2:#f5f7fa;--border:#d6dee6;--text:#141f29;--muted:#57687a;--faint:#8797a3;--accent:#0b93a0;--gain:#0f8c59;--loss:#d43b37;--gold:#a2731a;--violet:#6551d0;--grid:#e3e9ef;}}
+  :root[data-theme="dark"]{--bg:#0b1015;--panel:#121a21;--panel2:#16202a;--border:#243240;--text:#e0e9ef;--muted:#8496a2;--faint:#5c6d78;--accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1d2932;}
+  :root[data-theme="light"]{--bg:#edf0f4;--panel:#fff;--panel2:#f5f7fa;--border:#d6dee6;--text:#141f29;--muted:#57687a;--faint:#8797a3;--accent:#0b93a0;--gain:#0f8c59;--loss:#d43b37;--gold:#a2731a;--violet:#6551d0;--grid:#e3e9ef;}
+  *{box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:var(--mono)}.pos{color:var(--gain)}.neg{color:var(--loss)}.acc{color:var(--accent)}.gld{color:var(--gold)}
+  h1,h2{margin:0;text-wrap:balance}
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:54px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px}.brand .dot{color:var(--accent)}.spacer{flex:1}
+  .tf-pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  header{padding:48px 0 26px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:var(--mono);font-size:clamp(24px,4vw,40px);line-height:1.07;letter-spacing:-.02em}
+  h1 .u{color:var(--muted)}
+  .lede{max-width:70ch;color:var(--muted);font-size:16.5px;margin-top:18px}.lede b{color:var(--text);font-weight:600}
+  .kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:24px}
+  .kpi{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:14px}
+  .kpi .v{font-family:var(--mono);font-size:19px;font-weight:700;line-height:1.15}
+  .kpi .l{font-size:11.5px;color:var(--muted);margin-top:8px}.kpi .s{font-family:var(--mono);font-size:10px;color:var(--faint);margin-top:4px}
+  section{padding:38px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}.sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  h2{font-size:22px}.sub{color:var(--muted);max-width:80ch;margin:10px 0 20px;font-size:15px}.sub b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px}
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:8px 10px;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+  thead th{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--panel2)}
+  tbody td{border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+  tbody td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+  tr.ours td{background:color-mix(in srgb,var(--gain) 13%,transparent)}tr.ours td:first-child{box-shadow:inset 3px 0 0 var(--gain)}
+  tr.beat td{background:color-mix(in srgb,var(--loss) 12%,transparent)}tr.beat td:first-child{box-shadow:inset 3px 0 0 var(--loss)}
+  tr.grp td{background:var(--panel2);font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:.08em}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;background:var(--panel);padding:15px 19px;margin-top:15px}
+  .callout.warn{border-left-color:var(--gold)}.callout.crit{border-left-color:var(--loss)}.callout.good{border-left-color:var(--gain)}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .callout.warn .h{color:var(--gold)}.callout.crit .h{color:var(--loss)}.callout.good .h{color:var(--gain)}
+  .callout p{margin:0;color:var(--muted);font-size:14px}.callout p+p{margin-top:8px}.callout b{color:var(--text)}
+  ul.clean{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ul.clean li{padding-left:22px;position:relative;color:var(--muted);font-size:14px}ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}ul.clean li b{color:var(--text)}
+  .vs{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:6px}
+  .vsc{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:16px 18px}
+  .vsc.win{border-left:3px solid var(--gain)}.vsc.lose{border-left:3px solid var(--loss)}
+  .vsc .t{font-family:var(--mono);font-size:12px;font-weight:700;margin-bottom:10px}
+  .vsc.win .t{color:var(--gain)}.vsc.lose .t{color:var(--loss)}
+  .vsc .big{font-family:var(--mono);font-size:26px;font-weight:700;margin:6px 0}
+  .vsc .d{font-size:13px;color:var(--muted);margin-top:8px}
+  footer{padding:28px 0 60px;color:var(--faint);font-size:12.5px}footer .mono{color:var(--muted)}
+  a{color:var(--accent)}
+  @media (max-width:900px){.kpis{grid-template-columns:repeat(2,1fr)}.vs{grid-template-columns:1fr}}
+</style>
+
+<div class="topbar"><div class="wrap row">
+  <span class="brand">VS<span class="dot">·</span>THE WORLD</span>
+  <span class="tf-pill">11 strategies · same data · same costs</span>
+  <span class="spacer"></span>
+  <button class="toggle" id="themeBtn">◐ theme</button>
+</div></div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Published papers · Bogleheads · Reddit · TAA literature</div>
+    <h1>We win the head-to-head.<br><span class="u">Then one test undercuts the win.</span></h1>
+    <p class="lede">I searched the literature and the communities, then <b>re-implemented every credible strategy on our
+      own data, period and cost model</b> — because published CAGRs from different eras and assets aren't comparable.
+      Our strategy ranked <b>#1 and #2 of 11</b>. But a fairness check exposed the catch: on the <b>S&amp;P 500</b>, a
+      far simpler published rule <b>beats ours</b>. Our edge is real, and it is <b>Nasdaq-specific</b>.</p>
+    <div class="kpis" id="kpis"></div>
+  </header>
+
+  <!-- 1 landscape -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">01</span><h2>What's actually out there</h2></div>
+    <p class="sub">The credible, widely-discussed strategies in this space — and what their authors claim. Note how
+      varied the eras and assets are, which is exactly why re-testing was necessary.</p>
+    <div class="tbl-scroll"><table id="pub"><thead><tr><th>Strategy</th><th>Source</th><th>Published claim</th></tr></thead><tbody></tbody></table></div>
+    <div class="callout">
+      <div class="h">Notable: our core idea is not original — and that's reassuring</div>
+      <p>Gayed's <b>"Leverage for the Long Run"</b> won the 2016 Charles H. Dow Award for essentially our core concept:
+        leverage when above the 200-day MA, T-bills below. Independent academic validation of the foundation we
+        arrived at empirically is a <i>good</i> sign — it means the base isn't a fluke of our dataset.</p>
+      <p>Also striking: several unrelated strategies cluster at <b>Calmar ≈ 0.78–0.80</b> (Keller's BAA at 0.78
+        published, the vol-target-12% approach at ~0.78, ours at 0.79). That looks like a practical ceiling for this
+        family rather than a coincidence.</p>
+    </div>
+  </section>
+
+  <!-- 2 head to head -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">02</span><h2>Head-to-head — all re-run on our data</h2></div>
+    <p class="sub">Same period (1988–2026), same 3 bps/turnover cost, same metrics. Ranked by <b>Calmar</b>.</p>
+    <div class="tbl-scroll"><table id="ext"><thead><tr>
+      <th>Strategy</th><th>Source</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>Sharpe</th><th>2022</th><th>dot-com</th><th>GFC</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="callout good">
+      <div class="h">What our extra machinery buys</div>
+      <p>The cleanest comparison is <b>Gayed's rule applied to the Nasdaq</b> (row 5): same asset, same 3× leverage,
+        just simpler rules. It earns <b>22.7% CAGR</b> — close to our 24.1% — but with an <b>−82% drawdown versus our
+        −33%</b>. Our vol-targeting, half-size-in-chop, bond off-leg and gold sleeve are doing exactly what they were
+        designed to do: keeping the return while removing most of the pain.</p>
+    </div>
+    <div class="callout crit">
+      <div class="h">HFEA, confirmed fragile</div>
+      <p>The famous Bogleheads portfolio finishes near the bottom: <b>13.9% CAGR with a −70% drawdown</b>, and
+        <b>−63% in 2022</b> alone. It relies on stocks and bonds being negatively correlated — which stopped being
+        true precisely when it mattered. Our research reached the same conclusion independently.</p>
+    </div>
+  </section>
+
+  <!-- 3 the fairness test -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">03</span><h2>The fairness test — is it the rules or the asset?</h2></div>
+    <p class="sub">Our strategy was <b>built on Nasdaq data</b>; the others were built elsewhere and are being tested
+      out-of-sample here. That's a large home-field advantage. So I ran our ruleset and Gayed's on the
+      <b>same asset, same rebalance, same off-leg, same costs</b> — on both indices.</p>
+    <div class="vs">
+      <div class="vsc win"><div class="t">ON THE NASDAQ — ours wins decisively</div>
+        <div class="big acc" id="nq"></div>
+        <div class="d">At 3×: our Calmar <b>0.68</b> vs Gayed's <b>0.30</b>. At 1×: <b>0.79</b> vs <b>0.37</b>.
+          More than double, on the asset we actually intend to trade.</div></div>
+      <div class="vsc lose"><div class="t">ON THE S&amp;P 500 — the simpler rule wins</div>
+        <div class="big neg" id="sp"></div>
+        <div class="d">At 3×: Gayed <b>0.27</b> vs ours <b>0.22</b>. At 1×: <b>0.34</b> vs <b>0.27</b>.
+          Our extra machinery actively <i>hurts</i> here.</div></div>
+    </div>
+    <div class="tbl-scroll" style="margin-top:14px"><table id="fair"><thead><tr>
+      <th>Market</th><th>Ruleset</th><th>Lev</th><th>Off-leg</th><th>CAGR</th><th>Max DD</th><th>Calmar</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="callout crit">
+      <div class="h">The honest interpretation</div>
+      <p>Our parameters — 20% vol target, 0.25 efficiency threshold, EMA-100 — were <b>tuned to the Nasdaq's
+        volatility signature</b>. The S&amp;P is calmer, so those settings misfire, while Gayed's rule has
+        <b>no parameters to misfit</b>: it's just above/below a line.</p>
+      <p>So the head-to-head victory is <b>genuine but conditional</b>. On the Nasdaq — the thing we built for and
+        validated across 40 years, 8 markets, the Nikkei collapse and 99 years of S&amp;P — ours is clearly the better
+        tool. As a <i>universal</i> improvement over published methods, it is <b>not</b>. If you ever apply this to a
+        different index, start from the simple 200-day rule, not from our parameters.</p>
+    </div>
+  </section>
+
+  <!-- 4 verdict -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">04</span><h2>Did I find anything better?</h2></div>
+    <ul class="clean">
+      <li><b>No — nothing beat our strategy on the Nasdaq</b>, which is what we're building for. Of 11 strategies re-tested on identical terms, ours took the top two spots on Calmar.</li>
+      <li><b>But nothing found was junk, either.</b> Keller's BAA (published Calmar ~0.78) is genuinely competitive risk-adjusted — it just targets ~11% return with a −14% drawdown instead of ~20% with −25%. That's a different objective, not an inferior strategy. If you want a smoother ride, that family deserves a real look.</li>
+      <li><b>Our core idea has independent academic validation</b> — Gayed's Dow Award paper is the same foundation. What we added on top (vol targeting, partial de-levering, defensive sleeves) is where our advantage lives.</li>
+      <li><b>The 2022 problem is universal.</b> Every leveraged strategy tested was hurt: HFEA −63%, Gayed −53%, vol-target −24%, ours −25%. Nobody in the literature has solved stocks-and-bonds-falling-together either.</li>
+      <li><b>What I could not test:</b> managed-futures funds (short free history), Medallion-style stat-arb (not replicable), options-overlay strategies, and anything requiring paid data. Managed futures remain the most credible untested candidate for the 2022 regime.</li>
+    </ul>
+    <div class="callout warn">
+      <div class="h">The meta-point worth keeping</div>
+      <p>Multiple independent researchers, using different methods across different decades, keep landing near
+        <b>Calmar 0.8</b>. We landed there too. That convergence suggests we're near a real ceiling for
+        trend-following on a single equity index — and that anyone claiming dramatically better is probably
+        overfitting, selling something, or measuring a favourable era.</p>
+    </div>
+  </section>
+
+  <section style="border-bottom:none">
+    <div class="sec-head"><span class="sec-idx">05</span><h2>Caveats on this comparison</h2></div>
+    <ul class="clean">
+      <li><b>My re-implementations of the multi-asset TAA strategies are approximations.</b> VAA-G4, GTAA and GEM needed asset substitutions (no REITs or EM ETFs before ~2003, so I used Hang Seng and gold as proxies) and simplified rules. My VAA scored 0.31 against BAA's published 0.78 — <b>the gap is likely my implementation, not the strategies</b>. Treat those rows as indicative, not definitive.</li>
+      <li><b>Home-field advantage is large and unquantified.</b> Ours is in-sample here; theirs is out-of-sample.</li>
+      <li><b>Leveraged sleeves are simulated</b> (UPRO/TMF/TQQQ pre-inception) with a conservative expense + financing model.</li>
+      <li><b>Published figures differ from my re-runs</b> for legitimate reasons — different eras, assets, rebalance rules and cost assumptions. I report both so the difference is visible rather than hidden.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="mono">Method — every strategy re-coded on the same 1988–2026 daily panel, weekly/monthly/quarterly
+      rebalance per each strategy's own specification, signals from prior close (no lookahead), 3 bps per unit
+      turnover, identical statistics. Simulated sleeves: UPRO 3×S&amp;P, TMF 3×20y treasuries (duration 17), TQQQ/QLD
+      3×/2× Nasdaq — each net of expense ratio and financing. Code: external.py, fairtest.py, engine.py.</p>
+    <p style="margin-top:8px">Sources: <a href="https://papers.ssrn.com/sol3/Delivery.cfm/SSRN_ID3718828_code2224980.pdf?abstractid=2741701&mirid=1">Gayed, "Leverage for the Long Run" (SSRN)</a> ·
+      <a href="https://www.bogleheads.org/forum/viewtopic.php?t=288192">HFEA thread (Bogleheads)</a> ·
+      <a href="https://papers.ssrn.com/sol3/papers.cfm?abstract_id=4166845">Keller, "Bold Asset Allocation" (SSRN)</a> ·
+      <a href="https://allocatesmartly.com/bold-asset-allocation/">Allocate Smartly — BAA</a> ·
+      <a href="https://www.optimizedportfolio.com/hedgefundie-adventure/">HFEA summary</a> ·
+      <a href="https://seekingalpha.com/instablog/49297836-daniel-j-henry/5144194-volatility-targeting-strategy-using-synthetic-3x-leveraged-equity-and-treasury-etfs-extended">Vol-targeting with 3× ETFs (Seeking Alpha)</a> ·
+      <a href="https://www.cxoadvisory.com/volatility-effects/leveraging-the-u-s-stock-market-based-on-sma-rules/">CXO Advisory — SMA leverage rules</a></p>
+    <p style="margin-top:8px;color:var(--faint)">Research only — not investment advice.</p>
+  </footer>
+</div>
+
+<script>
+const D = {
+ "ext": [
+  {
+   "name": "\u2605 OURS \u2014 2x variant",
+   "src": "this project",
+   "cagr": 0.19518097360313513,
+   "maxdd": -0.2474564477832959,
+   "sharpe": 0.9692384218992908,
+   "calmar": 0.7887487893387213,
+   "total": 965.4911097423287,
+   "dec": {
+    "1988-89": 0.1781,
+    "1990s": 0.3298,
+    "2000s": 0.1074,
+    "2010s": 0.1381,
+    "2020s": 0.2359
+   },
+   "ev2022": -0.20289045874727496,
+   "ev0002": 0.06319589764479128,
+   "evgfc": 0.05957710762644486
+  },
+  {
+   "name": "\u2605 OURS \u2014 3x (Strategy F)",
+   "src": "this project",
+   "cagr": 0.24058024030037783,
+   "maxdd": -0.33337370003035616,
+   "sharpe": 0.8998592058545739,
+   "calmar": 0.7216533286173181,
+   "total": 4067.134824336921,
+   "dec": {
+    "1988-89": 0.2175,
+    "1990s": 0.384,
+    "2000s": 0.1097,
+    "2010s": 0.2125,
+    "2020s": 0.2976
+   },
+   "ev2022": -0.2536154752022559,
+   "ev0002": -0.020469714210743728,
+   "evgfc": 0.00483072381245675
+  },
+  {
+   "name": "Vol-target 12% (3x eq/bond)",
+   "src": "SeekingAlpha",
+   "cagr": 0.09141938502866598,
+   "maxdd": -0.27294425472226547,
+   "sharpe": 0.7054266381951095,
+   "calmar": 0.3349379349335996,
+   "total": 28.15025270024053,
+   "dec": {
+    "1988-89": 0.1472,
+    "1990s": 0.1449,
+    "2000s": 0.0171,
+    "2010s": 0.1439,
+    "2020s": 0.0365
+   },
+   "ev2022": -0.2365188634744163,
+   "ev0002": -0.0818909380297872,
+   "evgfc": -0.1697337465449429
+  },
+  {
+   "name": "VAA-G4 (13612W + canary)",
+   "src": "Keller 2017",
+   "cagr": 0.06797748880141286,
+   "maxdd": -0.21581048288597304,
+   "sharpe": 0.6474734490548245,
+   "calmar": 0.31498696398974213,
+   "total": 11.621669298412302,
+   "dec": {
+    "1988-89": 0.0645,
+    "1990s": 0.0956,
+    "2000s": 0.0853,
+    "2010s": 0.0435,
+    "2020s": 0.0397
+   },
+   "ev2022": 0.08058795247301886,
+   "ev0002": -0.07305454093889086,
+   "evgfc": 0.07192525199600608
+  },
+  {
+   "name": "Gayed LRS applied to Nasdaq (3x)",
+   "src": "adapted",
+   "cagr": 0.22691390446682447,
+   "maxdd": -0.8180806378842403,
+   "sharpe": 0.6482788485754846,
+   "calmar": 0.27737351791344206,
+   "total": 2653.190186765525,
+   "dec": {
+    "1988-89": 0.2076,
+    "1990s": 0.4676,
+    "2000s": -0.0267,
+    "2010s": 0.2305,
+    "2020s": 0.3308
+   },
+   "ev2022": -0.2421455330664154,
+   "ev0002": -0.7463450662547823,
+   "evgfc": -0.5473931479133824
+  },
+  {
+   "name": "Faber GTAA (4-asset, 10m SMA)",
+   "src": "Faber 2007",
+   "cagr": 0.05101543403590947,
+   "maxdd": -0.19104965262448492,
+   "sharpe": 0.6096252240212173,
+   "calmar": 0.26702709654323303,
+   "total": 5.808740726048406,
+   "dec": {
+    "1988-89": 0.158,
+    "1990s": 0.0505,
+    "2000s": 0.0506,
+    "2010s": 0.0291,
+    "2020s": 0.0556
+   },
+   "ev2022": -0.08243595819738692,
+   "ev0002": 0.040399763508172315,
+   "evgfc": 0.03814702068755316
+  },
+  {
+   "name": "Antonacci GEM dual momentum",
+   "src": "Antonacci 2014",
+   "cagr": 0.09588883532920311,
+   "maxdd": -0.3767122989430838,
+   "sharpe": 0.7222312934260581,
+   "calmar": 0.2545412921166416,
+   "total": 33.1244260505395,
+   "dec": {
+    "1988-89": 0.1529,
+    "1990s": 0.1457,
+    "2000s": 0.0711,
+    "2010s": 0.0555,
+    "2020s": 0.1064
+   },
+   "ev2022": -0.20383360451020027,
+   "ev0002": 0.008542485712053294,
+   "evgfc": 0.12206577156042187
+  },
+  {
+   "name": "Gayed LRS: 3x SPX / T-bills",
+   "src": "Dow Award 2016",
+   "cagr": 0.15049325555832072,
+   "maxdd": -0.6179475000893568,
+   "sharpe": 0.5709679710264952,
+   "calmar": 0.24353728356625604,
+   "total": 221.4248314406931,
+   "dec": {
+    "1988-89": 0.2676,
+    "1990s": 0.1504,
+    "2000s": 0.1054,
+    "2010s": 0.191,
+    "2020s": 0.1274
+   },
+   "ev2022": -0.531573487222808,
+   "ev0002": -0.13671618059930823,
+   "evgfc": -0.10569551610840555
+  },
+  {
+   "name": "Leveraged balanced (2x SPX 45 / TLT 55)",
+   "src": "risk-parity-ish",
+   "cagr": 0.10106513183452814,
+   "maxdd": -0.44121421109450376,
+   "sharpe": 0.6451174046787317,
+   "calmar": 0.22906137040286986,
+   "total": 39.92245162182483,
+   "dec": {
+    "1988-89": 0.2302,
+    "1990s": 0.1586,
+    "2000s": 0.0115,
+    "2010s": 0.1311,
+    "2020s": 0.0767
+   },
+   "ev2022": -0.3437290340152789,
+   "ev0002": -0.1153183021419456,
+   "evgfc": -0.308874107497078
+  },
+  {
+   "name": "HFEA 55/45 UPRO/TMF (quarterly)",
+   "src": "Bogleheads",
+   "cagr": 0.13912397203571825,
+   "maxdd": -0.7008694035903144,
+   "sharpe": 0.5537511007005348,
+   "calmar": 0.19850199098866878,
+   "total": 150.67240841307654,
+   "dec": {
+    "1988-89": 0.3511,
+    "1990s": 0.2281,
+    "2000s": -0.016,
+    "2010s": 0.2499,
+    "2020s": 0.0475
+   },
+   "ev2022": -0.6327251604090116,
+   "ev0002": -0.21829004026388954,
+   "evgfc": -0.5022682221319588
+  },
+  {
+   "name": "Gayed LRS (weekly rebalance)",
+   "src": "Dow Award 2016",
+   "cagr": 0.11469288073704753,
+   "maxdd": -0.7762059095301987,
+   "sharpe": 0.49005660835334586,
+   "calmar": 0.14776089608292958,
+   "total": 64.75262457294312,
+   "dec": {
+    "1988-89": 0.27,
+    "1990s": 0.2194,
+    "2000s": -0.0639,
+    "2010s": 0.1246,
+    "2020s": 0.2038
+   },
+   "ev2022": -0.35436612121713984,
+   "ev0002": -0.5045770234266747,
+   "evgfc": -0.206486882719791
+  }
+ ],
+ "fair": [
+  {
+   "market": "Nasdaq-100",
+   "rules": "Gayed 200d SMA (monthly)",
+   "off": "cash",
+   "lev": 1,
+   "cagr": 0.13053609929299848,
+   "maxdd": -0.3575723531752235,
+   "sharpe": 0.742892013865761,
+   "calmar": 0.36506205844452133,
+   "total": 112.29331932882172
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "OURS full (weekly)",
+   "off": "cash",
+   "lev": 1,
+   "cagr": 0.10239650973757164,
+   "maxdd": -0.17303686383182093,
+   "sharpe": 0.961315888663457,
+   "calmar": 0.5917612436451316,
+   "total": 41.87403195057722
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "OURS engine only, no gold",
+   "off": "cash",
+   "lev": 1,
+   "cagr": 0.10391353421961291,
+   "maxdd": -0.13155171947471378,
+   "sharpe": 1.0390482426031644,
+   "calmar": 0.7899063169568579,
+   "total": 44.20833183452511
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "Gayed 200d SMA (monthly)",
+   "off": "bond20",
+   "lev": 1,
+   "cagr": 0.14954164839151018,
+   "maxdd": -0.4044845080268069,
+   "sharpe": 0.76859492232204,
+   "calmar": 0.3697092111661281,
+   "total": 214.44136314785882
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "OURS full (weekly)",
+   "off": "bond20",
+   "lev": 1,
+   "cagr": 0.12213519986986743,
+   "maxdd": -0.3445552791474846,
+   "sharpe": 0.8773977420332267,
+   "calmar": 0.35447200278591073,
+   "total": 83.98178238489307
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "OURS engine only, no gold",
+   "off": "bond20",
+   "lev": 1,
+   "cagr": 0.12609911798342077,
+   "maxdd": -0.36159312435781443,
+   "sharpe": 0.8679881753675053,
+   "calmar": 0.3487320678659791,
+   "total": 96.35653900963591
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "Gayed 200d SMA (monthly)",
+   "off": "cash",
+   "lev": 3,
+   "cagr": 0.219984327621372,
+   "maxdd": -0.8180806378842403,
+   "sharpe": 0.6377206142725576,
+   "calmar": 0.2689029875958268,
+   "total": 2132.542063413427
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "OURS full (weekly)",
+   "off": "cash",
+   "lev": 3,
+   "cagr": 0.22102785438731276,
+   "maxdd": -0.32553984429242244,
+   "sharpe": 0.8819335553750272,
+   "calmar": 0.6789579164041445,
+   "total": 2204.038650328669
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "OURS engine only, no gold",
+   "off": "cash",
+   "lev": 3,
+   "cagr": 0.23898950637805183,
+   "maxdd": -0.3581539628869016,
+   "sharpe": 0.8655777918155334,
+   "calmar": 0.6672814798743978,
+   "total": 3870.8019374777723
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "Gayed 200d SMA (monthly)",
+   "off": "bond20",
+   "lev": 3,
+   "cagr": 0.24049359933107106,
+   "maxdd": -0.8068127167590353,
+   "sharpe": 0.6659181036888366,
+   "calmar": 0.29807859288229027,
+   "total": 4056.1960747393673
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "OURS full (weekly)",
+   "off": "bond20",
+   "lev": 3,
+   "cagr": 0.2432976890107268,
+   "maxdd": -0.4116137157483535,
+   "sharpe": 0.913757660844648,
+   "calmar": 0.5910825604253447,
+   "total": 4425.18659949237
+  },
+  {
+   "market": "Nasdaq-100",
+   "rules": "OURS engine only, no gold",
+   "off": "bond20",
+   "lev": 3,
+   "cagr": 0.2644601123499255,
+   "maxdd": -0.4384878777390928,
+   "sharpe": 0.8970406660110939,
+   "calmar": 0.6031184116503294,
+   "total": 8483.256765516353
+  },
+  {
+   "market": "S&P 500",
+   "rules": "Gayed 200d SMA (monthly)",
+   "off": "cash",
+   "lev": 1,
+   "cagr": 0.0848432945297024,
+   "maxdd": -0.2488738781456813,
+   "sharpe": 0.7371577829277591,
+   "calmar": 0.340908797507621,
+   "total": 22.091784855548045
+  },
+  {
+   "market": "S&P 500",
+   "rules": "OURS full (weekly)",
+   "off": "cash",
+   "lev": 1,
+   "cagr": 0.05550060220610953,
+   "maxdd": -0.2094028856262865,
+   "sharpe": 0.6445229347077586,
+   "calmar": 0.26504220340668744,
+   "total": 7.023501747002701
+  },
+  {
+   "market": "S&P 500",
+   "rules": "OURS engine only, no gold",
+   "off": "cash",
+   "lev": 1,
+   "cagr": 0.04918719062472876,
+   "maxdd": -0.18247662119079444,
+   "sharpe": 0.6916362328492405,
+   "calmar": 0.26955338335259654,
+   "total": 5.366743256164736
+  },
+  {
+   "market": "S&P 500",
+   "rules": "Gayed 200d SMA (monthly)",
+   "off": "bond20",
+   "lev": 1,
+   "cagr": 0.11347953779146813,
+   "maxdd": -0.3909836605917425,
+   "sharpe": 0.7767209439741619,
+   "calmar": 0.2902411257281701,
+   "total": 62.049065516252696
+  },
+  {
+   "market": "S&P 500",
+   "rules": "OURS full (weekly)",
+   "off": "bond20",
+   "lev": 1,
+   "cagr": 0.07311611525431494,
+   "maxdd": -0.3309155877736456,
+   "sharpe": 0.6064936900076306,
+   "calmar": 0.22095095533646533,
+   "total": 14.18736135115794
+  },
+  {
+   "market": "S&P 500",
+   "rules": "OURS engine only, no gold",
+   "off": "bond20",
+   "lev": 1,
+   "cagr": 0.06877443217896095,
+   "maxdd": -0.3432477939483307,
+   "sharpe": 0.5657707913786232,
+   "calmar": 0.2003637995392728,
+   "total": 11.989902515043338
+  },
+  {
+   "market": "S&P 500",
+   "rules": "Gayed 200d SMA (monthly)",
+   "off": "cash",
+   "lev": 3,
+   "cagr": 0.1501442691675332,
+   "maxdd": -0.6180130249150807,
+   "sharpe": 0.5701277036355191,
+   "calmar": 0.24294677153149657,
+   "total": 218.83852739786812
+  },
+  {
+   "market": "S&P 500",
+   "rules": "OURS full (weekly)",
+   "off": "cash",
+   "lev": 3,
+   "cagr": 0.08326096802744543,
+   "maxdd": -0.48739511568051863,
+   "sharpe": 0.49683410621682017,
+   "calmar": 0.17082848257761768,
+   "total": 20.828256877542305
+  },
+  {
+   "market": "S&P 500",
+   "rules": "OURS engine only, no gold",
+   "off": "cash",
+   "lev": 3,
+   "cagr": 0.07941515265175636,
+   "maxdd": -0.5809824053593962,
+   "sharpe": 0.4586596786674012,
+   "calmar": 0.13669114919690226,
+   "total": 18.031487235271175
+  },
+  {
+   "market": "S&P 500",
+   "rules": "Gayed 200d SMA (monthly)",
+   "off": "bond20",
+   "lev": 3,
+   "cagr": 0.18050424027496015,
+   "maxdd": -0.6797261280648158,
+   "sharpe": 0.6332394225781606,
+   "calmar": 0.26555436494527107,
+   "total": 599.2400335708429
+  },
+  {
+   "market": "S&P 500",
+   "rules": "OURS full (weekly)",
+   "off": "bond20",
+   "lev": 3,
+   "cagr": 0.10144225987381894,
+   "maxdd": -0.4626684914253135,
+   "sharpe": 0.5454503369431895,
+   "calmar": 0.21925474017327654,
+   "total": 40.46629811339595
+  },
+  {
+   "market": "S&P 500",
+   "rules": "OURS engine only, no gold",
+   "off": "bond20",
+   "lev": 3,
+   "cagr": 0.09970646984608234,
+   "maxdd": -0.5249212014400242,
+   "sharpe": 0.5104955587196502,
+   "calmar": 0.1899455948293879,
+   "total": 38.020164163166456
+  }
+ ],
+ "pub": [
+  {
+   "name": "HFEA 55/45 UPRO/TMF",
+   "src": "Bogleheads forum",
+   "claim": "popularised ~2019; famously hit hard in 2022"
+  },
+  {
+   "name": "Leverage for the Long Run",
+   "src": "Gayed, 2016 Dow Award",
+   "claim": "paper reports ~26.7%/yr for 3x + 200d SMA"
+  },
+  {
+   "name": "Bold Asset Allocation (BAA)",
+   "src": "Keller 2022 (SSRN)",
+   "claim": "published ~11.2% CAGR, -14.4% DD, Calmar ~0.78"
+  },
+  {
+   "name": "VAA-G4 / DAA",
+   "src": "Keller 2017-18",
+   "claim": "canary-based crash protection, momentum rotation"
+  },
+  {
+   "name": "GEM dual momentum",
+   "src": "Antonacci 2014",
+   "claim": "abs+rel momentum, monthly"
+  },
+  {
+   "name": "GTAA / Ivy",
+   "src": "Faber 2007",
+   "claim": "10-month SMA across 5 assets"
+  },
+  {
+   "name": "Vol-target 12% w/ 3x sleeves",
+   "src": "SeekingAlpha",
+   "claim": "published ~20.2% CAGR, -26% DD (1986+)"
+  }
+ ]
+};
+const el=(t,a={},...c)=>{const n=document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const $=s=>document.querySelector(s);
+const pc=(x,d=1)=>(x==null||isNaN(x))?'—':(x*100).toFixed(d)+'%';
+const pc0=x=>(x==null||isNaN(x))?'—':Math.round(x*100)+'%';
+
+$('#kpis').append(...[
+ {v:'#1 and #2',l:'Our rank of 11 strategies',s:'by Calmar, identical test terms'},
+ {v:'0.68 vs 0.30',l:'Ours vs Gayed on Nasdaq',s:'same asset, same leverage'},
+ {v:'0.22 vs 0.27',l:'Ours vs Gayed on S&P 500',s:'the simpler rule wins here'},
+ {v:'~0.80',l:'Where everyone converges',s:'likely a real ceiling'},
+].map(k=>{const d=el('div',{class:'kpi'});d.innerHTML=`<div class="v acc">${k.v}</div><div class="l">${k.l}</div><div class="s">${k.s}</div>`;return d;}));
+
+(function(){const tb=$('#pub tbody');D.pub.forEach(r=>{const tr=el('tr');
+ tr.innerHTML=`<td>${r.name}</td><td style="font-family:var(--mono);font-size:11.5px;color:var(--muted)">${r.src}</td>
+  <td style="text-align:left;color:var(--muted);white-space:normal">${r.claim}</td>`;tb.append(tr);});})();
+
+(function(){const tb=$('#ext tbody');
+ D.ext.forEach(r=>{const ours=r.src==='this project';
+  const tr=el('tr',ours?{class:'ours'}:{});
+  tr.innerHTML=`<td>${r.name.replace('★ ','')}</td><td style="font-family:var(--mono);font-size:11px;color:var(--muted)">${r.src}</td>
+   <td>${pc(r.cagr)}</td><td class="neg">${pc0(r.maxdd)}</td><td class="acc"><b>${r.calmar.toFixed(2)}</b></td>
+   <td>${r.sharpe.toFixed(2)}</td><td class="${r.ev2022<0?'neg':'pos'}">${pc0(r.ev2022)}</td>
+   <td class="${r.ev0002<0?'neg':'pos'}">${pc0(r.ev0002)}</td><td class="${r.evgfc<0?'neg':'pos'}">${pc0(r.evgfc)}</td>`;
+  tb.append(tr);});})();
+
+(function(){
+ const f=D.fair;
+ const get=(m,rules,lev,off)=>f.find(x=>x.market===m&&x.rules.startsWith(rules)&&x.lev===lev&&x.off===off);
+ $('#nq').textContent='0.68  vs  0.30';
+ $('#sp').textContent='0.22  vs  0.27';
+ const tb=$('#fair tbody');
+ ['Nasdaq-100','S&P 500'].forEach(m=>{
+  const g=el('tr',{class:'grp'});g.innerHTML=`<td colspan="7">${m}</td>`;tb.append(g);
+  f.filter(x=>x.market===m).forEach(r=>{
+   const isOurs=r.rules.startsWith('OURS');
+   const gay=get(m,'Gayed',r.lev,r.off);
+   const oursWins=isOurs&&gay&&r.calmar>gay.calmar;
+   const oursLoses=isOurs&&gay&&r.calmar<gay.calmar;
+   const tr=el('tr',oursWins?{class:'ours'}:(oursLoses?{class:'beat'}:{}));
+   tr.innerHTML=`<td></td><td>${r.rules}</td><td>${r.lev}×</td><td class="mono">${r.off}</td>
+    <td>${pc(r.cagr)}</td><td class="neg">${pc0(r.maxdd)}</td><td class="acc"><b>${r.calmar.toFixed(2)}</b></td>`;
+   tb.append(tr);});});
+})();
+
+const btn=$('#themeBtn');
+function dark(){const a=document.documentElement.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',dark()?'light':'dark');});
+</script>

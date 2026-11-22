@@ -1,0 +1,68 @@
+{
+ "asof": "2026-11-17",
+ "bar_is_partial": false,
+ "ndx": 27001.78,
+ "ema100": 28968.42,
+ "above_ema": false,
+ "pct_from_ema": -0.0679,
+ "pct_from_record": -0.1352,
+ "days_below_ema": 13,
+ "realized_vol20": 0.3551,
+ "efficiency_ratio20": 0.2597,
+ "trend": "CLEAN",
+ "chop_rule": true,
+ "seasonal_half": false,
+ "reentry_close_needed_next_friday": 28891.0,
+ "next_friday": "2026-11-20",
+ "reentry_if_triggered": {
+  "vol20": 0.4299,
+  "er20": 0.0036,
+  "tiers": {
+   "F2": {
+    "QLD": 0.2966,
+    "IEF": 0.5534,
+    "GLD": 0.15
+   },
+   "F1": {
+    "QQQ": 0.1977,
+    "IEF": 0.6523,
+    "GLD": 0.15
+   },
+   "F3": {
+    "TQQQ": 0.1977,
+    "IEF": 0.6523,
+    "GLD": 0.15
+   }
+  }
+ },
+ "context_only": {
+  "us10y_pct": 5.103,
+  "us10y_pct_6m_chg": 0.436,
+  "us3m_pct": 4.138,
+  "us3m_pct_6m_chg": 0.563,
+  "dxy": 103.776,
+  "dxy_6m_chg": 4.666,
+  "vix": 23.95,
+  "vix_6m_chg": 7.25,
+  "gld": 352.48,
+  "gld_6m_chg": -59.02,
+  "curve_10y_3m_pct": 0.965
+ },
+ "tiers": {
+  "F2": {
+   "QLD": 0.0,
+   "IEF": 0.85,
+   "GLD": 0.15
+  },
+  "F1": {
+   "QQQ": 0.0,
+   "IEF": 0.85,
+   "GLD": 0.15
+  },
+  "F3": {
+   "TQQQ": 0.0,
+   "IEF": 0.85,
+   "GLD": 0.15
+  }
+ }
+}

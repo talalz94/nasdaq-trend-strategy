@@ -1,0 +1,1166 @@
+<title>Practical Questions — Crashes, 99-Year Validation, Costs, Automation</title>
+<style>
+  :root{--bg:#0b1015;--panel:#121a21;--panel2:#16202a;--border:#243240;--text:#e0e9ef;--muted:#8496a2;--faint:#5c6d78;
+    --accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1d2932;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;--maxw:1120px;}
+  @media (prefers-color-scheme:light){:root{--bg:#edf0f4;--panel:#fff;--panel2:#f5f7fa;--border:#d6dee6;--text:#141f29;--muted:#57687a;--faint:#8797a3;--accent:#0b93a0;--gain:#0f8c59;--loss:#d43b37;--gold:#a2731a;--violet:#6551d0;--grid:#e3e9ef;}}
+  :root[data-theme="dark"]{--bg:#0b1015;--panel:#121a21;--panel2:#16202a;--border:#243240;--text:#e0e9ef;--muted:#8496a2;--faint:#5c6d78;--accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1d2932;}
+  :root[data-theme="light"]{--bg:#edf0f4;--panel:#fff;--panel2:#f5f7fa;--border:#d6dee6;--text:#141f29;--muted:#57687a;--faint:#8797a3;--accent:#0b93a0;--gain:#0f8c59;--loss:#d43b37;--gold:#a2731a;--violet:#6551d0;--grid:#e3e9ef;}
+  *{box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.55;margin:0;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 22px}
+  .mono{font-family:var(--mono)}.pos{color:var(--gain)}.neg{color:var(--loss)}.acc{color:var(--accent)}.gld{color:var(--gold)}.vlt{color:var(--violet)}
+  h1,h2{margin:0;text-wrap:balance}
+  .topbar{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:54px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px}.brand .dot{color:var(--accent)}.spacer{flex:1}
+  .tf-pill{font-family:var(--mono);font-size:11px;color:var(--muted);border:1px solid var(--border);padding:3px 8px;border-radius:20px}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  header{padding:48px 0 26px;border-bottom:1px solid var(--border)}
+  .eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--accent);margin-bottom:14px}
+  h1{font-family:var(--mono);font-size:clamp(24px,4vw,40px);line-height:1.07;letter-spacing:-.02em}
+  h1 .u{color:var(--muted)}
+  .lede{max-width:70ch;color:var(--muted);font-size:16.5px;margin-top:18px}.lede b{color:var(--text);font-weight:600}
+  .qgrid{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;margin-top:24px}
+  .q{background:var(--panel);border:1px solid var(--border);border-radius:10px;padding:13px}
+  .q .n{font-family:var(--mono);font-size:10px;color:var(--accent);letter-spacing:.1em}
+  .q .a{font-family:var(--mono);font-size:15px;font-weight:700;margin:7px 0 4px;line-height:1.2}
+  .q .d{font-size:10.5px;color:var(--muted);line-height:1.35}
+  section{padding:38px 0;border-bottom:1px solid var(--border)}
+  .sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:8px}.sec-idx{font-family:var(--mono);font-size:12px;color:var(--accent)}
+  h2{font-size:22px}.sub{color:var(--muted);max-width:80ch;margin:10px 0 20px;font-size:15px}.sub b{color:var(--text)}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px}
+  .tbl-scroll{overflow-x:auto;border:1px solid var(--border);border-radius:10px}
+  table{border-collapse:collapse;width:100%;font-size:13px}
+  th,td{padding:8px 10px;text-align:right;white-space:nowrap}th:first-child,td:first-child{text-align:left}
+  thead th{font-family:var(--mono);font-size:10px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);border-bottom:1px solid var(--border);background:var(--panel2)}
+  tbody td{border-bottom:1px solid color-mix(in srgb,var(--border) 60%,transparent)}
+  tbody td:not(:first-child){font-family:var(--mono);font-variant-numeric:tabular-nums}
+  tbody tr:hover td{background:color-mix(in srgb,var(--accent) 6%,transparent)}
+  tr.win td{background:color-mix(in srgb,var(--gain) 13%,transparent)}tr.win td:first-child{box-shadow:inset 3px 0 0 var(--gain)}
+  tr.crit td{background:color-mix(in srgb,var(--loss) 11%,transparent)}
+  tr.grp td{background:var(--panel2);font-family:var(--mono);font-size:11px;color:var(--muted);letter-spacing:.06em}
+  tr.dim td{color:var(--faint)}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:8px;background:var(--panel);padding:15px 19px;margin-top:15px}
+  .callout.warn{border-left-color:var(--gold)}.callout.crit{border-left-color:var(--loss)}.callout.good{border-left-color:var(--gain)}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:6px}
+  .callout.warn .h{color:var(--gold)}.callout.crit .h{color:var(--loss)}.callout.good .h{color:var(--gain)}
+  .callout p{margin:0;color:var(--muted);font-size:14px}.callout p+p{margin-top:8px}.callout b{color:var(--text)}
+  ul.clean{margin:0;padding-left:0;list-style:none;display:flex;flex-direction:column;gap:10px}
+  ul.clean li{padding-left:22px;position:relative;color:var(--muted);font-size:14px}ul.clean li::before{content:"▸";position:absolute;left:2px;color:var(--accent)}ul.clean li b{color:var(--text)}
+  .arch{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px 20px;margin-top:14px}
+  .arch pre{font-family:var(--mono);font-size:12px;line-height:1.75;color:var(--muted);margin:0;white-space:pre-wrap}
+  .arch pre b{color:var(--text)}.arch pre .k{color:var(--accent)}.arch pre .g{color:var(--gain)}.arch pre .r{color:var(--loss)}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  footer{padding:28px 0 60px;color:var(--faint);font-size:12.5px}footer .mono{color:var(--muted)}
+  @media (max-width:900px){.qgrid{grid-template-columns:repeat(2,1fr)}.cols2{grid-template-columns:1fr}}
+</style>
+
+<div class="topbar"><div class="wrap row">
+  <span class="brand">PRACTICAL<span class="dot">·</span>Q&amp;A</span>
+  <span class="tf-pill">Nikkei 1990 · S&amp;P 1927 · costs · automation</span>
+  <span class="spacer"></span>
+  <button class="toggle" id="themeBtn">◐ theme</button>
+</div></div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Five practical questions · three of them testable</div>
+    <h1>What if the Nasdaq dies?<br><span class="u">Japan already ran that experiment.</span></h1>
+    <p class="lede">Your questions had real answers hiding in data I hadn't used yet. The <b>Nikkei crashed in 1990 and
+      fell for 23 straight years</b> — the exact scenario you're worried about. And the <b>S&amp;P 500 goes back to 1927</b>,
+      covering the Depression, WWII and 1970s stagflation. I ran the strategy through both. I also costed every fee and
+      tested whether re-optimising annually helps. Two answers surprised me.</p>
+    <div class="qgrid" id="qg"></div>
+  </header>
+
+  <!-- 1 crash -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">01</span><h2>If the index crashes and never recovers</h2></div>
+    <p class="sub">The Nikkei peaked at 38,900 in 1989 and was at 10,400 <b>twenty-three years later</b> — a −5.6%/yr
+      bear market lasting a generation. This is the strongest available proxy for "the Nasdaq tops out and dies."</p>
+    <div class="tbl-scroll"><table id="nk"><thead><tr>
+      <th>Era</th><th>Leverage</th><th>Strategy CAGR</th><th>Strategy maxDD</th><th>Index buy&amp;hold</th><th>Leveraged buy&amp;hold</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="cols2" style="margin-top:15px">
+      <div class="callout good" style="margin-top:0">
+        <div class="h">The reassuring answer</div>
+        <p>Through the 23-year collapse the strategy made <b>+3.6%/yr at 1×</b> while the index lost 5.6%/yr and
+          <b>3× buy-and-hold lost 34.6%/yr</b> — a total wipeout. The trend gate simply keeps you in bonds/cash for most
+          of a bear market. <b>You don't get rich, but you don't get destroyed.</b></p>
+      </div>
+      <div class="callout crit" style="margin-top:0">
+        <div class="h">Two costs you must accept</div>
+        <p><b>Leverage stops helping.</b> In the crash era 1× beat 3× (3.6% vs 2.8%) with a −17% drawdown instead of −46%.
+          Leverage only pays in trends.</p>
+        <p><b>You lag the recovery.</b> Japan 2013–26 rose 14.4%/yr; the strategy captured only 4.8% at 1×. After a long
+          bear the trend signal re-engages slowly. That is the price of the protection.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 pre-history -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">02</span><h2>Validation before 1985 — 99 years of S&amp;P 500</h2></div>
+    <p class="sub">Yes, there is data, and it goes back much further than I was using: <b>S&amp;P 500 from 1927</b>
+      (and Nasdaq Composite from 1971). This is a completely different monetary and market era — the toughest
+      out-of-sample test available.</p>
+    <div class="tbl-scroll"><table id="sp"><thead><tr>
+      <th>Era</th><th>Lev</th><th>Strategy CAGR</th><th>maxDD</th><th>Calmar</th><th>Buy&amp;hold CAGR</th><th>Buy&amp;hold maxDD</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="callout good">
+      <div class="h">It holds up — across the Depression and stagflation</div>
+      <p>Over the <b>full 99 years</b> the strategy at 1× returned <b>6.1%/yr with a −25% drawdown</b> vs buy-and-hold's
+        6.3% with <b>−86%</b>. Same return, one-third the pain — Calmar 0.24 vs 0.07.</p>
+      <p>Its best relative showing was the era most like today's worries: <b>1966–82 stagflation</b>, where it made
+        <b>7.3%/yr vs the index's 2.5%</b>, with a −11% drawdown vs −48%. Through 1927–54 (crash, Depression, WWII) it
+        made 4.7% vs 2.7%, again with a quarter of the drawdown.</p>
+    </div>
+    <div class="callout crit">
+      <div class="h">And it confirms the leverage warning, emphatically</div>
+      <p>On the S&amp;P across 99 years, <b>1× beats 3× on Calmar in every single era</b> — 0.19 vs 0.18 in the Depression,
+        <b>0.64 vs 0.18</b> in stagflation, 0.95 vs 0.57 in the great bull, 0.24 vs 0.17 overall. Combined with the
+        cross-market result, the evidence is now unambiguous: <b>3× leverage was a Nasdaq-specific gift, not a principle.</b></p>
+      <p>It also <b>lags strong bull markets</b> — 1983–99 it made 10.4% vs the index's 14.8%, and 2000–26 it made 3.0%
+        vs 6.3%. This is insurance, and insurance costs upside.</p>
+    </div>
+  </section>
+
+  <!-- 3 reoptimise -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">03</span><h2>Should you re-optimise after a year?</h2></div>
+    <p class="sub">Directly tested: re-fit the parameters every January on trailing data and use them for that year,
+      versus never touching them. All four modes scored on the same 1998–2026 window.</p>
+    <div class="tbl-scroll"><table id="ro"><thead><tr>
+      <th>Approach</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>Sharpe</th><th>Parameter changes</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="callout crit">
+      <div class="h">Answer: don't re-optimise. Freeze the rules.</div>
+      <p>Frozen rules scored <b>Calmar 0.82</b>. Re-optimising annually on all history scored 0.69; on a 10-year
+        lookback <b>0.55</b>; on 5 years <b>0.55</b>. <b>The shorter the lookback, the worse it gets</b> — and the more
+        it churns (20–24 parameter changes in 29 years).</p>
+      <p>Re-optimisation chases noise. Recent data is a small sample, so the "best" parameters keep moving and you end
+        up permanently fitted to the last cycle. The parameter plateau I found earlier (thresholds 0.20–0.30 all work)
+        exists precisely because the exact values don't matter — so re-tuning them adds variance, not skill.</p>
+      <p><b>What to do instead:</b> leave the rules alone and re-examine only if the strategy breaks in a way the
+        backtest never showed — e.g. a drawdown materially worse than −35%, or 3+ years of underperforming buy-and-hold
+        with no bear market to explain it. That's a structural-failure check, not an optimisation.</p>
+    </div>
+  </section>
+
+  <!-- 4 costs -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">04</span><h2>Fees, spreads and the tax problem</h2></div>
+    <p class="sub">Annual turnover is <b>11.9×</b> — meaningful but not extreme for a weekly system. Each drag added
+      cumulatively:</p>
+    <div class="tbl-scroll"><table id="cost"><thead><tr>
+      <th>Cost layer</th><th>CAGR</th><th>Max DD</th><th>Calmar</th><th>Incremental drag</th>
+    </tr></thead><tbody></tbody></table></div>
+    <div class="cols2" style="margin-top:15px">
+      <div class="callout good" style="margin-top:0">
+        <div class="h">Trading costs are manageable</div>
+        <p><b>Commissions: ~$0</b> at Alpaca/IBKR/Schwab for ETFs. Expense ratios (TQQQ 0.95% — already in the model,
+          plus TLT 0.15% and GLD 0.40%) cost <b>0.16%/yr</b>. Even pessimistic 20 bps spreads only take the total drag
+          to <b>2.7%/yr</b>, leaving Calmar at 0.67. The strategy is not fee-fragile.</p>
+      </div>
+      <div class="callout crit" style="margin-top:0">
+        <div class="h">Taxes are the real cost — and they're huge</div>
+        <p>Weekly rebalancing realises <b>short-term</b> gains, taxed as ordinary income. At a 35% rate a ~24% gross
+          return nets roughly <b>16%</b> — a bigger hit than every trading cost combined, several times over.</p>
+        <p><b>This strategy belongs in a tax-advantaged account</b> (IRA/401k or your jurisdiction's equivalent). In a
+          taxable account, much of the edge goes to the tax authority.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5 automation -->
+  <section>
+    <div class="sec-head"><span class="sec-idx">05</span><h2>Can it run itself on a VM?</h2></div>
+    <p class="sub">Yes — the strategy is unusually well suited to automation: it trades <b>once a week</b>, uses three
+      liquid ETFs, and needs no intraday data. Here's what the full stack looks like.</p>
+    <div class="arch"><pre><span class="k">WEEKLY CRON — Friday 15:45 ET</span>
+
+  <span class="g">1. FETCH</span>     yfinance or Alpaca → ^NDX, ^TNX, ^IRX          <span style="color:var(--faint)">(free)</span>
+  <span class="g">2. COMPUTE</span>   EMA-100 · realized vol · efficiency ratio ·
+                curve slope · month → target weights        <span style="color:var(--faint)">(scanner.py — already built)</span>
+  <span class="g">3. RECONCILE</span> read current positions via Alpaca API,
+                compute the delta vs target
+  <span class="g">4. ORDER</span>     submit market-on-close / limit orders for the delta
+                <span class="r">skip any trade below a ~1% drift threshold</span>   <span style="color:var(--faint)">(cuts churn &amp; cost)</span>
+  <span class="g">5. LOG + ALERT</span> append state to CSV, email/Telegram the summary
+
+<span class="k">INFRASTRUCTURE</span>
+  · any $5/month VM, or a free GitHub Actions scheduled workflow
+  · Alpaca API — commission-free ETFs, paper &amp; live endpoints, keys already set up
+  · idempotent: re-running the same week changes nothing
+  · your only manual job: <b>deposit cash occasionally</b>. It self-allocates on the
+    next rebalance because everything is expressed as target <i>percentages</i>.</pre></div>
+    <div class="callout warn">
+      <div class="h">What automation can't fix</div>
+      <p><b>The failure modes are operational, not analytical:</b> a stale data feed, an API outage on rebalance day, a
+        broker margin change, an ETF being delisted or restructured, or a silent bug that quietly stops rebalancing.
+        Any of those can do far more damage than a suboptimal threshold.</p>
+      <p>So: run it in <b>paper mode for several months</b> first, add a dead-man's-switch alert if a weekly run doesn't
+        report, and keep a monthly human eyeball on it. Automation removes the emotional risk of not following the rules
+        — which is real and valuable — but it introduces engineering risk in exchange.</p>
+    </div>
+  </section>
+
+  <section style="border-bottom:none">
+    <div class="sec-head"><span class="sec-idx">06</span><h2>Net effect on what to expect</h2></div>
+    <ul class="clean">
+      <li><b>Downside protection is now evidence-backed, not hoped-for.</b> Through a 23-year collapse (Nikkei) and the Great Depression and 1970s stagflation, the strategy stayed positive and cut drawdowns to roughly a third of buy-and-hold. That is the strongest thing this research has established.</li>
+      <li><b>Use 1× or 2×, not 3×.</b> Two independent tests — eight markets and 99 years of S&amp;P — both say lower leverage is better risk-adjusted. 3× only won on the Nasdaq, in one era.</li>
+      <li><b>Freeze the parameters.</b> Re-optimising annually made things measurably worse in every variant tested.</li>
+      <li><b>Put it in a tax-advantaged account</b>, or accept losing roughly a third of the return to short-term taxes.</li>
+      <li><b>Automate it, but paper-trade first</b> and monitor for operational failure rather than for optimisation opportunities.</li>
+      <li><b>Realistic expectation:</b> mid-teens percent annually in a favourable regime, mid-single-digits in a hostile one, with −25% to −35% drawdowns at 1–2× leverage. The 24% headline needed the best index in its best era.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p class="mono">Method — Nikkei ^N225 from 1965, S&amp;P ^GSPC from 1927, Nasdaq Composite ^IXIC from 1971 (yfinance).
+      Identical rules per market (EMA-100 gate, vol-target 0.20, ER&lt;0.25 half-size, Aug–Sep half, weekly rebalance,
+      signal from prior close). Risk-free: ^IRX from 1960, approximate piecewise historical 3-month T-bill before that
+      (financing is small relative to the effects measured). Off-leg = T-bills for the long-run tests since bond data
+      doesn't reach 1927. Leveraged sleeves simulated at lev×index − 0.95%/252 − (lev−1)×T-bill, daily-compounded.
+      Re-optimisation test: 108-point grid re-fit each January, all modes scored on 1998–2026.
+      Code: longrun.py, fees_reopt.py, engine.py, scanner.py.</p>
+    <p style="margin-top:8px;color:var(--faint)">Research only — not investment advice. Simulated leveraged products; real results will differ.</p>
+  </footer>
+</div>
+
+<script>
+const D = {
+ "nikkei": [
+  {
+   "era": "1965-1989 (the bubble)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.13598519269189646,
+    "maxdd": -0.17777547281074568,
+    "calmar": 0.7649266265018579,
+    "sharpe": 1.4960343499295279,
+    "total": 23.16671646484162
+   },
+   "bh": {
+    "cagr": 0.14727911513338388,
+    "maxdd": -0.37401259462274206,
+    "calmar": 0.3937811647277305,
+    "sharpe": 1.0431649485305932,
+    "total": 29.941602264607663
+   },
+   "bh_lev": {
+    "cagr": 0.1450371048592345,
+    "maxdd": -0.37610813678744004,
+    "calmar": 0.3856260757825698,
+    "sharpe": 1.0293476766202867,
+    "total": 28.466019418441785
+   }
+  },
+  {
+   "era": "1965-1989 (the bubble)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.19601570341067842,
+    "maxdd": -0.35516648642483983,
+    "calmar": 0.5518980841458395,
+    "sharpe": 1.1109989759459185,
+    "total": 86.47400577809319
+   },
+   "bh": {
+    "cagr": 0.14727911513338388,
+    "maxdd": -0.37401259462274206,
+    "calmar": 0.3937811647277305,
+    "sharpe": 1.0431649485305932,
+    "total": 29.941602264607663
+   },
+   "bh_lev": {
+    "cagr": 0.1916109081487205,
+    "maxdd": -0.6815572138645405,
+    "calmar": 0.281136937957498,
+    "sharpe": 0.7662439199053953,
+    "total": 78.77200883524164
+   }
+  },
+  {
+   "era": "1965-1989 (the bubble)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.2524681683416501,
+    "maxdd": -0.5216773982290384,
+    "calmar": 0.48395458419075676,
+    "sharpe": 0.9969614642427026,
+    "total": 275.83870786373694
+   },
+   "bh": {
+    "cagr": 0.14727911513338388,
+    "maxdd": -0.37401259462274206,
+    "calmar": 0.3937811647277305,
+    "sharpe": 1.0431649485305932,
+    "total": 29.941602264607663
+   },
+   "bh_lev": {
+    "cagr": 0.22200711112999194,
+    "maxdd": -0.8460507250791105,
+    "calmar": 0.26240401969897614,
+    "sharpe": 0.695824589715574,
+    "total": 148.66317915505192
+   }
+  },
+  {
+   "era": "1990-2012 (THE CRASH+LOST DECADES, -5.6%/yr)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.03622583498636778,
+    "maxdd": -0.17285763008920962,
+    "calmar": 0.20957035548660527,
+    "sharpe": 0.4788850673056151,
+    "total": 1.265509871966223
+   },
+   "bh": {
+    "cagr": -0.055821521285286724,
+    "maxdd": -0.8177614225603402,
+    "calmar": -0.06826137764057685,
+    "sharpe": -0.1168649321697468,
+    "total": -0.7328807143374064
+   },
+   "bh_lev": {
+    "cagr": -0.057665255760231515,
+    "maxdd": -0.8244706449357284,
+    "calmar": -0.06994215757036057,
+    "sharpe": -0.1250152818197404,
+    "total": -0.7446144075724503
+   }
+  },
+  {
+   "era": "1990-2012 (THE CRASH+LOST DECADES, -5.6%/yr)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.034688594920913474,
+    "maxdd": -0.3168088139121552,
+    "calmar": 0.10949378109957487,
+    "sharpe": 0.29292128430545994,
+    "total": 1.1895180830351544
+   },
+   "bh": {
+    "cagr": -0.055821521285286724,
+    "maxdd": -0.8177614225603402,
+    "calmar": -0.06826137764057685,
+    "sharpe": -0.1168649321697468,
+    "total": -0.7328807143374064
+   },
+   "bh_lev": {
+    "cagr": -0.19387145857864296,
+    "maxdd": -0.995919468808381,
+    "calmar": -0.1946657984411234,
+    "sharpe": -0.20326414468161305,
+    "total": -0.9929363601914916
+   }
+  },
+  {
+   "era": "1990-2012 (THE CRASH+LOST DECADES, -5.6%/yr)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.02828466460856416,
+    "maxdd": -0.46299444704458603,
+    "calmar": 0.06109072104236353,
+    "sharpe": 0.23966473221991774,
+    "total": 0.8983810741350284
+   },
+   "bh": {
+    "cagr": -0.055821521285286724,
+    "maxdd": -0.8177614225603402,
+    "calmar": -0.06826137764057685,
+    "sharpe": -0.1168649321697468,
+    "total": -0.7328807143374064
+   },
+   "bh_lev": {
+    "cagr": -0.34593157826242615,
+    "maxdd": -0.9999685482713592,
+    "calmar": -0.3459424587507641,
+    "sharpe": -0.21915761977693482,
+    "total": -0.999942091734003
+   }
+  },
+  {
+   "era": "1990-2026 (full aftermath)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.040400010318893065,
+    "maxdd": -0.19078369311865762,
+    "calmar": 0.21175819410187402,
+    "sharpe": 0.49177538883173544,
+    "total": 3.2528298848319013
+   },
+   "bh": {
+    "cagr": 0.013967523428296102,
+    "maxdd": -0.8177614225603402,
+    "calmar": 0.0170801936151072,
+    "sharpe": 0.17848911987481414,
+    "total": 0.6602775839669364
+   },
+   "bh_lev": {
+    "cagr": 0.011994165956397573,
+    "maxdd": -0.8244706449357284,
+    "calmar": 0.014547717411251892,
+    "sharpe": 0.17002515014517122,
+    "total": 0.5461720497692728
+   }
+  },
+  {
+   "era": "1990-2026 (full aftermath)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.047731838649734515,
+    "maxdd": -0.39858454795909315,
+    "calmar": 0.11975335946699381,
+    "sharpe": 0.3539133288963846,
+    "total": 4.497293315197326
+   },
+   "bh": {
+    "cagr": 0.013967523428296102,
+    "maxdd": -0.8177614225603402,
+    "calmar": 0.0170801936151072,
+    "sharpe": 0.17848911987481414,
+    "total": 0.6602775839669364
+   },
+   "bh_lev": {
+    "cagr": -0.06083256559615158,
+    "maxdd": -0.995919468808381,
+    "calmar": -0.061081811834583194,
+    "sharpe": 0.10077122460985587,
+    "total": -0.8991329849232184
+   }
+  },
+  {
+   "era": "1990-2026 (full aftermath)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.049141182250239224,
+    "maxdd": -0.5615098646610512,
+    "calmar": 0.08751615126103388,
+    "sharpe": 0.31728065712618786,
+    "total": 4.774132372866095
+   },
+   "bh": {
+    "cagr": 0.013967523428296102,
+    "maxdd": -0.8177614225603402,
+    "calmar": 0.0170801936151072,
+    "sharpe": 0.17848911987481414,
+    "total": 0.6602775839669364
+   },
+   "bh_lev": {
+    "cagr": -0.16960889358604414,
+    "maxdd": -0.9999685482713592,
+    "calmar": -0.1696142282467246,
+    "sharpe": 0.08826733238360499,
+    "total": -0.9988786080656418
+   }
+  },
+  {
+   "era": "2013-2026 (recovery)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.04757699368478674,
+    "maxdd": -0.19078369311865295,
+    "calmar": 0.2493766259949558,
+    "sharpe": 0.5160039390977172,
+    "total": 0.8772065120779646
+   },
+   "bh": {
+    "cagr": 0.14435481550273543,
+    "maxdd": -0.3179889650850186,
+    "calmar": 0.45396171362154103,
+    "sharpe": 0.742655750041293,
+    "total": 5.215491254585364
+   },
+   "bh_lev": {
+    "cagr": 0.14213729720607926,
+    "maxdd": -0.31989382382626974,
+    "calmar": 0.4443264815367996,
+    "sharpe": 0.7335535213209413,
+    "total": 5.054264984458376
+   }
+  },
+  {
+   "era": "2013-2026 (recovery)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.07030211195342284,
+    "maxdd": -0.39858454795909104,
+    "calmar": 0.17637942141359264,
+    "sharpe": 0.4427120548496564,
+    "total": 1.5107320911352726
+   },
+   "bh": {
+    "cagr": 0.14435481550273543,
+    "maxdd": -0.3179889650850186,
+    "calmar": 0.45396171362154103,
+    "sharpe": 0.742655750041293,
+    "total": 5.215491254585364
+   },
+   "bh_lev": {
+    "cagr": 0.21680672669021006,
+    "maxdd": -0.5877631293301016,
+    "calmar": 0.36886751800391737,
+    "sharpe": 0.6811761849654874,
+    "total": 13.279750640071356
+   }
+  },
+  {
+   "era": "2013-2026 (recovery)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.0855613529727084,
+    "maxdd": -0.5615098646610518,
+    "calmar": 0.1523772926489126,
+    "sharpe": 0.42855183763729127,
+    "total": 2.0416086904453463
+   },
+   "bh": {
+    "cagr": 0.14435481550273543,
+    "maxdd": -0.3179889650850186,
+    "calmar": 0.45396171362154103,
+    "sharpe": 0.742655750041293,
+    "total": 5.215491254585364
+   },
+   "bh_lev": {
+    "cagr": 0.24447287095885728,
+    "maxdd": -0.7657910708548605,
+    "calmar": 0.31924225844779003,
+    "sharpe": 0.6750936376699456,
+    "total": 18.364971736780745
+   }
+  }
+ ],
+ "spx": [
+  {
+   "era": "1927-1954 (crash+Depression+WWII)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.046924750251460035,
+    "maxdd": -0.25003797344483947,
+    "calmar": 0.18767049502507682,
+    "sharpe": 0.5899266657167499,
+    "total": 2.4480032363673754
+   },
+   "bh": {
+    "cagr": 0.026715803744458366,
+    "maxdd": -0.8618957937515599,
+    "calmar": 0.03099655890902184,
+    "sharpe": 0.23120670142371935,
+    "total": 1.0373725851140585
+   }
+  },
+  {
+   "era": "1927-1954 (crash+Depression+WWII)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.08065194348082239,
+    "maxdd": -0.44742628494741166,
+    "calmar": 0.18025749982547815,
+    "sharpe": 0.5482218876151177,
+    "total": 7.114542239452952
+   },
+   "bh": {
+    "cagr": 0.026715803744458366,
+    "maxdd": -0.8618957937515599,
+    "calmar": 0.03099655890902184,
+    "sharpe": 0.23120670142371935,
+    "total": 1.0373725851140585
+   }
+  },
+  {
+   "era": "1927-1954 (crash+Depression+WWII)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.11039635726509633,
+    "maxdd": -0.5972965903250758,
+    "calmar": 0.18482669925340384,
+    "sharpe": 0.54517486983895,
+    "total": 15.887460961434414
+   },
+   "bh": {
+    "cagr": 0.026715803744458366,
+    "maxdd": -0.8618957937515599,
+    "calmar": 0.03099655890902184,
+    "sharpe": 0.23120670142371935,
+    "total": 1.0373725851140585
+   }
+  },
+  {
+   "era": "1955-1965 (post-war boom)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.08965833517673638,
+    "maxdd": -0.08210115105253435,
+    "calmar": 1.0920472371863141,
+    "sharpe": 1.4736681377366971,
+    "total": 1.569881130995733
+   },
+   "bh": {
+    "cagr": 0.08962153399327089,
+    "maxdd": -0.2797356809686301,
+    "calmar": 0.32037934411134755,
+    "sharpe": 0.8264051182869578,
+    "total": 1.568927222933243
+   }
+  },
+  {
+   "era": "1955-1965 (post-war boom)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.15463163414546455,
+    "maxdd": -0.1629748919277597,
+    "calmar": 0.9488064837251532,
+    "sharpe": 1.2690250033957717,
+    "total": 3.857444298785629
+   },
+   "bh": {
+    "cagr": 0.08962153399327089,
+    "maxdd": -0.2797356809686301,
+    "calmar": 0.32037934411134755,
+    "sharpe": 0.8264051182869578,
+    "total": 1.568927222933243
+   }
+  },
+  {
+   "era": "1955-1965 (post-war boom)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.2239346769099657,
+    "maxdd": -0.23846236531945508,
+    "calmar": 0.9390776469484926,
+    "sharpe": 1.2227018885864493,
+    "total": 8.218916792608326
+   },
+   "bh": {
+    "cagr": 0.08962153399327089,
+    "maxdd": -0.2797356809686301,
+    "calmar": 0.32037934411134755,
+    "sharpe": 0.8264051182869578,
+    "total": 1.568927222933243
+   }
+  },
+  {
+   "era": "1966-1982 (STAGFLATION, +2.5%/yr)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.07262850872895132,
+    "maxdd": -0.11381438899100749,
+    "calmar": 0.6381311657763213,
+    "sharpe": 1.1574032132751222,
+    "total": 2.291302252279607
+   },
+   "bh": {
+    "cagr": 0.025011891844850087,
+    "maxdd": -0.4820359290935836,
+    "calmar": 0.051888023973404314,
+    "sharpe": 0.2521084976291351,
+    "total": 0.5215838897035454
+   }
+  },
+  {
+   "era": "1966-1982 (STAGFLATION, +2.5%/yr)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.0707617714157045,
+    "maxdd": -0.25182909662008457,
+    "calmar": 0.2809912451159582,
+    "sharpe": 0.6113160259365091,
+    "total": 2.195320091543486
+   },
+   "bh": {
+    "cagr": 0.025011891844850087,
+    "maxdd": -0.4820359290935836,
+    "calmar": 0.051888023973404314,
+    "sharpe": 0.2521084976291351,
+    "total": 0.5215838897035454
+   }
+  },
+  {
+   "era": "1966-1982 (STAGFLATION, +2.5%/yr)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.06781870692180192,
+    "maxdd": -0.37779337465990825,
+    "calmar": 0.17951269522090668,
+    "sharpe": 0.44484604206556894,
+    "total": 2.049329478106047
+   },
+   "bh": {
+    "cagr": 0.025011891844850087,
+    "maxdd": -0.4820359290935836,
+    "calmar": 0.051888023973404314,
+    "sharpe": 0.2521084976291351,
+    "total": 0.5215838897035454
+   }
+  },
+  {
+   "era": "1983-1999 (great bull)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.10376647800205863,
+    "maxdd": -0.10942050398780323,
+    "calmar": 0.9483275457552741,
+    "sharpe": 1.268925967311506,
+    "total": 4.352182095303277
+   },
+   "bh": {
+    "cagr": 0.14807905129528431,
+    "maxdd": -0.3350951525557263,
+    "calmar": 0.44190150220289676,
+    "sharpe": 0.9616642862472515,
+    "total": 9.446885710866606
+   }
+  },
+  {
+   "era": "1983-1999 (great bull)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.14282196420588833,
+    "maxdd": -0.2179621217701373,
+    "calmar": 0.6552604784996003,
+    "sharpe": 0.911108253297697,
+    "total": 8.663177169472986
+   },
+   "bh": {
+    "cagr": 0.14807905129528431,
+    "maxdd": -0.3350951525557263,
+    "calmar": 0.44190150220289676,
+    "sharpe": 0.9616642862472515,
+    "total": 9.446885710866606
+   }
+  },
+  {
+   "era": "1983-1999 (great bull)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.18007849627848738,
+    "maxdd": -0.31415560058603165,
+    "calmar": 0.573214343282646,
+    "sharpe": 0.8077520403828603,
+    "total": 15.666537275036589
+   },
+   "bh": {
+    "cagr": 0.14807905129528431,
+    "maxdd": -0.3350951525557263,
+    "calmar": 0.44190150220289676,
+    "sharpe": 0.9616642862472515,
+    "total": 9.446885710866606
+   }
+  },
+  {
+   "era": "2000-2026 (modern)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.030113958214565528,
+    "maxdd": -0.14953239005143348,
+    "calmar": 0.2013875268375465,
+    "sharpe": 0.45406344565463724,
+    "total": 1.1986740800436158
+   },
+   "bh": {
+    "cagr": 0.06283992529942073,
+    "maxdd": -0.5677538774277291,
+    "calmar": 0.11068163124508082,
+    "sharpe": 0.4134805490647792,
+    "total": 4.044737097477437
+   }
+  },
+  {
+   "era": "2000-2026 (modern)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.038179002511352644,
+    "maxdd": -0.3549938012745527,
+    "calmar": 0.10754836387079601,
+    "sharpe": 0.335806705979009,
+    "total": 1.7045800122798123
+   },
+   "bh": {
+    "cagr": 0.06283992529942073,
+    "maxdd": -0.5677538774277291,
+    "calmar": 0.11068163124508082,
+    "sharpe": 0.4134805490647792,
+    "total": 4.044737097477437
+   }
+  },
+  {
+   "era": "2000-2026 (modern)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.04441675391586264,
+    "maxdd": -0.5156312531498095,
+    "calmar": 0.08614053869802567,
+    "sharpe": 0.3121127687203703,
+    "total": 2.17090702235047
+   },
+   "bh": {
+    "cagr": 0.06283992529942073,
+    "maxdd": -0.5677538774277291,
+    "calmar": 0.11068163124508082,
+    "sharpe": 0.4134805490647792,
+    "total": 4.044737097477437
+   }
+  },
+  {
+   "era": "FULL 1928-2026 (99 years)",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.06102914191771136,
+    "maxdd": -0.25003797344483947,
+    "calmar": 0.24407949351411182,
+    "sharpe": 0.8393753151377732,
+    "total": 342.1944095765689
+   },
+   "bh": {
+    "cagr": 0.06319803645677458,
+    "maxdd": -0.8618957937515599,
+    "calmar": 0.07332445165058006,
+    "sharpe": 0.41983702258392447,
+    "total": 418.70441928144635
+   }
+  },
+  {
+   "era": "FULL 1928-2026 (99 years)",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.0856503812609466,
+    "maxdd": -0.4597727999314445,
+    "calmar": 0.18628849134554654,
+    "sharpe": 0.6310088361452433,
+    "total": 3290.5920211937996
+   },
+   "bh": {
+    "cagr": 0.06319803645677458,
+    "maxdd": -0.8618957937515599,
+    "calmar": 0.07332445165058006,
+    "sharpe": 0.41983702258392447,
+    "total": 418.70441928144635
+   }
+  },
+  {
+   "era": "FULL 1928-2026 (99 years)",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.10825598513876034,
+    "maxdd": -0.6339782514776522,
+    "calmar": 0.17075662278073647,
+    "sharpe": 0.5761697571008475,
+    "total": 25087.66145155323
+   },
+   "bh": {
+    "cagr": 0.06319803645677458,
+    "maxdd": -0.8618957937515599,
+    "calmar": 0.07332445165058006,
+    "sharpe": 0.41983702258392447,
+    "total": 418.70441928144635
+   }
+  }
+ ],
+ "ixic": [
+  {
+   "era": "1971-1989",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.15797706412330692,
+    "maxdd": -0.1098770907466291,
+    "calmar": 1.4377616211881135,
+    "sharpe": 2.3474306464792223,
+    "total": 14.985107270297553
+   },
+   "bh": {
+    "cagr": 0.08345653127351693,
+    "maxdd": -0.5990207512400264,
+    "calmar": 0.13932160296743387,
+    "sharpe": 0.6935481882653469,
+    "total": 3.547999877929697
+   }
+  },
+  {
+   "era": "1971-1989",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.23864645630332992,
+    "maxdd": -0.2264895568124642,
+    "calmar": 1.0536753202309093,
+    "sharpe": 1.7534758202161558,
+    "total": 56.06810555969432
+   },
+   "bh": {
+    "cagr": 0.08345653127351693,
+    "maxdd": -0.5990207512400264,
+    "calmar": 0.13932160296743387,
+    "sharpe": 0.6935481882653469,
+    "total": 3.547999877929697
+   }
+  },
+  {
+   "era": "1971-1989",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.32434382513522575,
+    "maxdd": -0.328291076481792,
+    "calmar": 0.9879763672260974,
+    "sharpe": 1.5743153595950927,
+    "total": 201.02495492613716
+   },
+   "bh": {
+    "cagr": 0.08345653127351693,
+    "maxdd": -0.5990207512400264,
+    "calmar": 0.13932160296743387,
+    "sharpe": 0.6935481882653469,
+    "total": 3.547999877929697
+   }
+  },
+  {
+   "era": "1990-2026",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.09696414643439688,
+    "maxdd": -0.13659947315217946,
+    "calmar": 0.7098427555893527,
+    "sharpe": 1.0577305445491818,
+    "total": 28.462248875384507
+   },
+   "bh": {
+    "cagr": 0.11581003214791963,
+    "maxdd": -0.7793238628593406,
+    "calmar": 0.14860321577092792,
+    "sharpe": 0.5907362263679922,
+    "total": 53.91605317252002
+   }
+  },
+  {
+   "era": "1990-2026",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.16344045268347562,
+    "maxdd": -0.2589273123135124,
+    "calmar": 0.6312213695153948,
+    "sharpe": 0.9197482916257556,
+    "total": 252.12165213332258
+   },
+   "bh": {
+    "cagr": 0.11581003214791963,
+    "maxdd": -0.7793238628593406,
+    "calmar": 0.14860321577092792,
+    "sharpe": 0.5907362263679922,
+    "total": 53.91605317252002
+   }
+  },
+  {
+   "era": "1990-2026",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.22762162675910425,
+    "maxdd": -0.37433346641534615,
+    "calmar": 0.6080718054381596,
+    "sharpe": 0.8859884650494276,
+    "total": 1801.2860476535666
+   },
+   "bh": {
+    "cagr": 0.11581003214791963,
+    "maxdd": -0.7793238628593406,
+    "calmar": 0.14860321577092792,
+    "sharpe": 0.5907362263679922,
+    "total": 53.91605317252002
+   }
+  },
+  {
+   "era": "FULL 1971-2026",
+   "lev": 1,
+   "strat": {
+    "cagr": 0.11736130132081124,
+    "maxdd": -0.1365994731521789,
+    "calmar": 0.8591636454561187,
+    "sharpe": 1.379039902752816,
+    "total": 469.95720869722624
+   },
+   "bh": {
+    "cagr": 0.10465604978564169,
+    "maxdd": -0.7793238628593402,
+    "calmar": 0.134290831800862,
+    "sharpe": 0.5949844746488614,
+    "total": 248.75820312499854
+   }
+  },
+  {
+   "era": "FULL 1971-2026",
+   "lev": 2,
+   "strat": {
+    "cagr": 0.1885007057045327,
+    "maxdd": -0.2589273123135113,
+    "calmar": 0.7280062656205789,
+    "sharpe": 1.1244495955915397,
+    "total": 14444.173163388661
+   },
+   "bh": {
+    "cagr": 0.10465604978564169,
+    "maxdd": -0.7793238628593402,
+    "calmar": 0.134290831800862,
+    "sharpe": 0.5949844746488614,
+    "total": 248.75820312499854
+   }
+  },
+  {
+   "era": "FULL 1971-2026",
+   "lev": 3,
+   "strat": {
+    "cagr": 0.25970390748904126,
+    "maxdd": -0.37433346641534626,
+    "calmar": 0.6937768882274705,
+    "sharpe": 1.053362186736331,
+    "total": 364105.7575412196
+   },
+   "bh": {
+    "cagr": 0.10465604978564169,
+    "maxdd": -0.7793238628593402,
+    "calmar": 0.134290831800862,
+    "sharpe": 0.5949844746488614,
+    "total": 248.75820312499854
+   }
+  }
+ ],
+ "costs": [
+  {
+   "label": "idealised (3 bps, LETF fee only)",
+   "cagr": 0.24173018409129154,
+   "maxdd": -0.3071091758885688,
+   "sharpe": 0.942907046546194,
+   "calmar": 0.7871148212745057,
+   "total": 4215.068970980086,
+   "drag": 0.0
+  },
+  {
+   "label": "+ TLT 0.15% & GLD 0.40% expense ratios",
+   "cagr": 0.24009636598361328,
+   "maxdd": -0.30768490451086683,
+   "sharpe": 0.9379872422570639,
+   "calmar": 0.7803319644988743,
+   "total": 4006.409572782402,
+   "drag": 0.16338181076782643
+  },
+  {
+   "label": "+ realistic spreads (6 bps/turnover)",
+   "cagr": 0.23555396856133592,
+   "maxdd": -0.3097653425983893,
+   "sharpe": 0.9243109300316248,
+   "calmar": 0.7604271239172538,
+   "total": 3477.751057128248,
+   "drag": 0.45423974222773555
+  },
+  {
+   "label": "+ wider spreads / slippage (10 bps)",
+   "cagr": 0.22952162716102098,
+   "maxdd": -0.3125304780756274,
+   "sharpe": 0.9060579467721201,
+   "calmar": 0.7343975812351985,
+   "total": 2879.5798951576576,
+   "drag": 0.6032341400314944
+  },
+  {
+   "label": "+ pessimistic (20 bps)",
+   "cagr": 0.21456098867215623,
+   "maxdd": -0.31939960827141745,
+   "sharpe": 0.8603429335057706,
+   "calmar": 0.6717634684442941,
+   "total": 1795.8285716707578,
+   "drag": 1.4960638488864753
+  }
+ ],
+ "reopt": {
+  "FROZEN rules (never re-optimise)": {
+   "cagr": 0.24662298931259374,
+   "maxdd": -0.3007672293259628,
+   "sharpe": 0.9671820642148946,
+   "calmar": 0.819979589748825,
+   "total": 540.7410068981144,
+   "param_changes": 0
+  },
+  "re-optimise yearly on ALL history": {
+   "cagr": 0.22293381117481892,
+   "maxdd": -0.32084788807502074,
+   "sharpe": 0.9035384440436104,
+   "calmar": 0.6948271111034786,
+   "total": 312.2274415599158,
+   "param_changes": 5
+  },
+  "re-optimise yearly on last 10y": {
+   "cagr": 0.20247999018816132,
+   "maxdd": -0.36565610978586127,
+   "sharpe": 0.8415607170474125,
+   "calmar": 0.5537443099384813,
+   "total": 192.50224146389914,
+   "param_changes": 20
+  },
+  "re-optimise yearly on last 5y": {
+   "cagr": 0.2101762824894573,
+   "maxdd": -0.3855227474362213,
+   "sharpe": 0.854606924193342,
+   "calmar": 0.545172195122488,
+   "total": 231.1708891983247,
+   "param_changes": 24
+  }
+ }
+};
+const SVGT=['svg','g','rect','line','text','path','circle'];
+const el=(t,a={},...c)=>{const n=SVGT.includes(t)?document.createElementNS('http://www.w3.org/2000/svg',t):document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const $=s=>document.querySelector(s);
+const pc=(x,d=1)=>(x==null||isNaN(x))?'—':(x*100).toFixed(d)+'%';
+const pc0=x=>(x==null||isNaN(x))?'—':Math.round(x*100)+'%';
+
+$('#qg').append(...[
+ {n:'IF IT CRASHES',a:'+3.6%/yr',d:'through Nikkei’s 23-year collapse, vs −5.6% index and −34.6% for 3× buy&hold'},
+ {n:'PRE-1985 DATA',a:'99 years',d:'S&P from 1927 — works through Depression &amp; stagflation'},
+ {n:'RE-OPTIMISE?',a:'NO — freeze',d:'frozen 0.82 Calmar vs 0.55 if re-fit yearly'},
+ {n:'ALL-IN COSTS',a:'−2.7%/yr',d:'worst case; taxes cost far more — use a sheltered account'},
+ {n:'AUTOMATABLE?',a:'Yes, weekly',d:'3 liquid ETFs, one cron job, $0 commissions'},
+].map(k=>{const d=el('div',{class:'q'});d.innerHTML=`<div class="n">${k.n}</div><div class="a acc">${k.a}</div><div class="d">${k.d}</div>`;return d;}));
+
+function nk(){
+ const tb=$('#nk tbody');tb.innerHTML='';
+ let last=null;
+ D.nikkei.forEach(r=>{
+  const crash=r.era.includes('LOST');
+  const tr=el('tr', crash&&r.lev===1?{class:'win'}:(crash?{class:'crit'}:{}));
+  tr.innerHTML=`<td>${r.era!==last?r.era.replace(' (THE CRASH+LOST DECADES, -5.6%/yr)',' — THE CRASH + LOST DECADES'):''}</td>
+   <td>${r.lev}×</td><td class="${r.strat.cagr>0?'pos':'neg'}"><b>${pc(r.strat.cagr)}</b></td>
+   <td class="neg">${pc0(r.strat.maxdd)}</td><td class="${r.bh.cagr>0?'':'neg'}">${pc(r.bh.cagr)}</td>
+   <td class="${r.bh_lev.cagr>0?'':'neg'}">${pc(r.bh_lev.cagr)}</td>`;
+  last=r.era;tb.append(tr);});
+}
+function sp(){
+ const tb=$('#sp tbody');tb.innerHTML='';let last=null;
+ D.spx.forEach(r=>{
+  const key=r.era.includes('STAGFLATION')||r.era.includes('FULL');
+  const tr=el('tr', key&&r.lev===1?{class:'win'}:(r.lev===3?{class:'dim'}:{}));
+  tr.innerHTML=`<td>${r.era!==last?r.era:''}</td><td>${r.lev}×</td>
+   <td class="${r.strat.cagr>0?'pos':'neg'}">${pc(r.strat.cagr)}</td><td class="neg">${pc0(r.strat.maxdd)}</td>
+   <td class="acc">${r.strat.calmar==null||isNaN(r.strat.calmar)?'—':r.strat.calmar.toFixed(2)}</td>
+   <td>${pc(r.bh.cagr)}</td><td class="neg">${pc0(r.bh.maxdd)}</td>`;
+  last=r.era;tb.append(tr);});
+}
+function ro(){
+ const tb=$('#ro tbody');tb.innerHTML='';
+ Object.entries(D.reopt).forEach(([k,v])=>{
+  const best=k.startsWith('FROZEN');
+  const tr=el('tr',best?{class:'win'}:{class:'dim'});
+  tr.innerHTML=`<td>${k}</td><td>${pc(v.cagr)}</td><td class="neg">${pc0(v.maxdd)}</td>
+   <td class="acc"><b>${v.calmar.toFixed(2)}</b></td><td>${v.sharpe.toFixed(2)}</td>
+   <td>${v.param_changes}/29</td>`;tb.append(tr);});
+}
+function cost(){
+ const tb=$('#cost tbody');tb.innerHTML='';
+ D.costs.forEach((r,i)=>{const tr=el('tr',i===0?{class:'win'}:(i===D.costs.length-1?{class:'crit'}:{}));
+  tr.innerHTML=`<td>${r.label}</td><td>${pc(r.cagr,2)}</td><td class="neg">${pc0(r.maxdd)}</td>
+   <td>${r.calmar.toFixed(2)}</td><td class="${r.drag>0?'neg':''}">${i===0?'—':'−'+r.drag.toFixed(2)+'%'}</td>`;tb.append(tr);});
+}
+function renderAll(){nk();sp();ro();cost();}
+const btn=$('#themeBtn');
+function dark(){const a=document.documentElement.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',dark()?'light':'dark');requestAnimationFrame(renderAll);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>requestAnimationFrame(renderAll));
+renderAll();
+</script>

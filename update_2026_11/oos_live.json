@@ -1,0 +1,6061 @@
+{
+ "meta": {
+  "key": "oos_live",
+  "window": {
+   "start": "2026-07-27",
+   "end": "2026-11-17",
+   "trading_days": 81
+  },
+  "freeze": "2026-07-24",
+  "history_for_percentiles": [
+   "1988-01-04",
+   "2026-07-24"
+  ],
+  "cost_bps_per_turnover": 3.0,
+  "rebalance": "Friday close marks (P.mark)",
+  "gold_sim_in_tracking_test": "GC=F front-month futures - 0.40%/yr (the panel's 2000-2004 splice source)",
+  "no_parameter_chosen": "all configurations are the pre-registered July specs; nothing tuned on OOS"
+ },
+ "checks": {
+  "no_lookahead": {
+   "max_abs_diff_ema_full": 0.0,
+   "max_abs_diff_vol_full": 0.0,
+   "max_abs_diff_er_full": 0.0,
+   "max_abs_diff_ema_5y": 0.0,
+   "n_decisions": 17
+  },
+  "curve_rule_is_noop_everywhere": true,
+  "spliced_equals_real_in_window": {
+   "qqq": 0.0,
+   "qld": 0.0,
+   "tqqq": 0.0,
+   "tlt": 0.0,
+   "ief": 0.0,
+   "shy": 0.0,
+   "bills": 0.0,
+   "gold_phys": 0.0
+  },
+  "real_run_equals_spliced_run": {
+   "a_F_scanner_TQQQ_TLT_GLD": 0.0,
+   "b_F3_TQQQ_IEF_GLD": 0.0,
+   "c_F2_QLD_IEF_GLD_vt30": 0.0,
+   "d_A_TQQQ_BIL_vt25": 0.0,
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers": 0.0,
+   "QQQ_buyhold": 0.0,
+   "QLD_buyhold": 0.0,
+   "TQQQ_buyhold": 0.0,
+   "6040_SPXprice_IEF": 0.0,
+   "6040_SPY_IEF": 0.0,
+   "static_IEF85_GLD15": 0.0
+  },
+  "nan_real_columns_2026": {
+   "qqq": 0,
+   "qld": 0,
+   "tqqq": 0,
+   "tlt": 0,
+   "ief": 0,
+   "shy": 0,
+   "bills": 0,
+   "gold_phys": 0,
+   "spy": 0
+  },
+  "independent_yfinance_check": {
+   "QQQ": {
+    "max_abs_daily_diff": 0.0,
+    "total_yf": -0.038869,
+    "total_panel": -0.038869
+   },
+   "QLD": {
+    "max_abs_daily_diff": 0.0,
+    "total_yf": -0.108429,
+    "total_panel": -0.108429
+   },
+   "TQQQ": {
+    "max_abs_daily_diff": 0.0,
+    "total_yf": -0.188903,
+    "total_panel": -0.188903
+   },
+   "TLT": {
+    "max_abs_daily_diff": 0.0,
+    "total_yf": -0.02897,
+    "total_panel": -0.02897
+   },
+   "IEF": {
+    "max_abs_daily_diff": 0.0,
+    "total_yf": -0.014607,
+    "total_panel": -0.014608
+   },
+   "SHY": {
+    "max_abs_daily_diff": 0.0,
+    "total_yf": 0.005656,
+    "total_panel": 0.005656
+   },
+   "BIL": {
+    "max_abs_daily_diff": 0.0,
+    "total_yf": 0.011693,
+    "total_panel": 0.011693
+   },
+   "GLD": {
+    "max_abs_daily_diff": 0.0,
+    "total_yf": -0.052218,
+    "total_panel": -0.052218
+   },
+   "NDX_level_max_abs_diff": 0.0,
+   "SPY_total_OOS": -0.006322,
+   "SPX_price_index_total_OOS": -0.00964
+  },
+  "scanner_state_crosscheck": {
+   "asof": "2026-07-31",
+   "scanner": {
+    "ndx": 28274.2,
+    "ema100": 28049.0,
+    "vol": 0.2371,
+    "er": 0.15,
+    "F": {
+     "TQQQ": 0.359,
+     "TLT": 0.491,
+     "GLD": 0.15
+    },
+    "A": {
+     "TQQQ": 1.0,
+     "CASH": 0.0
+    }
+   },
+   "replicated": {
+    "ndx": 28274.2,
+    "ema100": 28049.0,
+    "vol": 0.2371,
+    "er": 0.15,
+    "F": {
+     "TQQQ": 0.359,
+     "TLT": 0.491,
+     "GLD": 0.15
+    },
+    "A": {
+     "TQQQ": 1.0
+    }
+   },
+   "match": true
+  }
+ },
+ "market_context": {
+  "NDX index": {
+   "total": -0.040051,
+   "maxdd": -0.147149,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.110072,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.237182,
+   "worst_day": -0.063556,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QQQ": {
+   "total": -0.038869,
+   "maxdd": -0.148237,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.111398,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.238867,
+   "worst_day": -0.064889,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD": {
+   "total": -0.108429,
+   "maxdd": -0.282822,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.214432,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.473419,
+   "worst_day": -0.127279,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ": {
+   "total": -0.188903,
+   "maxdd": -0.40095,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.318952,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.705737,
+   "worst_day": -0.189107,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TLT": {
+   "total": -0.02897,
+   "maxdd": -0.073714,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.011892,
+   "peak_date": "2026-07-28",
+   "vol_ann": 0.109855,
+   "worst_day": -0.0165,
+   "worst_day_date": "2026-07-29",
+   "days": 81
+  },
+  "IEF": {
+   "total": -0.014608,
+   "maxdd": -0.042378,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.00861,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.058442,
+   "worst_day": -0.010641,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "SHY": {
+   "total": 0.005656,
+   "maxdd": -0.009109,
+   "maxdd_date": "2026-09-24",
+   "peak_gain": 0.009984,
+   "peak_date": "2026-11-05",
+   "vol_ann": 0.016243,
+   "worst_day": -0.003309,
+   "worst_day_date": "2026-11-10",
+   "days": 81
+  },
+  "BIL": {
+   "total": 0.011693,
+   "maxdd": -0.000109,
+   "maxdd_date": "2026-10-12",
+   "peak_gain": 0.011693,
+   "peak_date": "2026-11-16",
+   "vol_ann": 0.001959,
+   "worst_day": -0.000109,
+   "worst_day_date": "2026-10-12",
+   "days": 81
+  },
+  "GLD": {
+   "total": -0.052218,
+   "maxdd": -0.176583,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.151035,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.2483,
+   "worst_day": -0.039399,
+   "worst_day_date": "2026-09-28",
+   "days": 81
+  },
+  "SPY": {
+   "total": -0.006322,
+   "maxdd": -0.059878,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.056967,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.148143,
+   "worst_day": -0.044092,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "S&P500 price idx": {
+   "total": -0.00964,
+   "maxdd": -0.061185,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.054904,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.14793,
+   "worst_day": -0.043557,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "XAU gold miners idx": {
+   "total": 0.021094,
+   "maxdd": -0.277914,
+   "maxdd_date": "2026-10-30",
+   "peak_gain": 0.393685,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.479252,
+   "worst_day": -0.055276,
+   "worst_day_date": "2026-10-22",
+   "days": 81
+  },
+  "July synthetic 10y": {
+   "total": -0.016437,
+   "maxdd": -0.044068,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.006989,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.061179,
+   "worst_day": -0.010753,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "NDX_levels": {
+   "freeze_close": 28128.339844,
+   "record_close": 31224.470703,
+   "record_date": "2026-10-06",
+   "last": 27001.779297,
+   "last_vs_record": -0.135237,
+   "min_close": 26629.810547,
+   "min_date": "2026-11-05",
+   "ema100_last": 28968.421682,
+   "vol20_last": 0.355071,
+   "er20_last": 0.259719,
+   "tnx_last": 5.103,
+   "vix_last": 25.459999,
+   "dxy_last": 103.489998
+  }
+ },
+ "results_table": {
+  "a_F_scanner_TQQQ_TLT_GLD": {
+   "is_cagr": 0.243652,
+   "is_maxdd": -0.407177,
+   "is_calmar": 0.598393,
+   "is_cagr_lag2": 0.225046,
+   "oos_lag1": -0.10847,
+   "oos_lag2": -0.092166,
+   "oos_drift_fri_close": -0.108657,
+   "oos_drift_mon_close": -0.092013,
+   "oos_drift_mon_open": -0.078718,
+   "oos_sim_sleeves": -0.105913,
+   "oos_maxdd": -0.180253,
+   "pct_rank": 6.831395,
+   "pct_rank_dd": 15.97799
+  },
+  "b_F3_TQQQ_IEF_GLD": {
+   "is_cagr": 0.241345,
+   "is_maxdd": -0.299919,
+   "is_calmar": 0.804701,
+   "is_cagr_lag2": 0.222353,
+   "oos_lag1": -0.089946,
+   "oos_lag2": -0.074934,
+   "oos_drift_fri_close": -0.090444,
+   "oos_drift_mon_close": -0.075195,
+   "oos_drift_mon_open": -0.058998,
+   "oos_sim_sleeves": -0.086616,
+   "oos_maxdd": -0.173462,
+   "pct_rank": 8.41985,
+   "pct_rank_dd": 13.953488
+  },
+  "c_F2_QLD_IEF_GLD_vt30": {
+   "is_cagr": 0.197147,
+   "is_maxdd": -0.239581,
+   "is_calmar": 0.822881,
+   "is_cagr_lag2": 0.182767,
+   "oos_lag1": -0.060315,
+   "oos_lag2": -0.050167,
+   "oos_drift_fri_close": -0.060675,
+   "oos_drift_mon_close": -0.050172,
+   "oos_drift_mon_open": -0.038125,
+   "oos_sim_sleeves": -0.058394,
+   "oos_maxdd": -0.122657,
+   "pct_rank": 9.105066,
+   "pct_rank_dd": 17.33804
+  },
+  "d_A_TQQQ_BIL_vt25": {
+   "is_cagr": 0.305588,
+   "is_maxdd": -0.673834,
+   "is_calmar": 0.453506,
+   "is_cagr_lag2": 0.240968,
+   "oos_lag1": 0.069018,
+   "oos_lag2": 0.107053,
+   "oos_drift_fri_close": 0.068998,
+   "oos_drift_mon_close": 0.10705,
+   "oos_drift_mon_open": 0.11183,
+   "oos_sim_sleeves": 0.071296,
+   "oos_maxdd": -0.190872,
+   "pct_rank": 51.71304,
+   "pct_rank_dd": 52.138704
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers": {
+   "is_cagr": 0.241354,
+   "is_maxdd": -0.307109,
+   "is_calmar": 0.785889,
+   "is_cagr_lag2": 0.22211,
+   "oos_lag1": -0.077986,
+   "oos_lag2": -0.064528,
+   "oos_drift_fri_close": -0.078294,
+   "oos_drift_mon_close": -0.063553,
+   "oos_drift_mon_open": null,
+   "oos_sim_sleeves": -0.076339,
+   "oos_maxdd": -0.178395,
+   "pct_rank": 12.115864,
+   "pct_rank_dd": 15.604236
+  },
+  "QQQ_buyhold": {
+   "is_cagr": 0.14775,
+   "is_maxdd": -0.829639,
+   "is_calmar": 0.17809,
+   "is_cagr_lag2": 0.14775,
+   "oos_lag1": -0.038869,
+   "oos_lag2": -0.038869,
+   "oos_drift_fri_close": -0.038869,
+   "oos_drift_mon_close": -0.038869,
+   "oos_drift_mon_open": -0.038869,
+   "oos_sim_sleeves": -0.040668,
+   "oos_maxdd": -0.148237,
+   "pct_rank": 19.071844,
+   "pct_rank_dd": 21.750415
+  },
+  "QLD_buyhold": {
+   "is_cagr": 0.183487,
+   "is_maxdd": -0.98883,
+   "is_calmar": 0.185559,
+   "is_cagr_lag2": 0.183487,
+   "oos_lag1": -0.108429,
+   "oos_lag2": -0.108429,
+   "oos_drift_fri_close": -0.108429,
+   "oos_drift_mon_close": -0.108429,
+   "oos_drift_mon_open": -0.108429,
+   "oos_sim_sleeves": -0.109345,
+   "oos_maxdd": -0.282822,
+   "pct_rank": 19.071844,
+   "pct_rank_dd": 22.269518
+  },
+  "TQQQ_buyhold": {
+   "is_cagr": 0.14982,
+   "is_maxdd": -0.999805,
+   "is_calmar": 0.14985,
+   "is_cagr_lag2": 0.14982,
+   "oos_lag1": -0.188903,
+   "oos_lag2": -0.188903,
+   "oos_drift_fri_close": -0.188903,
+   "oos_drift_mon_close": -0.188903,
+   "oos_drift_mon_open": -0.188903,
+   "oos_sim_sleeves": -0.186826,
+   "oos_maxdd": -0.40095,
+   "pct_rank": 19.10299,
+   "pct_rank_dd": 22.923588
+  },
+  "6040_SPXprice_IEF": {
+   "is_cagr": 0.083638,
+   "is_maxdd": -0.327774,
+   "is_calmar": 0.255171,
+   "is_cagr_lag2": 0.083638,
+   "oos_lag1": -0.010727,
+   "oos_lag2": -0.010727,
+   "oos_drift_fri_close": -0.010814,
+   "oos_drift_mon_close": -0.011249,
+   "oos_drift_mon_open": null,
+   "oos_sim_sleeves": -0.009978,
+   "oos_maxdd": -0.043007,
+   "pct_rank": 18.999169,
+   "pct_rank_dd": 41.767027
+  },
+  "6040_SPY_IEF": {
+   "is_cagr": null,
+   "is_maxdd": null,
+   "is_calmar": null,
+   "is_cagr_lag2": null,
+   "oos_lag1": -0.008737,
+   "oos_lag2": -0.008737,
+   "oos_drift_fri_close": -0.008818,
+   "oos_drift_mon_close": -0.009262,
+   "oos_drift_mon_open": -0.009062,
+   "oos_sim_sleeves": -0.007986,
+   "oos_maxdd": -0.041355,
+   "pct_rank": null,
+   "pct_rank_dd": null
+  },
+  "static_IEF85_GLD15": {
+   "is_cagr": 0.058725,
+   "is_maxdd": -0.221646,
+   "is_calmar": 0.264949,
+   "is_cagr_lag2": 0.058725,
+   "oos_lag1": -0.019222,
+   "oos_lag2": -0.019222,
+   "oos_drift_fri_close": -0.019359,
+   "oos_drift_mon_close": -0.019101,
+   "oos_drift_mon_open": -0.019121,
+   "oos_sim_sleeves": -0.017959,
+   "oos_maxdd": -0.053074,
+   "pct_rank": 15.043605,
+   "pct_rank_dd": 13.278654
+  }
+ },
+ "oos_stats_all_runs": {
+  "a_F_scanner_TQQQ_TLT_GLD|model_spliced_lag1": {
+   "total": -0.10847,
+   "maxdd": -0.180253,
+   "maxdd_date": "2026-11-16",
+   "peak_gain": 0.085799,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.242554,
+   "worst_day": -0.064871,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "a_F_scanner_TQQQ_TLT_GLD|model_spliced_lag2": {
+   "total": -0.092166,
+   "maxdd": -0.183415,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.087302,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.245165,
+   "worst_day": -0.064871,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "a_F_scanner_TQQQ_TLT_GLD|real_lag1": {
+   "total": -0.10847,
+   "maxdd": -0.180253,
+   "maxdd_date": "2026-11-16",
+   "peak_gain": 0.085799,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.242554,
+   "worst_day": -0.064871,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "a_F_scanner_TQQQ_TLT_GLD|real_lag2": {
+   "total": -0.092166,
+   "maxdd": -0.183415,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.087302,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.245165,
+   "worst_day": -0.064871,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "a_F_scanner_TQQQ_TLT_GLD|sim_sleeves_lag1": {
+   "total": -0.105913,
+   "maxdd": -0.177819,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.084618,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.239865,
+   "worst_day": -0.063634,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "a_F_scanner_TQQQ_TLT_GLD|real_drift_close1": {
+   "total": -0.108657,
+   "maxdd": -0.179235,
+   "maxdd_date": "2026-11-16",
+   "peak_gain": 0.08422,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.241322,
+   "worst_day": -0.063978,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "a_F_scanner_TQQQ_TLT_GLD|real_drift_close2": {
+   "total": -0.092013,
+   "maxdd": -0.182322,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.086879,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.243627,
+   "worst_day": -0.064123,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "a_F_scanner_TQQQ_TLT_GLD|real_drift_open1": {
+   "total": -0.078718,
+   "maxdd": -0.168226,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.084552,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.245458,
+   "worst_day": -0.063989,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "b_F3_TQQQ_IEF_GLD|model_spliced_lag1": {
+   "total": -0.089946,
+   "maxdd": -0.173462,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.098587,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.230301,
+   "worst_day": -0.064871,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "b_F3_TQQQ_IEF_GLD|model_spliced_lag2": {
+   "total": -0.074934,
+   "maxdd": -0.166081,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.083343,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.233363,
+   "worst_day": -0.064871,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "b_F3_TQQQ_IEF_GLD|real_lag1": {
+   "total": -0.089946,
+   "maxdd": -0.173462,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.098587,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.230301,
+   "worst_day": -0.064871,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "b_F3_TQQQ_IEF_GLD|real_lag2": {
+   "total": -0.074934,
+   "maxdd": -0.166081,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.083343,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.233363,
+   "worst_day": -0.064871,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "b_F3_TQQQ_IEF_GLD|sim_sleeves_lag1": {
+   "total": -0.086616,
+   "maxdd": -0.171791,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.099989,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.229561,
+   "worst_day": -0.063634,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "b_F3_TQQQ_IEF_GLD|real_drift_close1": {
+   "total": -0.090444,
+   "maxdd": -0.172572,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.096804,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.228972,
+   "worst_day": -0.063978,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "b_F3_TQQQ_IEF_GLD|real_drift_close2": {
+   "total": -0.075195,
+   "maxdd": -0.165057,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.082544,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.231581,
+   "worst_day": -0.064123,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "b_F3_TQQQ_IEF_GLD|real_drift_open1": {
+   "total": -0.058998,
+   "maxdd": -0.162921,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.096479,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.234958,
+   "worst_day": -0.063989,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "c_F2_QLD_IEF_GLD_vt30|model_spliced_lag1": {
+   "total": -0.060315,
+   "maxdd": -0.122657,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.068668,
+   "peak_date": "2026-08-27",
+   "vol_ann": 0.170814,
+   "worst_day": -0.042977,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "c_F2_QLD_IEF_GLD_vt30|model_spliced_lag2": {
+   "total": -0.050167,
+   "maxdd": -0.122935,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.068238,
+   "peak_date": "2026-08-27",
+   "vol_ann": 0.172272,
+   "worst_day": -0.042977,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "c_F2_QLD_IEF_GLD_vt30|real_lag1": {
+   "total": -0.060315,
+   "maxdd": -0.122657,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.068668,
+   "peak_date": "2026-08-27",
+   "vol_ann": 0.170814,
+   "worst_day": -0.042977,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "c_F2_QLD_IEF_GLD_vt30|real_lag2": {
+   "total": -0.050167,
+   "maxdd": -0.122935,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.068238,
+   "peak_date": "2026-08-27",
+   "vol_ann": 0.172272,
+   "worst_day": -0.042977,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "c_F2_QLD_IEF_GLD_vt30|sim_sleeves_lag1": {
+   "total": -0.058394,
+   "maxdd": -0.122299,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.070035,
+   "peak_date": "2026-08-27",
+   "vol_ann": 0.168412,
+   "worst_day": -0.042257,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "c_F2_QLD_IEF_GLD_vt30|real_drift_close1": {
+   "total": -0.060675,
+   "maxdd": -0.12244,
+   "maxdd_date": "2026-11-13",
+   "peak_gain": 0.067993,
+   "peak_date": "2026-08-27",
+   "vol_ann": 0.170267,
+   "worst_day": -0.042607,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "c_F2_QLD_IEF_GLD_vt30|real_drift_close2": {
+   "total": -0.050172,
+   "maxdd": -0.122407,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.06793,
+   "peak_date": "2026-08-27",
+   "vol_ann": 0.171485,
+   "worst_day": -0.042654,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "c_F2_QLD_IEF_GLD_vt30|real_drift_open1": {
+   "total": -0.038125,
+   "maxdd": -0.112175,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.068299,
+   "peak_date": "2026-08-27",
+   "vol_ann": 0.173286,
+   "worst_day": -0.0426,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "d_A_TQQQ_BIL_vt25|model_spliced_lag1": {
+   "total": 0.069018,
+   "maxdd": -0.190872,
+   "maxdd_date": "2026-10-19",
+   "peak_gain": 0.317047,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.466759,
+   "worst_day": -0.075996,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "d_A_TQQQ_BIL_vt25|model_spliced_lag2": {
+   "total": 0.107053,
+   "maxdd": -0.190386,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.316988,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.470691,
+   "worst_day": -0.075996,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "d_A_TQQQ_BIL_vt25|real_lag1": {
+   "total": 0.069018,
+   "maxdd": -0.190872,
+   "maxdd_date": "2026-10-19",
+   "peak_gain": 0.317047,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.466759,
+   "worst_day": -0.075996,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "d_A_TQQQ_BIL_vt25|real_lag2": {
+   "total": 0.107053,
+   "maxdd": -0.190386,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.316988,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.470691,
+   "worst_day": -0.075996,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "d_A_TQQQ_BIL_vt25|sim_sleeves_lag1": {
+   "total": 0.071296,
+   "maxdd": -0.189386,
+   "maxdd_date": "2026-10-19",
+   "peak_gain": 0.317278,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.471445,
+   "worst_day": -0.075327,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "d_A_TQQQ_BIL_vt25|real_drift_close1": {
+   "total": 0.068998,
+   "maxdd": -0.190872,
+   "maxdd_date": "2026-10-19",
+   "peak_gain": 0.317022,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.466757,
+   "worst_day": -0.075996,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "d_A_TQQQ_BIL_vt25|real_drift_close2": {
+   "total": 0.10705,
+   "maxdd": -0.190386,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.316985,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.470693,
+   "worst_day": -0.075996,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "d_A_TQQQ_BIL_vt25|real_drift_open1": {
+   "total": 0.11183,
+   "maxdd": -0.190386,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.315779,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.47189,
+   "worst_day": -0.075996,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|model_spliced_lag1": {
+   "total": -0.077986,
+   "maxdd": -0.178395,
+   "maxdd_date": "2026-11-16",
+   "peak_gain": 0.119282,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.246679,
+   "worst_day": -0.063492,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|model_spliced_lag2": {
+   "total": -0.064528,
+   "maxdd": -0.176729,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.114042,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.249355,
+   "worst_day": -0.063492,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|real_lag1": {
+   "total": -0.077986,
+   "maxdd": -0.178395,
+   "maxdd_date": "2026-11-16",
+   "peak_gain": 0.119282,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.246679,
+   "worst_day": -0.063492,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|real_lag2": {
+   "total": -0.064528,
+   "maxdd": -0.176729,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.114042,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.249355,
+   "worst_day": -0.063492,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|sim_sleeves_lag1": {
+   "total": -0.076339,
+   "maxdd": -0.177224,
+   "maxdd_date": "2026-11-16",
+   "peak_gain": 0.119684,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.249435,
+   "worst_day": -0.062923,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|real_drift_close1": {
+   "total": -0.078294,
+   "maxdd": -0.177914,
+   "maxdd_date": "2026-11-16",
+   "peak_gain": 0.118294,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.245839,
+   "worst_day": -0.062817,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|real_drift_close2": {
+   "total": -0.063553,
+   "maxdd": -0.176197,
+   "maxdd_date": "2026-10-16",
+   "peak_gain": 0.114118,
+   "peak_date": "2026-09-22",
+   "vol_ann": 0.24804,
+   "worst_day": -0.062973,
+   "worst_day_date": "2026-10-16",
+   "days": 81
+  },
+  "QQQ_buyhold|model_spliced_lag1": {
+   "total": -0.038869,
+   "maxdd": -0.148237,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.111398,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.238867,
+   "worst_day": -0.064889,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QQQ_buyhold|model_spliced_lag2": {
+   "total": -0.038869,
+   "maxdd": -0.148237,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.111398,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.238867,
+   "worst_day": -0.064889,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QQQ_buyhold|real_lag1": {
+   "total": -0.038869,
+   "maxdd": -0.148237,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.111398,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.238867,
+   "worst_day": -0.064889,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QQQ_buyhold|real_lag2": {
+   "total": -0.038869,
+   "maxdd": -0.148237,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.111398,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.238867,
+   "worst_day": -0.064889,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QQQ_buyhold|sim_sleeves_lag1": {
+   "total": -0.040668,
+   "maxdd": -0.147299,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.109623,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.237182,
+   "worst_day": -0.063564,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QQQ_buyhold|real_drift_close1": {
+   "total": -0.038869,
+   "maxdd": -0.148237,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.111398,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.238867,
+   "worst_day": -0.064889,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QQQ_buyhold|real_drift_close2": {
+   "total": -0.038869,
+   "maxdd": -0.148237,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.111398,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.238867,
+   "worst_day": -0.064889,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QQQ_buyhold|real_drift_open1": {
+   "total": -0.038869,
+   "maxdd": -0.148237,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.111398,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.238867,
+   "worst_day": -0.064889,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD_buyhold|model_spliced_lag1": {
+   "total": -0.108429,
+   "maxdd": -0.282822,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.214432,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.473419,
+   "worst_day": -0.127279,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD_buyhold|model_spliced_lag2": {
+   "total": -0.108429,
+   "maxdd": -0.282822,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.214432,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.473419,
+   "worst_day": -0.127279,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD_buyhold|real_lag1": {
+   "total": -0.108429,
+   "maxdd": -0.282822,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.214432,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.473419,
+   "worst_day": -0.127279,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD_buyhold|real_lag2": {
+   "total": -0.108429,
+   "maxdd": -0.282822,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.214432,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.473419,
+   "worst_day": -0.127279,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD_buyhold|sim_sleeves_lag1": {
+   "total": -0.109345,
+   "maxdd": -0.282528,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.212692,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.474376,
+   "worst_day": -0.127308,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD_buyhold|real_drift_close1": {
+   "total": -0.108429,
+   "maxdd": -0.282822,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.214432,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.473419,
+   "worst_day": -0.127279,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD_buyhold|real_drift_close2": {
+   "total": -0.108429,
+   "maxdd": -0.282822,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.214432,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.473419,
+   "worst_day": -0.127279,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "QLD_buyhold|real_drift_open1": {
+   "total": -0.108429,
+   "maxdd": -0.282822,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.214432,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.473419,
+   "worst_day": -0.127279,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ_buyhold|model_spliced_lag1": {
+   "total": -0.188903,
+   "maxdd": -0.40095,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.318952,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.705737,
+   "worst_day": -0.189107,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ_buyhold|model_spliced_lag2": {
+   "total": -0.188903,
+   "maxdd": -0.40095,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.318952,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.705737,
+   "worst_day": -0.189107,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ_buyhold|real_lag1": {
+   "total": -0.188903,
+   "maxdd": -0.40095,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.318952,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.705737,
+   "worst_day": -0.189107,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ_buyhold|real_lag2": {
+   "total": -0.188903,
+   "maxdd": -0.40095,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.318952,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.705737,
+   "worst_day": -0.189107,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ_buyhold|sim_sleeves_lag1": {
+   "total": -0.186826,
+   "maxdd": -0.402063,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.319145,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.71157,
+   "worst_day": -0.191023,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ_buyhold|real_drift_close1": {
+   "total": -0.188903,
+   "maxdd": -0.40095,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.318952,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.705737,
+   "worst_day": -0.189107,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ_buyhold|real_drift_close2": {
+   "total": -0.188903,
+   "maxdd": -0.40095,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.318952,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.705737,
+   "worst_day": -0.189107,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "TQQQ_buyhold|real_drift_open1": {
+   "total": -0.188903,
+   "maxdd": -0.40095,
+   "maxdd_date": "2026-11-05",
+   "peak_gain": 0.318952,
+   "peak_date": "2026-10-06",
+   "vol_ann": 0.705737,
+   "worst_day": -0.189107,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPXprice_IEF|model_spliced_lag1": {
+   "total": -0.010727,
+   "maxdd": -0.043007,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.033731,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.093868,
+   "worst_day": -0.024781,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPXprice_IEF|model_spliced_lag2": {
+   "total": -0.010727,
+   "maxdd": -0.043007,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.033731,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.093868,
+   "worst_day": -0.024781,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPXprice_IEF|real_lag1": {
+   "total": -0.010727,
+   "maxdd": -0.043007,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.033731,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.093868,
+   "worst_day": -0.024781,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPXprice_IEF|real_lag2": {
+   "total": -0.010727,
+   "maxdd": -0.043007,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.033731,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.093868,
+   "worst_day": -0.024781,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPXprice_IEF|sim_sleeves_lag1": {
+   "total": -0.009978,
+   "maxdd": -0.041986,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.03341,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.091678,
+   "worst_day": -0.02443,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPXprice_IEF|real_drift_close1": {
+   "total": -0.010814,
+   "maxdd": -0.043099,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.033739,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.093981,
+   "worst_day": -0.024915,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPXprice_IEF|real_drift_close2": {
+   "total": -0.011249,
+   "maxdd": -0.043532,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.033753,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.093997,
+   "worst_day": -0.024979,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPY_IEF|model_spliced_lag1": {
+   "total": -0.008737,
+   "maxdd": -0.041355,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.034025,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.094,
+   "worst_day": -0.025102,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPY_IEF|model_spliced_lag2": {
+   "total": -0.008737,
+   "maxdd": -0.041355,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.034025,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.094,
+   "worst_day": -0.025102,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPY_IEF|real_lag1": {
+   "total": -0.008737,
+   "maxdd": -0.041355,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.034025,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.094,
+   "worst_day": -0.025102,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPY_IEF|real_lag2": {
+   "total": -0.008737,
+   "maxdd": -0.041355,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.034025,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.094,
+   "worst_day": -0.025102,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPY_IEF|sim_sleeves_lag1": {
+   "total": -0.007986,
+   "maxdd": -0.040331,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.033705,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.091767,
+   "worst_day": -0.024751,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPY_IEF|real_drift_close1": {
+   "total": -0.008818,
+   "maxdd": -0.041437,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.034029,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.094119,
+   "worst_day": -0.025242,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPY_IEF|real_drift_close2": {
+   "total": -0.009262,
+   "maxdd": -0.041882,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.034046,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.09413,
+   "worst_day": -0.025303,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "6040_SPY_IEF|real_drift_open1": {
+   "total": -0.009062,
+   "maxdd": -0.041662,
+   "maxdd_date": "2026-11-17",
+   "peak_gain": 0.034017,
+   "peak_date": "2026-08-13",
+   "vol_ann": 0.094037,
+   "worst_day": -0.025195,
+   "worst_day_date": "2026-11-05",
+   "days": 81
+  },
+  "static_IEF85_GLD15|model_spliced_lag1": {
+   "total": -0.019222,
+   "maxdd": -0.053074,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.029166,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.070393,
+   "worst_day": -0.01174,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "static_IEF85_GLD15|model_spliced_lag2": {
+   "total": -0.019222,
+   "maxdd": -0.053074,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.029166,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.070393,
+   "worst_day": -0.01174,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "static_IEF85_GLD15|real_lag1": {
+   "total": -0.019222,
+   "maxdd": -0.053074,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.029166,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.070393,
+   "worst_day": -0.01174,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "static_IEF85_GLD15|real_lag2": {
+   "total": -0.019222,
+   "maxdd": -0.053074,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.029166,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.070393,
+   "worst_day": -0.01174,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "static_IEF85_GLD15|sim_sleeves_lag1": {
+   "total": -0.017959,
+   "maxdd": -0.052115,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.028156,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.065059,
+   "worst_day": -0.010542,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "static_IEF85_GLD15|real_drift_close1": {
+   "total": -0.019359,
+   "maxdd": -0.05325,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.029266,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.070409,
+   "worst_day": -0.011734,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "static_IEF85_GLD15|real_drift_close2": {
+   "total": -0.019101,
+   "maxdd": -0.053176,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.029389,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.070315,
+   "worst_day": -0.011744,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  },
+  "static_IEF85_GLD15|real_drift_open1": {
+   "total": -0.019121,
+   "maxdd": -0.053138,
+   "maxdd_date": "2026-10-05",
+   "peak_gain": 0.029401,
+   "peak_date": "2026-08-25",
+   "vol_ann": 0.07036,
+   "worst_day": -0.01174,
+   "worst_day_date": "2026-09-23",
+   "days": 81
+  }
+ },
+ "in_sample_stats": {
+  "a_F_scanner_TQQQ_TLT_GLD": {
+   "lag1": {
+    "cagr": 0.243652,
+    "maxdd": -0.407177,
+    "sharpe": 0.948705,
+    "calmar": 0.598393,
+    "total": 4474.045302,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.225046,
+    "maxdd": -0.410739,
+    "sharpe": 0.881579,
+    "calmar": 0.547905,
+    "total": 2501.742693,
+    "days": 9712
+   }
+  },
+  "b_F3_TQQQ_IEF_GLD": {
+   "lag1": {
+    "cagr": 0.241345,
+    "maxdd": -0.299919,
+    "sharpe": 0.968111,
+    "calmar": 0.804701,
+    "total": 4164.90755,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.222353,
+    "maxdd": -0.350317,
+    "sharpe": 0.8959,
+    "calmar": 0.634718,
+    "total": 2298.176504,
+    "days": 9712
+   }
+  },
+  "c_F2_QLD_IEF_GLD_vt30": {
+   "lag1": {
+    "cagr": 0.197147,
+    "maxdd": -0.239581,
+    "sharpe": 1.026809,
+    "calmar": 0.822881,
+    "total": 1028.715308,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.182767,
+    "maxdd": -0.250631,
+    "sharpe": 0.950675,
+    "calmar": 0.729227,
+    "total": 645.22731,
+    "days": 9712
+   }
+  },
+  "d_A_TQQQ_BIL_vt25": {
+   "lag1": {
+    "cagr": 0.305588,
+    "maxdd": -0.673834,
+    "sharpe": 0.81018,
+    "calmar": 0.453506,
+    "total": 29141.021216,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.240968,
+    "maxdd": -0.731441,
+    "sharpe": 0.696674,
+    "calmar": 0.329443,
+    "total": 4116.463751,
+    "days": 9712
+   }
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers": {
+   "lag1": {
+    "cagr": 0.241354,
+    "maxdd": -0.307109,
+    "sharpe": 0.941758,
+    "calmar": 0.785889,
+    "total": 4166.074904,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.22211,
+    "maxdd": -0.358906,
+    "sharpe": 0.871536,
+    "calmar": 0.618851,
+    "total": 2280.620091,
+    "days": 9712
+   }
+  },
+  "QQQ_buyhold": {
+   "lag1": {
+    "cagr": 0.14775,
+    "maxdd": -0.829639,
+    "sharpe": 0.6668,
+    "calmar": 0.17809,
+    "total": 201.869648,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.14775,
+    "maxdd": -0.829639,
+    "sharpe": 0.6668,
+    "calmar": 0.17809,
+    "total": 201.869648,
+    "days": 9712
+   }
+  },
+  "QLD_buyhold": {
+   "lag1": {
+    "cagr": 0.183487,
+    "maxdd": -0.98883,
+    "sharpe": 0.584891,
+    "calmar": 0.185559,
+    "total": 660.562092,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.183487,
+    "maxdd": -0.98883,
+    "sharpe": 0.584891,
+    "calmar": 0.185559,
+    "total": 660.562092,
+    "days": 9712
+   }
+  },
+  "TQQQ_buyhold": {
+   "lag1": {
+    "cagr": 0.14982,
+    "maxdd": -0.999805,
+    "sharpe": 0.568376,
+    "calmar": 0.14985,
+    "total": 216.464785,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.14982,
+    "maxdd": -0.999805,
+    "sharpe": 0.568376,
+    "calmar": 0.14985,
+    "total": 216.464785,
+    "days": 9712
+   }
+  },
+  "6040_SPXprice_IEF": {
+   "lag1": {
+    "cagr": 0.083638,
+    "maxdd": -0.327774,
+    "sharpe": 0.807556,
+    "calmar": 0.255171,
+    "total": 21.123425,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.083638,
+    "maxdd": -0.327774,
+    "sharpe": 0.807556,
+    "calmar": 0.255171,
+    "total": 21.123425,
+    "days": 9712
+   }
+  },
+  "static_IEF85_GLD15": {
+   "lag1": {
+    "cagr": 0.058725,
+    "maxdd": -0.221646,
+    "sharpe": 0.91382,
+    "calmar": 0.264949,
+    "total": 8.024702,
+    "days": 9712
+   },
+   "lag2": {
+    "cagr": 0.058725,
+    "maxdd": -0.221646,
+    "sharpe": 0.91382,
+    "calmar": 0.264949,
+    "total": 8.024702,
+    "days": 9712
+   }
+  }
+ },
+ "tracking_gap": {
+  "sleeves": {
+   "QQQ vs qqq_sim (NDX - 0.20%)": {
+    "total_real": -0.038869,
+    "total_sim": -0.040668,
+    "corr": 0.999648,
+    "te_ann": 0.006537,
+    "gap_pp": 0.001799,
+    "expected_1sigma_gap_from_full_history_TE": 0.030502
+   },
+   "QLD vs qld_sim (2x NDX - fee - rf)": {
+    "total_real": -0.108429,
+    "total_sim": -0.109345,
+    "corr": 0.999749,
+    "te_ann": 0.010667,
+    "gap_pp": 0.000916,
+    "expected_1sigma_gap_from_full_history_TE": 0.023755
+   },
+   "TQQQ vs tqqq_sim (3x NDX - fee - 2rf)": {
+    "total_real": -0.188903,
+    "total_sim": -0.186826,
+    "corr": 0.999568,
+    "te_ann": 0.02164,
+    "gap_pp": -0.002077,
+    "expected_1sigma_gap_from_full_history_TE": 0.019957
+   },
+   "TLT vs tlt_syn (dur 15.8)": {
+    "total_real": -0.02897,
+    "total_sim": -0.029451,
+    "corr": 0.93792,
+    "te_ann": 0.038934,
+    "gap_pp": 0.00048,
+    "expected_1sigma_gap_from_full_history_TE": 0.028404
+   },
+   "IEF vs ief_syn (dur 7.1)": {
+    "total_real": -0.014608,
+    "total_sim": -0.01289,
+    "corr": 0.940393,
+    "te_ann": 0.020088,
+    "gap_pp": -0.001717,
+    "expected_1sigma_gap_from_full_history_TE": 0.012303
+   },
+   "SHY vs shy_syn (dur 1.8)": {
+    "total_real": 0.005656,
+    "total_sim": 0.006324,
+    "corr": 0.914036,
+    "te_ann": 0.007985,
+    "gap_pp": -0.000669,
+    "expected_1sigma_gap_from_full_history_TE": 0.005386
+   },
+   "BIL vs T-bill - 0.13%": {
+    "total_real": 0.011693,
+    "total_sim": 0.012219,
+    "corr": 0.014622,
+    "te_ann": 0.00196,
+    "gap_pp": -0.000526
+   },
+   "IEF vs July bond10_old": {
+    "total_real": -0.014608,
+    "total_sim": -0.016437,
+    "corr": 0.94084,
+    "te_ann": 0.020749,
+    "gap_pp": 0.00183,
+    "expected_1sigma_gap_from_full_history_TE": 0.01253
+   },
+   "TLT vs July bond10_old": {
+    "total_real": -0.02897,
+    "total_sim": -0.016437,
+    "corr": 0.880864,
+    "te_ann": 0.063014,
+    "gap_pp": -0.012533,
+    "expected_1sigma_gap_from_full_history_TE": 0.049891
+   },
+   "GLD vs XAU gold miners (July proxy)": {
+    "total_real": -0.052218,
+    "total_sim": 0.021094,
+    "corr": 0.912913,
+    "te_ann": 0.272149,
+    "gap_pp": -0.073312
+   },
+   "GLD vs GC=F - 0.40%": {
+    "total_real": -0.052218,
+    "total_sim": -0.051972,
+    "corr": 0.925706,
+    "te_ann": 0.094664,
+    "gap_pp": -0.000246,
+    "expected_1sigma_gap_from_full_history_TE": 0.049438
+   }
+  },
+  "strategies_real_minus_sim": {
+   "a_F_scanner_TQQQ_TLT_GLD": {
+    "total_real": -0.10847,
+    "total_sim": -0.105913,
+    "corr": 0.993273,
+    "te_ann": 0.028106,
+    "gap_pp": -0.002557
+   },
+   "b_F3_TQQQ_IEF_GLD": {
+    "total_real": -0.089946,
+    "total_sim": -0.086616,
+    "corr": 0.995969,
+    "te_ann": 0.020658,
+    "gap_pp": -0.00333
+   },
+   "c_F2_QLD_IEF_GLD_vt30": {
+    "total_real": -0.060315,
+    "total_sim": -0.058394,
+    "corr": 0.992894,
+    "te_ann": 0.020362,
+    "gap_pp": -0.001921
+   },
+   "d_A_TQQQ_BIL_vt25": {
+    "total_real": 0.069018,
+    "total_sim": 0.071296,
+    "corr": 0.999387,
+    "te_ann": 0.017082,
+    "gap_pp": -0.002278
+   },
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers": {
+    "total_real": -0.077986,
+    "total_sim": -0.076339,
+    "corr": 0.999587,
+    "te_ann": 0.007647,
+    "gap_pp": -0.001646
+   },
+   "QQQ_buyhold": {
+    "total_real": -0.038869,
+    "total_sim": -0.040668,
+    "corr": 0.999648,
+    "te_ann": 0.006537,
+    "gap_pp": 0.001799
+   },
+   "QLD_buyhold": {
+    "total_real": -0.108429,
+    "total_sim": -0.109345,
+    "corr": 0.999749,
+    "te_ann": 0.010667,
+    "gap_pp": 0.000916
+   },
+   "TQQQ_buyhold": {
+    "total_real": -0.188903,
+    "total_sim": -0.186826,
+    "corr": 0.999568,
+    "te_ann": 0.02164,
+    "gap_pp": -0.002077
+   },
+   "6040_SPXprice_IEF": {
+    "total_real": -0.010727,
+    "total_sim": -0.009978,
+    "corr": 0.996528,
+    "te_ann": 0.008035,
+    "gap_pp": -0.000749
+   },
+   "6040_SPY_IEF": {
+    "total_real": -0.008737,
+    "total_sim": -0.007986,
+    "corr": 0.996547,
+    "te_ann": 0.008035,
+    "gap_pp": -0.000752
+   },
+   "static_IEF85_GLD15": {
+    "total_real": -0.019222,
+    "total_sim": -0.017959,
+    "corr": 0.946398,
+    "te_ann": 0.022791,
+    "gap_pp": -0.001263
+   }
+  }
+ },
+ "phase_attribution": {
+  "a_F_scanner_TQQQ_TLT_GLD|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": -0.095967,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.059974,
+     "tlt": -0.040045,
+     "gold_phys": 0.004641,
+     "cost": -0.00059
+    },
+    "avg_weights": {
+     "tqqq": 0.337335,
+     "tlt": 0.512665,
+     "gold_phys": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.01383,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "tlt": -0.001496,
+     "gold_phys": -0.010545,
+     "cost": -0.000461
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "tlt": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.08112,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.116879,
+     "tlt": -0.040045,
+     "gold_phys": 0.004875,
+     "cost": -0.00059
+    },
+    "avg_weights": {
+     "tqqq": 0.256917,
+     "tlt": 0.593083,
+     "gold_phys": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.1638,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.176853,
+     "tlt": 0.0,
+     "gold_phys": -0.000234,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 0.85,
+     "tlt": 0.0,
+     "gold_phys": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.01383,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "tlt": -0.001496,
+     "gold_phys": -0.010545,
+     "cost": -0.000461
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "tlt": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.10847,
+   "_exit_day": "2026-10-19"
+  },
+  "a_F_scanner_TQQQ_TLT_GLD|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-19",
+    "days": 60,
+    "compounded_return": -0.086048,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.047766,
+     "tlt": -0.041507,
+     "gold_phys": 0.003816,
+     "cost": -0.000591
+    },
+    "avg_weights": {
+     "tqqq": 0.3373,
+     "tlt": 0.5127,
+     "gold_phys": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": -0.006695,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "tlt": 0.004247,
+     "gold_phys": -0.0099,
+     "cost": -0.000466
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "tlt": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.061797,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.09904,
+     "tlt": -0.041507,
+     "gold_phys": 0.004854,
+     "cost": -0.000591
+    },
+    "avg_weights": {
+     "tqqq": 0.246824,
+     "tlt": 0.603176,
+     "gold_phys": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-19",
+    "days": 9,
+    "compounded_return": -0.13924,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.146806,
+     "tlt": 0.0,
+     "gold_phys": -0.001039,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 0.85,
+     "tlt": 0.0,
+     "gold_phys": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": -0.006695,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "tlt": 0.004247,
+     "gold_phys": -0.0099,
+     "cost": -0.000466
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "tlt": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.092166,
+   "_exit_day": "2026-10-20"
+  },
+  "b_F3_TQQQ_IEF_GLD|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": -0.081362,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.061805,
+     "ief": -0.023674,
+     "gold_phys": 0.004713,
+     "cost": -0.000597
+    },
+    "avg_weights": {
+     "tqqq": 0.337335,
+     "ief": 0.512665,
+     "gold_phys": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.009345,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "ief": 0.002559,
+     "gold_phys": -0.010675,
+     "cost": -0.000469
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.098587,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.117905,
+     "ief": -0.023674,
+     "gold_phys": 0.004951,
+     "cost": -0.000597
+    },
+    "avg_weights": {
+     "tqqq": 0.256917,
+     "ief": 0.593083,
+     "gold_phys": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.1638,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.17971,
+     "ief": 0.0,
+     "gold_phys": -0.000238,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 0.85,
+     "ief": 0.0,
+     "gold_phys": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.009345,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "ief": 0.002559,
+     "gold_phys": -0.010675,
+     "cost": -0.000469
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.089946,
+   "_exit_day": "2026-10-19"
+  },
+  "b_F3_TQQQ_IEF_GLD|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-19",
+    "days": 60,
+    "compounded_return": -0.070046,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.049608,
+     "ief": -0.02372,
+     "gold_phys": 0.003881,
+     "cost": -0.000598
+    },
+    "avg_weights": {
+     "tqqq": 0.3373,
+     "ief": 0.5127,
+     "gold_phys": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": -0.005257,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "ief": 0.005586,
+     "gold_phys": -0.010001,
+     "cost": -0.000474
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.080387,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.099769,
+     "ief": -0.02372,
+     "gold_phys": 0.004938,
+     "cost": -0.000598
+    },
+    "avg_weights": {
+     "tqqq": 0.246824,
+     "ief": 0.603176,
+     "gold_phys": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-19",
+    "days": 9,
+    "compounded_return": -0.13924,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.149376,
+     "ief": 0.0,
+     "gold_phys": -0.001057,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 0.85,
+     "ief": 0.0,
+     "gold_phys": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": -0.005257,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "ief": 0.005586,
+     "gold_phys": -0.010001,
+     "cost": -0.000474
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.074934,
+   "_exit_day": "2026-10-20"
+  },
+  "c_F2_QLD_IEF_GLD_vt30|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": -0.051451,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.032232,
+     "ief": -0.023501,
+     "gold_phys": 0.004816,
+     "cost": -0.000534
+    },
+    "avg_weights": {
+     "qld": 0.356568,
+     "ief": 0.493432,
+     "gold_phys": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.009345,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.0,
+     "ief": 0.002642,
+     "gold_phys": -0.011023,
+     "cost": -0.000484
+    },
+    "avg_weights": {
+     "qld": 0.0,
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.066995,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.086045,
+     "ief": -0.023501,
+     "gold_phys": 0.004985,
+     "cost": -0.000534
+    },
+    "avg_weights": {
+     "qld": 0.279167,
+     "ief": 0.570833,
+     "gold_phys": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.111009,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.118278,
+     "ief": 0.0,
+     "gold_phys": -0.000168,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 0.85,
+     "ief": 0.0,
+     "gold_phys": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.009345,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.0,
+     "ief": 0.002642,
+     "gold_phys": -0.011023,
+     "cost": -0.000484
+    },
+    "avg_weights": {
+     "qld": 0.0,
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.060315,
+   "_exit_day": "2026-10-19"
+  },
+  "c_F2_QLD_IEF_GLD_vt30|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-19",
+    "days": 60,
+    "compounded_return": -0.045147,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.025097,
+     "ief": -0.02347,
+     "gold_phys": 0.003955,
+     "cost": -0.000534
+    },
+    "avg_weights": {
+     "qld": 0.357708,
+     "ief": 0.492292,
+     "gold_phys": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": -0.005257,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.0,
+     "ief": 0.005736,
+     "gold_phys": -0.010269,
+     "cost": -0.000487
+    },
+    "avg_weights": {
+     "qld": 0.0,
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.053907,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.072937,
+     "ief": -0.02347,
+     "gold_phys": 0.004974,
+     "cost": -0.000534
+    },
+    "avg_weights": {
+     "qld": 0.270833,
+     "ief": 0.579167,
+     "gold_phys": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-19",
+    "days": 9,
+    "compounded_return": -0.093987,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.098034,
+     "ief": 0.0,
+     "gold_phys": -0.00102,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 0.85,
+     "ief": 0.0,
+     "gold_phys": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": -0.005257,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.0,
+     "ief": 0.005736,
+     "gold_phys": -0.010269,
+     "cost": -0.000487
+    },
+    "avg_weights": {
+     "qld": 0.0,
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.050167,
+   "_exit_day": "2026-10-20"
+  },
+  "d_A_TQQQ_BIL_vt25|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.0663,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.066345,
+     "bills": 3e-05,
+     "cost": -7.5e-05
+    },
+    "avg_weights": {
+     "tqqq": 0.996008,
+     "bills": 0.003992
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": 0.002549,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "bills": 0.003358,
+     "cost": -0.00064
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "bills": 1.0
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.317047,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.317092,
+     "bills": 3e-05,
+     "cost": -7.5e-05
+    },
+    "avg_weights": {
+     "tqqq": 0.995381,
+     "bills": 0.004619
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.190386,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.250747,
+     "bills": 0.0,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0,
+     "bills": 0.0
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": 0.002549,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "bills": 0.003358,
+     "cost": -0.00064
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "bills": 1.0
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": 0.069018,
+   "_exit_day": "2026-10-19"
+  },
+  "d_A_TQQQ_BIL_vt25|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-19",
+    "days": 60,
+    "compounded_return": 0.104238,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.104269,
+     "bills": 4.4e-05,
+     "cost": -7.5e-05
+    },
+    "avg_weights": {
+     "tqqq": 0.995841,
+     "bills": 0.004159
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": 0.002549,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "bills": 0.003477,
+     "cost": -0.000663
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "bills": 1.0
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.316988,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.317019,
+     "bills": 4.4e-05,
+     "cost": -7.5e-05
+    },
+    "avg_weights": {
+     "tqqq": 0.995107,
+     "bills": 0.004893
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-19",
+    "days": 9,
+    "compounded_return": -0.161543,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.21275,
+     "bills": 0.0,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0,
+     "bills": 0.0
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": 0.002549,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "bills": 0.003477,
+     "cost": -0.000663
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "bills": 1.0
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": 0.107053,
+   "_exit_day": "2026-10-20"
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": -0.066515,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.063553,
+     "bond10_old": -0.025687,
+     "gold_miners": 0.023332,
+     "cost": -0.000607
+    },
+    "avg_weights": {
+     "tqqq": 0.337335,
+     "bond10_old": 0.512665,
+     "gold_miners": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.012288,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "bond10_old": 0.00286,
+     "gold_miners": -0.013855,
+     "cost": -0.000476
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "bond10_old": 0.85,
+     "gold_miners": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.119282,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.11908,
+     "bond10_old": -0.025687,
+     "gold_miners": 0.026496,
+     "cost": -0.000607
+    },
+    "avg_weights": {
+     "tqqq": 0.256917,
+     "bond10_old": 0.593083,
+     "gold_miners": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.165997,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.182633,
+     "bond10_old": 0.0,
+     "gold_miners": -0.003164,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 0.85,
+     "bond10_old": 0.0,
+     "gold_miners": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.012288,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "bond10_old": 0.00286,
+     "gold_miners": -0.013855,
+     "cost": -0.000476
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "bond10_old": 0.85,
+     "gold_miners": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.077986,
+   "_exit_day": "2026-10-19"
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-19",
+    "days": 60,
+    "compounded_return": -0.056425,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.051102,
+     "bond10_old": -0.026744,
+     "gold_miners": 0.022029,
+     "cost": -0.000608
+    },
+    "avg_weights": {
+     "tqqq": 0.3373,
+     "bond10_old": 0.5127,
+     "gold_miners": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": -0.008588,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "bond10_old": 0.005034,
+     "gold_miners": -0.012656,
+     "cost": -0.000481
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "bond10_old": 0.85,
+     "gold_miners": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.099706,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.100564,
+     "bond10_old": -0.026744,
+     "gold_miners": 0.026495,
+     "cost": -0.000608
+    },
+    "avg_weights": {
+     "tqqq": 0.246824,
+     "bond10_old": 0.603176,
+     "gold_miners": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-19",
+    "days": 9,
+    "compounded_return": -0.141975,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.151666,
+     "bond10_old": 0.0,
+     "gold_miners": -0.004466,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 0.85,
+     "bond10_old": 0.0,
+     "gold_miners": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-20",
+    "end": "2026-11-17",
+    "days": 21,
+    "compounded_return": -0.008588,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.0,
+     "bond10_old": 0.005034,
+     "gold_miners": -0.012656,
+     "cost": -0.000481
+    },
+    "avg_weights": {
+     "tqqq": 0.0,
+     "bond10_old": 0.85,
+     "gold_miners": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.064528,
+   "_exit_day": "2026-10-20"
+  },
+  "QQQ_buyhold|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.038451,
+    "pnl_pct_of_start_capital": {
+     "qqq": 0.038451,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.074458,
+    "pnl_pct_of_start_capital": {
+     "qqq": -0.077321,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.111398,
+    "pnl_pct_of_start_capital": {
+     "qqq": 0.111398,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.065635,
+    "pnl_pct_of_start_capital": {
+     "qqq": -0.072946,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.074458,
+    "pnl_pct_of_start_capital": {
+     "qqq": -0.077321,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.038869,
+   "_exit_day": "2026-10-19"
+  },
+  "QQQ_buyhold|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.038451,
+    "pnl_pct_of_start_capital": {
+     "qqq": 0.038451,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.074458,
+    "pnl_pct_of_start_capital": {
+     "qqq": -0.077321,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.111398,
+    "pnl_pct_of_start_capital": {
+     "qqq": 0.111398,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.065635,
+    "pnl_pct_of_start_capital": {
+     "qqq": -0.072946,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.074458,
+    "pnl_pct_of_start_capital": {
+     "qqq": -0.077321,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qqq": 1.0
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.038869,
+   "_exit_day": "2026-10-19"
+  },
+  "QLD_buyhold|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.057159,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.057159,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.156635,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.165588,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.214432,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.214432,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.129503,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.157272,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.156635,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.165588,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.108429,
+   "_exit_day": "2026-10-19"
+  },
+  "QLD_buyhold|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.057159,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.057159,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.156635,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.165588,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.214432,
+    "pnl_pct_of_start_capital": {
+     "qld": 0.214432,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.129503,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.157272,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.156635,
+    "pnl_pct_of_start_capital": {
+     "qld": -0.165588,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "qld": 1.0
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.108429,
+   "_exit_day": "2026-10-19"
+  },
+  "TQQQ_buyhold|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.067842,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.067842,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.240434,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.256745,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.318952,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.318952,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.190386,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.25111,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.240434,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.256745,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.188903,
+   "_exit_day": "2026-10-19"
+  },
+  "TQQQ_buyhold|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.067842,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.067842,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.240434,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.256745,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.318952,
+    "pnl_pct_of_start_capital": {
+     "tqqq": 0.318952,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.190386,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.25111,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.240434,
+    "pnl_pct_of_start_capital": {
+     "tqqq": -0.256745,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "tqqq": 1.0
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.188903,
+   "_exit_day": "2026-10-19"
+  },
+  "6040_SPXprice_IEF|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.012864,
+    "pnl_pct_of_start_capital": {
+     "spx": 0.020164,
+     "ief": -0.0073,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.023291,
+    "pnl_pct_of_start_capital": {
+     "spx": -0.025063,
+     "ief": 0.001472,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.019534,
+    "pnl_pct_of_start_capital": {
+     "spx": 0.032693,
+     "ief": -0.013159,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.006543,
+    "pnl_pct_of_start_capital": {
+     "spx": -0.01253,
+     "ief": 0.005859,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.023291,
+    "pnl_pct_of_start_capital": {
+     "spx": -0.025063,
+     "ief": 0.001472,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.010727,
+   "_exit_day": "2026-10-19"
+  },
+  "6040_SPXprice_IEF|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.012864,
+    "pnl_pct_of_start_capital": {
+     "spx": 0.020164,
+     "ief": -0.0073,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.023291,
+    "pnl_pct_of_start_capital": {
+     "spx": -0.025063,
+     "ief": 0.001472,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.019534,
+    "pnl_pct_of_start_capital": {
+     "spx": 0.032693,
+     "ief": -0.013159,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.006543,
+    "pnl_pct_of_start_capital": {
+     "spx": -0.01253,
+     "ief": 0.005859,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.023291,
+    "pnl_pct_of_start_capital": {
+     "spx": -0.025063,
+     "ief": 0.001472,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spx": 0.6,
+     "ief": 0.4
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.010727,
+   "_exit_day": "2026-10-19"
+  },
+  "6040_SPY_IEF|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.01409,
+    "pnl_pct_of_start_capital": {
+     "spy": 0.021395,
+     "ief": -0.007305,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.02251,
+    "pnl_pct_of_start_capital": {
+     "spy": -0.024301,
+     "ief": 0.001474,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.020728,
+    "pnl_pct_of_start_capital": {
+     "spy": 0.0339,
+     "ief": -0.013172,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.006503,
+    "pnl_pct_of_start_capital": {
+     "spy": -0.012505,
+     "ief": 0.005867,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.02251,
+    "pnl_pct_of_start_capital": {
+     "spy": -0.024301,
+     "ief": 0.001474,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.008737,
+   "_exit_day": "2026-10-19"
+  },
+  "6040_SPY_IEF|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": 0.01409,
+    "pnl_pct_of_start_capital": {
+     "spy": 0.021395,
+     "ief": -0.007305,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.02251,
+    "pnl_pct_of_start_capital": {
+     "spy": -0.024301,
+     "ief": 0.001474,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": 0.020728,
+    "pnl_pct_of_start_capital": {
+     "spy": 0.0339,
+     "ief": -0.013172,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": -0.006503,
+    "pnl_pct_of_start_capital": {
+     "spy": -0.012505,
+     "ief": 0.005867,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.02251,
+    "pnl_pct_of_start_capital": {
+     "spy": -0.024301,
+     "ief": 0.001474,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "spy": 0.6,
+     "ief": 0.4
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.008737,
+   "_exit_day": "2026-10-19"
+  },
+  "static_IEF85_GLD15|lag1": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": -0.010477,
+    "pnl_pct_of_start_capital": {
+     "ief": -0.015495,
+     "gold_phys": 0.005018,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.008837,
+    "pnl_pct_of_start_capital": {
+     "ief": 0.002759,
+     "gold_phys": -0.011504,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": -0.022452,
+    "pnl_pct_of_start_capital": {
+     "ief": -0.027491,
+     "gold_phys": 0.005038,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": 0.012251,
+    "pnl_pct_of_start_capital": {
+     "ief": 0.011996,
+     "gold_phys": -2e-05,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.008837,
+    "pnl_pct_of_start_capital": {
+     "ief": 0.002759,
+     "gold_phys": -0.011504,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.019222,
+   "_exit_day": "2026-10-19"
+  },
+  "static_IEF85_GLD15|lag2": {
+   "risk-on phase (until exit)": {
+    "start": "2026-07-27",
+    "end": "2026-10-16",
+    "days": 59,
+    "compounded_return": -0.010477,
+    "pnl_pct_of_start_capital": {
+     "ief": -0.015495,
+     "gold_phys": 0.005018,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "risk-off phase": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.008837,
+    "pnl_pct_of_start_capital": {
+     "ief": 0.002759,
+     "gold_phys": -0.011504,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1a risk-on: freeze -> NDX record close": {
+    "start": "2026-07-27",
+    "end": "2026-10-06",
+    "days": 51,
+    "compounded_return": -0.022452,
+    "pnl_pct_of_start_capital": {
+     "ief": -0.027491,
+     "gold_phys": 0.005038,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "1b risk-on: record -> exit": {
+    "start": "2026-10-07",
+    "end": "2026-10-16",
+    "days": 8,
+    "compounded_return": 0.012251,
+    "pnl_pct_of_start_capital": {
+     "ief": 0.011996,
+     "gold_phys": -2e-05,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "2 risk-off: exit -> last date": {
+    "start": "2026-10-19",
+    "end": "2026-11-17",
+    "days": 22,
+    "compounded_return": -0.008837,
+    "pnl_pct_of_start_capital": {
+     "ief": 0.002759,
+     "gold_phys": -0.011504,
+     "cost": 0.0
+    },
+    "avg_weights": {
+     "ief": 0.85,
+     "gold_phys": 0.15
+    }
+   },
+   "_check_max_abs_residual": 0.0,
+   "_total": -0.019222,
+   "_exit_day": "2026-10-19"
+  }
+ },
+ "exit_counterfactual_no_gate": {
+  "b_F3_TQQQ_IEF_GLD": {
+   "oos_total_no_gate": -0.227885,
+   "oos_total_actual": -0.089946,
+   "riskoff_phase_no_gate": -0.1595,
+   "riskoff_phase_actual": -0.009345,
+   "maxdd_no_gate": -0.325868
+  },
+  "c_F2_QLD_IEF_GLD_vt30": {
+   "oos_total_no_gate": -0.152128,
+   "oos_total_actual": -0.060315,
+   "riskoff_phase_no_gate": -0.106138,
+   "riskoff_phase_actual": -0.009345,
+   "maxdd_no_gate": -0.239693
+  }
+ },
+ "rule_removal_decomposition_diagnostic_only": {
+  "b_F3_TQQQ_IEF_GLD": {
+   "as specified": {
+    "oos_total": -0.089946,
+    "oos_to_ndx_record": 0.098587,
+    "oos_record_to_exit": -0.1638,
+    "oos_maxdd": -0.173462,
+    "avg_lev_weight_freeze_to_record": 0.256917,
+    "is_cagr": 0.241345,
+    "is_maxdd": -0.299919,
+    "is_calmar": 0.804701
+   },
+   "no Aug-Sep halving": {
+    "oos_total": -0.063972,
+    "oos_to_ndx_record": 0.129942,
+    "oos_record_to_exit": -0.1638,
+    "oos_maxdd": -0.173462,
+    "avg_lev_weight_freeze_to_record": 0.408782,
+    "is_cagr": 0.24023,
+    "is_maxdd": -0.328555,
+    "is_calmar": 0.731172
+   },
+   "no chop halving": {
+    "oos_total": -0.01409,
+    "oos_to_ndx_record": 0.190157,
+    "oos_record_to_exit": -0.1638,
+    "oos_maxdd": -0.173462,
+    "avg_lev_weight_freeze_to_record": 0.480501,
+    "is_cagr": 0.27911,
+    "is_maxdd": -0.465714,
+    "is_calmar": 0.599317
+   },
+   "no Aug-Sep + no chop": {
+    "oos_total": 0.039893,
+    "oos_to_ndx_record": 0.255324,
+    "oos_record_to_exit": -0.1638,
+    "oos_maxdd": -0.173462,
+    "avg_lev_weight_freeze_to_record": 0.784231,
+    "is_cagr": 0.281655,
+    "is_maxdd": -0.489581,
+    "is_calmar": 0.575299
+   },
+   "BIL instead of IEF off-leg": {
+    "oos_total": -0.065431,
+    "oos_to_ndx_record": 0.128311,
+    "oos_record_to_exit": -0.1638,
+    "oos_maxdd": -0.171971,
+    "avg_lev_weight_freeze_to_record": 0.256917,
+    "is_cagr": 0.220601,
+    "is_maxdd": -0.305463,
+    "is_calmar": 0.722185
+   },
+   "no gold (100% engine)": {
+    "oos_total": -0.098681,
+    "oos_to_ndx_record": 0.110288,
+    "oos_record_to_exit": -0.190386,
+    "oos_maxdd": -0.193916,
+    "avg_lev_weight_freeze_to_record": 0.302256,
+    "is_cagr": 0.267791,
+    "is_maxdd": -0.347882,
+    "is_calmar": 0.769776
+   }
+  },
+  "c_F2_QLD_IEF_GLD_vt30": {
+   "as specified": {
+    "oos_total": -0.060315,
+    "oos_to_ndx_record": 0.066995,
+    "oos_record_to_exit": -0.111009,
+    "oos_maxdd": -0.122657,
+    "avg_lev_weight_freeze_to_record": 0.279167,
+    "is_cagr": 0.197147,
+    "is_maxdd": -0.239581,
+    "is_calmar": 0.822881
+   },
+   "no Aug-Sep halving": {
+    "oos_total": -0.039431,
+    "oos_to_ndx_record": 0.090708,
+    "oos_record_to_exit": -0.111009,
+    "oos_maxdd": -0.121281,
+    "avg_lev_weight_freeze_to_record": 0.441667,
+    "is_cagr": 0.195254,
+    "is_maxdd": -0.266574,
+    "is_calmar": 0.732457
+   },
+   "no chop halving": {
+    "oos_total": 0.001417,
+    "oos_to_ndx_record": 0.13709,
+    "oos_record_to_exit": -0.111009,
+    "oos_maxdd": -0.121281,
+    "avg_lev_weight_freeze_to_record": 0.525,
+    "is_cagr": 0.232462,
+    "is_maxdd": -0.390171,
+    "is_calmar": 0.595795
+   },
+   "no Aug-Sep + no chop": {
+    "oos_total": 0.044924,
+    "oos_to_ndx_record": 0.186492,
+    "oos_record_to_exit": -0.111009,
+    "oos_maxdd": -0.121281,
+    "avg_lev_weight_freeze_to_record": 0.85,
+    "is_cagr": 0.233689,
+    "is_maxdd": -0.415841,
+    "is_calmar": 0.561969
+   },
+   "BIL instead of IEF off-leg": {
+    "oos_total": -0.035075,
+    "oos_to_ndx_record": 0.095782,
+    "oos_record_to_exit": -0.111009,
+    "oos_maxdd": -0.119696,
+    "avg_lev_weight_freeze_to_record": 0.279167,
+    "is_cagr": 0.176819,
+    "is_maxdd": -0.230652,
+    "is_calmar": 0.766605
+   },
+   "no gold (100% engine)": {
+    "oos_total": -0.063438,
+    "oos_to_ndx_record": 0.073012,
+    "oos_record_to_exit": -0.129503,
+    "oos_maxdd": -0.133298,
+    "avg_lev_weight_freeze_to_record": 0.328431,
+    "is_cagr": 0.218479,
+    "is_maxdd": -0.273979,
+    "is_calmar": 0.79743
+   }
+  }
+ },
+ "execution_timing_in_sample": {
+  "model_lag_cost_by_subperiod": {
+   "a_F_scanner_TQQQ_TLT_GLD": {
+    "1988-1999": {
+     "cagr_lag1": 0.354863,
+     "cagr_lag2": 0.280867,
+     "cagr_cost": 0.073996,
+     "calmar_lag1": 1.019646,
+     "calmar_lag2": 0.703272
+    },
+    "2000-2009": {
+     "cagr_lag1": 0.118067,
+     "cagr_lag2": 0.115787,
+     "cagr_cost": 0.00228,
+     "calmar_lag1": 0.445099,
+     "calmar_lag2": 0.383249
+    },
+    "2010-freeze": {
+     "cagr_lag1": 0.246745,
+     "cagr_lag2": 0.255257,
+     "cagr_cost": -0.008512,
+     "calmar_lag1": 0.60599,
+     "calmar_lag2": 0.62146
+    }
+   },
+   "b_F3_TQQQ_IEF_GLD": {
+    "1988-1999": {
+     "cagr_lag1": 0.345445,
+     "cagr_lag2": 0.270234,
+     "cagr_cost": 0.075211,
+     "calmar_lag1": 1.151795,
+     "calmar_lag2": 0.771399
+    },
+    "2000-2009": {
+     "cagr_lag1": 0.113551,
+     "cagr_lag2": 0.112826,
+     "cagr_cost": 0.000726,
+     "calmar_lag1": 0.439183,
+     "calmar_lag2": 0.386297
+    },
+    "2010-freeze": {
+     "cagr_lag1": 0.250706,
+     "cagr_lag2": 0.258421,
+     "cagr_cost": -0.007715,
+     "calmar_lag1": 0.911223,
+     "calmar_lag2": 0.853502
+    }
+   },
+   "c_F2_QLD_IEF_GLD_vt30": {
+    "1988-1999": {
+     "cagr_lag1": 0.294313,
+     "cagr_lag2": 0.241653,
+     "cagr_cost": 0.05266,
+     "calmar_lag1": 1.370671,
+     "calmar_lag2": 0.968355
+    },
+    "2000-2009": {
+     "cagr_lag1": 0.11066,
+     "cagr_lag2": 0.107316,
+     "cagr_cost": 0.003344,
+     "calmar_lag1": 0.508945,
+     "calmar_lag2": 0.45794
+    },
+    "2010-freeze": {
+     "cagr_lag1": 0.183997,
+     "cagr_lag2": 0.188457,
+     "cagr_cost": -0.00446,
+     "calmar_lag1": 0.767994,
+     "calmar_lag2": 0.75193
+    }
+   },
+   "d_A_TQQQ_BIL_vt25": {
+    "1988-1999": {
+     "cagr_lag1": 0.547369,
+     "cagr_lag2": 0.368664,
+     "cagr_cost": 0.178705,
+     "calmar_lag1": 1.225543,
+     "calmar_lag2": 0.650541
+    },
+    "2000-2009": {
+     "cagr_lag1": 0.043087,
+     "cagr_lag2": -0.002829,
+     "cagr_cost": 0.045916,
+     "calmar_lag1": 0.063943,
+     "calmar_lag2": -0.003867
+    },
+    "2010-freeze": {
+     "cagr_lag1": 0.322363,
+     "cagr_lag2": 0.319507,
+     "cagr_cost": 0.002855,
+     "calmar_lag1": 0.543589,
+     "calmar_lag2": 0.47767
+    }
+   },
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers": {
+    "1988-1999": {
+     "cagr_lag1": 0.354021,
+     "cagr_lag2": 0.278111,
+     "cagr_cost": 0.07591,
+     "calmar_lag1": 1.152753,
+     "calmar_lag2": 0.774886
+    },
+    "2000-2009": {
+     "cagr_lag1": 0.109002,
+     "cagr_lag2": 0.108668,
+     "cagr_cost": 0.000333,
+     "calmar_lag1": 0.400525,
+     "calmar_lag2": 0.357013
+    },
+    "2010-freeze": {
+     "cagr_lag1": 0.248065,
+     "cagr_lag2": 0.255051,
+     "cagr_cost": -0.006986,
+     "calmar_lag1": 0.824773,
+     "calmar_lag2": 0.766435
+    }
+   }
+  },
+  "ndx_daily_autocorr": {
+   "1988-1999": 0.025022,
+   "2000-2009": -0.068525,
+   "2010-freeze": -0.102023
+  },
+  "real_etf_drift_sims": {
+   "a_F_scanner_TQQQ_TLT_GLD": {
+    "close1": {
+     "cagr": 0.253854,
+     "maxdd": -0.408188,
+     "sharpe": 1.029649,
+     "calmar": 0.621906,
+     "total": 40.005248,
+     "days": 4131,
+     "oos_total_same_run": -0.108657
+    },
+    "close2": {
+     "cagr": 0.260872,
+     "maxdd": -0.407921,
+     "sharpe": 1.036433,
+     "calmar": 0.639514,
+     "total": 43.939482,
+     "days": 4131,
+     "oos_total_same_run": -0.092013
+    },
+    "open1": {
+     "cagr": 0.241588,
+     "maxdd": -0.402631,
+     "sharpe": 0.983007,
+     "calmar": 0.600023,
+     "total": 33.893867,
+     "days": 4131,
+     "oos_total_same_run": -0.078718
+    },
+    "model_constmix_lag1": {
+     "cagr": 0.253864,
+     "maxdd": -0.407177,
+     "sharpe": 1.028373,
+     "calmar": 0.623475,
+     "total": 40.010674,
+     "days": 4131
+    },
+    "model_constmix_lag2": {
+     "cagr": 0.261325,
+     "maxdd": -0.410739,
+     "sharpe": 1.034338,
+     "calmar": 0.636231,
+     "total": 44.205402,
+     "days": 4131
+    }
+   },
+   "b_F3_TQQQ_IEF_GLD": {
+    "close1": {
+     "cagr": 0.256756,
+     "maxdd": -0.276209,
+     "sharpe": 1.07479,
+     "calmar": 0.92957,
+     "total": 41.590848,
+     "days": 4131,
+     "oos_total_same_run": -0.090444
+    },
+    "close2": {
+     "cagr": 0.263459,
+     "maxdd": -0.295478,
+     "sharpe": 1.078473,
+     "calmar": 0.891636,
+     "total": 45.477601,
+     "days": 4131,
+     "oos_total_same_run": -0.075195
+    },
+    "open1": {
+     "cagr": 0.247663,
+     "maxdd": -0.271568,
+     "sharpe": 1.035598,
+     "calmar": 0.911974,
+     "total": 36.804964,
+     "days": 4131,
+     "oos_total_same_run": -0.058998
+    },
+    "model_constmix_lag1": {
+     "cagr": 0.256653,
+     "maxdd": -0.275131,
+     "sharpe": 1.073016,
+     "calmar": 0.932839,
+     "total": 41.533854,
+     "days": 4131
+    },
+    "model_constmix_lag2": {
+     "cagr": 0.263298,
+     "maxdd": -0.302777,
+     "sharpe": 1.074066,
+     "calmar": 0.86961,
+     "total": 45.380379,
+     "days": 4131
+    }
+   },
+   "c_F2_QLD_IEF_GLD_vt30": {
+    "close1": {
+     "cagr": 0.187351,
+     "maxdd": -0.240485,
+     "sharpe": 1.085267,
+     "calmar": 0.779053,
+     "total": 15.761062,
+     "days": 4131,
+     "oos_total_same_run": -0.060675
+    },
+    "close2": {
+     "cagr": 0.191416,
+     "maxdd": -0.248807,
+     "sharpe": 1.08866,
+     "calmar": 0.769336,
+     "total": 16.72836,
+     "days": 4131,
+     "oos_total_same_run": -0.050172
+    },
+    "open1": {
+     "cagr": 0.180573,
+     "maxdd": -0.23667,
+     "sharpe": 1.042549,
+     "calmar": 0.762972,
+     "total": 14.257536,
+     "days": 4131,
+     "oos_total_same_run": -0.038125
+    },
+    "model_constmix_lag1": {
+     "cagr": 0.187551,
+     "maxdd": -0.239581,
+     "sharpe": 1.085383,
+     "calmar": 0.78283,
+     "total": 15.807608,
+     "days": 4131
+    },
+    "model_constmix_lag2": {
+     "cagr": 0.191463,
+     "maxdd": -0.250631,
+     "sharpe": 1.086168,
+     "calmar": 0.763924,
+     "total": 16.739825,
+     "days": 4131
+    }
+   },
+   "d_A_TQQQ_BIL_vt25": {
+    "close1": {
+     "cagr": 0.335908,
+     "maxdd": -0.593482,
+     "sharpe": 0.897936,
+     "calmar": 0.565996,
+     "total": 115.082742,
+     "days": 4131,
+     "oos_total_same_run": 0.068998
+    },
+    "close2": {
+     "cagr": 0.333682,
+     "maxdd": -0.669274,
+     "sharpe": 0.885597,
+     "calmar": 0.498573,
+     "total": 111.94737,
+     "days": 4131,
+     "oos_total_same_run": 0.10705
+    },
+    "open1": {
+     "cagr": 0.319056,
+     "maxdd": -0.621798,
+     "sharpe": 0.861794,
+     "calmar": 0.513118,
+     "total": 93.245129,
+     "days": 4131,
+     "oos_total_same_run": 0.11183
+    },
+    "model_constmix_lag1": {
+     "cagr": 0.336539,
+     "maxdd": -0.593027,
+     "sharpe": 0.899095,
+     "calmar": 0.567494,
+     "total": 115.986335,
+     "days": 4131
+    },
+    "model_constmix_lag2": {
+     "cagr": 0.333995,
+     "maxdd": -0.668887,
+     "sharpe": 0.88609,
+     "calmar": 0.499329,
+     "total": 112.383514,
+     "days": 4131
+    }
+   },
+   "_span": [
+    "2010-02-22",
+    "2026-07-24"
+   ]
+  },
+  "overnight_open_fills": {
+   "QQQ": 0,
+   "QLD": 0,
+   "TQQQ": 0,
+   "TLT": 0,
+   "IEF": 0,
+   "SHY": 0,
+   "BIL": 0,
+   "GLD": 0,
+   "SPY": 0
+  },
+  "modes": {
+   "close1": "trade at Friday close (lag 1)",
+   "open1": "trade at Monday open",
+   "close2": "trade at Monday close (lag 2)"
+  }
+ },
+ "percentiles": {
+  "a_F_scanner_TQQQ_TLT_GLD": {
+   "oos_return": -0.10847,
+   "oos_maxdd": -0.180253,
+   "n_windows": 9632,
+   "pct_rank_return": 6.831395,
+   "pct_rank_maxdd": 15.97799,
+   "hist_quantiles_return": {
+    "1": -0.185358,
+    "5": -0.125389,
+    "10": -0.086906,
+    "25": -0.021616,
+    "50": 0.054928,
+    "75": 0.154156,
+    "90": 0.285985,
+    "95": 0.381628
+   },
+   "hist_mean": 0.083391,
+   "hist_std": 0.162566,
+   "z_score": -1.180196,
+   "share_windows_negative": 0.322363,
+   "hist_quantiles_maxdd": {
+    "1": -0.246501,
+    "5": -0.210243,
+    "10": -0.194118,
+    "25": -0.15601,
+    "50": -0.114556
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 5.769231,
+    "pct_rank_maxdd": 10.946746,
+    "median": 0.06814
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 18.681319,
+    "median": -0.040346
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 18.728522,
+    "median": -0.041868
+   },
+   "regression_on_ndx": {
+    "beta": 0.834781,
+    "alpha": 0.03876,
+    "expected_given_ndx": 0.005326,
+    "residual": -0.113796,
+    "pct_rank_residual": 12.032807
+   },
+   "worst_hist_window": {
+    "start": "1989-10-10",
+    "ret": -0.292391
+   }
+  },
+  "b_F3_TQQQ_IEF_GLD": {
+   "oos_return": -0.089946,
+   "oos_maxdd": -0.173462,
+   "n_windows": 9632,
+   "pct_rank_return": 8.41985,
+   "pct_rank_maxdd": 13.953488,
+   "hist_quantiles_return": {
+    "1": -0.164448,
+    "5": -0.115751,
+    "10": -0.079913,
+    "25": -0.021168,
+    "50": 0.050784,
+    "75": 0.149749,
+    "90": 0.284031,
+    "95": 0.371873
+   },
+   "hist_mean": 0.082216,
+   "hist_std": 0.1584,
+   "z_score": -1.086881,
+   "share_windows_negative": 0.320702,
+   "hist_quantiles_maxdd": {
+    "1": -0.247044,
+    "5": -0.199291,
+    "10": -0.190487,
+    "25": -0.144675,
+    "50": -0.111808
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 6.484221,
+    "pct_rank_maxdd": 9.689349,
+    "median": 0.063537
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 25.0,
+    "median": -0.043222
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 25.601375,
+    "median": -0.044706
+   },
+   "regression_on_ndx": {
+    "beta": 0.833213,
+    "alpha": 0.037669,
+    "expected_given_ndx": 0.004298,
+    "residual": -0.094244,
+    "pct_rank_residual": 15.625
+   },
+   "worst_hist_window": {
+    "start": "1989-10-10",
+    "ret": -0.264127
+   }
+  },
+  "c_F2_QLD_IEF_GLD_vt30": {
+   "oos_return": -0.060315,
+   "oos_maxdd": -0.122657,
+   "n_windows": 9632,
+   "pct_rank_return": 9.105066,
+   "pct_rank_maxdd": 17.33804,
+   "hist_quantiles_return": {
+    "1": -0.125797,
+    "5": -0.086211,
+    "10": -0.055947,
+    "25": -0.006927,
+    "50": 0.04502,
+    "75": 0.111537,
+    "90": 0.202801,
+    "95": 0.276138
+   },
+   "hist_mean": 0.065823,
+   "hist_std": 0.12313,
+   "z_score": -1.02443,
+   "share_windows_negative": 0.282496,
+   "hist_quantiles_maxdd": {
+    "1": -0.197212,
+    "5": -0.153373,
+    "10": -0.13969,
+    "25": -0.107707,
+    "50": -0.081598
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 7.470414,
+    "pct_rank_maxdd": 10.700197,
+    "median": 0.051057
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 25.274725,
+    "median": -0.025045
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 25.945017,
+    "median": -0.026636
+   },
+   "regression_on_ndx": {
+    "beta": 0.649488,
+    "alpha": 0.031099,
+    "expected_given_ndx": 0.005087,
+    "residual": -0.065402,
+    "pct_rank_residual": 16.704734
+   },
+   "worst_hist_window": {
+    "start": "2004-01-20",
+    "ret": -0.186497
+   }
+  },
+  "d_A_TQQQ_BIL_vt25": {
+   "oos_return": 0.069018,
+   "oos_maxdd": -0.190872,
+   "n_windows": 9632,
+   "pct_rank_return": 51.71304,
+   "pct_rank_maxdd": 52.138704,
+   "hist_quantiles_return": {
+    "1": -0.35444,
+    "5": -0.256329,
+    "10": -0.186408,
+    "25": -0.077555,
+    "50": 0.057914,
+    "75": 0.270285,
+    "90": 0.504861,
+    "95": 0.653695
+   },
+   "hist_mean": 0.125708,
+   "hist_std": 0.305767,
+   "z_score": -0.185404,
+   "share_windows_negative": 0.372508,
+   "hist_quantiles_maxdd": {
+    "1": -0.440863,
+    "5": -0.361712,
+    "10": -0.332069,
+    "25": -0.253843,
+    "50": -0.194315
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 45.364892,
+    "pct_rank_maxdd": 46.99211,
+    "median": 0.100349
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 93.887363,
+    "median": -0.134314
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 92.697595,
+    "median": -0.134318
+   },
+   "regression_on_ndx": {
+    "beta": 1.756024,
+    "alpha": 0.031824,
+    "expected_given_ndx": -0.038506,
+    "residual": 0.107524,
+    "pct_rank_residual": 78.041944
+   },
+   "worst_hist_window": {
+    "start": "2010-04-26",
+    "ret": -0.478351
+   }
+  },
+  "ref_Fjuly_TQQQ_bond10syn_XAUminers": {
+   "oos_return": -0.077986,
+   "oos_maxdd": -0.178395,
+   "n_windows": 9632,
+   "pct_rank_return": 12.115864,
+   "pct_rank_maxdd": 15.604236,
+   "hist_quantiles_return": {
+    "1": -0.171004,
+    "5": -0.122479,
+    "10": -0.089964,
+    "25": -0.023512,
+    "50": 0.054498,
+    "75": 0.153159,
+    "90": 0.29046,
+    "95": 0.381808
+   },
+   "hist_mean": 0.082761,
+   "hist_std": 0.160844,
+   "z_score": -0.999393,
+   "share_windows_negative": 0.319248,
+   "hist_quantiles_maxdd": {
+    "1": -0.250002,
+    "5": -0.206428,
+    "10": -0.189837,
+    "25": -0.150775,
+    "50": -0.11795
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 9.49211,
+    "pct_rank_maxdd": 11.119329,
+    "median": 0.06696
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 35.164835,
+    "median": -0.048831
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 35.137457,
+    "median": -0.049635
+   },
+   "regression_on_ndx": {
+    "beta": 0.849191,
+    "alpha": 0.03736,
+    "expected_given_ndx": 0.003349,
+    "residual": -0.081335,
+    "pct_rank_residual": 21.034053
+   },
+   "worst_hist_window": {
+    "start": "2004-01-20",
+    "ret": -0.260537
+   }
+  },
+  "QQQ_buyhold": {
+   "oos_return": -0.038869,
+   "oos_maxdd": -0.148237,
+   "n_windows": 9632,
+   "pct_rank_return": 19.071844,
+   "pct_rank_maxdd": 21.750415,
+   "hist_quantiles_return": {
+    "1": -0.355038,
+    "5": -0.180771,
+    "10": -0.102315,
+    "25": -0.008412,
+    "50": 0.059684,
+    "75": 0.124199,
+    "90": 0.197507,
+    "95": 0.253001
+   },
+   "hist_mean": 0.054523,
+   "hist_std": 0.138044,
+   "z_score": -0.676539,
+   "share_windows_negative": 0.273671,
+   "hist_quantiles_maxdd": {
+    "1": -0.438012,
+    "5": -0.298358,
+    "10": -0.221956,
+    "25": -0.139411,
+    "50": -0.089655
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 12.623274,
+    "pct_rank_maxdd": 15.335306,
+    "median": 0.065942
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 42.239011,
+    "median": -0.032106
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 47.164948,
+    "median": -0.036416
+   },
+   "regression_on_ndx": {
+    "beta": 1.000268,
+    "alpha": 0.001044,
+    "expected_given_ndx": -0.039017,
+    "residual": 0.000148,
+    "pct_rank_residual": 49.013704
+   },
+   "worst_hist_window": {
+    "start": "2000-12-06",
+    "ret": -0.509673
+   }
+  },
+  "QLD_buyhold": {
+   "oos_return": -0.108429,
+   "oos_maxdd": -0.282822,
+   "n_windows": 9632,
+   "pct_rank_return": 19.071844,
+   "pct_rank_maxdd": 22.269518,
+   "hist_quantiles_return": {
+    "1": -0.631995,
+    "5": -0.371586,
+    "10": -0.233536,
+    "25": -0.050731,
+    "50": 0.0974,
+    "75": 0.232479,
+    "90": 0.390591,
+    "95": 0.519495
+   },
+   "hist_mean": 0.095483,
+   "hist_std": 0.286712,
+   "z_score": -0.711207,
+   "share_windows_negative": 0.318625,
+   "hist_quantiles_maxdd": {
+    "1": -0.726915,
+    "5": -0.53841,
+    "10": -0.413756,
+    "25": -0.263991,
+    "50": -0.177167
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 12.056213,
+    "pct_rank_maxdd": 15.828402,
+    "median": 0.115887
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 42.101648,
+    "median": -0.095246
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 48.024055,
+    "median": -0.105613
+   },
+   "regression_on_ndx": {
+    "beta": 2.062118,
+    "alpha": -0.014766,
+    "expected_given_ndx": -0.097355,
+    "residual": -0.011073,
+    "pct_rank_residual": 32.288206
+   },
+   "worst_hist_window": {
+    "start": "2000-12-06",
+    "ret": -0.800175
+   }
+  },
+  "TQQQ_buyhold": {
+   "oos_return": -0.188903,
+   "oos_maxdd": -0.40095,
+   "n_windows": 9632,
+   "pct_rank_return": 19.10299,
+   "pct_rank_maxdd": 22.923588,
+   "hist_quantiles_return": {
+    "1": -0.805629,
+    "5": -0.549789,
+    "10": -0.362464,
+    "25": -0.10881,
+    "50": 0.124948,
+    "75": 0.337489,
+    "90": 0.59521,
+    "95": 0.820094
+   },
+   "hist_mean": 0.140012,
+   "hist_std": 0.450137,
+   "z_score": -0.730701,
+   "share_windows_negative": 0.346968,
+   "hist_quantiles_maxdd": {
+    "1": -0.882788,
+    "5": -0.708714,
+    "10": -0.568421,
+    "25": -0.37372,
+    "50": -0.258543
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 12.45069,
+    "pct_rank_maxdd": 15.853057,
+    "median": 0.162618
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 39.766484,
+    "median": -0.166507
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 46.563574,
+    "median": -0.182381
+   },
+   "regression_on_ndx": {
+    "beta": 3.170024,
+    "alpha": -0.02947,
+    "expected_given_ndx": -0.156431,
+    "residual": -0.032472,
+    "pct_rank_residual": 31.177326
+   },
+   "worst_hist_window": {
+    "start": "2000-12-06",
+    "ret": -0.93123
+   }
+  },
+  "6040_SPXprice_IEF": {
+   "oos_return": -0.010727,
+   "oos_maxdd": -0.043007,
+   "n_windows": 9632,
+   "pct_rank_return": 18.999169,
+   "pct_rank_maxdd": 41.767027,
+   "hist_quantiles_return": {
+    "1": -0.120199,
+    "5": -0.052963,
+    "10": -0.031316,
+    "25": -0.000414,
+    "50": 0.029905,
+    "75": 0.056173,
+    "90": 0.083856,
+    "95": 0.104608
+   },
+   "hist_mean": 0.02715,
+   "hist_std": 0.049408,
+   "z_score": -0.766623,
+   "share_windows_negative": 0.253011,
+   "hist_quantiles_maxdd": {
+    "1": -0.192298,
+    "5": -0.118865,
+    "10": -0.090389,
+    "25": -0.060271,
+    "50": -0.039694
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 16.074951,
+    "pct_rank_maxdd": 37.919132,
+    "median": 0.031962
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 33.241758,
+    "median": 0.000766
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 35.4811,
+    "median": -0.001508
+   },
+   "regression_on_ndx": {
+    "beta": 0.279059,
+    "alpha": 0.01223,
+    "expected_given_ndx": 0.001054,
+    "residual": -0.011781,
+    "pct_rank_residual": 30.751661
+   },
+   "worst_hist_window": {
+    "start": "2008-07-30",
+    "ret": -0.22955
+   }
+  },
+  "static_IEF85_GLD15": {
+   "oos_return": -0.019222,
+   "oos_maxdd": -0.053074,
+   "n_windows": 9632,
+   "pct_rank_return": 15.043605,
+   "pct_rank_maxdd": 13.278654,
+   "hist_quantiles_return": {
+    "1": -0.069131,
+    "5": -0.044774,
+    "10": -0.028426,
+    "25": -0.006433,
+    "50": 0.019417,
+    "75": 0.044365,
+    "90": 0.068218,
+    "95": 0.082551
+   },
+   "hist_mean": 0.019344,
+   "hist_std": 0.037887,
+   "z_score": -1.017912,
+   "share_windows_negative": 0.299834,
+   "hist_quantiles_maxdd": {
+    "1": -0.094467,
+    "5": -0.069067,
+    "10": -0.056927,
+    "25": -0.041116,
+    "50": -0.028885
+   },
+   "real_tqqq_era": {
+    "start": "2010-02-12",
+    "n_windows": 4056,
+    "pct_rank_return": 21.474359,
+    "pct_rank_maxdd": 18.022682,
+    "median": 0.012751
+   },
+   "cond_ndx_within_4pp": {
+    "n_windows": 1456,
+    "approx_episodes": 36,
+    "pct_rank_return": 14.697802,
+    "median": 0.025887
+   },
+   "cond_ndx_within_4pp_and_ndx_dd_le_10": {
+    "n_windows": 1164,
+    "approx_episodes": 33,
+    "pct_rank_return": 14.604811,
+    "median": 0.026626
+   },
+   "regression_on_ndx": {
+    "beta": -0.03198,
+    "alpha": 0.021054,
+    "expected_given_ndx": 0.022335,
+    "residual": -0.041557,
+    "pct_rank_residual": 12.759551
+   },
+   "worst_hist_window": {
+    "start": "2022-03-02",
+    "ret": -0.100777
+   }
+  },
+  "_NDX": {
+   "oos_return": -0.040051,
+   "oos_maxdd": -0.147149,
+   "pct_rank_return": 19.082226,
+   "pct_rank_maxdd": 21.708887
+  }
+ },
+ "whipsaw_tail_check": {
+  "a_F_scanner_TQQQ_TLT_GLD": {
+   "stretch": [
+    "2026-10-07",
+    "2026-10-16"
+   ],
+   "days": 8,
+   "stretch_return": -0.1638,
+   "pct_rank_among_same_length_windows": 0.041216,
+   "approx_episodes_as_bad": 4,
+   "worst_oos_week": -0.138813,
+   "worst_oos_week_ending": "2026-10-16",
+   "pct_rank_worst_week_among_hist_weeks": 0.205761,
+   "hist_weeks_worse": 4,
+   "hist_weeks": 1944,
+   "hist_weeks_worse_dates": [
+    "1995-07-21",
+    "1996-03-01",
+    "1999-07-23",
+    "2007-03-02"
+   ]
+  },
+  "b_F3_TQQQ_IEF_GLD": {
+   "stretch": [
+    "2026-10-07",
+    "2026-10-16"
+   ],
+   "days": 8,
+   "stretch_return": -0.1638,
+   "pct_rank_among_same_length_windows": 0.061824,
+   "approx_episodes_as_bad": 3,
+   "worst_oos_week": -0.138813,
+   "worst_oos_week_ending": "2026-10-16",
+   "pct_rank_worst_week_among_hist_weeks": 0.205761,
+   "hist_weeks_worse": 4,
+   "hist_weeks": 1944,
+   "hist_weeks_worse_dates": [
+    "1995-07-21",
+    "1996-03-01",
+    "1999-07-23",
+    "2007-03-02"
+   ]
+  },
+  "c_F2_QLD_IEF_GLD_vt30": {
+   "stretch": [
+    "2026-10-07",
+    "2026-10-16"
+   ],
+   "days": 8,
+   "stretch_return": -0.111009,
+   "pct_rank_among_same_length_windows": 0.113344,
+   "approx_episodes_as_bad": 7,
+   "worst_oos_week": -0.093897,
+   "worst_oos_week_ending": "2026-10-16",
+   "pct_rank_worst_week_among_hist_weeks": 0.360082,
+   "hist_weeks_worse": 7,
+   "hist_weeks": 1944,
+   "hist_weeks_worse_dates": [
+    "1995-07-21",
+    "1996-03-01",
+    "1999-02-05",
+    "1999-04-16",
+    "1999-07-23",
+    "2000-04-14",
+    "2007-03-02"
+   ]
+  },
+  "d_A_TQQQ_BIL_vt25": {
+   "stretch": [
+    "2026-10-07",
+    "2026-10-16"
+   ],
+   "days": 8,
+   "stretch_return": -0.190386,
+   "pct_rank_among_same_length_windows": 1.205564,
+   "approx_episodes_as_bad": 36,
+   "worst_oos_week": -0.160802,
+   "worst_oos_week_ending": "2026-10-16",
+   "pct_rank_worst_week_among_hist_weeks": 1.131687,
+   "hist_weeks_worse": 22,
+   "hist_weeks": 1944,
+   "hist_weeks_worse_dates": [
+    "1990-01-12",
+    "1995-07-21",
+    "1995-12-15",
+    "1996-03-01",
+    "1997-12-12",
+    "1998-08-28",
+    "1999-07-23",
+    "2000-01-07",
+    "2000-04-14",
+    "2000-07-28",
+    "2000-09-08",
+    "2003-09-26",
+    "2004-04-30",
+    "2007-03-02",
+    "2007-11-09",
+    "2008-01-04",
+    "2010-05-07",
+    "2011-08-05",
+    "2015-08-21",
+    "2018-03-23",
+    "2020-02-28",
+    "2024-09-06"
+   ]
+  }
+ },
+ "same_calendar_window": {
+  "a_F_scanner_TQQQ_TLT_GLD": {
+   "y2026": -0.10847,
+   "rank_from_worst": 4,
+   "n_years": 39,
+   "median_1988_2025": 0.033384,
+   "worse_years": {
+    "1988": -0.109375,
+    "2011": -0.131744,
+    "2022": -0.12116
+   },
+   "by_year": {
+    "1988": -0.109375,
+    "1989": 0.002778,
+    "1990": 0.036451,
+    "1991": 0.19862,
+    "1992": 0.082327,
+    "1993": 0.109269,
+    "1994": 0.051578,
+    "1995": -0.00831,
+    "1996": 0.207779,
+    "1997": 0.003252,
+    "1998": 0.085512,
+    "1999": 0.257463,
+    "2000": -0.089499,
+    "2001": 0.046009,
+    "2002": 0.131603,
+    "2003": 0.100291,
+    "2004": 0.179256,
+    "2005": 0.022539,
+    "2006": 0.198253,
+    "2007": -0.029772,
+    "2008": -0.004132,
+    "2009": 0.240709,
+    "2010": 0.260031,
+    "2011": -0.131744,
+    "2012": 0.030318,
+    "2013": 0.217407,
+    "2014": -0.002277,
+    "2015": -0.03559,
+    "2016": -0.056667,
+    "2017": 0.089635,
+    "2018": -0.067178,
+    "2019": 0.021295,
+    "2020": 0.075532,
+    "2021": 0.155168,
+    "2022": -0.12116,
+    "2023": -0.036423,
+    "2024": -0.048222,
+    "2025": 0.003288
+   }
+  },
+  "b_F3_TQQQ_IEF_GLD": {
+   "y2026": -0.089946,
+   "rank_from_worst": 3,
+   "n_years": 39,
+   "median_1988_2025": 0.034907,
+   "worse_years": {
+    "1988": -0.106287,
+    "2011": -0.196241
+   },
+   "by_year": {
+    "1988": -0.106287,
+    "1989": 0.002286,
+    "1990": 0.038776,
+    "1991": 0.178864,
+    "1992": 0.080777,
+    "1993": 0.058871,
+    "1994": 0.060879,
+    "1995": -0.037443,
+    "1996": 0.177527,
+    "1997": -0.025635,
+    "1998": 0.071935,
+    "1999": 0.264217,
+    "2000": -0.077554,
+    "2001": 0.029162,
+    "2002": 0.113983,
+    "2003": 0.108305,
+    "2004": 0.169263,
+    "2005": 0.032871,
+    "2006": 0.18373,
+    "2007": -0.040661,
+    "2008": -0.020579,
+    "2009": 0.226547,
+    "2010": 0.236808,
+    "2011": -0.196241,
+    "2012": 0.036944,
+    "2013": 0.218207,
+    "2014": -0.023045,
+    "2015": -0.025076,
+    "2016": -0.014031,
+    "2017": 0.096274,
+    "2018": -0.047425,
+    "2019": 0.011799,
+    "2020": 0.099999,
+    "2021": 0.14074,
+    "2022": -0.051359,
+    "2023": -0.016395,
+    "2024": -0.047451,
+    "2025": 0.001169
+   }
+  },
+  "c_F2_QLD_IEF_GLD_vt30": {
+   "y2026": -0.060315,
+   "rank_from_worst": 3,
+   "n_years": 39,
+   "median_1988_2025": 0.031565,
+   "worse_years": {
+    "1988": -0.068107,
+    "2011": -0.149843
+   },
+   "by_year": {
+    "1988": -0.068107,
+    "1989": 0.011551,
+    "1990": 0.040882,
+    "1991": 0.139823,
+    "1992": 0.056208,
+    "1993": 0.049139,
+    "1994": 0.040984,
+    "1995": -0.020495,
+    "1996": 0.136577,
+    "1997": -0.007722,
+    "1998": 0.082549,
+    "1999": 0.259529,
+    "2000": -0.055339,
+    "2001": 0.029162,
+    "2002": 0.112203,
+    "2003": 0.091205,
+    "2004": 0.125597,
+    "2005": 0.028633,
+    "2006": 0.137645,
+    "2007": -0.0187,
+    "2008": -0.016075,
+    "2009": 0.168696,
+    "2010": 0.163166,
+    "2011": -0.149843,
+    "2012": 0.033968,
+    "2013": 0.141151,
+    "2014": -0.011631,
+    "2015": -0.014266,
+    "2016": -0.022942,
+    "2017": 0.064862,
+    "2018": -0.029719,
+    "2019": 0.014885,
+    "2020": 0.094979,
+    "2021": 0.091311,
+    "2022": -0.045305,
+    "2023": -0.009648,
+    "2024": -0.037146,
+    "2025": 0.016382
+   }
+  },
+  "d_A_TQQQ_BIL_vt25": {
+   "y2026": 0.069018,
+   "rank_from_worst": 20,
+   "n_years": 39,
+   "median_1988_2025": 0.060427,
+   "worse_years": {
+    "1988": -0.219933,
+    "1990": 0.008077,
+    "1995": -0.000167,
+    "1997": -0.134084,
+    "1998": -0.063431,
+    "2000": -0.265835,
+    "2001": 0.007803,
+    "2005": -0.045467,
+    "2007": -0.126522,
+    "2008": -0.085852,
+    "2011": -0.432653,
+    "2014": 0.030155,
+    "2015": -0.114311,
+    "2016": 0.040426,
+    "2018": -0.118524,
+    "2019": -0.01622,
+    "2022": -0.083321,
+    "2023": -0.082614,
+    "2024": -0.176159
+   },
+   "by_year": {
+    "1988": -0.219933,
+    "1989": 0.135324,
+    "1990": 0.008077,
+    "1991": 0.243507,
+    "1992": 0.080428,
+    "1993": 0.151768,
+    "1994": 0.237415,
+    "1995": -0.000167,
+    "1996": 0.603283,
+    "1997": -0.134084,
+    "1998": -0.063431,
+    "1999": 0.614478,
+    "2000": -0.265835,
+    "2001": 0.007803,
+    "2002": 0.110251,
+    "2003": 0.28694,
+    "2004": 0.20198,
+    "2005": -0.045467,
+    "2006": 0.35315,
+    "2007": -0.126522,
+    "2008": -0.085852,
+    "2009": 0.409372,
+    "2010": 0.270157,
+    "2011": -0.432653,
+    "2012": 0.124119,
+    "2013": 0.416624,
+    "2014": 0.030155,
+    "2015": -0.114311,
+    "2016": 0.040426,
+    "2017": 0.182435,
+    "2018": -0.118524,
+    "2019": -0.01622,
+    "2020": 0.328901,
+    "2021": 0.237698,
+    "2022": -0.083321,
+    "2023": -0.082614,
+    "2024": -0.176159,
+    "2025": 0.155254
+   }
+  },
+  "QQQ_buyhold": {
+   "y2026": -0.038869,
+   "rank_from_worst": 8,
+   "n_years": 39,
+   "median_1988_2025": 0.064456,
+   "worse_years": {
+    "1988": -0.086685,
+    "1990": -0.183878,
+    "2000": -0.233389,
+    "2008": -0.364754,
+    "2011": -0.061517,
+    "2018": -0.069321,
+    "2022": -0.055194
+   },
+   "by_year": {
+    "1988": -0.086685,
+    "1989": 0.069041,
+    "1990": -0.183878,
+    "1991": 0.102702,
+    "1992": 0.113992,
+    "1993": 0.09156,
+    "1994": 0.125047,
+    "1995": 0.045824,
+    "1996": 0.320433,
+    "1997": -0.035982,
+    "1998": 0.063174,
+    "1999": 0.272232,
+    "2000": -0.233389,
+    "2001": -0.019427,
+    "2002": 0.11939,
+    "2003": 0.112251,
+    "2004": 0.143232,
+    "2005": 0.047945,
+    "2006": 0.217398,
+    "2007": 0.019788,
+    "2008": -0.364754,
+    "2009": 0.143231,
+    "2010": 0.122901,
+    "2011": -0.061517,
+    "2012": -0.007661,
+    "2013": 0.130364,
+    "2014": 0.062138,
+    "2015": 0.005952,
+    "2016": 0.03876,
+    "2017": 0.065739,
+    "2018": -0.069321,
+    "2019": 0.041861,
+    "2020": 0.143645,
+    "2021": 0.081127,
+    "2022": -0.055194,
+    "2023": 0.02756,
+    "2024": 0.073132,
+    "2025": 0.069645
+   }
+  },
+  "TQQQ_buyhold": {
+   "y2026": -0.188903,
+   "rank_from_worst": 10,
+   "n_years": 39,
+   "median_1988_2025": 0.120798,
+   "worse_years": {
+    "1988": -0.289939,
+    "1990": -0.527018,
+    "1997": -0.203737,
+    "2000": -0.647943,
+    "2001": -0.228213,
+    "2008": -0.818157,
+    "2011": -0.263254,
+    "2018": -0.246929,
+    "2022": -0.259736
+   },
+   "by_year": {
+    "1988": -0.289939,
+    "1989": 0.135324,
+    "1990": -0.527018,
+    "1991": 0.243507,
+    "1992": 0.320732,
+    "1993": 0.24463,
+    "1994": 0.348365,
+    "1995": 0.038244,
+    "1996": 1.139327,
+    "1997": -0.203737,
+    "1998": -0.033375,
+    "1999": 0.794625,
+    "2000": -0.647943,
+    "2001": -0.228213,
+    "2002": 0.106271,
+    "2003": 0.299485,
+    "2004": 0.422329,
+    "2005": 0.100339,
+    "2006": 0.694276,
+    "2007": -0.012036,
+    "2008": -0.818157,
+    "2009": 0.409372,
+    "2010": 0.37627,
+    "2011": -0.263254,
+    "2012": -0.046758,
+    "2013": 0.416624,
+    "2014": 0.168183,
+    "2015": -0.037216,
+    "2016": 0.099311,
+    "2017": 0.182435,
+    "2018": -0.246929,
+    "2019": 0.073662,
+    "2020": 0.384044,
+    "2021": 0.237698,
+    "2022": -0.259736,
+    "2023": 0.010547,
+    "2024": 0.138414,
+    "2025": 0.155254
+   }
+  },
+  "_NDX": {
+   "1988": -0.086083,
+   "1989": 0.069745,
+   "1990": -0.183345,
+   "1991": 0.103411,
+   "1992": 0.114707,
+   "1993": 0.092269,
+   "1994": 0.125788,
+   "1995": 0.046513,
+   "1996": 0.321279,
+   "1997": -0.035362,
+   "1998": 0.063858,
+   "1999": 0.264841,
+   "2000": -0.22577,
+   "2001": -0.014157,
+   "2002": 0.115282,
+   "2003": 0.111656,
+   "2004": 0.142234,
+   "2005": 0.047246,
+   "2006": 0.214748,
+   "2007": 0.024028,
+   "2008": -0.366003,
+   "2009": 0.133297,
+   "2010": 0.119773,
+   "2011": -0.064791,
+   "2012": -0.01297,
+   "2013": 0.125419,
+   "2014": 0.057893,
+   "2015": 0.001854,
+   "2016": 0.034402,
+   "2017": 0.062804,
+   "2018": -0.072807,
+   "2019": 0.038063,
+   "2020": 0.142549,
+   "2021": 0.079162,
+   "2022": -0.05805,
+   "2023": 0.025244,
+   "2024": 0.071549,
+   "2025": 0.068047
+  }
+ },
+ "decision_log_compounding_check": {
+  "a": {
+   "compounded_log": -0.10847,
+   "oos_total": -0.10847
+  },
+  "b": {
+   "compounded_log": -0.089946,
+   "oos_total": -0.089946
+  },
+  "c": {
+   "compounded_log": -0.060315,
+   "oos_total": -0.060315
+  },
+  "d": {
+   "compounded_log": 0.069018,
+   "oos_total": 0.069018
+  }
+ },
+ "decision_log": [
+  {
+   "date": "2026-07-24",
+   "decision": "Friday decision",
+   "effective_from": "2026-07-27",
+   "ndx": 28128.339844,
+   "ema100": 28066.962533,
+   "ndx_vs_ema": 0.002187,
+   "above": true,
+   "vol20": 0.227893,
+   "er20": 0.176362,
+   "month": 7,
+   "chop": true,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.877606,
+   "b_engine": 0.438803,
+   "b_weights": {
+    "TQQQ": 0.372983,
+    "IEF": 0.477017,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.5,
+   "c_weights": {
+    "QLD": 0.425,
+    "IEF": 0.425,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.372983,
+    "TLT": 0.477017,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": 0.004616,
+   "c_return_while_held": 0.003669,
+   "a_return_while_held": -0.000791,
+   "d_return_while_held": 0.009679,
+   "ndx_return_while_held": 0.005185,
+   "held_until_close_of": "2026-07-31"
+  },
+  {
+   "date": "2026-07-31",
+   "decision": "Friday decision",
+   "effective_from": "2026-08-03",
+   "ndx": 28274.199219,
+   "ema100": 28049.016659,
+   "ndx_vs_ema": 0.008028,
+   "above": true,
+   "vol20": 0.237066,
+   "er20": 0.150079,
+   "month": 7,
+   "chop": true,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.843647,
+   "b_engine": 0.421824,
+   "b_weights": {
+    "TQQQ": 0.35855,
+    "IEF": 0.49145,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.5,
+   "c_weights": {
+    "QLD": 0.425,
+    "IEF": 0.425,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.35855,
+    "TLT": 0.49145,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": 0.068012,
+   "c_return_while_held": 0.056632,
+   "a_return_while_held": 0.070264,
+   "d_return_while_held": 0.15243,
+   "ndx_return_while_held": 0.051216,
+   "held_until_close_of": "2026-08-07"
+  },
+  {
+   "date": "2026-08-07",
+   "decision": "Friday decision",
+   "effective_from": "2026-08-10",
+   "ndx": 29722.300781,
+   "ema100": 28179.939829,
+   "ndx_vs_ema": 0.054733,
+   "above": true,
+   "vol20": 0.262359,
+   "er20": 0.013436,
+   "month": 8,
+   "chop": true,
+   "seasonal_mult": 0.5,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.762313,
+   "b_engine": 0.190578,
+   "b_weights": {
+    "TQQQ": 0.161991,
+    "IEF": 0.688009,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.25,
+   "c_weights": {
+    "QLD": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.161991,
+    "TLT": 0.688009,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 0.952891,
+    "BIL": 0.047109
+   },
+   "b_return_while_held": 0.005189,
+   "c_return_while_held": 0.004652,
+   "a_return_while_held": 0.000138,
+   "d_return_while_held": 0.029702,
+   "ndx_return_while_held": 0.010896,
+   "held_until_close_of": "2026-08-14"
+  },
+  {
+   "date": "2026-08-14",
+   "decision": "Friday decision",
+   "effective_from": "2026-08-17",
+   "ndx": 30046.140625,
+   "ema100": 28335.04109,
+   "ndx_vs_ema": 0.060388,
+   "above": true,
+   "vol20": 0.238777,
+   "er20": 0.221256,
+   "month": 8,
+   "chop": true,
+   "seasonal_mult": 0.5,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.837603,
+   "b_engine": 0.209401,
+   "b_weights": {
+    "TQQQ": 0.177991,
+    "IEF": 0.672009,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.25,
+   "c_weights": {
+    "QLD": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.177991,
+    "TLT": 0.672009,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": -0.006784,
+   "c_return_while_held": -0.003987,
+   "a_return_while_held": -0.005094,
+   "d_return_while_held": -0.073213,
+   "ndx_return_while_held": -0.024538,
+   "held_until_close_of": "2026-08-21"
+  },
+  {
+   "date": "2026-08-21",
+   "decision": "Friday decision",
+   "effective_from": "2026-08-24",
+   "ndx": 29308.859375,
+   "ema100": 28444.03184,
+   "ndx_vs_ema": 0.030405,
+   "above": true,
+   "vol20": 0.224819,
+   "er20": 0.199798,
+   "month": 8,
+   "chop": true,
+   "seasonal_mult": 0.5,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.889604,
+   "b_engine": 0.222401,
+   "b_weights": {
+    "TQQQ": 0.189041,
+    "IEF": 0.660959,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.25,
+   "c_weights": {
+    "QLD": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.189041,
+    "TLT": 0.660959,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": -0.002907,
+   "c_return_while_held": -0.003308,
+   "a_return_while_held": 0.003557,
+   "d_return_while_held": 0.009555,
+   "ndx_return_while_held": 0.00425,
+   "held_until_close_of": "2026-08-28"
+  },
+  {
+   "date": "2026-08-28",
+   "decision": "Friday decision",
+   "effective_from": "2026-08-31",
+   "ndx": 29433.429688,
+   "ema100": 28526.573451,
+   "ndx_vs_ema": 0.03179,
+   "above": true,
+   "vol20": 0.182513,
+   "er20": 0.231715,
+   "month": 8,
+   "chop": true,
+   "seasonal_mult": 0.5,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 0.25,
+   "b_weights": {
+    "TQQQ": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.25,
+   "c_weights": {
+    "QLD": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.2125,
+    "TLT": 0.6375,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": -0.000873,
+   "c_return_while_held": -0.001294,
+   "a_return_while_held": -0.001767,
+   "d_return_while_held": 0.007237,
+   "ndx_return_while_held": 0.003762,
+   "held_until_close_of": "2026-09-04"
+  },
+  {
+   "date": "2026-09-04",
+   "decision": "Friday decision",
+   "effective_from": "2026-09-08",
+   "ndx": 29544.150391,
+   "ema100": 28604.284584,
+   "ndx_vs_ema": 0.032858,
+   "above": true,
+   "vol20": 0.129426,
+   "er20": 0.04808,
+   "month": 9,
+   "chop": true,
+   "seasonal_mult": 0.5,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 0.25,
+   "b_weights": {
+    "TQQQ": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.25,
+   "c_weights": {
+    "QLD": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.2125,
+    "TLT": 0.6375,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": -0.015466,
+   "c_return_while_held": -0.014095,
+   "a_return_while_held": -0.017308,
+   "d_return_while_held": -0.019207,
+   "ndx_return_while_held": -0.005947,
+   "held_until_close_of": "2026-09-11"
+  },
+  {
+   "date": "2026-09-11",
+   "decision": "Friday decision",
+   "effective_from": "2026-09-14",
+   "ndx": 29368.439453,
+   "ema100": 28661.502727,
+   "ndx_vs_ema": 0.024665,
+   "above": true,
+   "vol20": 0.128164,
+   "er20": 0.195911,
+   "month": 9,
+   "chop": true,
+   "seasonal_mult": 0.5,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 0.25,
+   "b_weights": {
+    "TQQQ": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.25,
+   "c_weights": {
+    "QLD": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.2125,
+    "TLT": 0.6375,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": 0.004631,
+   "c_return_while_held": 0.002977,
+   "a_return_while_held": 0.009102,
+   "d_return_while_held": 0.023387,
+   "ndx_return_while_held": 0.009389,
+   "held_until_close_of": "2026-09-18"
+  },
+  {
+   "date": "2026-09-18",
+   "decision": "Friday decision",
+   "effective_from": "2026-09-21",
+   "ndx": 29644.169922,
+   "ema100": 28715.267653,
+   "ndx_vs_ema": 0.032349,
+   "above": true,
+   "vol20": 0.134557,
+   "er20": 0.109934,
+   "month": 9,
+   "chop": true,
+   "seasonal_mult": 0.5,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 0.25,
+   "b_weights": {
+    "TQQQ": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.25,
+   "c_weights": {
+    "QLD": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.2125,
+    "TLT": 0.6375,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": 0.011991,
+   "c_return_while_held": 0.005248,
+   "a_return_while_held": 0.002224,
+   "d_return_while_held": 0.097934,
+   "ndx_return_while_held": 0.032518,
+   "held_until_close_of": "2026-09-25"
+  },
+  {
+   "date": "2026-09-25",
+   "decision": "Friday decision",
+   "effective_from": "2026-09-28",
+   "ndx": 30608.130859,
+   "ema100": 28890.289717,
+   "ndx_vs_ema": 0.059461,
+   "above": true,
+   "vol20": 0.159951,
+   "er20": 0.219225,
+   "month": 9,
+   "chop": true,
+   "seasonal_mult": 0.5,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 0.25,
+   "b_weights": {
+    "TQQQ": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.25,
+   "c_weights": {
+    "QLD": 0.2125,
+    "IEF": 0.6375,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.2125,
+    "TLT": 0.6375,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": -0.005747,
+   "c_return_while_held": -0.006976,
+   "a_return_while_held": -0.013508,
+   "d_return_while_held": 0.017714,
+   "ndx_return_while_held": 0.006528,
+   "held_until_close_of": "2026-10-02"
+  },
+  {
+   "date": "2026-10-02",
+   "decision": "Friday decision",
+   "effective_from": "2026-10-05",
+   "ndx": 30807.929688,
+   "ema100": 29040.78975,
+   "ndx_vs_ema": 0.06085,
+   "above": true,
+   "vol20": 0.15292,
+   "er20": 0.311545,
+   "month": 10,
+   "chop": false,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 1.0,
+   "b_weights": {
+    "TQQQ": 0.85,
+    "IEF": 0.0,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 1.0,
+   "c_weights": {
+    "QLD": 0.85,
+    "IEF": 0.0,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.85,
+    "TLT": 0.0,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": 0.004414,
+   "c_return_while_held": 0.003991,
+   "a_return_while_held": 0.004414,
+   "d_return_while_held": 0.003333,
+   "ndx_return_while_held": 0.002442,
+   "held_until_close_of": "2026-10-09"
+  },
+  {
+   "date": "2026-10-09",
+   "decision": "Friday decision",
+   "effective_from": "2026-10-12",
+   "ndx": 30883.150391,
+   "ema100": 29228.232312,
+   "ndx_vs_ema": 0.056621,
+   "above": true,
+   "vol20": 0.156292,
+   "er20": 0.332167,
+   "month": 10,
+   "chop": false,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 1.0,
+   "b_weights": {
+    "TQQQ": 0.85,
+    "IEF": 0.0,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 1.0,
+   "c_weights": {
+    "QLD": 0.85,
+    "IEF": 0.0,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.85,
+    "TLT": 0.0,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 1.0,
+    "BIL": 0.0
+   },
+   "b_return_while_held": -0.138813,
+   "c_return_while_held": -0.093897,
+   "a_return_while_held": -0.138813,
+   "d_return_while_held": -0.160802,
+   "ndx_return_while_held": -0.054904,
+   "held_until_close_of": "2026-10-16"
+  },
+  {
+   "date": "2026-10-16",
+   "decision": "Friday decision",
+   "effective_from": "2026-10-19",
+   "ndx": 29187.550781,
+   "ema100": 29306.174737,
+   "ndx_vs_ema": -0.004048,
+   "above": false,
+   "vol20": 0.185758,
+   "er20": 0.089205,
+   "month": 10,
+   "chop": true,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 0.0,
+   "b_weights": {
+    "TQQQ": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.0,
+   "c_weights": {
+    "QLD": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.0,
+    "TLT": 0.85,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 0.0,
+    "BIL": 1.0
+   },
+   "b_return_while_held": -0.000688,
+   "c_return_while_held": -0.000688,
+   "a_return_while_held": 0.007068,
+   "d_return_while_held": 5.5e-05,
+   "ndx_return_while_held": -0.007881,
+   "held_until_close_of": "2026-10-23"
+  },
+  {
+   "date": "2026-10-23",
+   "decision": "Friday decision",
+   "effective_from": "2026-10-26",
+   "ndx": 28957.529297,
+   "ema100": 29309.862792,
+   "ndx_vs_ema": -0.012021,
+   "above": false,
+   "vol20": 0.186163,
+   "er20": 0.316894,
+   "month": 10,
+   "chop": false,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 1.0,
+   "b_engine": 0.0,
+   "b_weights": {
+    "TQQQ": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.0,
+   "c_weights": {
+    "QLD": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.0,
+    "TLT": 0.85,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 0.0,
+    "BIL": 1.0
+   },
+   "b_return_while_held": 0.002245,
+   "c_return_while_held": 0.002245,
+   "a_return_while_held": 0.000853,
+   "d_return_while_held": 0.000764,
+   "ndx_return_while_held": -0.019777,
+   "held_until_close_of": "2026-10-30"
+  },
+  {
+   "date": "2026-10-30",
+   "decision": "Friday decision",
+   "effective_from": "2026-11-02",
+   "ndx": 28384.849609,
+   "ema100": 29308.622921,
+   "ndx_vs_ema": -0.031519,
+   "above": false,
+   "vol20": 0.227641,
+   "er20": 0.365462,
+   "month": 10,
+   "chop": false,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.878576,
+   "b_engine": 0.0,
+   "b_weights": {
+    "TQQQ": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 1.0,
+   "c_engine": 0.0,
+   "c_weights": {
+    "QLD": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.0,
+    "TLT": 0.85,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 0.0,
+    "BIL": 1.0
+   },
+   "b_return_while_held": 0.010848,
+   "c_return_while_held": 0.010848,
+   "a_return_while_held": 0.011431,
+   "d_return_while_held": 0.000744,
+   "ndx_return_while_held": -0.049141,
+   "held_until_close_of": "2026-11-06"
+  },
+  {
+   "date": "2026-11-06",
+   "decision": "Friday decision",
+   "effective_from": "2026-11-09",
+   "ndx": 26989.990234,
+   "ema100": 29148.984579,
+   "ndx_vs_ema": -0.074068,
+   "above": false,
+   "vol20": 0.31743,
+   "er20": 0.454407,
+   "month": 11,
+   "chop": false,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.63006,
+   "b_engine": 0.0,
+   "b_weights": {
+    "TQQQ": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 0.94509,
+   "c_engine": 0.0,
+   "c_weights": {
+    "QLD": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.0,
+    "TLT": 0.85,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 0.0,
+    "BIL": 1.0
+   },
+   "b_return_while_held": -0.023681,
+   "c_return_while_held": -0.023681,
+   "a_return_while_held": -0.033189,
+   "d_return_while_held": 0.000765,
+   "ndx_return_while_held": 0.035337,
+   "held_until_close_of": "2026-11-13"
+  },
+  {
+   "date": "2026-11-13",
+   "decision": "Friday decision",
+   "effective_from": "2026-11-16",
+   "ndx": 27943.740234,
+   "ema100": 29044.737719,
+   "ndx_vs_ema": -0.037907,
+   "above": false,
+   "vol20": 0.34835,
+   "er20": 0.137888,
+   "month": 11,
+   "chop": true,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.574136,
+   "b_engine": 0.0,
+   "b_weights": {
+    "TQQQ": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 0.861203,
+   "c_engine": 0.0,
+   "c_weights": {
+    "QLD": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.0,
+    "TLT": 0.85,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 0.0,
+    "BIL": 1.0
+   },
+   "b_return_while_held": 0.002236,
+   "c_return_while_held": 0.002236,
+   "a_return_while_held": 0.000564,
+   "d_return_while_held": 0.000219,
+   "ndx_return_while_held": -0.033709,
+   "held_until_close_of": "2026-11-17"
+  },
+  {
+   "date": "2026-11-17",
+   "decision": "INDICATIVE (not a Friday; scanner run at last close)",
+   "effective_from": "next session",
+   "ndx": 27001.779297,
+   "ema100": 28968.421682,
+   "ndx_vs_ema": -0.067889,
+   "above": false,
+   "vol20": 0.355071,
+   "er20": 0.259719,
+   "month": 11,
+   "chop": false,
+   "seasonal_mult": 1.0,
+   "curve_inverted_last_12m": false,
+   "b_scale_raw": 0.563268,
+   "b_engine": 0.0,
+   "b_weights": {
+    "TQQQ": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "c_scale_raw": 0.844902,
+   "c_engine": 0.0,
+   "c_weights": {
+    "QLD": 0.0,
+    "IEF": 0.85,
+    "GLD": 0.15
+   },
+   "a_weights": {
+    "TQQQ": 0.0,
+    "TLT": 0.85,
+    "GLD": 0.15
+   },
+   "d_weights": {
+    "TQQQ": 0.0,
+    "BIL": 1.0
+   }
+  }
+ ],
+ "current_holdings": {
+  "b": {
+   "held_on_last_date_from_decision": "2026-11-13",
+   "held": {
+    "ief": 0.85,
+    "gold_phys": 0.15
+   },
+   "indicative_target_at_last_close": {
+    "ief": 0.85,
+    "gold_phys": 0.15
+   }
+  },
+  "c": {
+   "held_on_last_date_from_decision": "2026-11-13",
+   "held": {
+    "ief": 0.85,
+    "gold_phys": 0.15
+   },
+   "indicative_target_at_last_close": {
+    "ief": 0.85,
+    "gold_phys": 0.15
+   }
+  },
+  "a": {
+   "held_on_last_date_from_decision": "2026-11-13",
+   "held": {
+    "tlt": 0.85,
+    "gold_phys": 0.15
+   },
+   "indicative_target_at_last_close": {
+    "tlt": 0.85,
+    "gold_phys": 0.15
+   }
+  },
+  "d": {
+   "held_on_last_date_from_decision": "2026-11-13",
+   "held": {
+    "bills": 1.0
+   },
+   "indicative_target_at_last_close": {
+    "bills": 1.0
+   }
+  }
+ },
+ "reentry": {
+  "next_decision": "2026-11-20 (Friday close)",
+  "rule": "risk-on iff Friday close NDX > EMA-100, equivalently NDX_fri > EMA_100(Thursday)",
+  "ema100_last": 28968.421682,
+  "approx_threshold_if_ndx_flat_until_thursday": 28891.306012,
+  "required_ndx_move_from_last": 0.069978,
+  "weights_if_reentered_at_current_vol_er": {
+   "b_TQQQ": 0.478778,
+   "c_QLD": 0.718167,
+   "note": "vol20 0.355, er20 0.260; Nov/Dec -> no seasonal cut"
+  }
+ },
+ "variants": {
+  "count": 110,
+  "list": [
+   "a_F_scanner_TQQQ_TLT_GLD | model_spliced_lag1",
+   "a_F_scanner_TQQQ_TLT_GLD | model_spliced_lag2",
+   "a_F_scanner_TQQQ_TLT_GLD | real_lag1",
+   "a_F_scanner_TQQQ_TLT_GLD | real_lag2",
+   "a_F_scanner_TQQQ_TLT_GLD | sim_sleeves_lag1",
+   "a_F_scanner_TQQQ_TLT_GLD | real_drift_close1",
+   "a_F_scanner_TQQQ_TLT_GLD | real_drift_close2",
+   "a_F_scanner_TQQQ_TLT_GLD | real_drift_open1",
+   "b_F3_TQQQ_IEF_GLD | model_spliced_lag1",
+   "b_F3_TQQQ_IEF_GLD | model_spliced_lag2",
+   "b_F3_TQQQ_IEF_GLD | real_lag1",
+   "b_F3_TQQQ_IEF_GLD | real_lag2",
+   "b_F3_TQQQ_IEF_GLD | sim_sleeves_lag1",
+   "b_F3_TQQQ_IEF_GLD | real_drift_close1",
+   "b_F3_TQQQ_IEF_GLD | real_drift_close2",
+   "b_F3_TQQQ_IEF_GLD | real_drift_open1",
+   "c_F2_QLD_IEF_GLD_vt30 | model_spliced_lag1",
+   "c_F2_QLD_IEF_GLD_vt30 | model_spliced_lag2",
+   "c_F2_QLD_IEF_GLD_vt30 | real_lag1",
+   "c_F2_QLD_IEF_GLD_vt30 | real_lag2",
+   "c_F2_QLD_IEF_GLD_vt30 | sim_sleeves_lag1",
+   "c_F2_QLD_IEF_GLD_vt30 | real_drift_close1",
+   "c_F2_QLD_IEF_GLD_vt30 | real_drift_close2",
+   "c_F2_QLD_IEF_GLD_vt30 | real_drift_open1",
+   "d_A_TQQQ_BIL_vt25 | model_spliced_lag1",
+   "d_A_TQQQ_BIL_vt25 | model_spliced_lag2",
+   "d_A_TQQQ_BIL_vt25 | real_lag1",
+   "d_A_TQQQ_BIL_vt25 | real_lag2",
+   "d_A_TQQQ_BIL_vt25 | sim_sleeves_lag1",
+   "d_A_TQQQ_BIL_vt25 | real_drift_close1",
+   "d_A_TQQQ_BIL_vt25 | real_drift_close2",
+   "d_A_TQQQ_BIL_vt25 | real_drift_open1",
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers | model_spliced_lag1",
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers | model_spliced_lag2",
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers | real_lag1",
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers | real_lag2",
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers | sim_sleeves_lag1",
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers | real_drift_close1",
+   "ref_Fjuly_TQQQ_bond10syn_XAUminers | real_drift_close2",
+   "QQQ_buyhold | model_spliced_lag1",
+   "QQQ_buyhold | model_spliced_lag2",
+   "QQQ_buyhold | real_lag1",
+   "QQQ_buyhold | real_lag2",
+   "QQQ_buyhold | sim_sleeves_lag1",
+   "QQQ_buyhold | real_drift_close1",
+   "QQQ_buyhold | real_drift_close2",
+   "QQQ_buyhold | real_drift_open1",
+   "QLD_buyhold | model_spliced_lag1",
+   "QLD_buyhold | model_spliced_lag2",
+   "QLD_buyhold | real_lag1",
+   "QLD_buyhold | real_lag2",
+   "QLD_buyhold | sim_sleeves_lag1",
+   "QLD_buyhold | real_drift_close1",
+   "QLD_buyhold | real_drift_close2",
+   "QLD_buyhold | real_drift_open1",
+   "TQQQ_buyhold | model_spliced_lag1",
+   "TQQQ_buyhold | model_spliced_lag2",
+   "TQQQ_buyhold | real_lag1",
+   "TQQQ_buyhold | real_lag2",
+   "TQQQ_buyhold | sim_sleeves_lag1",
+   "TQQQ_buyhold | real_drift_close1",
+   "TQQQ_buyhold | real_drift_close2",
+   "TQQQ_buyhold | real_drift_open1",
+   "6040_SPXprice_IEF | model_spliced_lag1",
+   "6040_SPXprice_IEF | model_spliced_lag2",
+   "6040_SPXprice_IEF | real_lag1",
+   "6040_SPXprice_IEF | real_lag2",
+   "6040_SPXprice_IEF | sim_sleeves_lag1",
+   "6040_SPXprice_IEF | real_drift_close1",
+   "6040_SPXprice_IEF | real_drift_close2",
+   "6040_SPY_IEF | model_spliced_lag1",
+   "6040_SPY_IEF | model_spliced_lag2",
+   "6040_SPY_IEF | real_lag1",
+   "6040_SPY_IEF | real_lag2",
+   "6040_SPY_IEF | sim_sleeves_lag1",
+   "6040_SPY_IEF | real_drift_close1",
+   "6040_SPY_IEF | real_drift_close2",
+   "6040_SPY_IEF | real_drift_open1",
+   "static_IEF85_GLD15 | model_spliced_lag1",
+   "static_IEF85_GLD15 | model_spliced_lag2",
+   "static_IEF85_GLD15 | real_lag1",
+   "static_IEF85_GLD15 | real_lag2",
+   "static_IEF85_GLD15 | sim_sleeves_lag1",
+   "static_IEF85_GLD15 | real_drift_close1",
+   "static_IEF85_GLD15 | real_drift_close2",
+   "static_IEF85_GLD15 | real_drift_open1",
+   "a_F_scanner_TQQQ_TLT_GLD | IS real-ETF era drift_close1",
+   "a_F_scanner_TQQQ_TLT_GLD | IS real-ETF era drift_close2",
+   "a_F_scanner_TQQQ_TLT_GLD | IS real-ETF era drift_open1",
+   "b_F3_TQQQ_IEF_GLD | IS real-ETF era drift_close1",
+   "b_F3_TQQQ_IEF_GLD | IS real-ETF era drift_close2",
+   "b_F3_TQQQ_IEF_GLD | IS real-ETF era drift_open1",
+   "c_F2_QLD_IEF_GLD_vt30 | IS real-ETF era drift_close1",
+   "c_F2_QLD_IEF_GLD_vt30 | IS real-ETF era drift_close2",
+   "c_F2_QLD_IEF_GLD_vt30 | IS real-ETF era drift_open1",
+   "d_A_TQQQ_BIL_vt25 | IS real-ETF era drift_close1",
+   "d_A_TQQQ_BIL_vt25 | IS real-ETF era drift_close2",
+   "d_A_TQQQ_BIL_vt25 | IS real-ETF era drift_open1",
+   "b_F3_TQQQ_IEF_GLD NO-GATE counterfactual | real_lag1",
+   "c_F2_QLD_IEF_GLD_vt30 NO-GATE counterfactual | real_lag1",
+   "b_F3_TQQQ_IEF_GLD rule-removal 'no Aug-Sep halving' | real_lag1 (diagnostic)",
+   "b_F3_TQQQ_IEF_GLD rule-removal 'no chop halving' | real_lag1 (diagnostic)",
+   "b_F3_TQQQ_IEF_GLD rule-removal 'no Aug-Sep + no chop' | real_lag1 (diagnostic)",
+   "b_F3_TQQQ_IEF_GLD rule-removal 'BIL instead of IEF off-leg' | real_lag1 (diagnostic)",
+   "b_F3_TQQQ_IEF_GLD rule-removal 'no gold (100% engine)' | real_lag1 (diagnostic)",
+   "c_F2_QLD_IEF_GLD_vt30 rule-removal 'no Aug-Sep halving' | real_lag1 (diagnostic)",
+   "c_F2_QLD_IEF_GLD_vt30 rule-removal 'no chop halving' | real_lag1 (diagnostic)",
+   "c_F2_QLD_IEF_GLD_vt30 rule-removal 'no Aug-Sep + no chop' | real_lag1 (diagnostic)",
+   "c_F2_QLD_IEF_GLD_vt30 rule-removal 'BIL instead of IEF off-leg' | real_lag1 (diagnostic)",
+   "c_F2_QLD_IEF_GLD_vt30 rule-removal 'no gold (100% engine)' | real_lag1 (diagnostic)"
+  ]
+ }
+}

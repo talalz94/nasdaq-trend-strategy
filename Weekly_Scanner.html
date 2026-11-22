@@ -1,0 +1,1550 @@
+<title>Weekly Scanner — What To Hold This Week</title>
+<style>
+  :root{--bg:#0c1116;--panel:#131b22;--panel2:#17222b;--border:#25333d;--text:#dfe8ee;--muted:#8496a2;--faint:#5c6d78;
+    --accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1e2a33;
+    --mono:ui-monospace,"SF Mono","JetBrains Mono","Cascadia Code",Consolas,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,system-ui,sans-serif;--maxw:1040px;}
+  @media (prefers-color-scheme:light){:root{--bg:#eceff3;--panel:#fff;--panel2:#f4f7fa;--border:#d7dfe7;--text:#16232d;--muted:#5a6b77;--faint:#8899a4;--accent:#0c99a6;--gain:#12945f;--loss:#d6403c;--gold:#a9791a;--violet:#6b57d6;--grid:#e2e8ee;}}
+  :root[data-theme="dark"]{--bg:#0c1116;--panel:#131b22;--panel2:#17222b;--border:#25333d;--text:#dfe8ee;--muted:#8496a2;--faint:#5c6d78;--accent:#2bd4d9;--gain:#3ecf8e;--loss:#f0605d;--gold:#e3b23c;--violet:#9b8cff;--grid:#1e2a33;}
+  :root[data-theme="light"]{--bg:#eceff3;--panel:#fff;--panel2:#f4f7fa;--border:#d7dfe7;--text:#16232d;--muted:#5a6b77;--faint:#8899a4;--accent:#0c99a6;--gain:#12945f;--loss:#d6403c;--gold:#a9791a;--violet:#6b57d6;--grid:#e2e8ee;}
+  *{box-sizing:border-box}body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.5;margin:0;-webkit-font-smoothing:antialiased;font-feature-settings:"tnum" 1}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 20px}
+  .mono{font-family:var(--mono)}.pos{color:var(--gain)}.neg{color:var(--loss)}.acc{color:var(--accent)}
+  h1,h2{margin:0;text-wrap:balance}
+  .topbar{border-bottom:1px solid var(--border);background:var(--panel2)}
+  .topbar .row{display:flex;align-items:center;gap:14px;height:52px}
+  .brand{font-family:var(--mono);font-weight:700;font-size:14px}.brand .dot{color:var(--accent)}.spacer{flex:1}
+  .stamp{font-family:var(--mono);font-size:11.5px;color:var(--muted)}
+  .toggle{cursor:pointer;border:1px solid var(--border);background:var(--panel);color:var(--text);font-family:var(--mono);font-size:12px;padding:5px 10px;border-radius:7px}
+  header{padding:34px 0 22px}
+  .eyebrow{font-family:var(--mono);font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+  h1{font-family:var(--mono);font-size:clamp(23px,3.6vw,34px);letter-spacing:-.02em}
+  /* verdict cards */
+  .verdicts{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:22px}
+  .vc{background:var(--panel);border:1px solid var(--border);border-radius:12px;padding:20px;display:flex;flex-direction:column;gap:12px}
+  .vc.a{border-top:3px solid var(--gold)}.vc.b{border-top:3px solid var(--accent)}
+  .vc .nm{font-family:var(--mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
+  .vc.a .nm{color:var(--gold)}.vc.b .nm{color:var(--accent)}
+  .hold{display:flex;flex-wrap:wrap;gap:8px}
+  .tick{font-family:var(--mono);font-weight:700;font-size:19px;padding:8px 14px;border-radius:9px;border:1px solid var(--border);background:var(--panel2)}
+  .tick.tqqq{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 45%,transparent)}
+  .tick.qqq{color:var(--violet);border-color:color-mix(in srgb,var(--violet) 45%,transparent)}
+  .tick.tlt{color:var(--accent);border-color:color-mix(in srgb,var(--accent) 45%,transparent)}
+  .tick.cash{color:var(--muted)}
+  .vc .why{font-size:13px;color:var(--muted)}.vc .why b{color:var(--text)}
+  .vc .stat{font-family:var(--mono);font-size:11px;color:var(--faint);border-top:1px solid var(--border);padding-top:10px}
+  /* state rows */
+  .states{display:grid;gap:8px;margin-top:8px}
+  .st{display:grid;grid-template-columns:150px 1fr auto;gap:12px;align-items:center;background:var(--panel);border:1px solid var(--border);border-radius:9px;padding:11px 14px}
+  .st .k{font-family:var(--mono);font-size:12px;color:var(--muted)}
+  .st .v{font-family:var(--mono);font-size:13.5px}
+  .pill{font-family:var(--mono);font-size:11px;padding:3px 9px;border-radius:20px;border:1px solid;white-space:nowrap}
+  .pill.ok{color:var(--gain);border-color:color-mix(in srgb,var(--gain) 45%,transparent);background:color-mix(in srgb,var(--gain) 11%,transparent)}
+  .pill.no{color:var(--loss);border-color:color-mix(in srgb,var(--loss) 45%,transparent);background:color-mix(in srgb,var(--loss) 11%,transparent)}
+  .pill.warn{color:var(--gold);border-color:color-mix(in srgb,var(--gold) 45%,transparent);background:color-mix(in srgb,var(--gold) 11%,transparent)}
+  section{padding:28px 0;border-top:1px solid var(--border)}
+  h2{font-size:19px;margin-bottom:6px}
+  .sub{color:var(--muted);font-size:14px;margin-bottom:16px;max-width:74ch}
+  .panel{background:var(--panel);border:1px solid var(--border);border-radius:11px;padding:18px}
+  pre.rules{font-family:var(--mono);font-size:12.5px;line-height:1.75;color:var(--muted);margin:0;white-space:pre-wrap}
+  pre.rules b{color:var(--text)}pre.rules .k{color:var(--accent)}pre.rules .g{color:var(--gold)}
+  .cols2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+  .callout{border:1px solid var(--border);border-left:3px solid var(--gold);border-radius:8px;background:var(--panel);padding:14px 18px;margin-top:14px}
+  .callout .h{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+  .callout p{margin:0;color:var(--muted);font-size:13.5px}.callout b{color:var(--text)}
+  footer{padding:24px 0 50px;color:var(--faint);font-size:12px}
+  @media (max-width:760px){.verdicts,.cols2{grid-template-columns:1fr}.st{grid-template-columns:120px 1fr}}
+</style>
+
+<div class="topbar"><div class="wrap row">
+  <span class="brand">WEEKLY<span class="dot">·</span>SCANNER</span>
+  <span class="spacer"></span>
+  <span class="stamp" id="stamp"></span>
+  <button class="toggle" id="themeBtn">◐</button>
+</div></div>
+
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Phase A deliverable · run <span class="mono">python scanner.py</span> any Friday</div>
+    <h1>What to hold this week</h1>
+    <div class="verdicts" id="verdicts"></div>
+  </header>
+
+  <section>
+    <h2>Market state — the four inputs</h2>
+    <p class="sub">Everything both strategies need, computed on the Nasdaq-100. These are the only numbers that matter.</p>
+    <div class="states" id="states"></div>
+    <div class="panel" style="margin-top:14px">
+      <div class="mono" style="font-size:11px;color:var(--muted);margin-bottom:6px">NASDAQ-100 VS EMA-100 · LAST 12 MONTHS</div>
+      <div id="chart"></div>
+    </div>
+  </section>
+
+  <section>
+    <h2>The algorithms, exactly</h2>
+    <p class="sub">Both are weekly: check Friday close, act only if the state flipped.</p>
+    <div class="cols2">
+      <div class="panel"><pre class="rules"><b class="g">STRATEGY A — GROWTH</b>
+
+<span class="k">1.</span> NDX above EMA-100?
+     NO  → <b>100% CASH</b> · done
+     YES → continue
+<span class="k">2.</span> scale = min(1, 0.25 / vol₂₀)
+<span class="k">3.</span> hold <b>TQQQ × scale</b>
+     remainder → CASH
+
+<span style="color:var(--faint)">One trend rule + one sizing rule.
+Max growth, −67% drawdowns.</span></pre></div>
+      <div class="panel"><pre class="rules"><b style="color:var(--accent)">STRATEGY B — DURABLE</b>
+
+<span class="k">1.</span> NDX &gt; EMA-100 <b>AND</b> curve ≥ 0?
+     NO  → <b>100% BONDS (TLT)</b> · done
+     YES → continue
+<span class="k">2.</span> Efficiency ratio ≥ 0.30?
+     YES (clean trend) → <b>TQQQ × scale</b>
+     NO  (choppy)      → <b>100% QQQ</b> (1×)
+
+<span style="color:var(--faint)">Three states: lever up, step down,
+retreat. −43% drawdowns.</span></pre></div>
+    </div>
+    <div class="callout">
+      <div class="h">Why they disagree right now</div>
+      <p id="disagree"></p>
+    </div>
+  </section>
+
+  <section>
+    <h2>Why each rule exists</h2>
+    <div class="panel"><pre class="rules"><b>EMA-100 trend</b>    leveraged ETFs decay in downtrends — don't own them there
+<b>Vol-target 25%</b>   3× leverage in high vol is what digs the −80% craters; this is the #1 risk control
+<b>Efficiency ratio</b> leverage bleeds sideways; drop to 1× in chop (cut max DD −67% → −47%)
+<b>Yield curve</b>      the only <b>leading</b> macro signal that worked — inverts ~1yr before recessions
+                 (VIX and the dollar <b>failed</b>: coincident signals sell you the bottom)
+<b>Bonds off-leg</b>    treasuries rally in flight-to-safety — earns more than cash exactly when needed</pre></div>
+  </section>
+
+  <footer>
+    <p class="mono">Backtest 1985–2026 (pre-2010 TQQQ simulated, conservative). A: CAGR 31.6% / maxDD −67% / Calmar 0.47.
+      B: CAGR 21.6% / maxDD −43% / Calmar 0.50, and positive through the 2000–09 dead decade. Weekly rebalance, 3bps
+      costs, no lookahead. Full spec: STRATEGY_RULEBOOK.md · code: scanner.py.</p>
+    <p style="margin-top:8px">Research only — not investment advice. Leveraged ETFs can lose most of their value.
+      Expect lower forward returns than a historic tech bull; both strategies will have bad years.</p>
+  </footer>
+</div>
+
+<script>
+const S = {
+ "asof": "2026-07-31",
+ "ndx": 28274.19921875,
+ "ema100": 28049.01665901337,
+ "above": true,
+ "vol20": 0.2370659413361691,
+ "scale": 1.0,
+ "er": 0.15007912851938537,
+ "clean": false,
+ "curve": 1.062999963760376,
+ "curve_ok": true,
+ "A": {
+  "TQQQ": 100.0,
+  "CASH": 0.0
+ },
+ "B": {
+  "QQQ": 100.0
+ },
+ "dist_pct": 0.8028180184501021,
+ "hist": [
+  {
+   "t": "2025-07-21",
+   "p": 23180.1,
+   "e": 21315.5
+  },
+  {
+   "t": "2025-07-22",
+   "p": 23063.6,
+   "e": 21350.1
+  },
+  {
+   "t": "2025-07-23",
+   "p": 23162.4,
+   "e": 21386.0
+  },
+  {
+   "t": "2025-07-24",
+   "p": 23219.9,
+   "e": 21422.3
+  },
+  {
+   "t": "2025-07-25",
+   "p": 23272.2,
+   "e": 21459.0
+  },
+  {
+   "t": "2025-07-28",
+   "p": 23356.3,
+   "e": 21496.5
+  },
+  {
+   "t": "2025-07-29",
+   "p": 23308.3,
+   "e": 21532.4
+  },
+  {
+   "t": "2025-07-30",
+   "p": 23345.4,
+   "e": 21568.3
+  },
+  {
+   "t": "2025-07-31",
+   "p": 23218.1,
+   "e": 21601.0
+  },
+  {
+   "t": "2025-08-01",
+   "p": 22763.3,
+   "e": 21624.0
+  },
+  {
+   "t": "2025-08-04",
+   "p": 23188.6,
+   "e": 21655.0
+  },
+  {
+   "t": "2025-08-05",
+   "p": 23018.6,
+   "e": 21682.0
+  },
+  {
+   "t": "2025-08-06",
+   "p": 23315.0,
+   "e": 21714.3
+  },
+  {
+   "t": "2025-08-07",
+   "p": 23389.5,
+   "e": 21747.5
+  },
+  {
+   "t": "2025-08-08",
+   "p": 23611.3,
+   "e": 21784.4
+  },
+  {
+   "t": "2025-08-11",
+   "p": 23526.6,
+   "e": 21818.9
+  },
+  {
+   "t": "2025-08-12",
+   "p": 23839.2,
+   "e": 21858.9
+  },
+  {
+   "t": "2025-08-13",
+   "p": 23849.0,
+   "e": 21898.3
+  },
+  {
+   "t": "2025-08-14",
+   "p": 23832.4,
+   "e": 21936.6
+  },
+  {
+   "t": "2025-08-15",
+   "p": 23712.1,
+   "e": 21971.8
+  },
+  {
+   "t": "2025-08-18",
+   "p": 23713.8,
+   "e": 22006.3
+  },
+  {
+   "t": "2025-08-19",
+   "p": 23384.8,
+   "e": 22033.6
+  },
+  {
+   "t": "2025-08-20",
+   "p": 23249.6,
+   "e": 22057.6
+  },
+  {
+   "t": "2025-08-21",
+   "p": 23142.6,
+   "e": 22079.1
+  },
+  {
+   "t": "2025-08-22",
+   "p": 23498.1,
+   "e": 22107.2
+  },
+  {
+   "t": "2025-08-25",
+   "p": 23425.6,
+   "e": 22133.3
+  },
+  {
+   "t": "2025-08-26",
+   "p": 23525.3,
+   "e": 22160.9
+  },
+  {
+   "t": "2025-08-27",
+   "p": 23565.8,
+   "e": 22188.7
+  },
+  {
+   "t": "2025-08-28",
+   "p": 23703.4,
+   "e": 22218.7
+  },
+  {
+   "t": "2025-08-29",
+   "p": 23415.4,
+   "e": 22242.4
+  },
+  {
+   "t": "2025-09-02",
+   "p": 23231.1,
+   "e": 22262.0
+  },
+  {
+   "t": "2025-09-03",
+   "p": 23414.8,
+   "e": 22284.8
+  },
+  {
+   "t": "2025-09-04",
+   "p": 23633.0,
+   "e": 22311.5
+  },
+  {
+   "t": "2025-09-05",
+   "p": 23652.4,
+   "e": 22338.1
+  },
+  {
+   "t": "2025-09-08",
+   "p": 23762.3,
+   "e": 22366.3
+  },
+  {
+   "t": "2025-09-09",
+   "p": 23839.8,
+   "e": 22395.4
+  },
+  {
+   "t": "2025-09-10",
+   "p": 23849.3,
+   "e": 22424.2
+  },
+  {
+   "t": "2025-09-11",
+   "p": 23992.6,
+   "e": 22455.3
+  },
+  {
+   "t": "2025-09-12",
+   "p": 24092.2,
+   "e": 22487.7
+  },
+  {
+   "t": "2025-09-15",
+   "p": 24293.8,
+   "e": 22523.5
+  },
+  {
+   "t": "2025-09-16",
+   "p": 24274.2,
+   "e": 22558.1
+  },
+  {
+   "t": "2025-09-17",
+   "p": 24223.7,
+   "e": 22591.1
+  },
+  {
+   "t": "2025-09-18",
+   "p": 24454.9,
+   "e": 22628.0
+  },
+  {
+   "t": "2025-09-19",
+   "p": 24626.2,
+   "e": 22667.6
+  },
+  {
+   "t": "2025-09-22",
+   "p": 24761.1,
+   "e": 22709.0
+  },
+  {
+   "t": "2025-09-23",
+   "p": 24580.2,
+   "e": 22746.1
+  },
+  {
+   "t": "2025-09-24",
+   "p": 24503.6,
+   "e": 22780.9
+  },
+  {
+   "t": "2025-09-25",
+   "p": 24397.3,
+   "e": 22812.9
+  },
+  {
+   "t": "2025-09-26",
+   "p": 24503.8,
+   "e": 22846.4
+  },
+  {
+   "t": "2025-09-29",
+   "p": 24611.3,
+   "e": 22881.3
+  },
+  {
+   "t": "2025-09-30",
+   "p": 24680.0,
+   "e": 22917.0
+  },
+  {
+   "t": "2025-10-01",
+   "p": 24800.9,
+   "e": 22954.3
+  },
+  {
+   "t": "2025-10-02",
+   "p": 24892.8,
+   "e": 22992.7
+  },
+  {
+   "t": "2025-10-03",
+   "p": 24785.5,
+   "e": 23028.2
+  },
+  {
+   "t": "2025-10-06",
+   "p": 24978.6,
+   "e": 23066.8
+  },
+  {
+   "t": "2025-10-07",
+   "p": 24840.2,
+   "e": 23101.9
+  },
+  {
+   "t": "2025-10-08",
+   "p": 25136.6,
+   "e": 23142.2
+  },
+  {
+   "t": "2025-10-09",
+   "p": 25098.2,
+   "e": 23180.9
+  },
+  {
+   "t": "2025-10-10",
+   "p": 24221.7,
+   "e": 23201.5
+  },
+  {
+   "t": "2025-10-13",
+   "p": 24750.2,
+   "e": 23232.2
+  },
+  {
+   "t": "2025-10-14",
+   "p": 24579.3,
+   "e": 23258.9
+  },
+  {
+   "t": "2025-10-15",
+   "p": 24745.4,
+   "e": 23288.3
+  },
+  {
+   "t": "2025-10-16",
+   "p": 24657.2,
+   "e": 23315.4
+  },
+  {
+   "t": "2025-10-17",
+   "p": 24817.9,
+   "e": 23345.2
+  },
+  {
+   "t": "2025-10-20",
+   "p": 25141.0,
+   "e": 23380.7
+  },
+  {
+   "t": "2025-10-21",
+   "p": 25127.1,
+   "e": 23415.3
+  },
+  {
+   "t": "2025-10-22",
+   "p": 24879.0,
+   "e": 23444.3
+  },
+  {
+   "t": "2025-10-23",
+   "p": 25097.4,
+   "e": 23477.0
+  },
+  {
+   "t": "2025-10-24",
+   "p": 25358.2,
+   "e": 23514.3
+  },
+  {
+   "t": "2025-10-27",
+   "p": 25821.6,
+   "e": 23560.0
+  },
+  {
+   "t": "2025-10-28",
+   "p": 26012.2,
+   "e": 23608.5
+  },
+  {
+   "t": "2025-10-29",
+   "p": 26119.8,
+   "e": 23658.3
+  },
+  {
+   "t": "2025-10-30",
+   "p": 25734.8,
+   "e": 23699.4
+  },
+  {
+   "t": "2025-10-31",
+   "p": 25858.1,
+   "e": 23742.1
+  },
+  {
+   "t": "2025-11-03",
+   "p": 25972.9,
+   "e": 23786.3
+  },
+  {
+   "t": "2025-11-04",
+   "p": 25435.7,
+   "e": 23819.0
+  },
+  {
+   "t": "2025-11-05",
+   "p": 25620.0,
+   "e": 23854.6
+  },
+  {
+   "t": "2025-11-06",
+   "p": 25130.0,
+   "e": 23879.9
+  },
+  {
+   "t": "2025-11-07",
+   "p": 25059.8,
+   "e": 23903.2
+  },
+  {
+   "t": "2025-11-10",
+   "p": 25611.7,
+   "e": 23937.1
+  },
+  {
+   "t": "2025-11-11",
+   "p": 25533.5,
+   "e": 23968.7
+  },
+  {
+   "t": "2025-11-12",
+   "p": 25517.3,
+   "e": 23999.4
+  },
+  {
+   "t": "2025-11-13",
+   "p": 24993.5,
+   "e": 24019.0
+  },
+  {
+   "t": "2025-11-14",
+   "p": 25008.2,
+   "e": 24038.6
+  },
+  {
+   "t": "2025-11-17",
+   "p": 24799.9,
+   "e": 24053.7
+  },
+  {
+   "t": "2025-11-18",
+   "p": 24503.1,
+   "e": 24062.6
+  },
+  {
+   "t": "2025-11-19",
+   "p": 24640.5,
+   "e": 24074.0
+  },
+  {
+   "t": "2025-11-20",
+   "p": 24054.4,
+   "e": 24073.7
+  },
+  {
+   "t": "2025-11-21",
+   "p": 24239.6,
+   "e": 24076.9
+  },
+  {
+   "t": "2025-11-24",
+   "p": 24873.8,
+   "e": 24092.7
+  },
+  {
+   "t": "2025-11-25",
+   "p": 25018.4,
+   "e": 24111.1
+  },
+  {
+   "t": "2025-11-26",
+   "p": 25236.9,
+   "e": 24133.3
+  },
+  {
+   "t": "2025-11-28",
+   "p": 25434.9,
+   "e": 24159.1
+  },
+  {
+   "t": "2025-12-01",
+   "p": 25342.8,
+   "e": 24182.6
+  },
+  {
+   "t": "2025-12-02",
+   "p": 25555.9,
+   "e": 24209.8
+  },
+  {
+   "t": "2025-12-03",
+   "p": 25606.5,
+   "e": 24237.4
+  },
+  {
+   "t": "2025-12-04",
+   "p": 25581.7,
+   "e": 24264.0
+  },
+  {
+   "t": "2025-12-05",
+   "p": 25692.1,
+   "e": 24292.3
+  },
+  {
+   "t": "2025-12-08",
+   "p": 25627.9,
+   "e": 24318.8
+  },
+  {
+   "t": "2025-12-09",
+   "p": 25668.7,
+   "e": 24345.5
+  },
+  {
+   "t": "2025-12-10",
+   "p": 25776.4,
+   "e": 24373.8
+  },
+  {
+   "t": "2025-12-11",
+   "p": 25686.7,
+   "e": 24399.8
+  },
+  {
+   "t": "2025-12-12",
+   "p": 25196.7,
+   "e": 24415.6
+  },
+  {
+   "t": "2025-12-15",
+   "p": 25067.3,
+   "e": 24428.5
+  },
+  {
+   "t": "2025-12-16",
+   "p": 25132.9,
+   "e": 24442.5
+  },
+  {
+   "t": "2025-12-17",
+   "p": 24647.6,
+   "e": 24446.5
+  },
+  {
+   "t": "2025-12-18",
+   "p": 25019.4,
+   "e": 24457.9
+  },
+  {
+   "t": "2025-12-19",
+   "p": 25346.2,
+   "e": 24475.5
+  },
+  {
+   "t": "2025-12-22",
+   "p": 25461.7,
+   "e": 24495.0
+  },
+  {
+   "t": "2025-12-23",
+   "p": 25587.8,
+   "e": 24516.6
+  },
+  {
+   "t": "2025-12-24",
+   "p": 25656.2,
+   "e": 24539.2
+  },
+  {
+   "t": "2025-12-26",
+   "p": 25644.4,
+   "e": 24561.1
+  },
+  {
+   "t": "2025-12-29",
+   "p": 25525.6,
+   "e": 24580.2
+  },
+  {
+   "t": "2025-12-30",
+   "p": 25462.6,
+   "e": 24597.6
+  },
+  {
+   "t": "2025-12-31",
+   "p": 25249.8,
+   "e": 24610.6
+  },
+  {
+   "t": "2026-01-02",
+   "p": 25206.2,
+   "e": 24622.4
+  },
+  {
+   "t": "2026-01-05",
+   "p": 25401.3,
+   "e": 24637.8
+  },
+  {
+   "t": "2026-01-06",
+   "p": 25639.7,
+   "e": 24657.6
+  },
+  {
+   "t": "2026-01-07",
+   "p": 25653.9,
+   "e": 24677.3
+  },
+  {
+   "t": "2026-01-08",
+   "p": 25507.1,
+   "e": 24693.8
+  },
+  {
+   "t": "2026-01-09",
+   "p": 25766.3,
+   "e": 24715.0
+  },
+  {
+   "t": "2026-01-12",
+   "p": 25787.7,
+   "e": 24736.3
+  },
+  {
+   "t": "2026-01-13",
+   "p": 25741.9,
+   "e": 24756.2
+  },
+  {
+   "t": "2026-01-14",
+   "p": 25465.9,
+   "e": 24770.2
+  },
+  {
+   "t": "2026-01-15",
+   "p": 25547.1,
+   "e": 24785.6
+  },
+  {
+   "t": "2026-01-16",
+   "p": 25529.3,
+   "e": 24800.3
+  },
+  {
+   "t": "2026-01-20",
+   "p": 24987.6,
+   "e": 24804.0
+  },
+  {
+   "t": "2026-01-21",
+   "p": 25326.6,
+   "e": 24814.4
+  },
+  {
+   "t": "2026-01-22",
+   "p": 25518.3,
+   "e": 24828.3
+  },
+  {
+   "t": "2026-01-23",
+   "p": 25605.5,
+   "e": 24843.7
+  },
+  {
+   "t": "2026-01-26",
+   "p": 25713.2,
+   "e": 24860.9
+  },
+  {
+   "t": "2026-01-27",
+   "p": 25939.7,
+   "e": 24882.3
+  },
+  {
+   "t": "2026-01-28",
+   "p": 26022.8,
+   "e": 24904.9
+  },
+  {
+   "t": "2026-01-29",
+   "p": 25884.3,
+   "e": 24924.3
+  },
+  {
+   "t": "2026-01-30",
+   "p": 25552.4,
+   "e": 24936.7
+  },
+  {
+   "t": "2026-02-02",
+   "p": 25738.6,
+   "e": 24952.6
+  },
+  {
+   "t": "2026-02-03",
+   "p": 25338.6,
+   "e": 24960.2
+  },
+  {
+   "t": "2026-02-04",
+   "p": 24891.2,
+   "e": 24958.9
+  },
+  {
+   "t": "2026-02-05",
+   "p": 24548.7,
+   "e": 24950.7
+  },
+  {
+   "t": "2026-02-06",
+   "p": 25075.8,
+   "e": 24953.2
+  },
+  {
+   "t": "2026-02-09",
+   "p": 25268.1,
+   "e": 24959.5
+  },
+  {
+   "t": "2026-02-10",
+   "p": 25127.6,
+   "e": 24962.8
+  },
+  {
+   "t": "2026-02-11",
+   "p": 25201.3,
+   "e": 24967.5
+  },
+  {
+   "t": "2026-02-12",
+   "p": 24687.6,
+   "e": 24962.0
+  },
+  {
+   "t": "2026-02-13",
+   "p": 24732.7,
+   "e": 24957.4
+  },
+  {
+   "t": "2026-02-17",
+   "p": 24701.6,
+   "e": 24952.4
+  },
+  {
+   "t": "2026-02-18",
+   "p": 24898.9,
+   "e": 24951.3
+  },
+  {
+   "t": "2026-02-19",
+   "p": 24797.3,
+   "e": 24948.3
+  },
+  {
+   "t": "2026-02-20",
+   "p": 25012.6,
+   "e": 24949.5
+  },
+  {
+   "t": "2026-02-23",
+   "p": 24708.9,
+   "e": 24944.8
+  },
+  {
+   "t": "2026-02-24",
+   "p": 24977.0,
+   "e": 24945.4
+  },
+  {
+   "t": "2026-02-25",
+   "p": 25329.0,
+   "e": 24953.0
+  },
+  {
+   "t": "2026-02-26",
+   "p": 25034.4,
+   "e": 24954.6
+  },
+  {
+   "t": "2026-02-27",
+   "p": 24960.0,
+   "e": 24954.7
+  },
+  {
+   "t": "2026-03-02",
+   "p": 24992.6,
+   "e": 24955.5
+  },
+  {
+   "t": "2026-03-03",
+   "p": 24720.1,
+   "e": 24950.8
+  },
+  {
+   "t": "2026-03-04",
+   "p": 25093.7,
+   "e": 24953.6
+  },
+  {
+   "t": "2026-03-05",
+   "p": 25020.4,
+   "e": 24955.0
+  },
+  {
+   "t": "2026-03-06",
+   "p": 24643.0,
+   "e": 24948.8
+  },
+  {
+   "t": "2026-03-09",
+   "p": 24967.2,
+   "e": 24949.2
+  },
+  {
+   "t": "2026-03-10",
+   "p": 24956.5,
+   "e": 24949.3
+  },
+  {
+   "t": "2026-03-11",
+   "p": 24965.0,
+   "e": 24949.6
+  },
+  {
+   "t": "2026-03-12",
+   "p": 24533.6,
+   "e": 24941.4
+  },
+  {
+   "t": "2026-03-13",
+   "p": 24380.7,
+   "e": 24930.3
+  },
+  {
+   "t": "2026-03-16",
+   "p": 24655.3,
+   "e": 24924.8
+  },
+  {
+   "t": "2026-03-17",
+   "p": 24780.4,
+   "e": 24922.0
+  },
+  {
+   "t": "2026-03-18",
+   "p": 24425.1,
+   "e": 24912.1
+  },
+  {
+   "t": "2026-03-19",
+   "p": 24355.3,
+   "e": 24901.1
+  },
+  {
+   "t": "2026-03-20",
+   "p": 23898.2,
+   "e": 24881.2
+  },
+  {
+   "t": "2026-03-23",
+   "p": 24188.6,
+   "e": 24867.5
+  },
+  {
+   "t": "2026-03-24",
+   "p": 24002.4,
+   "e": 24850.4
+  },
+  {
+   "t": "2026-03-25",
+   "p": 24163.0,
+   "e": 24836.8
+  },
+  {
+   "t": "2026-03-26",
+   "p": 23587.0,
+   "e": 24812.0
+  },
+  {
+   "t": "2026-03-27",
+   "p": 23132.8,
+   "e": 24778.8
+  },
+  {
+   "t": "2026-03-30",
+   "p": 22953.4,
+   "e": 24742.6
+  },
+  {
+   "t": "2026-03-31",
+   "p": 23740.2,
+   "e": 24722.8
+  },
+  {
+   "t": "2026-04-01",
+   "p": 24020.0,
+   "e": 24708.9
+  },
+  {
+   "t": "2026-04-02",
+   "p": 24045.5,
+   "e": 24695.7
+  },
+  {
+   "t": "2026-04-06",
+   "p": 24192.2,
+   "e": 24685.8
+  },
+  {
+   "t": "2026-04-07",
+   "p": 24202.4,
+   "e": 24676.2
+  },
+  {
+   "t": "2026-04-08",
+   "p": 24903.2,
+   "e": 24680.7
+  },
+  {
+   "t": "2026-04-09",
+   "p": 25082.1,
+   "e": 24688.6
+  },
+  {
+   "t": "2026-04-10",
+   "p": 25116.3,
+   "e": 24697.1
+  },
+  {
+   "t": "2026-04-13",
+   "p": 25383.7,
+   "e": 24710.7
+  },
+  {
+   "t": "2026-04-14",
+   "p": 25842.0,
+   "e": 24733.1
+  },
+  {
+   "t": "2026-04-15",
+   "p": 26204.6,
+   "e": 24762.2
+  },
+  {
+   "t": "2026-04-16",
+   "p": 26333.0,
+   "e": 24793.3
+  },
+  {
+   "t": "2026-04-17",
+   "p": 26672.4,
+   "e": 24830.5
+  },
+  {
+   "t": "2026-04-20",
+   "p": 26590.3,
+   "e": 24865.4
+  },
+  {
+   "t": "2026-04-21",
+   "p": 26479.5,
+   "e": 24897.4
+  },
+  {
+   "t": "2026-04-22",
+   "p": 26937.3,
+   "e": 24937.8
+  },
+  {
+   "t": "2026-04-23",
+   "p": 26782.6,
+   "e": 24974.3
+  },
+  {
+   "t": "2026-04-24",
+   "p": 27303.7,
+   "e": 25020.4
+  },
+  {
+   "t": "2026-04-27",
+   "p": 27305.7,
+   "e": 25065.7
+  },
+  {
+   "t": "2026-04-28",
+   "p": 27029.0,
+   "e": 25104.5
+  },
+  {
+   "t": "2026-04-29",
+   "p": 27187.0,
+   "e": 25145.8
+  },
+  {
+   "t": "2026-04-30",
+   "p": 27452.1,
+   "e": 25191.4
+  },
+  {
+   "t": "2026-05-01",
+   "p": 27710.4,
+   "e": 25241.3
+  },
+  {
+   "t": "2026-05-04",
+   "p": 27651.8,
+   "e": 25289.1
+  },
+  {
+   "t": "2026-05-05",
+   "p": 28015.1,
+   "e": 25343.0
+  },
+  {
+   "t": "2026-05-06",
+   "p": 28599.2,
+   "e": 25407.5
+  },
+  {
+   "t": "2026-05-07",
+   "p": 28563.9,
+   "e": 25470.0
+  },
+  {
+   "t": "2026-05-08",
+   "p": 29235.0,
+   "e": 25544.6
+  },
+  {
+   "t": "2026-05-11",
+   "p": 29320.7,
+   "e": 25619.4
+  },
+  {
+   "t": "2026-05-12",
+   "p": 29064.8,
+   "e": 25687.6
+  },
+  {
+   "t": "2026-05-13",
+   "p": 29366.9,
+   "e": 25760.4
+  },
+  {
+   "t": "2026-05-14",
+   "p": 29580.3,
+   "e": 25836.1
+  },
+  {
+   "t": "2026-05-15",
+   "p": 29125.2,
+   "e": 25901.2
+  },
+  {
+   "t": "2026-05-18",
+   "p": 28994.4,
+   "e": 25962.5
+  },
+  {
+   "t": "2026-05-19",
+   "p": 28818.8,
+   "e": 26019.0
+  },
+  {
+   "t": "2026-05-20",
+   "p": 29297.7,
+   "e": 26083.9
+  },
+  {
+   "t": "2026-05-21",
+   "p": 29357.3,
+   "e": 26148.8
+  },
+  {
+   "t": "2026-05-22",
+   "p": 29481.6,
+   "e": 26214.8
+  },
+  {
+   "t": "2026-05-26",
+   "p": 30001.3,
+   "e": 26289.7
+  },
+  {
+   "t": "2026-05-27",
+   "p": 29973.6,
+   "e": 26362.7
+  },
+  {
+   "t": "2026-05-28",
+   "p": 30223.9,
+   "e": 26439.1
+  },
+  {
+   "t": "2026-05-29",
+   "p": 30333.2,
+   "e": 26516.3
+  },
+  {
+   "t": "2026-06-01",
+   "p": 30513.9,
+   "e": 26595.4
+  },
+  {
+   "t": "2026-06-02",
+   "p": 30660.6,
+   "e": 26675.9
+  },
+  {
+   "t": "2026-06-03",
+   "p": 30571.2,
+   "e": 26753.1
+  },
+  {
+   "t": "2026-06-04",
+   "p": 30407.8,
+   "e": 26825.4
+  },
+  {
+   "t": "2026-06-05",
+   "p": 28957.6,
+   "e": 26867.6
+  },
+  {
+   "t": "2026-06-08",
+   "p": 29414.3,
+   "e": 26918.1
+  },
+  {
+   "t": "2026-06-09",
+   "p": 29084.5,
+   "e": 26961.0
+  },
+  {
+   "t": "2026-06-10",
+   "p": 28508.0,
+   "e": 26991.6
+  },
+  {
+   "t": "2026-06-11",
+   "p": 29446.2,
+   "e": 27040.2
+  },
+  {
+   "t": "2026-06-12",
+   "p": 29635.9,
+   "e": 27091.6
+  },
+  {
+   "t": "2026-06-15",
+   "p": 30543.9,
+   "e": 27160.0
+  },
+  {
+   "t": "2026-06-16",
+   "p": 29968.1,
+   "e": 27215.6
+  },
+  {
+   "t": "2026-06-17",
+   "p": 29670.9,
+   "e": 27264.2
+  },
+  {
+   "t": "2026-06-18",
+   "p": 30406.2,
+   "e": 27326.4
+  },
+  {
+   "t": "2026-06-22",
+   "p": 30347.1,
+   "e": 27386.2
+  },
+  {
+   "t": "2026-06-23",
+   "p": 29347.3,
+   "e": 27425.1
+  },
+  {
+   "t": "2026-06-24",
+   "p": 29220.1,
+   "e": 27460.6
+  },
+  {
+   "t": "2026-06-25",
+   "p": 29440.3,
+   "e": 27499.8
+  },
+  {
+   "t": "2026-06-26",
+   "p": 29118.2,
+   "e": 27531.9
+  },
+  {
+   "t": "2026-06-29",
+   "p": 29774.8,
+   "e": 27576.3
+  },
+  {
+   "t": "2026-06-30",
+   "p": 30276.3,
+   "e": 27629.7
+  },
+  {
+   "t": "2026-07-01",
+   "p": 29809.1,
+   "e": 27672.9
+  },
+  {
+   "t": "2026-07-02",
+   "p": 29329.2,
+   "e": 27705.7
+  },
+  {
+   "t": "2026-07-06",
+   "p": 29697.9,
+   "e": 27745.1
+  },
+  {
+   "t": "2026-07-07",
+   "p": 29173.0,
+   "e": 27773.4
+  },
+  {
+   "t": "2026-07-08",
+   "p": 29252.6,
+   "e": 27802.7
+  },
+  {
+   "t": "2026-07-09",
+   "p": 29727.1,
+   "e": 27840.8
+  },
+  {
+   "t": "2026-07-10",
+   "p": 29825.1,
+   "e": 27880.1
+  },
+  {
+   "t": "2026-07-13",
+   "p": 29264.1,
+   "e": 27907.5
+  },
+  {
+   "t": "2026-07-14",
+   "p": 29586.3,
+   "e": 27940.8
+  },
+  {
+   "t": "2026-07-15",
+   "p": 29502.6,
+   "e": 27971.7
+  },
+  {
+   "t": "2026-07-16",
+   "p": 29025.8,
+   "e": 27992.6
+  },
+  {
+   "t": "2026-07-17",
+   "p": 28592.7,
+   "e": 28004.4
+  },
+  {
+   "t": "2026-07-20",
+   "p": 28604.2,
+   "e": 28016.3
+  },
+  {
+   "t": "2026-07-21",
+   "p": 29155.2,
+   "e": 28038.9
+  },
+  {
+   "t": "2026-07-22",
+   "p": 28998.1,
+   "e": 28057.9
+  },
+  {
+   "t": "2026-07-23",
+   "p": 28454.8,
+   "e": 28065.7
+  },
+  {
+   "t": "2026-07-24",
+   "p": 28128.3,
+   "e": 28067.0
+  },
+  {
+   "t": "2026-07-27",
+   "p": 28039.2,
+   "e": 28066.4
+  },
+  {
+   "t": "2026-07-28",
+   "p": 27763.1,
+   "e": 28060.4
+  },
+  {
+   "t": "2026-07-29",
+   "p": 27192.3,
+   "e": 28043.2
+  },
+  {
+   "t": "2026-07-30",
+   "p": 28106.3,
+   "e": 28044.5
+  },
+  {
+   "t": "2026-07-31",
+   "p": 28274.2,
+   "e": 28049.0
+  }
+ ],
+ "stats": {
+  "A": {
+   "cagr": 31.6,
+   "dd": -67,
+   "calmar": 0.47,
+   "p10y": 16000,
+   "inmkt": 72
+  },
+  "B": {
+   "cagr": 21.6,
+   "dd": -43,
+   "calmar": 0.5,
+   "p10y": 6100,
+   "inmkt": 65
+  }
+ }
+};
+const SVGTAGS=['svg','g','rect','line','text','path','circle'];
+const el=(t,a={},...c)=>{const n=SVGTAGS.includes(t)?document.createElementNS('http://www.w3.org/2000/svg',t):document.createElement(t);for(const k in a)n.setAttribute(k,a[k]);c.forEach(x=>n.append(x));return n;};
+const $=s=>document.querySelector(s);
+const cvar=n=>getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+$('#stamp').textContent='as of '+S.asof+' · rebalance Friday close';
+
+function cls(t){const k=t.toLowerCase();return k.includes('tqqq')?'tqqq':k.includes('qqq')?'qqq':k.includes('tlt')?'tlt':'cash';}
+function verdicts(){
+ const host=$('#verdicts');host.innerHTML='';
+ const defs=[['a','Strategy A — Growth',S.A,S.stats.A,
+   S.above?`Nasdaq is <b>above</b> its EMA-100 and vol is ${(S.vol20*100).toFixed(0)}% → hold TQQQ at ${(S.scale*100).toFixed(0)}% size.`
+          :`Nasdaq is <b>below</b> its EMA-100 → out of the market, sit in cash.`],
+  ['b','Strategy B — Durable',S.B,S.stats.B,
+   (!S.above||!S.curve_ok)?`Risk check failed (${!S.above?'below EMA-100':'curve inverted'}) → retreat to bonds.`
+    :(S.clean?`Clean uptrend (ER ${S.er.toFixed(2)}) → lever up into TQQQ at ${(S.scale*100).toFixed(0)}% size.`
+             :`Uptrend but <b>choppy</b> (ER ${S.er.toFixed(2)} &lt; 0.30) → de-lever to 1× QQQ.`)]];
+ defs.forEach(([k,nm,alloc,st,why])=>{
+  const d=el('div',{class:'vc '+k});
+  const holds=Object.entries(alloc).filter(([t,v])=>v>0.5)
+    .map(([t,v])=>`<span class="tick ${cls(t)}">${t.split(' ')[0]} ${v}%</span>`).join('');
+  d.innerHTML=`<div class="nm">${nm}</div><div class="hold">${holds}</div>
+   <div class="why">${why}</div>
+   <div class="stat">backtest: CAGR ${st.cagr}% · maxDD ${st.dd}% · Calmar ${st.calmar} · $1k→~$${st.p10y.toLocaleString()} in 10yr</div>`;
+  host.append(d);});
+}
+
+function states(){
+ const host=$('#states');host.innerHTML='';
+ const rows=[
+  ['Trend (EMA-100)',`NDX ${S.ndx.toLocaleString(undefined,{maximumFractionDigits:0})} vs ${S.ema100.toLocaleString(undefined,{maximumFractionDigits:0})} (${S.dist_pct>=0?'+':''}${S.dist_pct.toFixed(1)}%)`,
+    S.above?['ok','UPTREND']:['no','DOWNTREND']],
+  ['Volatility (20d)',`${(S.vol20*100).toFixed(1)}% annualized → position size ${(S.scale*100).toFixed(0)}%`,
+    S.scale>=0.99?['ok','FULL SIZE']:S.scale>=0.6?['warn','REDUCED']:['no','SMALL']],
+  ['Chop (efficiency)',`ER ${S.er.toFixed(2)} (threshold 0.30)`,
+    S.clean?['ok','CLEAN TREND']:['warn','CHOPPY']],
+  ['Macro (yield curve)',`10y − 3mo = ${S.curve>=0?'+':''}${S.curve.toFixed(2)}%`,
+    S.curve_ok?['ok','NOT INVERTED']:['no','INVERTED']],
+ ];
+ rows.forEach(([k,v,[p,lbl]])=>{const d=el('div',{class:'st'});
+  d.innerHTML=`<div class="k">${k}</div><div class="v">${v}</div><span class="pill ${p}">${lbl}</span>`;host.append(d);});
+ // disagreement note
+ const same=JSON.stringify(Object.keys(S.A).filter(k=>S.A[k]>0.5))===JSON.stringify(Object.keys(S.B).filter(k=>S.B[k]>0.5));
+ $('#disagree').innerHTML = same
+  ? `Both strategies currently agree on the allocation.`
+  : `The trend is up and the curve is fine, so <b>A goes full 3× TQQQ</b>. But the efficiency ratio is only
+     <b>${S.er.toFixed(2)}</b> — the market is grinding sideways rather than trending cleanly — so <b>B refuses to use
+     leverage</b> and holds 1× QQQ instead. This is exactly the chop filter that cut B's worst drawdown from −67% to −43%.`;
+}
+
+function chart(){
+ const host=$('#chart');host.innerHTML='';const pts=S.hist;
+ const W=host.clientWidth||900,H=200,padL=52,padR=12,padT=12,padB=22;
+ const vals=pts.flatMap(p=>[p.p,p.e]);const lo=Math.min(...vals)*0.99,hi=Math.max(...vals)*1.01;
+ const X=i=>padL+i/(pts.length-1)*(W-padL-padR),Y=v=>padT+(hi-v)/(hi-lo)*(H-padT-padB);
+ const svg=el('svg',{viewBox:`0 0 ${W} ${H}`,width:'100%',height:H});
+ for(let t=0;t<=3;t++){const v=lo+(hi-lo)*t/3,y=Y(v);
+  svg.append(el('line',{x1:padL,y1:y,x2:W-padR,y2:y,stroke:cvar('--grid')}));
+  svg.append(el('text',{x:padL-8,y:y+3,'text-anchor':'end',fill:cvar('--faint'),style:'font-size:10px',
+    'font-family':'var(--mono)'},Math.round(v).toLocaleString()));}
+ [['e',cvar('--muted'),1.6,'4 3'],['p',cvar('--accent'),2,null]].forEach(([k,col,w,dash])=>{
+  let d='';pts.forEach((p,i)=>{d+=(i?'L':'M')+X(i).toFixed(1)+' '+Y(p[k]).toFixed(1)+' ';});
+  const a={d,fill:'none',stroke:col,'stroke-width':w};if(dash)a['stroke-dasharray']=dash;
+  svg.append(el('path',a));});
+ [0,Math.floor(pts.length/2),pts.length-1].forEach(i=>svg.append(el('text',{x:X(i),y:H-6,
+   'text-anchor':i===0?'start':(i===pts.length-1?'end':'middle'),fill:cvar('--faint'),style:'font-size:10px','font-family':'var(--mono)'},pts[i].t.slice(0,7))));
+ svg.append(el('circle',{cx:X(pts.length-1),cy:Y(pts[pts.length-1].p),r:3.5,fill:cvar('--accent')}));
+ host.append(svg);
+}
+
+function renderAll(){verdicts();states();chart();}
+const btn=$('#themeBtn');
+function curDark(){const a=document.documentElement.getAttribute('data-theme');return a?a==='dark':matchMedia('(prefers-color-scheme: dark)').matches;}
+btn.addEventListener('click',()=>{document.documentElement.setAttribute('data-theme',curDark()?'light':'dark');requestAnimationFrame(renderAll);});
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change',()=>requestAnimationFrame(renderAll));
+new ResizeObserver(()=>renderAll()).observe(document.body);
+renderAll();
+</script>
