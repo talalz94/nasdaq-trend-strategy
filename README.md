@@ -115,3 +115,8 @@ with an open_time column). Their results and reports are included.
 
 Python 3.11 or newer (developed on 3.13). Packages: [`requirements.txt`](requirements.txt). Paper trading's
 scheduling is Windows-specific (Task Scheduler); everything else runs anywhere.
+
+## License
+
+[MIT](LICENSE). The license covers the code and documents in this repository. No market data is included; data
+you download with the scripts stays under its providers' terms (see [Data](#data)).
